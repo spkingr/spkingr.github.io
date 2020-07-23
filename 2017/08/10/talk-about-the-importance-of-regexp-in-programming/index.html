@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="浅谈学习正则表达式的重要性"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>浅谈学习正则表达式的重要性 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">浅谈学习正则表达式的重要性</h1>
+    <div class="meta">
+        <span>2017-08-10</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Hexo/">Hexo</a> <a href="/tags/Web/">Web</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、问题"><a href="#一、问题" class="headerlink" title="一、问题"></a>一、问题</h2><p>使用 Hexo 搭建博客确实简单又强大，简单在于构建和发布过程，强大在于它的扩展性。关于 Hexo 博客插件功能有兴趣的朋友可以参考我之前的一篇文章：<a href="http://liuqingwen.me/blog/2017/05/16/share-several-extra-functionality-of-hexo-plugins/">分享几个实用的 HEXO 博客功能插件</a> ，但是有时候这些功能比较<em>官方</em>，我们还是需要自己动手 DIY 一下才能更好的适应自己的网页。我现在使用的<strong>博客 RSS 订阅功能</strong>这个插件（ <a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="noopener">hexo-generator-feed</a> ）就不太适合我自己的<em>博客行情</em>。</p>
+<p>问题是这样的，因为我使用了<strong>图片懒加载</strong>的功能，导致生成的 RSS.xml 文件包含的图片部分是真实地址，部分是预加载图片的地址而不是真实源图片地址：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://url/to/imgloader.gif"</span> <span class="attr">data-echo</span>=<span class="string">"real-image.jpg"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"real-image.jpg"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://url/to/real-image.jpg"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个时候就需要自己动手稍微 Hack 一下插件的源码了，对整篇的文字进行查找替换就需要<strong>正则表达式</strong>派上用场了。</p>
+<h2 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h2><p>对于 JavaScript 编程我是门外汉，不过好在<strong>正则表达式在不同语言之间是通用</strong>的，至少大部分场景是这样，那么对于会 Java 的我来说对源码简单修改一下足够了。关于正则表达式这里有一篇文章总结的比较好，刚好介绍了我需要使用的知识点：<a href="http://www.isnowfy.com/regular-expression-negative/" target="_blank" rel="noopener">正则表达式中的不匹配</a>，下面引用的是文章的正则表达式定义表格：</p>
+<table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">定义</th>
+<th align="center">表达式</th>
+<th align="center">定义</th>
+<th align="center">表达式</th>
+<th align="center">定义</th>
+<th align="center">表达式</th>
+<th align="center">定义</th>
+<th align="center">表达式</th>
+<th align="center">定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">[abc]</span></td>
+<td align="center">a或b或c</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">.</span></td>
+<td align="center">任意单个字符</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">a?</span></td>
+<td align="center">零个或一个a</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">[^abc]</span></td>
+<td align="center">任意不是abc的字符</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">\s</span></td>
+<td align="center">空格</td>
+</tr>
+<tr>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">a*</span></td>
+<td align="center">零个或多个a</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">[a-z]</span></td>
+<td align="center">a-z的任意字符</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">\S</span></td>
+<td align="center">非空格</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">a+</span></td>
+<td align="center">一个或多个a</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">[a-zA-Z]</span></td>
+<td align="center">a-z或A-Z</td>
+</tr>
+<tr>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">\d</span></td>
+<td align="center">任意数字</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">a{n}</span></td>
+<td align="center">正好出现n次a</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">^</span></td>
+<td align="center">一行开头</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">\D</span></td>
+<td align="center">任意非数字</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">a{n,}</span></td>
+<td align="center">至少出现n次a</td>
+</tr>
+<tr>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">$</span></td>
+<td align="center">一行末尾</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">\w</span></td>
+<td align="center">任意字母数字或下划线</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">a{n,m}</span></td>
+<td align="center">出现n-m次a</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">(…)</span></td>
+<td align="center">括号用于分组</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">\W</span></td>
+<td align="center">任意非字母数字或下划线</td>
+</tr>
+<tr>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">a*?</span></td>
+<td align="center">零个或多个a(非贪婪)</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">(a｜b)</span></td>
+<td align="center">a或b</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">(a)…\1</span></td>
+<td align="center">引用分组</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">(?=a)</span></td>
+<td align="center">前面有a</td>
+<td align="center"><span markdown="1" style="color: #ff00de; background-color: #ffe4c4; padding:0px 4px 0px 4px;">(?!a)</span></td>
+<td align="center">前面没有a</td>
+</tr>
+</tbody></table>
+<p>对于上面的代码我要做到三点：</p>
+<ol>
+<li><span markdown="1" style="color: #13b900; ">图片 src 是真实地址的不能改，比如： <code>src=&quot;http://url/to/real-image.jpg&quot;</code></span></li>
+<li><span markdown="1" style="color: #13b900; ">图片 src 是相对地址的，需要添加绝对地址： <code>src=&quot;real-image.jpg&quot;</code> 改成 <code>src=&quot;http://url/to/real-image.jpg&quot;</code></span></li>
+<li><span markdown="1" style="color: #13b900; ">图片 src 是懒加载图片的，修改为 data-echo 表示的绝对地址： <code>src=&quot;http://url/to/imgloader.gif&quot; data-echo=&quot;real-image.jpg&quot;</code> 改成 <code>src=&quot;http://url/to/real-image.jpg&quot;</code></span></li>
+</ol>
+<p>第三种情况很好处理，正则表达式： <code>/(http\:\/\/url\/to\/imgloader.gif&quot; data-echo=&quot;)/g</code> 来进行替换即可 ，这里很多符号需要使用 <code>\</code> 反斜杠来转义，另外 <code>g</code> 表示全局搜索替换。</p>
+<p>第二种情况和第一种情况很相似，但是第一种情况是不需要做任何修改的，刚开始我简单的替换 <code>src=&quot;</code> 为绝对路径 <code>src=http://url/to/</code> 是行不通的，这样会把第一种情况的图片地址也替换掉： <code>src=&quot;http://url/to/http://url/to/real-image.jpg&quot;</code> 这是我不想要的结果！</p>
+<p>所以，这里需要用到<strong>正则表达式中的不匹配</strong>原则了，如果路径中不包含 <code>http://</code> 那么就是相对地址，需要修改！正则表达式是： <code>/&lt;img src=&quot;(?!http:\/\/).+(.jpg|.png|.gif)&quot;/gi</code> ，显然， <code>(?!http:\/\/)</code> 是表示匹配字符串<em>不包含</em> <code>http://</code> 的意思，这里注意 <code>i</code> 表示<em>不区分大小写</em>进行搜索， <code>.</code> 表示匹配<em>任何换行符之外的单个字符</em>，然后 <code>+</code> 代表不止一个， <code>(.jpg|.png|.gif)</code> 表示这三种图片格式中的<em>任何一种</em>即可。这样正则表达式就达到匹配搜素的目的了。</p>
+<p>另外，正则表达中括号 <code>()</code> 非常有用（ <code>(x)</code> 和 <code>(?:x)</code> 含义相反，可以参考相关资料 ），初学者很容易忽略这一点！它的含义和用途是：</p>
+<blockquote>
+<p>(x)<br>匹配 <code>x</code> 并且记住匹配项，就像下面的例子展示的那样。括号被称为<strong>捕获括号</strong>。<br>模式 <code>/(foo) (bar) \1 \2/</code> 中的 <code>(foo)</code> 和 <code>(bar)</code> 匹配并记住字符串 <code>foo bar foo bar</code> 中前两个单词。模式中的 <code>\1</code> 和 <code>\2</code> 匹配字符串的后两个单词。注意 <code>\1</code>、<code>\2</code>、<code>\n</code> 是用在正则表达式的匹配环节。在正则表达式的替换环节，则要使用像 <code>$1</code>、<code>$2</code>、<code>$n</code> 这样的语法，例如，<code>&#39;bar foo&#39;.replace(/(...) (...)/, &#39;$2 $1&#39;)</code>。</p>
+</blockquote>
+<p>所以最终我的代码如下，我加了两个括号用于记住匹配项并用 <code>$1</code> 和 <code>$2</code> 来使用，代码一目了然：</p>
+<figure class="highlight js"><figcaption><span>hexo-generator-feed/lib/generator.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(feedConfig.replaceURL) &#123;</span><br><span class="line">    <span class="keyword">var</span> regLazy = <span class="regexp">/(http\:\/\/liuqingwen.me\/blog\/images\/imgloader.gif" data-echo=")/g</span>;</span><br><span class="line">    <span class="keyword">var</span> regSrc = <span class="regexp">/(&lt;img src=")((?!http:\/\/).+(.jpg|.png|.gif)")/gi</span>;</span><br><span class="line">    posts.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> coverdiv = post.permalink + post.cover_index;</span><br><span class="line">        <span class="keyword">var</span> contenthead = <span class="string">'&lt;span class="image main"&gt;&lt;img src="'</span> + coverdiv + <span class="string">'" alt="'</span> + post.title + <span class="string">'"&gt;&lt;/span&gt;'</span>;</span><br><span class="line">        <span class="keyword">var</span> content = post.content.replace(regSrc, <span class="string">"$1"</span> + post.permalink + <span class="string">"$2"</span>);</span><br><span class="line">        content = content.replace(regLazy, post.permalink);</span><br><span class="line">        <span class="comment">//element.content = contenthead + content;</span></span><br><span class="line">        post.newContent = contenthead + content;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意上面代码中我所注释的那段代码，我发现我并不能直接修改 <code>element.content</code> 那样会导致我所有博客文章和 RSS 文件一同被莫名其妙地改掉，这是我没有预料到的，所以，鉴于 JavaScript 的动态语言特性，我给每篇文章 <code>post</code> 动态地添加了一个属性： <code>post.newContent</code> 用于 RSS 的生成。</p>
+<p>最后还需要在模板代码中进行应用：</p>
+<figure class="highlight xml"><figcaption><span>atom.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if config.feed.content and post.content and post.newContent %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">content</span> <span class="attr">type</span>=<span class="string">"html"</span>&gt;</span>&lt;![CDATA[&#123;&#123; post.newContent | safe &#125;&#125;]]&gt;<span class="tag">&lt;/<span class="name">content</span>&gt;</span></span><br><span class="line">&#123;% elif config.feed.content and post.content %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">content</span> <span class="attr">type</span>=<span class="string">"html"</span>&gt;</span>&lt;![CDATA[&#123;&#123; post.content | safe &#125;&#125;]]&gt;<span class="tag">&lt;/<span class="name">content</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、写在最后"><a href="#三、写在最后" class="headerlink" title="三、写在最后"></a>三、写在最后</h2><p>其实我们在进行字符串匹配、替换、修改的时候，我们不一定完全需要使用正则表达式，特别是那些不复杂的情况，简单使用字符串的一些标准方法就可以进行查找替换修改了。但是，我觉得能用正则表达式就尽量使用正则表达式，有时候性能也不会差，我给出三点简单的原因：</p>
+<h3 id="1-正则表达式有时候并不慢"><a href="#1-正则表达式有时候并不慢" class="headerlink" title="1 正则表达式有时候并不慢"></a>1 正则表达式有时候并不慢</h3><p>在对于长篇的文字匹配搜索的时候，正则表达式表达更加合理，速度也不慢，我觉得优先使用正则表达式。虽然我也没有理论支持，但是想想，正则表达式为啥存在于各种语言之中？是吧。 :smiley:</p>
+<h3 id="2-我所熟悉的-Java-中-replaceAll-函数"><a href="#2-我所熟悉的-Java-中-replaceAll-函数" class="headerlink" title="2 我所熟悉的 Java 中 replaceAll 函数"></a>2 我所熟悉的 Java 中 replaceAll 函数</h3><p>这个函数表面上和 <code>replace</code> 一样，实际上它的第一个参数是一个正则表达式而非字符，所以 <code>&quot;1.2.3&quot;.replaceAll(&quot;.&quot;, &quot;-&quot;)</code> 的结果不是 <code>1-2-3</code> 而是 <code>-----</code> ，因为 <code>&quot;.&quot;</code> 是正则表达式代表任何非空字符的匹配规则啊。  :joy:</p>
+<h3 id="3-正则表达式在不同语言中基本通用"><a href="#3-正则表达式在不同语言中基本通用" class="headerlink" title="3 正则表达式在不同语言中基本通用"></a>3 正则表达式在不同语言中基本通用</h3><p>不一定是 JavaScript ，对于 Java 或者其他语言都能通用正则表达式，看来学习它是很有必要的，你说呢？ :grin:</p>
+<blockquote>
+<p>参考资料：<br>正则表达式（MDN - Mozilla Developer Network）： <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions</a><br>正则表达式中的不匹配： <a href="http://www.isnowfy.com/regular-expression-negative/" target="_blank" rel="noopener">http://www.isnowfy.com/regular-expression-negative/</a><br>EJS (GitHub)： <a href="https://github.com/tj/ejs" target="_blank" rel="noopener">https://github.com/tj/ejs</a><br>SWIG (GitHub)： <a href="https://github.com/paularmstrong/swig" target="_blank" rel="noopener">https://github.com/paularmstrong/swig</a><br>PUG (GitHub)： <a href="https://github.com/pugjs/pug" target="_blank" rel="noopener">https://github.com/pugjs/pug</a></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Hexo/" class="button small">Hexo</a> <a href="/tags/Web/" class="button small">Web</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/08/14/translation-of-30-bite-sized-pro-tips-to-become-a-better-android-developer/" class="alignleft prev" title="【翻译】30多个短小而又专业的最佳安卓开发者建议"><i class="fa fa-angle-double-left"></i>&nbsp;【翻译】30多个短小而又专业的最佳安卓开发者建议</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/08/03/learning-notes-of-tanks-tutorial-in-unity3d/" class="alignright next" title="【学习笔记】Unity3D官方游戏教程：Tanks Tutorial">【学习笔记】Unity3D官方游戏教程：Tanks Tutorial&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

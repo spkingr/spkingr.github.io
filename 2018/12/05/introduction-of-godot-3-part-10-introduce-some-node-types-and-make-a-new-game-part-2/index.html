@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中）</h1>
+    <div class="meta">
+        <span>2018-12-05</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>在<a href="http://liuqingwen.me/blog/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/">上一篇文章中</a>，我们一起学习探讨了几个常用的新节点，也顺便了解一下 GDScript 脚本中几个重要关键字的用法，最后总结了我个人认为比较实用的几个所谓“最佳实践”，写了这么多的目的就是为了本篇和下一篇服务的：我们使用 <a href="https://downloads.tuxfamily.org/godotengine/3.1/alpha2/" target="_blank" rel="noopener">Godot 3.1 Alpha2</a> 版本制作一个小游戏。</p>
+<p>这个游戏非常简单，网上也有不少类似的案例，本来打算只需要上下两篇文章即可，后面发现加上代码后整篇文章显得“篇幅过长”，如果通过删减一些代码来缩短篇幅的话，对新手又很不友好，所以我再加一篇，分为“上-中-下”三篇吧。</p>
+<p>温馨提示：中篇以及下篇内容中的代码会比较多，如果对这个游戏感兴趣，而且已经入门的话，我推荐直接到我的 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github 仓库</a>下载源码运行查看即可，或者遇到了问题再来翻阅此文更合适。 :smile:</p>
+<blockquote>
+<p>主要内容：分析并制作一个完整的小游戏（中篇）<br>阅读时间： 12 分钟<br>永久链接： <a href="http://liuqingwen.me/blog/2018/12/05/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-2/">http://liuqingwen.me/blog/2018/12/05/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-2/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
+<li>了解学习游戏中的几个主要场景的制作</li>
+<li>编写代码实现游戏中相关功能的逻辑</li>
+<li>完整游戏项目的一个开发流程</li>
+</ol>
+<h3 id="主要的场景"><a href="#主要的场景" class="headerlink" title="主要的场景"></a>主要的场景</h3><p>这是一个简单的“金币收集小游戏”，游戏设计的主要思路和玩法大致如下：</p>
+<ul>
+<li>玩家可以在自由的世界里随处奔跑，遇到心爱的金币可以尽收囊中</li>
+<li>玩家要避免被仙人掌刺伤，这也是游戏的唯一实体障碍物</li>
+<li>每个关卡有超时时间设计，超时游戏结束，规定时间内收集完金币可进入下一关</li>
+<li>每关随机冒出一个特殊“能量币”，玩家收集能量能够延长超时时间</li>
+</ul>
+<p>嗯，时间紧迫，上车，赶紧出发！</p>
+<h4 id="1-Player-玩家子场景"><a href="#1-Player-玩家子场景" class="headerlink" title="1. Player 玩家子场景"></a><strong>1. Player 玩家子场景</strong></h4><p>玩家子场景是这个项目的最核心游戏元素，可以说是小游戏的灵魂所在。玩家子场景的制作非常简单：以碰撞体 <em>Area2D</em> 作为根节点，添加一个 <em>Sprite</em> 图片精灵、一个 <em>CollisionShape2D</em> 绘制碰撞区域、 <em>AnimationPlayer</em> 节点制作动画以及一个 <em>AudioStreamPlayer</em> 音频流播放节点。如果对这些节点的使用不熟悉，可以参考我之前的文章。</p>
+<p><img src="godot_10_player_scene.png" alt="godot_10_player_scene.png"></p>
+<p>另外，因为我把玩家的动画图片制作成了一个 SpriteSheet 精灵图集，所以制作动画的时候需要注意图片的显示区域，玩家有三个动画状态，都比较简单，参考如下：</p>
+<p><img src="godot_10_player_animation.png" alt="godot_10_player_animation.png"></p>
+<h4 id="2-Coin-Cactus-Power-金币-障碍物-能量子场景"><a href="#2-Coin-Cactus-Power-金币-障碍物-能量子场景" class="headerlink" title="2. Coin/Cactus/Power 金币/障碍物/能量子场景"></a><strong>2. Coin/Cactus/Power 金币/障碍物/能量子场景</strong></h4><p>我把这三个小场景放到一起讨论，原因是它们的结构非常简单且很相似，都是为游戏中的“玩家”服务。三个子场景的制作一目了然，功能单一，相互独立，这也符合我们的最佳实践原则之<em>尽量保持场景的独立性*。另外，在对游戏资源的管理中，我把这三个场景以及场景的相关资源（图片）放在了 *Items</em> 一个文件夹下。</p>
+<p><img src="godot_10_items_scene.png" alt="godot_10_items_scene.png"></p>
+<p>需要注意的是：能量币场景中的 <em>LifeTimer</em> 时间节点表示金币在规定时间内会自动消失，而能量币的出现时间并不由自己控制，这里不要混淆了，后面在代码中会有介绍。</p>
+<h4 id="3-UI-界面元素"><a href="#3-UI-界面元素" class="headerlink" title="3. UI 界面元素"></a><strong>3. UI 界面元素</strong></h4><p>控件子场景主要用于界面显示，主要有：金币数量、剩余时间、开始按钮、文字信息显示等。这里我使用了 <em>MarginContainer</em> 容器配合 <em>HBoxContainer/VBoxContainer</em> 来对界面元素进行排版。提醒新手朋友们：设置 <em>MarginContainer</em> 的边距需要在 <em>Custom Constants</em> 属性下进行设置。</p>
+<p><img src="godot_10_ui_scene.png" alt="godot_10_ui_scene.png"></p>
+<p>另外 UI 子场景也用于接收玩家的键盘输入，控制游戏的一些基本逻辑：开始、暂停、重试等，这些我们都会在代码中具体实现。</p>
+<h4 id="4-游戏主场景"><a href="#4-游戏主场景" class="headerlink" title="4. 游戏主场景"></a><strong>4. 游戏主场景</strong></h4><p>这是游戏中最重要的场景了，也是包含并协调多个子场景的根场景。游戏的主场景中可以手动添加其他的节点或者子场景，也可以通过代码添加任意多个子场景，比如金币。同时，主场景负责并处理每个子场景之间通信链接，作为一个<em>总指挥</em>让每个子场景各司其职，及时得到并处理各自的相关任务。</p>
+<p><img src="godot_10_game_scene.png" alt="godot_10_game_scene.png"></p>
+<p>值得注意的是：我把障碍物场景（ <em>Cactus</em> ）作为子节点放在了 <em>Path2D</em> 路径节点之下，也就是图中的蓝色路径。场景中的 <em>CoinContainer</em> 为一个空节点，作为动态生成的金币节点的容器。</p>
+<h3 id="逻辑与代码"><a href="#逻辑与代码" class="headerlink" title="逻辑与代码"></a>逻辑与代码</h3><p>在 Godot 中每一个节点都能添加代码，而且最多只能关联一个脚本，一般子场景的功能相对单一，我们优先考虑给子场景的根节点添加一个脚本，而其他节点可以视需求添加，需要说明的是：<strong>子场景中需要暴露出来的供其它场景调用的公开方法最好写在根节点的脚本代码中</strong>。</p>
+<p>另外，实现游戏的相关功能以及逻辑代码并不是只有唯一的一种方式，你完全可以根据自己的需求、设计原则、游戏规则等来进行代码编写。 :smiley:</p>
+<blockquote>
+<p>说明：这个小游戏的灵感和图片资源都来源于<a href="https://www.packtpub.com/game-development/godot-game-engine-projects" target="_blank" rel="noopener">《 Godot Engine Game Development Projects 》</a>这本书，我参考了它的代码，但是我的设计方式与之稍有不同，比如在处理玩家和金币碰撞的逻辑上有两种方式，是在 <em>Player</em> 玩家场景中检测碰撞并调用 <em>Coin</em> 的方法，还是在 <em>Coin</em> 金币场景中检测碰撞并调用 <em>Player</em> 的方法，此书的作者采用了前者，而我选择了后者。我的观点是：游戏元素为玩家服务，玩家不需要关心游戏世界里有哪些元素。当然，运行结果完全相同。</p>
+</blockquote>
+<p>接下面我把游戏中的主要代码贴出来供大家参考阅读，如果遇到不懂的地方可以随时翻阅我之前的文章，或者直接在 Godot 编辑器中按 <kbd>F4</kbd> 搜索查看相关的 API 说明，相信配合我在脚本中的注释，看懂代码的具体逻辑没什么问题。 :grin:</p>
+<h4 id="1-Player-gd"><a href="#1-Player-gd" class="headerlink" title="1. Player.gd"></a><em>1. Player.gd</em></h4><figure class="highlight python"><figcaption><span>Player.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">extends Area2D</span><br><span class="line"></span><br><span class="line"><span class="comment"># signal group</span></span><br><span class="line">signal coin_collected(count) <span class="comment"># 金币收集信号</span></span><br><span class="line">signal power_collected(buffer) <span class="comment"># 能量币收集信号</span></span><br><span class="line">signal game_over() <span class="comment"># 游戏结束信号</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># export</span></span><br><span class="line">export(int) var moveSpeed = <span class="number">320</span></span><br><span class="line">export(AudioStream) var coinSound = null</span><br><span class="line">export(AudioStream) var hurtSound = null</span><br><span class="line">export(AudioStream) var powerSound = null</span><br><span class="line"></span><br><span class="line"><span class="comment"># onready</span></span><br><span class="line">onready var _animationPlayer = $AnimationPlayer</span><br><span class="line">onready var _audioPlayer = $AudioStreamPlayer</span><br><span class="line">onready var _sprite = $Sprite</span><br><span class="line"></span><br><span class="line"><span class="comment"># enum, constant</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># variable</span></span><br><span class="line">var isControllable = true setget _setIsControllable <span class="comment"># 是否允许玩家被控制</span></span><br><span class="line">var _coins = <span class="number">0</span> <span class="comment"># 当前关卡所收集金币的数量</span></span><br><span class="line">var _boundary = &#123;minX = <span class="number">0</span>, minY = <span class="number">0</span>, maxX = <span class="number">0</span>, maxY = <span class="number">0</span>&#125; <span class="comment"># 移动范围</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># functions</span></span><br><span class="line">func _ready():</span><br><span class="line">    var scale = _sprite.scale</span><br><span class="line">    var rect = _sprite.get_rect()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置玩家能移动的上下左右最大范围</span></span><br><span class="line">    _boundary.minX = - rect.position.x * scale.x</span><br><span class="line">    _boundary.minY = - rect.position.y * scale.y</span><br><span class="line">    _boundary.maxX = ProjectSettings.get(<span class="string">'display/window/size/width'</span>) - (rect.position.x + rect.size.x) * scale.x</span><br><span class="line">    _boundary.maxY = ProjectSettings.get(<span class="string">'display/window/size/height'</span>) - (rect.position.y + rect.size.y) * scale.y</span><br><span class="line"></span><br><span class="line">func _process(delta):</span><br><span class="line">    <span class="comment"># 根据玩家键盘输入设置玩家的移动方向和速度</span></span><br><span class="line">    var hDir = int(Input.is_action_pressed(<span class="string">'right'</span>)) - int(Input.is_action_pressed(<span class="string">'left'</span>))</span><br><span class="line">    var vDir = int(Input.is_action_pressed(<span class="string">'down'</span>)) - int(Input.is_action_pressed(<span class="string">'up'</span>))</span><br><span class="line">    var velocity = Vector2(hDir, vDir).normalized()</span><br><span class="line">    self.position += velocity * moveSpeed * delta</span><br><span class="line">    self.position.x = clamp(self.position.x, _boundary.minX, _boundary.maxX)</span><br><span class="line">    self.position.y = clamp(self.position.y, _boundary.minY, _boundary.maxY)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> hDir != <span class="number">0</span>:</span><br><span class="line">        _sprite.flip_h = hDir &lt; <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> hDir != <span class="number">0</span> || vDir != <span class="number">0</span>:</span><br><span class="line">        _animationPlayer.current_animation = <span class="string">'run'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        _animationPlayer.current_animation = <span class="string">'idle'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># isControllable属性的set方法</span></span><br><span class="line">func _setIsControllable(value):</span><br><span class="line">    <span class="keyword">if</span> isControllable != value:</span><br><span class="line">        isControllable = value</span><br><span class="line">        self.set_process(isControllable)</span><br><span class="line">        _animationPlayer.current_animation = <span class="string">'idle'</span> <span class="keyword">if</span> ! isControllable <span class="keyword">else</span> _animationPlayer.current_animation</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新开始的方法，传递一个玩家初始位置</span></span><br><span class="line">func restart(pos):</span><br><span class="line">    _coins = <span class="number">0</span></span><br><span class="line">    self.position = pos</span><br><span class="line"></span><br><span class="line"><span class="comment"># 收集金币方法，传递收集金币数量</span></span><br><span class="line">func collectCoin(num = <span class="number">1</span>):</span><br><span class="line">    _coins += num</span><br><span class="line">    _audioPlayer.stream = coinSound</span><br><span class="line">    _audioPlayer.play()</span><br><span class="line">    self.emit_signal(<span class="string">'coin_collected'</span>, _coins)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 收集到能量调用的方法</span></span><br><span class="line">func collectPower(buffer):</span><br><span class="line">    _audioPlayer.stream = powerSound</span><br><span class="line">    _audioPlayer.play()</span><br><span class="line">    self.emit_signal(<span class="string">'power_collected'</span>, buffer)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 玩家受到伤害时用方法</span></span><br><span class="line">func hurt():</span><br><span class="line">    _animationPlayer.current_animation = <span class="string">'hurt'</span></span><br><span class="line">    _audioPlayer.stream = hurtSound</span><br><span class="line">    _audioPlayer.play()</span><br><span class="line">    self.set_process(false)</span><br><span class="line">    self.emit_signal(<span class="string">'game_over'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>玩家场景的代码部分相对较多，在此我特意标明了我的源码编写习惯，一般保持良好的代码风格是有利于游戏的调试和功能的扩展的，代码中我习惯的编码顺序是：</p>
+<ol>
+<li><em>signal/group</em> 信号、分组写代码文件最前</li>
+<li><em>export</em> 接着是显示在编辑器中可编辑的相关变量</li>
+<li><em>onready</em> 主要表示一些对场景中的节点的引用</li>
+<li><em>enum/constant</em> 枚举、常亮定义部分（无实际代码）</li>
+<li><em>variable</em> 普通变量定义部分（公开的、私有的）</li>
+<li><em>functions</em> 最后是方法函数定义部分（公开的、私有的）</li>
+</ol>
+<p>关于函数部分也要注意一些小细节， GDScript 脚本中有公开方法和私有方法，这些方法的位置可以随意，只要自己看着舒服就可以啦。其中几个关键地方我简单解释下：</p>
+<ul>
+<li><code>self.set_process(false)</code> 这个方法能暂停或开启 <code>_process(delta)</code> 方法的运行，部分类似暂停游戏</li>
+<li><code>self.emit_signal(&#39;power_collected&#39;, buffer)</code> 发射信号的方法，已经讨论过了，不过这里额外添加了一个参数</li>
+<li><code>_audioPlayer.stream = xxx</code> 玩家场景中只使用一个音频节点，通过设置不同的 <code>stream</code> 音频流可以播放不同的音效</li>
+</ul>
+<p>其他部分请参考注释吧。</p>
+<h4 id="2-Coin-gd"><a href="#2-Coin-gd" class="headerlink" title="2. Coin.gd"></a><em>2. Coin.gd</em></h4><figure class="highlight python"><figcaption><span>Coin.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">extends Area2D</span><br><span class="line"></span><br><span class="line"><span class="comment"># 玩家名字，根据玩家名字判断金币否被收集</span></span><br><span class="line">export var playerName = <span class="string">'Player'</span></span><br><span class="line"><span class="comment"># 障碍物名字，如果金币与障碍物重叠则重新生成</span></span><br><span class="line">export var obstacleName = <span class="string">'Cactus'</span></span><br><span class="line"></span><br><span class="line">onready var _collisionShape = $CollisionShape2D</span><br><span class="line"></span><br><span class="line">func _on_Coin_area_entered(area):</span><br><span class="line">    <span class="comment"># 判断碰撞体是否为玩家</span></span><br><span class="line">    <span class="keyword">if</span> area.name == playerName &amp;&amp; area.has_method(<span class="string">'collectCoin'</span>):</span><br><span class="line">        _collisionShape.disabled = true</span><br><span class="line">        area.collectCoin()</span><br><span class="line">        self.queue_free()</span><br><span class="line">    <span class="comment"># 如果是障碍物则删除该金币</span></span><br><span class="line">    <span class="keyword">elif</span> area.name == obstacleName:</span><br><span class="line">        self.queue_free()</span><br></pre></td></tr></table></figure>
+
+<p>金币节点非常简单，代码也很简洁，主要功能是：玩家收集后自动消失，同时调用玩家的收集函数 <code>collectCoin()</code> 。为防止调用出错，我在代码中对玩家是否有该方法做了判断。</p>
+<h4 id="3-Cactus-gd"><a href="#3-Cactus-gd" class="headerlink" title="3. Cactus.gd"></a><em>3. Cactus.gd</em></h4><figure class="highlight python"><figcaption><span>Cactus.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">extends Area2D</span><br><span class="line"></span><br><span class="line">export var playerName = <span class="string">'Player'</span></span><br><span class="line"></span><br><span class="line">func _on_Cactus_area_entered(area):</span><br><span class="line">    <span class="comment"># 与玩家相撞，调用玩家的hurt方法</span></span><br><span class="line">    <span class="keyword">if</span> area.name == playerName &amp;&amp; area.has_method(<span class="string">'hurt'</span>):</span><br><span class="line">        area.hurt()</span><br></pre></td></tr></table></figure>
+
+<p>这是最简单的子场景了！游戏规则就是：玩家碰到障碍物（仙人掌）后，玩家收到伤害，游戏结束。逻辑代码可以参考 <em>Player</em> 场景的 <code>hurt()</code> 方法。</p>
+<h4 id="4-Power-gd"><a href="#4-Power-gd" class="headerlink" title="4. Power.gd"></a><em>4. Power.gd</em></h4><figure class="highlight python"><figcaption><span>Power.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">extends Area2D</span><br><span class="line"></span><br><span class="line">export var playerName = <span class="string">'Player'</span></span><br><span class="line">export var power = <span class="number">2</span> <span class="comment"># 能量蕴藏的时间参数</span></span><br><span class="line"></span><br><span class="line">onready var _collisionShape = $CollisionShape2D</span><br><span class="line">onready var _sprite = $Sprite</span><br><span class="line">onready var _timer = $LifeTimer</span><br><span class="line">onready var _tween = $DisappearTween</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用Tween节点实现放大到消失的动画</span></span><br><span class="line">func _startTween():</span><br><span class="line">    _tween.interpolate_property(_sprite, <span class="string">'modulate'</span>, Color(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>), Color(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">0.0</span>), <span class="number">0.25</span>, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)</span><br><span class="line">    _tween.interpolate_property(_sprite, <span class="string">'scale'</span>, _sprite.scale, _sprite.scale * <span class="number">4</span>, <span class="number">0.25</span>, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)</span><br><span class="line">    _tween.start()</span><br><span class="line"></span><br><span class="line">func _on_Power_area_entered(area):</span><br><span class="line">    <span class="comment"># 玩家收集到能量</span></span><br><span class="line">    <span class="keyword">if</span> area.name == playerName &amp;&amp; area.has_method(<span class="string">'collectPower'</span>):</span><br><span class="line">        _collisionShape.disabled = true</span><br><span class="line">        area.collectPower(power)</span><br><span class="line">        _timer.stop()</span><br><span class="line">        _startTween()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一定时间后能量币消失</span></span><br><span class="line">func _on_LiftTimer_timeout():</span><br><span class="line">    self.queue_free()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 动画结束后消失</span></span><br><span class="line">func _on_Tween_tween_completed(object, key):</span><br><span class="line">    self.queue_free()</span><br></pre></td></tr></table></figure>
+
+<p>和金币、障碍物一样，也是一个很简单的子场景，不过我们使用了 <em>Tween</em> 节点，利用代码实现能量币的消失动画。关于 <em>Tween</em> 节点可以参考<a href="http://liuqingwen.me/blog/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/">上一篇文章</a>，对于方法中每个参数的定义可以直接查阅官方 API 文档。</p>
+<h2 id="其他部分"><a href="#其他部分" class="headerlink" title="其他部分"></a>其他部分</h2><p>其他部分的代码以及总结部分见下篇！<strong>未完待续……</strong></p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://github.com/spkingr/test-git/raw/master/images/weixin/weixin_it_258.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/12/06/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-3/" class="alignleft prev" title="Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（下）"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（下）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/" class="alignright next" title="Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）">Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【翻译】TextClassification介绍（三）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>【翻译】TextClassification介绍（三） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">【翻译】TextClassification介绍（三）</h1>
+    <div class="meta">
+        <span>2018-11-20</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Android/">Android</a> <a href="/tags/翻译/">翻译</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="TextClassification.png" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h2><p>这是一个关于介绍 TextClassification API 的系列文章，总共分三篇，本文是最后一篇。上一篇在此：<a href="http://liuqingwen.me/blog/2018/11/15/translation-of-textclassification-part-2/">【翻译】TextClassification介绍（二）</a></p>
+<blockquote>
+<p>原文作者：<a href="https://blog.stylingandroid.com/" target="_blank" rel="noopener">Mark Allison</a><br>阅读时间： 5 分钟<br>原文链接：<a href="https://blog.stylingandroid.com/textclassification-part-3/" target="_blank" rel="noopener">https://blog.stylingandroid.com/textclassification-part-3/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>在 API 26 （奥利奥）中安卓引入了一个新的文字功能系统： <em>TextClassification</em> 。这个系统将会在 API 28 （ π ）中进一步改进完善。在本次简短的系列中，我们主要会探讨它是一个什么样的系统，如何使用它，以及如何为它添加一些自定义行为。</p>
+<p>上一篇文章中我们开始研究自定义 <em>TextClassifier</em> 的实现，并研究了如何实现我们自己的“文本选择建议”。在本系列的最后一篇文章中，我们将会实现相应的 <code>classifyText()</code> 方法，并应用到我们自定义的 <em>TextClassifier</em> 文本分类器的实现中。</p>
+<p>这里的 <code>classifyText()</code> 方法的实现实际上非常简单直接。我们检查选择的文本是否与请求中所选择的相匹配，如果相匹配则返回一个 <em>TextClassification</em> 的实例，这个我们稍后再详细了解。如果选择的文本与我们的正则表达式不匹配，那么我们会将结果进行回滚（也就是 <em>TextClassifier</em> 的默认实现）：</p>
+<figure class="highlight kotlin"><figcaption><span>StylingAndroidTextClassifier.kt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">classifyText</span><span class="params">(request: <span class="type">TextClassification</span>.<span class="type">Request</span>)</span></span>: TextClassification &#123;</span><br><span class="line">    <span class="comment">//line 36</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">if</span> (regex.matches(request.subSequence())) &#123;</span><br><span class="line">        factory.buildTextClassification(</span><br><span class="line">                <span class="comment">//line 38</span></span><br><span class="line">                request.subSequence().toString(),</span><br><span class="line">                listOf(TextClassifier.TYPE_URL to <span class="number">1.0f</span>),</span><br><span class="line">                listOf(factory.buildRemoteAction(</span><br><span class="line">                        context,</span><br><span class="line">                        R.drawable.ic_stylingandroid,</span><br><span class="line">                        stylingAndroid,</span><br><span class="line">                        contentDescription,</span><br><span class="line">                        stylingAndroidUri</span><br><span class="line">                ))</span><br><span class="line">        )</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        fallback.classifyText(request)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> TextClassification.Request.<span class="title">subSequence</span><span class="params">()</span></span> =</span><br><span class="line">        text.subSequence(startIndex, endIndex)</span><br></pre></td></tr></table></figure>
+
+<p>这里有一个 <code>TextClassification.Request</code> 的扩展函数，它返回文本中已选择的子文本 <code>subSequence</code> ，我们正是使用它来匹配正则表达式（第 36 行）。然后，我们构建一个 <em>TextClassification</em> 对象，它需要一些参数，包括匹配到的字符串（第 38 行），分类类型与其各自的可信度分数列表（第 39 行），以及一列 <em>RemoteAction</em> 实例对象，每个 <em>RemoteAction</em> 对象对应一个分类类型条目（第 39-45 行）。</p>
+<p>这里的 <code>buildRemoteAction()</code> 方法返回每个 <em>RemoteAction</em> 实例：</p>
+<figure class="highlight kotlin"><figcaption><span>TextClassifierFactory.kt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">buildRemoteAction</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        context: <span class="type">Context</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        drawableId: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        title: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        contentDescription: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        uri: <span class="type">String</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>: RemoteAction &#123;</span><br><span class="line">    <span class="keyword">return</span> RemoteAction(</span><br><span class="line">            Icon.createWithResource(context, drawableId),</span><br><span class="line">            title,</span><br><span class="line">            contentDescription,</span><br><span class="line">            PendingIntent.getActivity(</span><br><span class="line">                    context,</span><br><span class="line">                    <span class="number">0</span>,</span><br><span class="line">                    Intent(Intent.ACTION_VIEW, Uri.parse(uri)),</span><br><span class="line">                    <span class="number">0</span></span><br><span class="line">            )</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里 <em>RemoteAction</em> 的构造函数需要四个参数：一个 <code>Icon</code> 对象，它将显示为操作按钮中的一部分；一个要显示的文字；一个表示可访问的内容描述；最后还需一个 <em>PendingIntent</em> 对象，它表示用户在点击操作按钮时将会执行的操作。在我们的示例代码中，我们使用了一个 <em>Styling Android</em> 标志图形作为图标，使用了 <em>“Styling Android”</em> 作为标题，以及简单的一些内容描述，再加一个能登录浏览器打开 URL 链接 “<a href="https://blog.stylingandroid.com&quot;" target="_blank" rel="noopener">https://blog.stylingandroid.com&quot;</a> 的 <em>PendingIntent</em> 对象。</p>
+<p><code>buildTextClassification()</code> 函数使用 TextClassification.Builder 实例来创建 <em>TextClassification</em> 对象：</p>
+<figure class="highlight kotlin"><figcaption><span>TextClassifierFactory.kt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">buildTextClassification</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        text: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        entityTypes: <span class="type">List</span>&lt;<span class="type">Pair</span>&lt;<span class="type">String</span>, <span class="built_in">Float</span>&gt;&gt;,</span></span></span><br><span class="line"><span class="function"><span class="params">        actions: <span class="type">List</span>&lt;<span class="type">RemoteAction</span>&gt;</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>: TextClassification &#123;</span><br><span class="line">    <span class="keyword">return</span> TextClassification.Builder()</span><br><span class="line">            .run &#123;</span><br><span class="line">                setText(text)</span><br><span class="line">                entityTypes.forEach &#123; setEntityType(it.first, it.second) &#125;</span><br><span class="line">                actions.forEach &#123; addAction(it) &#125;</span><br><span class="line">                build()</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里需要传递三个参数：匹配到的文本，一系列以类型及其对应的可信度范围作为 <code>Pair</code> 的列表，以及与每个类型/置信度组合所对应的 <em>RemoteActions</em> 列表。在这里示例中，这些参数分别是被选定的子字符串，包含一对 <code>TextClassifier.TYPE_URL</code> 及其可信度为 1.0f 组成的 <code>Pair</code> 的列表，以及一列包含我们刚刚说过的 <em>RemoteAction</em> 类单例的列表。</p>
+<p><em>TextClassifier</em> 已经完成了，剩下的事情就是将它连接到我们的 <em>TextView</em> 文本控件中：</p>
+<figure class="highlight kotlin"><figcaption><span>MainActivity.kt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> emailText = <span class="string">"dummy@email.com"</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> urlText = <span class="string">"https://blog.stylingandroid.com"</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> hybridText = <span class="string">"Email: <span class="variable">$emailText</span>"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> textClassificationManager: TextClassificationManager</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line"></span><br><span class="line">        textClassificationManager = getSystemService(Context.TEXT_CLASSIFICATION_SERVICE) <span class="keyword">as</span> TextClassificationManager</span><br><span class="line"></span><br><span class="line">        classifier()</span><br><span class="line"></span><br><span class="line">        text1.textClassifier = StylingAndroidTextClassifier(<span class="keyword">this</span>, textClassificationManager.textClassifier)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">classifier</span><span class="params">()</span></span> = async(CommonPool) &#123;</span><br><span class="line">        <span class="keyword">val</span> textClassifier = textClassificationManager.textClassifier</span><br><span class="line">        <span class="keyword">val</span> emailClassification = textClassifier.classifyText(emailText, <span class="number">0</span>, emailText.length, LocaleList.getDefault())</span><br><span class="line">        println(emailClassification)</span><br><span class="line">        <span class="keyword">val</span> urlClassification = textClassifier.classifyText(urlText, <span class="number">0</span>, urlText.length, LocaleList.getDefault())</span><br><span class="line">        println(urlClassification)</span><br><span class="line">        <span class="keyword">val</span> suggestions = textClassifier.suggestSelection(hybridText, <span class="number">10</span>, <span class="number">11</span>, LocaleList.getDefault())</span><br><span class="line">        println(suggestions)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一行代码就可以实现我们要做的一切。我们创建了一个自定义 <em>TextClassifier</em> 对象，并将其作为参数传递给默认的 <em>TextClassifier</em> 对象的构造函数，并将 <em>TextView</em> 的 <code>textClassifier</code> 属性设置为我们的自定义实例。</p>
+<p>我们目前得到的文本处理行为是：如果用户长时间按下的文字是无法识别的类型，那就只有简单的复制，粘贴和选择所有的选项功能；如果他们长时间按下系统默认的文本分类器所支持的任何类型，那么他们会得到我们在第一篇文章中所看到的所有相同的行为和动作；但是，如果他们长按 *”Styling Android”* 字符串（或者与正则表达式相匹配的类似字符串），那么将获得我们所自定义的“流行广告”操作，这个操作将启动浏览器并登录加载链接： <a href="https://blog.stylingandroid.com" target="_blank" rel="noopener">https://blog.stylingandroid.com</a> ：</p>
+<p><img src="custom.gif" alt="custom.gif"></p>
+<p>在 <em>TextClassifier</em> 文本分类器中还有一个机制，用来识别具体的文本类型，然后使用文本生成链接，不过在本系列文章中我们不会去研究它，因为我们这里所看到的技术已经涵盖了 <em>TextView</em> 和 <em>WebView</em> 内置的一些主要功能。如果看到这里有人对此感兴趣，那么请告诉我，我将会单独写一篇文章作详细说明。</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>这篇文章的源代码可以在这里找到： <a href="https://github.com/StylingAndroid/TextClassification/tree/Part3" target="_blank" rel="noopener">https://github.com/StylingAndroid/TextClassification/tree/Part3</a>。</p>
+<p>© 2018 ， <a href="https://blog.stylingandroid.com/" target="_blank" rel="noopener">Mark Allison</a> 。保留所有版权。</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzg3MjAwMjI4Mg==&mid=100000071&idx=1&sn=440b2050b4c7495c64f66c41b028c406&send_time=1536712211" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Android/" class="button small">Android</a> <a href="/tags/翻译/" class="button small">翻译</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/" class="alignleft prev" title="Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/11/15/translation-of-textclassification-part-2/" class="alignright next" title="【翻译】TextClassification介绍（二）">【翻译】TextClassification介绍（二）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

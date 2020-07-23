@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【翻译】TextClassification介绍（二）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>【翻译】TextClassification介绍（二） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">【翻译】TextClassification介绍（二）</h1>
+    <div class="meta">
+        <span>2018-11-15</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Android/">Android</a> <a href="/tags/翻译/">翻译</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="TextClassification.png" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h2><p>这是一个关于介绍 TextClassification API 的系列文章，总共分三篇，本文是第二篇。上一篇在此：<a href="http://liuqingwen.me/blog/2018/10/28/translation-of-textclassification-part-1/">【翻译】TextClassification介绍（一）</a></p>
+<blockquote>
+<p>原文作者：<a href="https://blog.stylingandroid.com/" target="_blank" rel="noopener">Mark Allison</a><br>阅读时间： 3 分钟<br>原文链接：<a href="https://blog.stylingandroid.com/textclassification-part-2/" target="_blank" rel="noopener">https://blog.stylingandroid.com/textclassification-part-2/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>在 API 26 （奥利奥）中安卓引入了一个新的文字功能系统： <em>TextClassification</em> 。这个系统将会在 API 28 （ π ）中进一步改进完善。在本次简短的系列中，我们主要会探讨它是一个什么样的系统，如何使用它，以及如何为它添加一些自定义行为。</p>
+<p>上一篇文章中我们研究了如何对文本进行分类的两个不同步骤：首先将选择的文本扩展为可能会被分类为具体类型的小段，接着执行该分类，并确定相关的操作。如果要编写我们自己的文本分类器，我们需要通过覆盖 <em>TextClassifier</em> 接口中相对应的方法来实现这两个步骤，这个接口也是我们将要实现的。两个方法 <code>suggestSelection()</code> 和 <code>classifyText()</code> 都具有两种形式，一种是带有独立的参数，另一种是带有包含所有这些参数的 <em>Request</em> 对象。覆盖 <em>Request</em> 类非常重要，因为另一个方法仅仅是一个简单的包装而已，它使用传递的各个参数构造出一个 <em>Request</em> 实例，然后在方法中调用该 <em>Request</em> 实例。因此，使用这种方式重写意味着我们不需要再做其他的形式了：</p>
+<figure class="highlight kotlin"><figcaption><span>StylingAndroidTextClassifier.kt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StylingAndroidTextClassifier</span></span>(</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">val</span> context: Context,</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">val</span> fallback: TextClassifier,</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">val</span> factory: TextClassifierFactory = FrameworkFactory()</span><br><span class="line">) : TextClassifier <span class="keyword">by</span> fallback &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> stylingAndroid = <span class="string">"Styling Android"</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> stylingAndroidUri = <span class="string">"https://blog.stylingandroid.com"</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> regex = Regex(<span class="string">"Styling\\s?Android"</span>, RegexOption.IGNORE_CASE)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">suggestSelection</span><span class="params">(request: <span class="type">TextSelection</span>.<span class="type">Request</span>)</span></span>: TextSelection &#123;</span><br><span class="line">        <span class="keyword">return</span> fallback.suggestSelection(request)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">classifyText</span><span class="params">(request: <span class="type">TextClassification</span>.<span class="type">Request</span>)</span></span>: TextClassification &#123;</span><br><span class="line">        <span class="keyword">return</span> fallback.classifyText(request)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大部分方法都会被代理到一个名为 <code>fallback</code> 的 <em>TextClassifier</em> 实例，实际上这个实例就是默认的<em>系统分类*对象，因此如果我们所自定义的 *TextClassifier</em> 对象在检测文本匹配遇到失效时，那么我们将回滚到系统分类对象并得到其分类结果。我们仅需要覆盖两个方法来将执行自定义分类。</p>
+<p>我们的自定义文本分类器 <em>TextClassifier</em> 将检测目标字符串 <code>&quot;Styling Android&quot;</code> 并创建一个自定义的操作，这个操作会在浏览器中打开 *”<a href="https://blog.stylingandroid.com&quot;" target="_blank" rel="noopener">https://blog.stylingandroid.com&quot;</a>* 网页链接，并附有一个自定义的标题和图标。让我们先来看看我们是如何覆盖 <code>suggestSelection()</code> 方法的。在第一篇文章中，我们研究了如何将用户选择的文本，扩展到包含当前选择的最小具体类型文段。我所选择使用的算法有点粗糙，并且很可能不是最高效的（特别是当文本很长的时候），但不管怎样还是能用：首先它从正则表达式 <code>Styling\sAndroid</code> （非大小写敏感）开始搜索整个字符串，因此我们会找到类似 <code>&quot;Styling Android&quot;</code> ， <code>&quot;styling android&quot;</code> ， <code>&quot;StylingAndroid&quot;</code> 的结果，以及所有他们的组合案例；然后它会将每个匹配到的文本范围与当前的选择进行比较，如果当前选择的文本完全落在其中的某一个匹配的范围内，那么将选择扩展至该范围：</p>
+<figure class="highlight kotlin"><figcaption><span>StylingAndroidTextClassifier.kt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">suggestSelection</span><span class="params">(request: <span class="type">TextSelection</span>.<span class="type">Request</span>)</span></span>: TextSelection &#123;</span><br><span class="line">    <span class="keyword">return</span> findRangeOfMatch(request)</span><br><span class="line">            ?: fallback.suggestSelection(request)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//line 23</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">findRangeOfMatch</span><span class="params">(request: <span class="type">TextSelection</span>.<span class="type">Request</span>)</span></span>: TextSelection? &#123;</span><br><span class="line">    <span class="comment">//line 24</span></span><br><span class="line">    <span class="keyword">return</span> regex.findAll(request.text)</span><br><span class="line">            .firstOrNull &#123; it.range.contains(request.startIndex until request.endIndex) &#125;</span><br><span class="line">            ?.range</span><br><span class="line">            ?.let &#123;</span><br><span class="line">                factory.buildTextSelection(it.start, it.endInclusive + <span class="number">1</span>, TextClassifier.TYPE_URL, <span class="number">1.0f</span>)</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T : Comparable&lt;T&gt;</span>&gt; ClosedRange<span class="type">&lt;T&gt;</span>.<span class="title">contains</span><span class="params">(range: <span class="type">ClosedRange</span>&lt;<span class="type">T</span>&gt;)</span></span> =</span><br><span class="line">        contains(range.start) &amp;&amp; contains(range.endInclusive)</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>findRangeOfMatch()</code> 方法处理了所有的逻辑，如果匹配失败则返回一个空值，因此 <em>Elvis</em> 运算符会在默认的系统文本分类 <em>TextClassifier</em> （第 17 行）上调用 <code>suggestSelection()</code> 方法，这样我们至少能尝试并获取系统所匹配它所支持的类型。</p>
+<p>这个 <code>factory</code> 实例是一个对象工厂用于保持代码可以被测试使用，我之前已经介绍过，另外还有几个单元测试可以用来检查它是否按我们所期望的那样运行。</p>
+<p>这里的 <code>findRangeOfMatch()</code> 方法首先会搜索字符串中符合正则表达式的所有实例（第 23 行）。这会返回一个 <em>Sequence</em> 对象，它包含所有匹配到的详细信息，我们使用 <code>firstOrNull</code> 方法来筛选出包含当前选择的第一个匹配项，如果没有则返回 <code>null</code> 空值（第 24 行）。最后两行使用工厂方法构造出 <em>TextSelection</em> 对象实例，不过前提是匹配到的包含当前选择的 <em>MatchResult</em> 对象为非空范围。这里的安全调用操作符确保了空值 <code>null</code> 的安全性，但是，如果没有找到有效的匹配项，那么整个方法将返回一个空值 <code>null</code> 。代码中的 <code>contains</code> 扩展方法是一个将整个搜索落入更大范围的便利功能，这个扩展也提高了代码的可读性。</p>
+<p>在我们构造 <em>TextSelection</em> 对象时，我们提供了扩展范围的开始下标和结束下标，以及我们将要识别的文本的具体类型（在这里的情形下，我们使用 <code>TextClassifier.TYPE_URL</code> 常量表示其为一个 <em>URL</em> 链接），并传入 <code>1.0f</code> 为可信度得分，因为我们需要确保这是一个正确的匹配项。</p>
+<p>在这个工厂方法的实现中使用了 <code>textSelection.Builder</code> 方法并加上这些参数来实现创建出一个 <em>TextSelection</em> 实例：</p>
+<figure class="highlight kotlin"><figcaption><span>TextClassifierFactory.kt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">buildTextSelection</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        startIndex: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        endIndex: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        entityType: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        confidenceScore: <span class="type">Float</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>: TextSelection &#123;</span><br><span class="line">    <span class="keyword">return</span> TextSelection.Builder(startIndex, endIndex)</span><br><span class="line">            .setEntityType(entityType, confidenceScore)</span><br><span class="line">            .build()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在接下来的文章里，我们需要实现 <code>classifyText()</code> 方法来执行文本分类，这个我会在本系列的最后一篇文章中详述。</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>这篇文章的源代码可以在这里找到： <a href="https://github.com/StylingAndroid/TextClassification/tree/Part2" target="_blank" rel="noopener">https://github.com/StylingAndroid/TextClassification/tree/Part2</a>。</p>
+<p>© 2018 ， <a href="https://blog.stylingandroid.com/" target="_blank" rel="noopener">Mark Allison</a> 。保留所有版权。</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzg3MjAwMjI4Mg==&mid=100000071&idx=1&sn=440b2050b4c7495c64f66c41b028c406&send_time=1536712211" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Android/" class="button small">Android</a> <a href="/tags/翻译/" class="button small">翻译</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/11/20/translation-of-textclassification-part-3/" class="alignleft prev" title="【翻译】TextClassification介绍（三）"><i class="fa fa-angle-double-left"></i>&nbsp;【翻译】TextClassification介绍（三）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/11/09/introduction-of-godot-3-part-9-add-audio-effects-and-ui-elements/" class="alignright next" title="Godot3游戏引擎入门之九：创建UI界面并添加背景音乐">Godot3游戏引擎入门之九：创建UI界面并添加背景音乐&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

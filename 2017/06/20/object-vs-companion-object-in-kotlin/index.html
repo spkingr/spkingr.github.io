@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【学习笔记】区别Kotlin中的object和companion object关键字"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>【学习笔记】区别Kotlin中的object和companion object关键字 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">【学习笔记】区别Kotlin中的object和companion object关键字</h1>
+    <div class="meta">
+        <span>2017-06-20</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Kotlin/">Kotlin</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="cover_index_object.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>我们经常能够在 Java 相关技术博客中看到类似这样的文章： <strong>Java 中 X 种单例模式的写法</strong>。的确，单例模式是一个简单但又很重要的设计模式，特别是在多线程编程中，它的实现方法各有不同，也是适应各种不同的场合。不过，现在有了 Kotlin ，那都不是事了，忘记那个 <strong>X</strong> 吧，一个 <code>object</code> 关键字轻松搞定！真的，相信我，生活就是要那么容易。 :sunglasses:</p>
+<p>在 Kotlin 中，除了 <code>object</code> 关键字还有个 <code>companion object</code> 关键字，这个又是什么鬼？怎么使用？有啥区别？在没有仔细阅读相关文档资料之前还真有点傻傻分不清了。实践出真知，在经过简单的练习加上相关博客文章、源码阅读、谷歌搜索后，我心里所认识的 <code>object</code> 和 <code>companion object</code> 是这样的：</p>
+<ul>
+<li>object 可以定义在全局也可以在类的内部使用</li>
+<li>object 就是单例模式的化身</li>
+<li>object 可以实现 Java 中的匿名类</li>
+<li>companion object 就是 Java 中的 static 变量</li>
+<li>companion object 只能定义在对应的类中</li>
+</ul>
+<p>但是，这些认识都是停留在表面上，在我继续阅读《 Kotlin in Action 》这本书相应章节后，我能发现它们的使用场景和功能点远不止这些！究其原因，主要是我并没有完全弄清楚它们的原理以及它们之间的差别，不论是 <code>object</code> 还是 <code>companion object</code> ，它们的共性和区别还有这些：</p>
+<ol>
+<li>object 可以作为变量的定义也可以是表达式</li>
+<li>object 匿名类可以继承并超越 Java 中匿名类而实现多个接口</li>
+<li>object 表达式当场实例化，但定义的 object 变量是延迟实例化的</li>
+<li>object 和 companion object 都可以为其取名也可以隐姓埋名</li>
+<li>object 匿名内部类甚至可以引用并更改局部变量</li>
+<li>companion object 甚至还可以被扩展</li>
+<li>Java 中需要结合 @JvmStatic 和 @JvmField 使用</li>
+<li>…… 还有很多异同点等着你的开发</li>
+</ol>
+<p>既然这俩兄弟有这么多异同点，那么我觉得非常有必要总结一下，以便将来能够更加得心应手地使用 Kotlin 吧。</p>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="1-object基本定义"><a href="#1-object基本定义" class="headerlink" title="1. object基本定义"></a>1. object基本定义</h3><p><code>object</code> 可以轻松实现 Kotlin 单例模式， 它可以定义在全局之中，也可以定义在类的内部。但是要注意几点：</p>
+<ol>
+<li>object 定义后即刻实例化</li>
+<li>因此 object 不能有定义构造函数</li>
+<li>定义在类内部的 object 并不能访问类的成员</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> OutObject &#123;</span><br><span class="line">    <span class="keyword">val</span> outParameter = <span class="string">"out"</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">outFunction</span><span class="params">(parameter:<span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="string">"Out object function result: <span class="variable">$parameter</span>."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> classParameter = <span class="string">"class"</span></span><br><span class="line">    <span class="keyword">object</span> InnerObject &#123;</span><br><span class="line">        <span class="comment">//val innerParameter = this.classParameter //error: 1,this refers to InnerObject 2,classParameter cannot be reached</span></span><br><span class="line">        <span class="keyword">val</span> innerParameter = <span class="string">"inner"</span></span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">innerFunction</span><span class="params">(parameter:<span class="type">String</span>)</span></span> &#123;</span><br><span class="line">            println(<span class="string">"Out object function result: <span class="variable">$parameter</span>."</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-object作为表达式"><a href="#2-object作为表达式" class="headerlink" title="2. object作为表达式"></a>2. object作为表达式</h3><p>在 Android 开发中，我们经常会设置一个接口匿名类作为点击事件的参数： <code>setOnClickListener(View.OnClickListener)</code> ，这个时候在 Kotlin 中就可以使用 <code>object</code> 来表达那些匿名内部类。同时 <code>object</code> 相比 Java  更加强大，在用其表达内部类的时候有这几个注意点：</p>
+<ol>
+<li>object 继承父类必须立刻传递父类构造参数</li>
+<li>object 匿名类可以同时实现多个接口</li>
+<li>object 匿名类作为参数并没有名字定义，但是可以为其定义一个变量名，如果实现多接口不能直接用类型推断，拗口吧，请看下面代码：</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MyInterface1</span></span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MyInterface2</span></span></span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">MySuperClass</span></span>(parameter:String)</span><br><span class="line"></span><br><span class="line"><span class="comment">//button.setOnClickListener( object:OnClickListener &#123; //... &#125; ) //no name specified</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">object</span> AnonymousSubClass:MySuperClass(<span class="string">"something"</span>), MyInterface1, MyInterface2&#123;</span><br><span class="line">        <span class="comment">//do something...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> anonymousClass = AnonymousClass</span><br><span class="line">    <span class="keyword">object</span> AnonymousClass:MyInterface1, MyInterface2 &#123;</span><br><span class="line">        <span class="comment">//do something...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">val</span> anotherAnonymous = <span class="keyword">object</span>:MyInterface1 &#123;</span><br><span class="line">        <span class="comment">//type inferred</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">val</span> againAnonymous:MyInterface1 = <span class="keyword">object</span>:MyInterface1, MyInterface2 &#123;</span><br><span class="line">        <span class="comment">//type cannot be inferred</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-object可以访问非final局部变量"><a href="#3-object可以访问非final局部变量" class="headerlink" title="3. object可以访问非final局部变量"></a>3. object可以访问非final局部变量</h3><p>我们知道在 Java 中，内部类是不可以访问外部的非 <code>final</code> 成员变量的，也就是说：它不允许更改变量值！但是， Kotlin 的 <code>object</code> 可以。看代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MyInterface</span> </span>&#123; <span class="function"><span class="keyword">fun</span> <span class="title">operateVariable</span><span class="params">()</span></span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">operationWithInterface</span><span class="params">(anonymous:<span class="type">MyInterface</span>)</span></span> &#123; anonymous.operateVariable() &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> localVariable = <span class="number">1</span></span><br><span class="line">        <span class="keyword">this</span>.operationWithInterface(<span class="keyword">object</span> : MyInterface, MyInterface1 &#123;</span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">operateVariable</span><span class="params">()</span></span> &#123;</span><br><span class="line">                localVariable += <span class="number">1</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        println(<span class="string">"Local variable value: <span class="variable">$localVariable</span>"</span>) <span class="comment">//print: Local variable value: 2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就是那么霸道！写了那么多 <code>object</code> ，我们再看看 <code>companion object</code> ，可谓是 <code>object</code> 的孪生兄弟，它可以说是为 Java 里的 <code>static</code> 而生的 <code>object</code> 。</p>
+<h3 id="4-companion-object使用方法"><a href="#4-companion-object使用方法" class="headerlink" title="4. companion object使用方法"></a>4. companion object使用方法</h3><p>和 <code>object</code> 不同， <code>companion object</code> 的定义完全属于类的本身，所以 <code>companion object</code> 肯定是不能脱离类而定义在全局之中。它就像 Java 里的 <code>static</code> 变量，所以我们定义 <code>companion object</code> 变量的时候也一般会使用大写的命名方式。</p>
+<p>同时，和 <code>object</code> 类似，可以给 <code>companion object</code> 命名，也可以不给名字，这个时候它会有个默认的名字： <code>Companion</code> ，而且，它只在类里面能定义一次：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> CompanionName &#123;</span><br><span class="line">        <span class="keyword">val</span> INNER_PARAMETER = <span class="string">"can only be inner"</span></span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">newInstance</span><span class="params">()</span></span> = MyClass2(<span class="string">"name"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass3</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> INNER_PARAMETER = <span class="string">"can only be inner"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(<span class="keyword">vararg</span> args:<span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    println(MyClass2.CompanionName.INNER_PARAMETER == MyClass2.INNER_PARAMETER) <span class="comment">//print: true</span></span><br><span class="line">    println(MyClass3.Companion.INNER_PARAMETER == MyClass3.INNER_PARAMETER) <span class="comment">//print: true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-类名可作为接口参数传入"><a href="#5-类名可作为接口参数传入" class="headerlink" title="5. 类名可作为接口参数传入"></a>5. 类名可作为接口参数传入</h3><p>和 <code>object</code> 还是一样， <code>companion object</code> 也可以实现接口，因为 <code>companion object</code> 寄生于类，甚至<strong>类</strong>还可以直接作为实现了相应得接口的参数形式传入，拗口，看代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MyInterface</span> </span>&#123; <span class="function"><span class="keyword">fun</span> <span class="title">operateVariable</span><span class="params">()</span></span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">operateClass</span><span class="params">(interfaceObject:<span class="type">MyInterface</span>)</span></span> = interfaceObject.operateVariable()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass3</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span>:MyInterface &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">operateVariable</span><span class="params">()</span></span> &#123;</span><br><span class="line">            <span class="comment">//do something...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(<span class="keyword">vararg</span> args:<span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    operateClass(MyClass3) <span class="comment">//MyClass3 is now as the instance of MyInterface</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-扩展类的静态成员"><a href="#6-扩展类的静态成员" class="headerlink" title="6. 扩展类的静态成员"></a>6. 扩展类的静态成员</h3><p>Kotlin 的扩展功能非常强大，是程序猿爱不释口且口口相传的实用特性之一。那么我们怎么扩展类的静态成员呢？这个时候当然是 <code>companion object</code> 派上用场的时刻了！</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> INNER_PARAMETER = <span class="string">"can only be inner"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(<span class="keyword">vararg</span> args:<span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> MyClass2.Companion.<span class="title">operateVariable</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="keyword">this</span>.INNER_PARAMETER)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    MyClass2.operateVariable() <span class="comment">//print: can only be inner</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>怎么样？ Kolint 就是那么强大！不得不服！ :sunglasses:</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>以上就是我自己总结的一些基本点，总之， Kolint 真不愧是一个门好语言啊！另外官方并不建议我们到处滥用 <code>object</code>关键字，因为它不易控制也不利于测试，毕竟定义即实例化嘛，当然除了很容易实现单例模式，工厂模式也很简单，不信你可以试试。 :wink:</p>
+<p>话又说回来，我建议大家有时间还是有必要再把 Kotlin 代码转换成 Java 源码再分析一遍，这个时候 <code>@JvmStatic</code> 和 <code>@JvmField</code> 标志就发挥作用了。我写这篇文章的时候我并没有下功夫继续深究，有机会还会再去看看转化 Java 部分源码，那样会更加加深对 <code>object</code> 和 <code>companion object</code> 甚至整个 Kotlin 语言的认识吧！好吧，我就菜鸟一枚，那接下来就交给你总结一下并发表给我学习学习吧！谢谢！ :grin:</p>
+<p>最后，引用官方文档说明，比较它们的实例化过程：</p>
+<blockquote>
+</blockquote>
+<ul>
+<li>object expressions are executed (and initialized) immediately, where they are used</li>
+<li>object declarations are initialized lazily, when accessed for the first time</li>
+<li>a companion object is initialized when the corresponding class is loaded (resolved), matching the semantics of a Java static initializer</li>
+</ul>
+<hr>
+<blockquote>
+<p>资料：<br>Kotlin笔记 Object表达式和声明： <a href="http://www.jianshu.com/p/f316ff2f4306" target="_blank" rel="noopener">http://www.jianshu.com/p/f316ff2f4306</a><br>Object Expressions and Declarations: <a href="https://kotlinlang.org/docs/reference/object-declarations.html" target="_blank" rel="noopener">https://kotlinlang.org/docs/reference/object-declarations.html</a></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Kotlin/" class="button small">Kotlin</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/06/25/leanrning-notes-of-survival-shooter-tutorial-in-unity3d/" class="alignleft prev" title="【学习笔记】Unity3D官方游戏教程：Survival Shooter tutorial"><i class="fa fa-angle-double-left"></i>&nbsp;【学习笔记】Unity3D官方游戏教程：Survival Shooter tutorial</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/06/14/talking-about-Java-concurrency-with-lock-or-unlock/" class="alignright next" title="【转载】加锁还是不加锁，这是一个问题">【转载】加锁还是不加锁，这是一个问题&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

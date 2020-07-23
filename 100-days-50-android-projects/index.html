@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="50 Android Projects in 100 Days"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>50 Android Projects in 100 Days - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    <h1 class="title">50 Android Projects in 100 Days</h1>
+    <div class="meta">
+        <span>2017-08-03</span>
+        <!-- changed and content added by me -->
+        <span>  by Liuqingwen </span>
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+    </div>
+
+
+
+<!-- Gallery -->
+
+
+
+    <form id="search-form">
+        <div class="tipue_search_left"><img src="/tipuesearch/search.png" class="tipue_search_icon"></div>
+        <div class="tipue_search_right" style="width:80%;"><input  type="text" name="q" id="tipue_search_input" autocomplete="off" required placeholder="search" style="width:80%;" /></div>
+    </form>
+    <p>Github address: <a href="https://github.com/spkingr/50-android-kotlin-projects-in-100-days" target="_blank" rel="noopener">https://github.com/spkingr/50-android-kotlin-projects-in-100-days</a><br>More about me: <a href="http://liuqingwen.me/blog/index.html">http://liuqingwen.me</a></p>
+<p>I learn Android skills by self-taught, and use Kotlin in all my Android projects, I start this project for testing my skills and the improvement of my programme. The samples are all from the web site, I take it and just write by myself. Most of the projects I cannot finish it once I see the final output, so I will use Google search and StackOverFlow to find my solution, and try my best to make them done! And after all I have uploaded and updated the projects to my Github pages. If you have some questions please leave me a comment and I’ll appreciate it! :smile:</p>
+<hr>
+<h2 id="To-do-list"><a href="#To-do-list" class="headerlink" title="To do list"></a>To do list</h2><ol start="4">
+<li>SurfaceView with canvas drawing</li>
+<li>HORIZONTAL VERTICAL Scroll</li>
+<li>Service with IPC</li>
+<li>Socket</li>
+<li><strong>ContentProvider, Glide4 with Gif, Uploader, Activity as popup!</strong></li>
+<li>Coroutines!!!</li>
+<li>Dagger, Retrofit!</li>
+</ol>
+<hr>
+<h2 id="39-Image-Puzzle-Game"><a href="#39-Image-Puzzle-Game" class="headerlink" title="39. Image Puzzle Game"></a>39. Image Puzzle Game</h2><p><em>Date: 2018-8-10</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectImagePuzzle/ProjectImagePuzzle.gif" alt="ProjectImagePuzzle.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Make a simple image puzzle game with bitmap data operations: scale, draw, clip and so on</li>
+<li>Use the powerful <code>BRVAH</code> library to make a simple <code>RecyclerView</code> with <strong>XML</strong> layout</li>
+<li>Now remove the support library and migrate to <code>androidX</code> packages, so <strong>Anko</strong> layout is not supported right now</li>
+</ul>
+<p><strong>PS:</strong> Restart(cold reboot) simulator to make the downloaded images appear in gallery.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># while build failed with this problem:</span></span><br><span class="line"><span class="comment"># Cause: delight/rhinosandox/RhinoSandboxes</span></span><br><span class="line"><span class="comment"># Try run the command in terminal:</span></span><br><span class="line"></span><br><span class="line">gradlew clean assemble -stacktrace</span><br></pre></td></tr></table></figure>
+
+<p>Resource: <a href="https://dragosholban.com/2018/03/09/how-to-build-a-jigsaw-puzzle-android-game/" target="_blank" rel="noopener">How to Build a Jigsaw Puzzle Android Game</a></p>
+<hr>
+<h2 id="38-Simple-Game-With-LibGdx"><a href="#38-Simple-Game-With-LibGdx" class="headerlink" title="38. Simple Game With LibGdx"></a>38. Simple Game With LibGdx</h2><p><em>Date: 2018-7-26</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectSimpleGame/ProjectSimpleGame.gif" alt="ProjectSimpleGame.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Build simple game in Android with <code>libgdx</code> framework</li>
+<li>Manage multi scenes in the game with <code>Stages</code> and <code>Camera</code> and <code>Sprites</code></li>
+<li>Use <code>Box2D</code> to do simple physics simulation in the game</li>
+</ul>
+<hr>
+<h2 id="37-Basic-Unit-And-UI-Test"><a href="#37-Basic-Unit-And-UI-Test" class="headerlink" title="37. Basic Unit And UI Test"></a>37. Basic Unit And UI Test</h2><p><em>Date: 2018-7-25</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectAndroidTest/ProjectAndroidTest.gif" alt="ProjectAndroidTest.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Basic unit test with <code>JUnit4</code>, and <code>Espresso</code> test framework in Android</li>
+<li>Use <code>mockK</code> to do Kotlin unit test: mock, spy, function callback captures and verify, ect</li>
+<li>Simple UI test in Android with <code>Espresso</code> and <code>barista</code> library: find view, click, <code>recyclerview</code> test and waiting and so on</li>
+</ul>
+<p>Resource: <a href="http://mockk.io" target="_blank" rel="noopener">mockK</a></p>
+<hr>
+<h2 id="36-Service"><a href="#36-Service" class="headerlink" title="36. Service"></a>36. Service</h2><p><em>Date: 2018-5-17</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectService/ProjectService.gif" alt="ProjectService.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Create <code>Service</code> in Android app with <code>IBinder</code>, send notification background</li>
+<li>Use <code>Guideline</code> and <code>Barrier</code> in <code>ConstraintLayout</code> with <em>Anko Layout</em></li>
+<li>Switch threads in <code>RxAndroid</code>, and in <code>doOnComplete</code></li>
+</ul>
+<p><strong>PS: To correctly use <code>Guideline</code> in constraint layout as the item ui in <code>RecyclerView</code>, I add the code bellow to make sure the layout renders expectedly:</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">constraintLayout &#123;</span><br><span class="line">    <span class="comment">//Importance!</span></span><br><span class="line">    layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)</span><br><span class="line">    guideline &#123;</span><br><span class="line">        id = ID_GUIDELINE</span><br><span class="line">    &#125;.lparams(width = matchConstraint, height = matchConstraint)&#123;</span><br><span class="line">        orientation = ConstraintLayout.LayoutParams.VERTICAL</span><br><span class="line">        guidePercent = <span class="number">0.25f</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//... other code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="35-Reactive-Text-Search"><a href="#35-Reactive-Text-Search" class="headerlink" title="35. Reactive Text Search"></a>35. Reactive Text Search</h2><p><em>Date: 2018-5-2</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectReactiveText/ProjectReactiveText.gif" alt="ProjectReactiveText.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Create <code>Observable</code> from buttons and text changes, and merge them together</li>
+<li>Switch work threads, use <code>doOnNext</code> to show progress bar, and dispose them when needed</li>
+<li>Use arrays in XML resource, change the button appearance use the theme of <code>Widget.AppCompat.Button.Colored</code></li>
+</ul>
+<hr>
+<h2 id="34-Basic-Material-Animation"><a href="#34-Basic-Material-Animation" class="headerlink" title="34. Basic Material Animation"></a>34. Basic Material Animation</h2><p><em>Date: 2018-3-11</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectMaterialAnimation/ProjectMaterialAnimation.gif" alt="ProjectMaterialAnimation.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Basic material animations for Fragment: enter/exit transition, shared element trasition</li>
+<li>Use coroutines to do time-consuming process: <code>async</code>, <code>await</code> in <code>launch</code> coroutines scope</li>
+<li>Build animations in <code>ConstraintLayout</code> use simple and powerful <code>ConstraintSet</code> and <code>Transition</code></li>
+<li>Single activity as a container with multiple fragments</li>
+</ul>
+<p>Resource: <a href="https://github.com/android/android-ktx" target="_blank" rel="noopener">Android KTX library</a><br><a href="https://www.youtube.com/watch?v=OHcfs6rStRo" target="_blank" rel="noopener">Keyframe Animations with ConstraintLayout and ConstraintSet</a><br><strong>PS: While use shared element between fragments, I notice that, the 1st: <code>add</code> will not work but <code>replace</code> works, and 2nd: I set <code>transitionName</code> in the <code>CardView</code> instead of directly in the <code>ImageView</code>, which is the sub-view of <code>CardView</code>, that works!</strong></p>
+<hr>
+<h2 id="33-ObjectBox-And-Coroutines"><a href="#33-ObjectBox-And-Coroutines" class="headerlink" title="33. ObjectBox And Coroutines"></a>33. ObjectBox And Coroutines</h2><p><em>Date: 2018-3-7</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectObjectBox/ProjectObjectBox.gif" alt="ProjectObjectBox.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Work with <strong>ObjectBox</strong> to do the operations of databases</li>
+<li>Try to use Kotlin Coroutines to simulate some time-consuming process, it’s just a test</li>
+<li>Create the custom <code>Application</code>, use open source toast: <code>Toasty</code>, use <code>NestedScrollView</code> in <code>CoordinatorLayout</code></li>
+</ul>
+<p>Resource: <a href="http://objectbox.io/" target="_blank" rel="noopener">ObjectBox API</a><br><strong>A test project, lost of functionalities are not accomplished yet.</strong></p>
+<hr>
+<h2 id="32-Basic-Android-MVP"><a href="#32-Basic-Android-MVP" class="headerlink" title="32. Basic Android MVP"></a>32. Basic Android MVP</h2><p><em>Date: 2018-3-1</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectBasicMVP/ProjectBasicMVP.gif" alt="ProjectBasicMVP.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Use the basic MVP pattern in Android project, to make code clean and testable</li>
+<li>Understand and use the abstract class and abstract methods</li>
+<li>The data binding in view, use this library: <code>KotlinAndroidViewBindings</code> (I just copied some code in my project.)</li>
+</ul>
+<p>Resource: <a href="https://github.com/MarcinMoskala/KotlinAndroidViewBindings" target="_blank" rel="noopener">KotlinAndroidViewBindings</a></p>
+<hr>
+<h2 id="31-Retrofit-And-RxAndroid"><a href="#31-Retrofit-And-RxAndroid" class="headerlink" title="31. Retrofit And RxAndroid"></a>31. Retrofit And RxAndroid</h2><p><em>Date: 2018-2-6</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectRetrofit/ProjectRetrofit.gif" alt="ProjectRetrofit.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Try with <code>Retrofit</code> and <code>RxAndroid</code>/<code>RxJava</code> to populate data in web service</li>
+<li>No XML layout now, try to work with pure <code>Anko</code> layouts, and the awesome <code>Anko ConstraintLayout</code> library</li>
+<li>How to change the layout in <code>RecyclerView</code>, and smooth scroll to the desired position</li>
+<li>Anko layout with <code>Coordinator Layout</code>, <code>CardView</code>, <code>AppBar Layout</code>, <code>Toolbar</code> and so on in <code>design</code> support library</li>
+<li>Pre-load or pause-load behavior in <code>Glide</code> image loader with <code>RecyclerView</code> while scrolling</li>
+</ul>
+<p>Resource: <a href="https://github.com/Kotlin/anko/wiki/ConstraintLayout" target="_blank" rel="noopener">Anko ConstraintLayout</a><br><a href="https://bumptech.github.io/glide/int/recyclerview.html" target="_blank" rel="noopener">Glide: RecyclerView integration library</a></p>
+<hr>
+<h2 id="30-A-Simple-Custom-View-Group"><a href="#30-A-Simple-Custom-View-Group" class="headerlink" title="30. A Simple Custom View Group"></a>30. A Simple Custom View Group</h2><p><em>Date: 2018-1-29</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectSimpleViewGroup/ProjectSimpleViewGroup.gif" alt="ProjectSimpleViewGroup.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>It works like a charm!!! Five days cost to finish my little simple <code>ViewGroup</code>! That deserves.</li>
+<li>Got the basic idea of the processes of <code>measure</code>, <code>layout</code>, <code>touchEvent</code>, <code>interceptEvent</code>, and custom child layout parameters</li>
+<li>Use the <code>scroller</code> to make the movement much smooth</li>
+<li>Let the <code>ViewGroup</code> support click event and long click events</li>
+</ul>
+<hr>
+<h2 id="29-A-Map-Demo"><a href="#29-A-Map-Demo" class="headerlink" title="29. A Map Demo"></a>29. A Map Demo</h2><p><em>Date: 2018-1-23</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectAMap/ProjectAMap.gif" alt="ProjectAMap.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Show map, display marker, animate camera, search, deal with the latitude and longitude with A Map API</li>
+<li>Fullscreen control, show and hide the soft keyboard</li>
+<li>Work with the <code>AutoCompleteTextView</code> widget</li>
+</ul>
+<p><strong>Resource: <a href="http://lbs.amap.com/" target="_blank" rel="noopener">A MAP</a></strong></p>
+<hr>
+<h2 id="28-Custom-View-The-Switch"><a href="#28-Custom-View-The-Switch" class="headerlink" title="28. Custom View The Switch"></a>28. Custom View The Switch</h2><p><em>Date: 2018-1-21</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectMySwitch/ProjectMySwitch.gif" alt="ProjectMySwitch.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Custom view with basic workflow: measure, layout, draw and touch event handle</li>
+<li>Add custom properties or attributes in XML of view</li>
+<li>The basics of drawing api in Android with: path, paint, canvas</li>
+</ul>
+<hr>
+<h2 id="27-Play-With-Audio-Assets"><a href="#27-Play-With-Audio-Assets" class="headerlink" title="27. Play With Audio Assets"></a>27. Play With Audio Assets</h2><p><em>Date: 2018-1-11</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectAudioAssets/ProjectAudioAssets.gif" alt="ProjectAudioAssets.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>No XML layouts, the UI is completely replaced with Anko layout codes</li>
+<li>Work with assets in Android, and use <code>AssetManager</code> to do asset management</li>
+<li>Use <code>SoundPool</code> to play tiny <code>wav</code> audio files</li>
+<li>The basic knowledge of Anko layouts, pure code to make views</li>
+</ul>
+<hr>
+<h2 id="26-Better-Practice-Fragment-Part-1"><a href="#26-Better-Practice-Fragment-Part-1" class="headerlink" title="26. Better Practice Fragment (Part.1)"></a>26. Better Practice Fragment (Part.1)</h2><p><em>Date: 2018-1-8</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectBetterPracticeFragment/ProjectBetterPracticeFragment.gif" alt="ProjectBetterPracticeFragment.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Use RecylcerView list item animations with XML resource</li>
+<li>Understand the <code>layout_behavior</code> in <code>CoordinatorLayout</code> and <code>layout_anchor</code> property</li>
+<li>Try to use Fragment instead the Activity for better practise, it makes ViewPager very esay to build</li>
+<li>Work with the alert dilog with custom view</li>
+</ul>
+<p><strong>The refactor is not so easy for me, a lot of functionalities is not finished, and I will try to get that done later.</strong></p>
+<hr>
+<h2 id="25-Image-Uploader"><a href="#25-Image-Uploader" class="headerlink" title="25. Image Uploader"></a>25. Image Uploader</h2><p><em>Date: 2017-12-29</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectImageUploader/ProjectImageUploader.gif" alt="ProjectImageUploader.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Work with OKHttp to post data: upload files, get and send cookies, retrive the result</li>
+<li>Use XML Shape to create nice controls such as buttons</li>
+<li>Crop image and get the bitmap data through <code>FileProvider</code> in API greater than 24</li>
+<li>Use view animations, Gson to analysis json string, <code>indeterminateProgressDialog</code> and <code>alert</code> in anko</li>
+</ul>
+<p><strong>Realy thanks to the guy in Weixin group: @���е���ؤ���� for solving my code problem, while reuse the animation XML will cause wried things!</strong></p>
+<hr>
+<h2 id="24-Photo-Wall"><a href="#24-Photo-Wall" class="headerlink" title="24. Photo Wall"></a>24. Photo Wall</h2><p><em>Date: 2017-12-26</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectPhotoWall/ProjectPhotoWall.gif" alt="ProjectPhotoWall.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Get images throught network, decode stream and display</li>
+<li>Use <code>LruCache</code> to cache the bitmap data for quick loading and recylcling data usage</li>
+<li>The same Activity is setted as both the <strong>Detail</strong> activity and <strong>Add New</strong> activity</li>
+<li>Load data from database in the asynchronized way</li>
+</ul>
+<p><strong>If too much photos loaded, will the app get the changce to crash for OOM? I should try to figure it out!</strong></p>
+<hr>
+<h2 id="23-Parcelable-Data-Objects"><a href="#23-Parcelable-Data-Objects" class="headerlink" title="23. Parcelable Data Objects"></a>23. Parcelable Data Objects</h2><p><em>Date: 2017-12-23</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectParcelableData/ProjectParcelableData.gif" alt="ProjectParcelableData.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Use <code>Parcelable</code> objects for data passing between activities</li>
+<li>Try Android unit test with: <strong>Instrumented Test</strong> and <strong>Unit Test</strong></li>
+<li>Data class used both as Parcelable data object and Room database entity</li>
+<li>Solve two problems through StackOverFlow.com: <a href="https://stackoverflow.com/questions/46512990/gradle-error-failed-to-create-directory" target="_blank" rel="noopener">Gradle error, failed to create directory</a> and <a href="https://stackoverflow.com/questions/14381694/why-is-the-android-test-runner-reporting-empty-test-suite" target="_blank" rel="noopener">Empty test suite</a></li>
+</ul>
+<p><strong>A lot of functionalities are not implemeted yet in this app, and I will finish that in my next days, hold on please! :)</strong></p>
+<hr>
+<h2 id="22-Simple-View-Pager"><a href="#22-Simple-View-Pager" class="headerlink" title="22. Simple View Pager"></a>22. Simple View Pager</h2><p><em>Date: 2017-12-16</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectViewPager/ProjectViewPager.gif" alt="ProjectViewPager.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Work with <code>ViewPager</code> and <code>TabLayout</code> together to display walk through pages</li>
+<li>Use <code>FragmentStatePagerAdapter</code> as the <code>ViewPager</code> adapter and, the fragments</li>
+<li>Finish the activity so that make sure it is removed from the stack</li>
+</ul>
+<p><strong>Resource: <a href="https://www.raywenderlich.com/169774/viewpager-tutorial-android-getting-started-kotlin" target="_blank" rel="noopener">ViewPager Tutorial: Getting Started in Kotlin</a></strong></p>
+<hr>
+<h2 id="21-The-Floating-Window"><a href="#21-The-Floating-Window" class="headerlink" title="21. The Floating Window"></a>21. The Floating Window</h2><p><em>Date: 2017-12-16</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectFloatingWindow/ProjectFloatingWindow.gif" alt="ProjectFloatingWindow.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>No layout XML files, but replace with the anko layout library to create views</li>
+<li>Use <code>WindowManager</code> to display floating views on the window</li>
+<li>Deal with the back button pressed to hide the activity, prevent from finishing the app</li>
+</ul>
+<p><strong>After 2 months at last! Still 2 problems or questions:</strong><br><strong>1. If back pressed and app is killed, then the <code>android.view.WindowLeaked</code> exception throws, how to solve?</strong><br><strong>2. In the emulator, if the drag and drop event happens outside, then the position of the window will be some wried.</strong></p>
+<hr>
+<h2 id="20-Simple-Search-Web-View"><a href="#20-Simple-Search-Web-View" class="headerlink" title="20. Simple Search Web View"></a>20. Simple Search Web View</h2><p><em>Date: 2017-10-18</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectSimpleWebview/ProjectSimpleWebview.gif" alt="ProjectSimpleWebview.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Work with WebView, set the client as <code>WebViewClient</code> and <code>WebChromeClient</code></li>
+<li>Use the ToolBar instead of ActionBar, try <code>SearchView</code> in the tool bar</li>
+<li>Save and retrieve list items (<code>StringSet</code>) in shared preferences</li>
+<li>Add or remove item in <code>RecyclerView</code>, handle long click events on list item</li>
+<li>Deal with the WebView in NestedScrollView through the library: <code>NestedScrollWebView</code> in Github</li>
+</ul>
+<p>Resource: <a href="https://gist.github.com/alexmiragall/0c4c7163f7a17938518ce9794c4a5236" target="_blank" rel="noopener">NestedScrollWebView</a></p>
+<hr>
+<h2 id="19-Downloader-With-Notifications"><a href="#19-Downloader-With-Notifications" class="headerlink" title="19. Downloader With Notifications"></a>19. Downloader With Notifications</h2><p><em>Date: 2017-10-14</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectDownloaderWithNotification/ProjectDownloaderWithNotification.gif" alt="ProjectDownloaderWithNotification.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Use the basic notifications in Android</li>
+<li>The asynchronized task with <code>doAsync</code> and <code>uiThread</code> in Kotlin</li>
+<li>Basic file and stream operations in Android </li>
+</ul>
+<hr>
+<h2 id="18-Basic-File-Operation"><a href="#18-Basic-File-Operation" class="headerlink" title="18. Basic File Operation"></a>18. Basic File Operation</h2><p><em>Date: 2017-10-4</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectFileReader/ProjectFileReader.gif" alt="ProjectFileReader.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Use SharedPreferences to store and retrieve simple data</li>
+<li>Basic file operations on Android system, with <code>openFileInput</code> and <code>openFileOutput</code></li>
+<li>Set data in the activity result and return</li>
+</ul>
+<hr>
+<h2 id="17-Simple-Broadcast-Receiver"><a href="#17-Simple-Broadcast-Receiver" class="headerlink" title="17. Simple Broadcast Receiver"></a>17. Simple Broadcast Receiver</h2><p><em>Date: 2017-09-27</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectBroadcastReceiver/ProjectBroadcastReceiver.gif" alt="ProjectBroadcastReceiver.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Use one of the most four important components in Android: Broadcast Receiver</li>
+<li>Extension functions in Kotlin with <code>AppCompatActivity</code></li>
+<li>Try the open-source library: EventBus to post and handle events, and also the CircleImageView</li>
+<li>Reduce the redundant of layout by using <code>&lt;inlucde&gt;</code> tags</li>
+</ul>
+<p><strong>I am still not very clear with Android <code>BroadcastReceiver</code>, I found that it sometimes(especially for the single app development) can be replaced with <code>EventBus</code> through publish/subscribe pattern, is that right?</strong></p>
+<hr>
+<h2 id="16-Self-Adaption"><a href="#16-Self-Adaption" class="headerlink" title="16. Self Adaption"></a>16. Self Adaption</h2><p><em>Date: 2017-09-12</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectSelfAdaption/ProjectSelfAdaption.gif" alt="ProjectSelfAdaption.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Use the Fragments in the Activities</li>
+<li>Specify different layouts for different size or screen orientation (layout-land and layout-large)</li>
+<li>Use the empty view element as spacer or divider (be careful of the tag, it is <code>View</code> not <code>view</code>!)</li>
+<li>Dynamically set the visibility of view</li>
+</ul>
+<p><strong>Till now I have no idea of using the <code>savedInstanceState</code> variable to make the data consistent while rotate the screen orientation, I should try it out later.</strong></p>
+<hr>
+<h2 id="15-Database-with-Room"><a href="#15-Database-with-Room" class="headerlink" title="15. Database with Room"></a>15. Database with Room</h2><p><em>Date: 2017-09-04</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectDatabaseRoom/ProjectDatabaseRoom.gif" alt="ProjectDatabaseRoom.gif"><br><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectDatabaseRoom/ProjectDatabaseRoom_adb_shell_sqlite3.gif" alt="ProjectDatabaseRoom_adb_shell_sqlite3.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Use the Room Persistence Library for the basic database operations: INSERT/DELETE/UPDATE/QUERY</li>
+<li>Work with data class in Kotlin and the <code>let</code> lamda, and the annotations</li>
+<li>Convert date types to string types, and vice versa by using <code>SimpleDateFormat</code> or <code>DateFormat.getDateInstance()</code></li>
+<li>Use <code>adb shell</code> and <code>sqlite3</code> command to query the data in emulator local system files:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ adb quit</span><br><span class="line"></span><br><span class="line"><span class="comment"># for more than one device found here</span></span><br><span class="line">$ adb devices</span><br><span class="line">$ adb -s &lt;emulator name&gt; shell</span><br><span class="line">$ <span class="built_in">cd</span> data/data/me.liuqingwen.android.projectdatabaseroom/databases</span><br><span class="line"></span><br><span class="line">$ sqlite3</span><br><span class="line">$ .open &lt;dbname.db&gt;</span><br><span class="line">$ .tables</span><br><span class="line">$ SELECT * FROM &lt;table name&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="14-Activity-Animations"><a href="#14-Activity-Animations" class="headerlink" title="14. Activity Animations"></a>14. Activity Animations</h2><p><em>Date: 2017-09-01</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectActivityAnimations/ProjectActivityAnimations.gif" alt="ProjectActivityAnimations.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Transitions between activities use <code>overridePendingTransition</code></li>
+<li>Work with animation xml resource file, the difference of “50%” and “50%p” (relative to parent view)</li>
+<li>Override <code>onBackPressed</code> method to finish the activity</li>
+</ul>
+<hr>
+<h2 id="13-Simple-Activity-with-Intent"><a href="#13-Simple-Activity-with-Intent" class="headerlink" title="13. Simple Activity with Intent"></a>13. Simple Activity with Intent</h2><p><em>Date: 2017-08-31</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectActivityIntent/ProjectActivityIntent.gif" alt="ProjectActivityIntent.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Dealing with the custom item click handler of RecyclerView</li>
+<li>Start an intent to show another Activity by <code>startActivityForResult</code></li>
+<li>Get the result from another activity through method of <code>onActivityResult</code></li>
+</ul>
+<hr>
+<h2 id="12-Simple-Animations-with-Custom-View"><a href="#12-Simple-Animations-with-Custom-View" class="headerlink" title="12. Simple Animations with Custom View"></a>12. Simple Animations with Custom View</h2><p><em>Date: 2017-08-30</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectSimpleAnimation/ProjectSimpleAnimation.gif" alt="ProjectSimpleAnimation.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Custom view with custom attributes (declared in the xml value file)</li>
+<li>Use <code>onMeasure</code> to set the correct size of view</li>
+<li>Use <code>onDraw</code> to display the paint on the canvas</li>
+<li>Work with the basic object animator and animator-set</li>
+<li>The importance of lazy properties in Kotlin, think about the code:</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//the [sunColor] initialized here will be changed later in the constructor through xml user attributes.</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">var</span> sunColor = Color.RED</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">//the paint directly initialized will not be the expected one, as the [sunColor] will change later for xml attributes!</span></span><br><span class="line"><span class="comment">private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply &#123;</span></span><br><span class="line"><span class="comment">    this.color = this@SunView.sunColor</span></span><br><span class="line"><span class="comment">    this.isAntiAlias = true</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">//by using the lazy properties, the paint will be all right with the [sunColor] property!</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> paint <span class="keyword">by</span> lazy &#123;</span><br><span class="line">    Paint(Paint.ANTI_ALIAS_FLAG).apply &#123;</span><br><span class="line">        <span class="keyword">this</span>.color = <span class="keyword">this</span><span class="symbol">@SunView</span>.sunColor</span><br><span class="line">        <span class="keyword">this</span>.isAntiAlias = <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="11-Simple-Scalable-ImageView"><a href="#11-Simple-Scalable-ImageView" class="headerlink" title="11. Simple Scalable ImageView"></a>11. Simple Scalable ImageView</h2><p><em>Date: 2017-08-28</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectScalableImageView/ProjectScalableImageView.gif" alt="ProjectScalableImageView.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Multiple constructors from base class inheritance in Kotlin</li>
+<li>The basic knowledge of custom view: onLayout (left, right, top, bottom)/setFrame/onTouchEvent (Here I should always return <code>true</code> for receiving other touch events)</li>
+<li>Multi-touch handle on views: use <code>event.actionMasked</code> instead of <code>event.action</code></li>
+</ul>
+<p><strong>This is a bad-experienced project(view), I think I have to improve that in the next days while learning.</strong></p>
+<hr>
+<h2 id="11-Simple-ASynchronized-Works"><a href="#11-Simple-ASynchronized-Works" class="headerlink" title="11. Simple ASynchronized Works"></a>11. Simple ASynchronized Works</h2><p><em>Date: 2017-08-17</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectAsyncWorks/ProjectAsyncWorks.gif" alt="ProjectAsyncWorks.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Try to figure out the differences of usage between Handler and AsyncTask in Android</li>
+<li>Download file from server via OkHttp and read bytes from InputStream</li>
+<li>RandomAccessFile for writing file content from specified positions</li>
+</ul>
+<p><strong>Till now I can’t figure out a solution to pause/resume the downloading tasks, and I will try it later.</strong></p>
+<hr>
+<h2 id="10-Swipe-Refresh-RecylcerView"><a href="#10-Swipe-Refresh-RecylcerView" class="headerlink" title="10. Swipe Refresh RecylcerView"></a>10. Swipe Refresh RecylcerView</h2><p><em>Date: 2017-08-16</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectRefreshRecyclerView/ProjectRefreshRecyclerView.gif" alt="ProjectRefreshRecyclerView.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Work with SwipeRefreshLayout and RecyclerView</li>
+<li>Basic AlertDialog and Snackbar usage</li>
+<li>Custom header and footer item in RecyclerView (It looks a little weird!)</li>
+</ul>
+<hr>
+<h2 id="9-Simple-Video-Player"><a href="#9-Simple-Video-Player" class="headerlink" title="9. Simple Video Player"></a>9. Simple Video Player</h2><p><em>Date: 2017-08-14</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectVideoPlayer/ProjectVideoPlayer.gif" alt="ProjectVideoPlayer.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>The first time explore the MediaPlayer with SurfaceView</li>
+<li>Got idea of LayoutParams and its simple properties (ConstraintLayout.LayoutParams)</li>
+</ul>
+<hr>
+<h2 id="8-Basic-Material-Design"><a href="#8-Basic-Material-Design" class="headerlink" title="8. Basic Material Design"></a>8. Basic Material Design</h2><p><em>Date: 2017-08-12</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectBasicMaterialDesign/ProjectBasicMaterialDesign.gif" alt="ProjectBasicMaterialDesign.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Basic material design elements: DrawerLayout, NavigationView, CoordinatorLayout, AppBarLayout with Toolbar and FloatingActionButton</li>
+<li>Try to use the open source Android libraries of RxAndroid, OkHttp, Gson and Glide, ect.</li>
+<li>DrawerLayout must work with a child with <code>layout_gravity</code> property specified.</li>
+<li>Gson tokens with types: <code>object : TypeToken&lt;List&lt;Turns&gt;&gt;() {}.type</code> is the right way. </li>
+</ul>
+<p>Resource: <a href="https://github.com/ReactiveX/RxAndroid" target="_blank" rel="noopener">RxAndroid</a>, <a href="http://square.github.io/okhttp/" target="_blank" rel="noopener">OkHttp</a>, <a href="https://github.com/google/gson" target="_blank" rel="noopener">Gson</a>, <a href="https://github.com/bumptech/glide" target="_blank" rel="noopener">Glide</a></p>
+<hr>
+<h2 id="7-Recycle-Image-Loader"><a href="#7-Recycle-Image-Loader" class="headerlink" title="7. Recycle Image Loader"></a>7. Recycle Image Loader</h2><p><em>Date: 2017-08-11</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectRecycleImageLoader/ProjectRecycleImageLoader.gif" alt="ProjectRecycleImageLoader.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>CardView is very cute, isn’t is? (<em>I hate the gap between image nad text!</em>)</li>
+<li>Load json data through HttpURLConnection and display view with ViewStub</li>
+<li>Use <code>doAsync{}</code> and <code>uiThread{}</code> to do asynchronized task in Kotlin</li>
+<li>Read InputStream in Kotlin and convert string data to JSONObject</li>
+</ul>
+<hr>
+<h2 id="6-Basic-RecycleView"><a href="#6-Basic-RecycleView" class="headerlink" title="6. Basic RecycleView"></a>6. Basic RecycleView</h2><p><em>Date: 2017-08-09</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectRecycleView/ProjectRecycleView.gif" alt="ProjectRecycleView.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>The very basics of RecycleView</li>
+<li>RecycleView with custom ViewHolder and Adapter, and layout managers</li>
+<li>Using <code>lazy</code> delegates , and <code>Pair&lt;out A, out B&gt;</code> in Kotlin</li>
+</ul>
+<p><strong>In fact it shows the unexpected results, but I will give more effort to the RecycleView app next time.</strong></p>
+<hr>
+<h2 id="5-Pick-Image"><a href="#5-Pick-Image" class="headerlink" title="5. Pick Image"></a>5. Pick Image</h2><p><em>Date: 2017-08-08</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectPickImage/ProjectPickImage.gif" alt="ProjectPickImage.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Start a intent and get the result from that</li>
+<li>Work with local images and camera basics</li>
+<li>Display bitmap data on an ImageView</li>
+</ul>
+<hr>
+<h2 id="4-My-Location"><a href="#4-My-Location" class="headerlink" title="4. My Location"></a>4. My Location</h2><p><em>Date: 2017-08-06</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectMyLocation/ProjectMyLocation.gif" alt="ProjectMyLocation.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Work with LocationManager, get GPS providers and locations</li>
+<li>Got to know how to request specified Permissions at RunTime</li>
+<li>Use HttpUrlConnection to fetch data with url and read the input streams</li>
+<li>The LAMDA of <code>thread</code> and <code>runOnUiThread</code></li>
+</ul>
+<p><strong>My network is not stable, and I really do a lot of hard-code, I think I can fix that later.</strong></p>
+<hr>
+<h2 id="3-Tip-Calculator"><a href="#3-Tip-Calculator" class="headerlink" title="3. Tip Calculator"></a>3. Tip Calculator</h2><p><em>Date: 2017-08-05</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectTipCalculator/ProjectTipCalculator.gif" alt="ProjectTipCalculator.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Work with EditText and SeekBar</li>
+<li>The editor of keyboard event handler with EditText</li>
+<li>Strings to formatted floats and strings remove specified prefix in kotlin</li>
+</ul>
+<p><strong>And what I cannot resolve is the focus changes of EditText and auto-hided of keyboard, I hope I can work it later.</strong></p>
+<hr>
+<h2 id="2-Tap-or-Hold-Counter"><a href="#2-Tap-or-Hold-Counter" class="headerlink" title="2. Tap or Hold Counter"></a>2. Tap or Hold Counter</h2><p><em>Date: 2017-08-04</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectTapHoldCounter/ProjectTapHoldCounter.gif" alt="ProjectTapHoldCounter.gif"></p>
+<p>What I learned from this demo:</p>
+<ul>
+<li>Delegates of property in Kotlin</li>
+<li>Basic usage of Timer and TimerTask</li>
+<li>Button long click and touch event listener</li>
+<li>AnkoLogger for test (I have deleted the test code, but the activity has implemented the interface)</li>
+</ul>
+<hr>
+<h2 id="1-Tap-Counte"><a href="#1-Tap-Counte" class="headerlink" title="1. Tap Counte"></a>1. Tap Counte</h2><p><em>Date: 2017-08-03</em></p>
+<p><img src="https://github.com/spkingr/50-android-kotlin-projects-in-100-days/raw/master/ProjectTapCounter/ProjectTapCounter.gif" alt="ProjectTapCounter.gif"></p>
+<p><strong>What I learned from this demo:</strong></p>
+<ul>
+<li>Menu resource file creation and option menus add to title bar</li>
+<li>Use anko library to reach UI elements easily in layout</li>
+<li>Button click handler with lambda in kotlin</li>
+<li>Change the button and text view appearance in editor</li>
+<li>Basic usage of Git commands and Github repository with AS 3.0</li>
+</ul>
+<p>Resource: <a href="https://github.com/Kotlin/anko" target="_blank" rel="noopener">anko</a></p>
+<hr>
+<blockquote>
+<p>资源：<br>抓住iOS的未来 - 30天学习编写30个Swift小程序： <a href="http://www.jianshu.com/p/c6ae28964ad5" target="_blank" rel="noopener">http://www.jianshu.com/p/c6ae28964ad5</a><br>100 Days of Swift ： <a href="http://samvlu.com/index.html" target="_blank" rel="noopener">http://samvlu.com/index.html</a><br>【Android UI设计与开发】8.顶部标题栏（一）ActionBar 奥义·详解： <a href="http://www.cnblogs.com/yc-755909659/p/4290784.html" target="_blank" rel="noopener">http://www.cnblogs.com/yc-755909659/p/4290784.html</a><br>AS 中 Git 与 GitHub 的使用入门： <a href="http://www.jianshu.com/p/f85eb3e9caec" target="_blank" rel="noopener">http://www.jianshu.com/p/f85eb3e9caec</a></p>
+</blockquote>
+
+    <div id="tipue_search_content"></div>
+
+<!-- Content -->
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

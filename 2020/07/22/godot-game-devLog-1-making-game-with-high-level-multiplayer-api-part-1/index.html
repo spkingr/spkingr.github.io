@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="Godot, 开源游戏引擎, 多人游戏开发, 游戏教程, multiplayer, network, server, client, master, puppet,刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（上）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（上） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（上）</h1>
+    <div class="meta">
+        <span>2020-07-22</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>距离上一次发文已经稳稳超过一年了，去年一直在做 #￥@#*!%……%#&amp;…%&amp;^# 然后待在家里了！偶尔写写 BUG ，一直默默关注着 Godot ，这不已经 3.2.2 版本了，距离“神秘”的 4.0 版本又近了一步。接下来我还是会不断探索，努力提高自己，努力提高别人，哈哈。有时间多和大家交流探讨 Godot 游戏开发中的一些技能、技巧、技术吧。 :sunglasses:</p>
+<p>该结束了！我说的是往期的 <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">Godot3 游戏引擎入门系列</a>正是宣布完成，我们不能总是停留在入门阶段，不要局限于写小 Bug ，大 Boss 也得搞搞，我打算邀请大家一起进入下一阶段的深入学习，本人斗胆提了个高大上的名字： Godot 游戏开发实践系列。说白了，就是“踩坑填坑”系列，至于内容，我暂时能想到、能做到的只有以下一点东西：</p>
+<ul>
+<li>Godot 的开发技巧、高级 API 的探索</li>
+<li>Shader 着色器入门和应用</li>
+<li>AI 的一些入门级应用学习</li>
+<li>继续实践，做不同类型的游戏 Demo</li>
+<li>赶在 4.0 之前入个 3D 游戏开发的门</li>
+<li>其他，或者资源，还有太多没学到的……</li>
+</ul>
+<p>我也是新手，很多内容都是第一次尝试，不过不要紧，有梁静茹给的“勇气”，希望“我的一小步，让大家前进一大步吧！”哈哈。另外，喜欢 Godot 游戏引起的朋友们，强烈推荐入群交流， QQ 群号： 692537383 ，和我上次推荐的不是一个群，该群群主是 Godot 第三方语言 QuickJS 绑定者，技术大牛，而且群里的学习讨论、交流气氛也不错，记得在入群申请的时候报上我的名字，进群后可以享受“发际线高端维护优惠券”一张还有群主香吻一个！ :joy: 不谢！（<em>PS： 另有新群 831931065 也推荐加入。</em>）</p>
+<blockquote>
+<p>主要内容： High Level Multiplayer API 局域网多人游戏开发应用<br>阅读时间： 10 分钟<br>永久链接： <a href="http://liuqingwen.me/blog/2020/07/22/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-1/">http://liuqingwen.me/blog/2020/07/22/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-1/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p><img src="demo12.jpg" alt="Demo12"></p>
+<p>本次示例是一个局域网联机小游戏：炸弹人，当然不能直接在网上进行联机，我还没写过任何服务器代码，不过有一个平台支持 Godot 的局域网游戏进行“网络联机”，并能邀请他人一起玩： <a href="https://gotm.io/" target="_blank" rel="noopener">gotm.io</a> ，想试一下这个游戏的朋友，这里有体验链接： <a href="https://gotm.io/spkingr/bomberman" target="_blank" rel="noopener">https://gotm.io/spkingr/bomberman</a> ，进入游戏后，创建服务器，然后网页的右下角有个邀请链接，复制后发送给朋友就可以一起痛苦地玩耍了。由于服务器在国外，要想不卡，对网速要求是比较高的。关于 Godot 中局域网游戏开发可以参考官方文档教程：<a href="https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html" target="_blank" rel="noopener">High-level multiplayer</a> ，文档内容有点简洁，本着“填坑”的思想，我把开发过程中遇到的一些问题和解决方案记录下来，这也是本篇文章的出发点，大致内容：</p>
+<ol>
+<li>局域网多人联网游戏开发介绍</li>
+<li>远程调用基础知识</li>
+<li>Godot 中几个重要的关键字</li>
+<li>游戏结构、代码简析</li>
+<li>经验总结</li>
+</ol>
+<p>示例源码我已经上传到 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github</a> 并且被打包运往北极，妈妈再也不担心我的“祖传代码”会被弄丢了！哈哈。 :joy:</p>
+<h3 id="多人游戏开发简介"><a href="#多人游戏开发简介" class="headerlink" title="多人游戏开发简介"></a>多人游戏开发简介</h3><p>多人游戏开发听上去感觉要比单机游戏开发高端，实际上并不复杂，只要了解多人游戏开发中的几个重要概念，开发起来和单人游戏几乎没啥区别。在多人游戏中，有一个重要的概念是区分：服务端和客户端。在一场局域网联机游戏中，有一个玩家是服务器，即 Server ，其他加入的玩家都是 Client 客户端，在游戏开发代码编写上，它们几乎“平等”：</p>
+<ul>
+<li>服务端和客户端共享相同的场景和代码</li>
+<li>都可以互相调用远程方法，发送通知等</li>
+<li>也可以独立运行相关逻辑，比如初始化一些共有的数据</li>
+</ul>
+<p><img src="godot_dev1_server_and_client.jpg" alt="服务器和客户端场景结构图对比"></p>
+<p>上图显示的是服务器端和客户端的场景图，节点和结构完全一样，当然也共享同一套代码，不过我们知道，在运行过程中不可能让客户端随意、单独、自定义地运行任何代码，那样的话游戏就不能保持进度同步了，多人游戏也就成了单机游戏。相比客户端，服务端至少拥有以下特殊职能：</p>
+<ol>
+<li>服务端优先于其他客户端先运行、创建游戏实例</li>
+<li>服务端负责统一分配某些属性值，比如给玩家随机分配颜色，确保不重复</li>
+<li>服务端可以踢人，可以通知并开始游戏，客户端一般不具有该功能</li>
+<li>服务端一般不会随便退出正在进行中的游戏，至少也要发送一个通知或者提示</li>
+</ol>
+<p>如何在代码中判断当前游戏是否为服务器非常简单，在 Godot 中可以使用下面的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> self.get_tree().is_network_server():</span><br><span class="line">    print(<span class="string">'this is the server.'</span>) <span class="comment"># 服务器端</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'this is the client.'</span>) <span class="comment"># 客户端</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个 Demo 中，所有的“怪物”都在服务器端产生，然后“同时通知所有其他客户端生成相同属性的敌人”：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func _spawnEnemies() -&gt; void:</span><br><span class="line">    <span class="comment"># 只有服务端可以控制敌人对象的生成</span></span><br><span class="line">    <span class="keyword">if</span> ! self.get_tree().is_network_server():</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    var count := _enemiesContainer.get_child_count()</span><br><span class="line">    <span class="keyword">if</span> count &lt;= maxEnemyCount:</span><br><span class="line">        _spawnEnemy() <span class="comment"># 生成怪物</span></span><br></pre></td></tr></table></figure>
+
+<p>逻辑很简单，那么服务端如何通知客户端怪物对象的生成呢？换句哈说，也就是服务端如何在运行时发送消息到客户端，消息内容包括客户端需要生成怪物的位置、名字、状态等变量值，这就需要高大上且专业的<strong>远程调用相关 API</strong> 了：低端点，就是远程方法调用的实现。在 Godot 中我们使用 <code>rpc</code> 关键字调用远程方法， <code>rset</code> 调用远程属性，了解了服务器和客户端，接下来一起深入探讨远程调用相关知识。</p>
+<h3 id="远程调用基础"><a href="#远程调用基础" class="headerlink" title="远程调用基础"></a>远程调用基础</h3><blockquote>
+<p>前方预警：各种七嘴八舌、鱼龙混杂、绕口令式的句段可能会让小白们感觉不适，慎读！莫晕！勿醉！</p>
+</blockquote>
+<p>何谓远程调用？有点网络知识的朋友都知道，所谓“远程”就是本地与非本地，或者联网中的服务端、客户端之间的关系，举一个很简单的例子：<em>玩家A</em>和<em>玩家B</em>联网游戏，<em>玩家A</em>发送一条消息后，这条消息会同时显示在两个玩家的屏幕上，<em>玩家A</em>的消息就是通过<strong>远程调用</strong>传送到<em>玩家B</em>的游戏场景进行显示的。</p>
+<p>再举个例子：<em>玩家A</em>进入多人游戏场景，那么服务器端和客户端都有<em>玩家A</em>对象，但实际上只有一个地方（比如服务端）可以操作控制自己的角色，比如<em>玩家A</em>在服务器端通过键盘事件控制位置移动后，客户端几乎同时也能看到<em>玩家A</em>移动到了相同的某个新位置，这个流程就是一个简单的远程调用实现过程。具体点，就是服务端接收键盘输入，玩家移动后，通过远程调用客户端相应方法，让客户端实现移动该场景中的<em>玩家A（傀儡/镜像）</em>，这个所谓的傀儡有个专业名词叫奴隶（ slave ）或者木偶 （ puppet ）。有点啰嗦，用一个简单的动态图演示如下，注意左边是受控制的真实<em>玩家A</em>所在场景，右边反映的是另一个玩家所在游戏场景：</p>
+<p><img src="godot_dev1_rpc.gif" alt="远程调用移动"></p>
+<p>对于小白来说，了解了这个过程就是理解了这个游戏的核心部分。在 Godot 中，除了 <code>rpc/rset</code> 关键字外，还有几个关键字。还是用例子来说：假设三个玩家联网玩游戏，<em>玩家A/B/C</em>在紧张刺激地进行游戏，这里他们各自控制自己的主角，我们把他们各自打开的游戏界面或场景定义为各自所谓的<strong>主场景</strong>。某个时候<em>玩家A</em>在自己的主场景中发送了一条私密信息，这条信息以<em>玩家C</em>为特定的接收对象，也就是说<em>玩家B</em>所在场景是看不到该消息的，只有<em>玩家C</em>才能看到，如何实现呢？这就是有选择性、定向性的远程调用了，是通过一个 <code>network id</code> 实现的。游戏联网后，每个玩家（服务器、客户端）都有一个特定的网络 <code>id</code> （在前面的场景结构图中，两个玩家 1 和 62889 实际就是他们各自的 ID ），通过这个 <code>id</code> 利用 <code>rpc_id</code> 或者 <code>rset_id</code> 方法就可以向指定端发送私密信息了。</p>
+<blockquote>
+<p><strong>说明：服务器端 ID = 1 ，其他客户端 ID 都是随机数。</strong></p>
+</blockquote>
+<p>例子到此为止，在 Godot 中远程调用 API 有以下几个，这些都是 <code>Node</code> 节点自带的方法：</p>
+<ul>
+<li>rpc/rset 调用远程方法或者属性</li>
+<li>rpc_id/rset_id 调用指定 id 对象的远程方法或者属性</li>
+<li>rpc_unreliable/rset_unreliable 和上面类似，但不保证一定会调用，可能因为延迟等原因掉包</li>
+<li>rpc_unreliable_id/rset_unreliable_id 和上面类似，针对指定 id 的不稳定远程调用</li>
+</ul>
+<p>“talk is cheap, show me the code!” 多人游戏中，服务端有“玩家A”和“玩家B（镜像）”，客户端同样有“玩家A（镜像）”和“玩家B”，当服务器端<em>玩家A</em>（客户端的<em>玩家B</em>同理）按下“攻击”按键的时候，服务端的<em>玩家A</em>和客户端的<em>玩家A（镜像）</em>都会同时发出攻击动作，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func _input(e : Event) -&gt; void:</span><br><span class="line">    <span class="comment"># 只会在本地运行（玩家A）</span></span><br><span class="line">    attack()</span><br><span class="line">    <span class="comment"># 可以调用远程方法（玩家A的所有镜像）</span></span><br><span class="line">    rpc(<span class="string">'attack'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># remote 表示该方法可以被远程调用</span></span><br><span class="line">remote func attack() -&gt; void:</span><br><span class="line">    print(<span class="string">'attack something...'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>同理，远程属性的调用代码示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># remote 表示该属性可以被远程调用</span></span><br><span class="line">remote var health := <span class="number">100</span></span><br><span class="line"></span><br><span class="line">func damage(value : int) -&gt; void:</span><br><span class="line">    self.health -= value</span><br><span class="line">    rset(<span class="string">'health'</span>, self.health)</span><br></pre></td></tr></table></figure>
+
+<p>大家应该注意到了，有的方法、属性的定义前多了一个关键字 <code>remote</code> ，正如单词的意思，这个关键字修饰的方法/属性不同于普通方法/属性：能使用 <code>rpc/rset</code> 进行远程调用。</p>
+<p>除此之外，细心的朋友能发现，在上面的 GIF 演示图中还有两个关键字： <code>master/puppet</code> 。这两个关键字并不是玩家的名字（因为他们不同），同样是远程调用中的关键字，分别代表该节点为当前场景的“<strong>主节点</strong>”或者“<strong>奴隶（傀儡、木偶、镜像）节点</strong>”。而普通方法前除了可以用 <code>remote</code> 修饰外，也可以使用 <code>master/puppet</code> 修饰，接下来重点讨论这些关键字的意义和应用。</p>
+<h3 id="远程调用关键字"><a href="#远程调用关键字" class="headerlink" title="远程调用关键字"></a>远程调用关键字</h3><p>为了把<strong>主/奴</strong>区分开来，我还是继续举例子，假设联机<em>玩家A/B/C</em>在各自电脑上的各自场景中一起游戏（果然 RAP ），那么下面的高深结论成立：</p>
+<ul>
+<li>相对于玩家A来说：玩家B和玩家C都属于远程端（他们三个有一个服务端，两个客户端）</li>
+<li>相对于玩家A电脑中的场景：玩家A对象是主人节点，玩家B和玩家C是对应的奴隶节点</li>
+<li>同理，相对于玩家B中的场景：玩家B对象是主人节点，A和C都是奴隶节点</li>
+<li>玩家A只能是玩家A的主人节点或者奴隶节点，不可能玩家A的主人节点或者奴隶节点是玩家B/C</li>
+<li>比如：玩家A场景中的<em>A对象</em>是玩家B场景中<em>A对象</em>的主人节点，玩家B/C场景中<em>A</em>也是玩家A场景中<em>A对象</em>的奴隶节点（ RAP 唱起来！ ）</li>
+</ul>
+<p>不管你有没有搞懂，反正我是没办法再举例子了。太混乱了！小二，来瓶 80 年的 XO 压压惊……“酒醒后第二天，发现下图能看懂了！”</p>
+<p><img src="godot_dev1_master_and_puppet.jpg" alt="master和puppet场景结构"></p>
+<p>上图说明两个联机游戏场景的结构是完全一样的，但有“主次”节点之分，在实际游戏中的就像下图：</p>
+<p><img src="Godot_game_of_master_and_puppet.jpg" alt="master和puppet在场景中的节点"></p>
+<p>总结一下，在 Godot 中用于修饰远程属性/方法的几个主要关键字就这几个：</p>
+<ul>
+<li>remote 表示该方法是一个远程方法或者属性，可以使用 rpc/rset 调用</li>
+<li>remotesync 以前写作 sync ，它不仅会调用远程方法，也会在本地调用一次</li>
+<li>master 表示该方法只能在“主人”节点中调用，“奴隶”节点不会调用</li>
+<li>puppet 以前写作 slave ，和 master 相反，在所有“奴隶”身份节点中调用</li>
+</ul>
+<p>“talk is cheap, show me the code!” 为了区分 <code>remote/remotesync</code> 关键字，再举个栗子，我发誓这最后一个 RAP ：假设“炸弹K”所在的场景，调用了一个“爆炸然后消失”的远程方法，因此其他场景中，不论服务器端还是客户端的“炸弹K”镜像都会“爆炸然后消失”。但问题来了，“炸弹K”本身并没有爆炸，为啥？因为这里调用的是远程方法，本地方法并没有调用，所以，为了保证游戏中<em>炸弹K</em>“同步”爆炸，在本地也需要手动调用一次普通方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 玩家A中的“炸弹K”，使用 rpc 调用远程爆炸方法</span></span><br><span class="line">self.rpc(<span class="string">'_deleteObject'</span>)</span><br><span class="line"><span class="comment"># 本地调用：本身也需要调用一次该方法</span></span><br><span class="line">_deleteObject()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通用方法：玩家A/B/C中的：“炸弹K”</span></span><br><span class="line">remote func _deleteObject() -&gt; void:</span><br><span class="line">    print(<span class="string">'Explode and delete self.'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码显然有点啰嗦，我们改用 <code>remotesync</code> 可以让代码稍许简洁：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rpc 远程调用，因为是 remotesync 修饰所以本身也会调用一次</span></span><br><span class="line">self.rpc(<span class="string">'_deleteObject'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 remotesync 表示该方法调用时本地也会触发</span></span><br><span class="line">remotesync func _deleteObject() -&gt; void:</span><br><span class="line">    print(<span class="string">'Explode and delete self.'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>实际上， <code>remote</code> 完全可以替代 <code>remotesync</code> ，视具体情而定吧，像类似上述的场景中 <code>remotesync</code> 更加方便。另一方面， <code>master</code> 和 <code>puppet</code> 也具有类似的特点，同样表示远程属性或者方法，不过他们<strong>明确了调用者的“身份”</strong>，比如游戏中的一段代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 炸弹触发爆炸事件后所调用的一个方法</span></span><br><span class="line">func _on_Explosion_body_entered(body : CollisionObject2D) -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> body != null &amp;&amp; body.has_method(<span class="string">'bomb'</span>):</span><br><span class="line">        <span class="comment"># 调用 body 的 bomb 方法，这里 bomb 方法只有主人节点才会发生实际调用</span></span><br><span class="line">        body.rpc(<span class="string">'bomb'</span>)</span><br><span class="line">        self.queue_free()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 玩家场景中的代码，使用 master 表示远程调用中只有“主人节点”会触发</span></span><br><span class="line">master func bomb() -&gt; void:</span><br><span class="line">    print(<span class="string">'Damaged by bomb.'</span>)</span><br><span class="line">    _isStunning = true</span><br><span class="line">    stun()</span><br><span class="line">    <span class="comment"># 主人节点使用远程调用通知所有其他奴隶节点</span></span><br><span class="line">    self.rpc(<span class="string">'stun'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里当然可以改为 remotesync 或者 puppet</span></span><br><span class="line">remote func stun() -&gt; void:</span><br><span class="line">    print(<span class="string">'stunning...'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>相同的道理， <code>puppet</code> 关键字保证了方法或者属性只能在“奴隶”节点上发生调用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">func _physics_process(delta):</span><br><span class="line">    <span class="comment"># 这里对当前节点进行判断：非主人节点则返回</span></span><br><span class="line">    <span class="keyword">if</span> ! self.is_network_master():</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> _isStuning || _isDead:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 主人节点根据键盘输入移动位置</span></span><br><span class="line">    self.move_and_slide(_velocity)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 因为奴隶节点不接受键盘输入的控制，所以必须由主人节点远程控制移动</span></span><br><span class="line">    self.rpc_unreliable(<span class="string">'_updatePosition'</span>, self.position)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个方法只会在奴隶节点中调用（依然可以改为 remote ）</span></span><br><span class="line">puppet func _updatePosition(pos : Vector2) -&gt; void:</span><br><span class="line">    self.position = pos</span><br></pre></td></tr></table></figure>
+
+<p>在源码中，你会发现很多方法中都包含 <code>Node.is_network_master()</code> 的判断语句，这是为了避免该方法在非“主人”节点中运行。值得注意的是，这个方法和 <code>Node.get_tree().is_network_server()</code> 是完全不相干的两种判断，前者表示当前节点是否为主人节点，是任何 Node 节点具有的一个方法；后者表示当前游戏是否为服务器，是场景树 Tree 的一个方法。</p>
+<p>写了这么多，说了那么多 RAP ，也举了不少例子，对于编写过服务器代码的朋友来说应该不难，作为新手还是需要一些思考和实践的，现在，总结一下前面的内容：</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法（属性）</th>
+<th align="center">本地节点是否运行</th>
+<th align="center">远程节点是否运行</th>
+<th align="center">本地主节点是否运行</th>
+<th align="center">本地奴隶节点是否运行</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">普通法法</td>
+<td align="center">是</td>
+<td align="center">否</td>
+<td align="center">是</td>
+<td align="center">否</td>
+</tr>
+<tr>
+<td align="left">remote</td>
+<td align="center">否</td>
+<td align="center">是</td>
+<td align="center">否</td>
+<td align="center">否</td>
+</tr>
+<tr>
+<td align="left">remotesync</td>
+<td align="center">是</td>
+<td align="center">是</td>
+<td align="center">是</td>
+<td align="center">是</td>
+</tr>
+<tr>
+<td align="left">master</td>
+<td align="center">是/否（视情况）</td>
+<td align="center">是/否（视情况）</td>
+<td align="center">是</td>
+<td align="center">否</td>
+</tr>
+<tr>
+<td align="left">puppet</td>
+<td align="center">是/否（视情况）</td>
+<td align="center">是/否（视情况）</td>
+<td align="center">否</td>
+<td align="center">是</td>
+</tr>
+</tbody></table>
+<p>完成了这个游戏后，我发现：本质上来说，我们完全只需要一个 <code>remote</code> 结合 <code>is_network_master()</code> 方法就可以实现其他所有关键字的功能，因为在 <code>remote</code> 方法中完全可以判断当前节点是否为主人节点还是奴隶节点。当然，那样会很麻烦，合理且灵活地应用每个修饰符，能够写出更加简洁、易读的代码。</p>
+<p>另外的另外，还有几个关键字，比如 <code>mastersync/puppetsync</code> 我没有在游戏中用到，大家可以到官方文档中进行查询了解，接下来我们一起讨论本 Demo 中的场景结构和相关代码吧。</p>
+<h3 id="游戏结构"><a href="#游戏结构" class="headerlink" title="游戏结构"></a>游戏结构</h3><p>限于篇幅过长，我将在下部分再详述，尽情期待！ :smiley:</p>
+<p>未完待续……</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/blog/images/wexin_1.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2020/07/23/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-2/" class="alignleft prev" title="Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（下）"><i class="fa fa-angle-double-left"></i>&nbsp;Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（下）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2019/07/31/introduction-of-godot-3-part-15-several-usage-examples-of-rigidbody2d-node-in-games/" class="alignright next" title="Godot3游戏引擎入门之十五：RigidBody2D刚体节点的几种应用场景及示例">Godot3游戏引擎入门之十五：RigidBody2D刚体节点的几种应用场景及示例&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

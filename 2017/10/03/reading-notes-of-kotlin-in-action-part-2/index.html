@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【读书笔记】《Kotlin in Action》学习笔记（下）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>【读书笔记】《Kotlin in Action》学习笔记（下） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">【读书笔记】《Kotlin in Action》学习笔记（下）</h1>
+    <div class="meta">
+        <span>2017-10-03</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Kotlin/">Kotlin</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="kotlin_in_action.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<p>一、前言</p>
+<p>读书笔记的上部分请参考：<a href="http://liuqingwen.me/blog/2017/09/16/reading-notes-of-kotlin-in-action-part-1/">【读书笔记】《Kotlin in Action》学习笔记（上）</a></p>
+<p>另外，关于我在 <a href="http://blog.csdn.net/Byeweiyang/" target="_blank" rel="noopener">mobilehub</a> 微信留言中免费获赠中文版《 Kotlin 实战》书籍的留言我也贴上，当时我回答的时候一方面想着能意外收获一本书，另一方面还是非常想推荐这边书给读者朋友们！ :grin:</p>
+<p><img src="kotlin_in_action_wx.jpg" alt="kotlin_in_action_wx.jpg"></p>
+<p>二、笔记</p>
+<p><strong>1、 操作符重载要注意的</strong></p>
+<ul>
+<li><code>a += b</code> 与 <code>a = a.plus(b)</code> 或者 <code>a.plusAssign(b)</code> 两者都完全等同（ + - * / % 一样）</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list = arrayListOf(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">list += <span class="number">3</span>                     <span class="comment">//list = [1, 2, 3]</span></span><br><span class="line"><span class="keyword">var</span> newList = list + <span class="number">4</span>        <span class="comment">//newList = [1, 2, 3, 4]</span></span><br><span class="line">newList = list + listOf(<span class="number">5</span>, <span class="number">6</span>) <span class="comment">//newList = [1, 2, 3, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果 <code>plus</code> 和 <code>plusAssign</code> 两个都有定义，参数也一样，那么会出现编译模糊问题（ + - * / % 一样）</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span></span>(<span class="keyword">var</span> x:<span class="built_in">Int</span> = <span class="number">0</span>, <span class="keyword">var</span> y:<span class="built_in">Int</span> = <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">plus</span><span class="params">(otherPoint: <span class="type">Point</span>)</span></span>:Point &#123;</span><br><span class="line">        <span class="keyword">return</span> Point(otherPoint.x + <span class="keyword">this</span>.x, otherPoint.y + <span class="keyword">this</span>.y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(<span class="keyword">vararg</span> parameters:<span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> p_var = Point()</span><br><span class="line">    <span class="keyword">val</span> p_val = p_var + Point(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    p_val += p_var <span class="comment">//Error: val cannot be reassigned.</span></span><br><span class="line">    p_var += p_val <span class="comment">//OK!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码很显然是没问题的，注意 <code>val</code> 变量不能赋值。但是，如果添加下面的代码（ 通过扩展给 <code>Point</code> 类新增 <code>plusAssign</code> 方法）就是画蛇添足，会出现问题：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> Point.<span class="title">plusAssign</span><span class="params">(otherPoint:<span class="type">Point</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.x += otherPoint.x</span><br><span class="line">    <span class="keyword">this</span>.y += otherPoint.y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(<span class="keyword">vararg</span> parameters:<span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> p_var = Point()</span><br><span class="line">    <span class="keyword">val</span> p_val = p_var + Point(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    p_val += p_var </span><br><span class="line">    p_var += p_val <span class="comment">//Error: Assignment operators ambiguity</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>把上面的 plusAssign 方法签名（参数类型）改一下可以使用，但意义已经改变</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> Point.<span class="title">plusAssign</span><span class="params">(otherInt:<span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.x += otherInt</span><br><span class="line">    <span class="keyword">this</span>.y += otherInt</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(<span class="keyword">vararg</span> parameters:<span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> p_var = Point()</span><br><span class="line">    p_val += <span class="number">99</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2、 型变和协变（ in 和 out ）参数在构造函数中不受约束</strong></p>
+<p>这又是一个特例！我们知道，使用 in 的参数是不能作为输出返回的，而使用 out 则作为输出而不能作为参数传入，下面两个接口就是这样，弄反了就出问题：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IOutParameter</span>&lt;<span class="type">out T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">takeOut</span><span class="params">()</span></span>:T</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IInParameter</span>&lt;<span class="type">T</span>&gt; : <span class="type">IOutParameter</span>&lt;<span class="type">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">takeIn</span><span class="params">(`<span class="keyword">in</span>`: <span class="type">T</span>)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再看类的构造函数，这是不受形参限制的，注意参数的位置：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Note that constructor parameters are in neither the [in] nor [out] position.</span></span><br><span class="line"><span class="comment">// Even if a type parameter is declared as out, you can still use it in a constructor parameter declaration</span></span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Herd</span>&lt;<span class="type">out T: Animal</span>&gt;</span>(<span class="keyword">vararg</span> animals: T)</span><br></pre></td></tr></table></figure>
+
+<p><strong>3、 使用形参的一个正确姿势</strong></p>
+<p>这是一个非常简单的问题，对于大部分人来说，由于缺乏经验，我把这一条也作为书签记录下来，提醒自己可以如何优化（下面是官方例子）。首先看原始版本，拷贝一个列表到另一个：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">copyDataVersion1</span><span class="params">(source: <span class="type">MutableList</span>&lt;<span class="type">T</span>&gt;, destination: <span class="type">MutableList</span>&lt;<span class="type">T</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (item <span class="keyword">in</span> source) &#123;</span><br><span class="line">        destination.add(item)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码其实不合理（后面有说明），难道一定要同类型才能复制吗？ <code>T</code> 的子类不能被复制过去吗？那么根据这个问题有了下面的改进：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T: R, R&gt;</span> <span class="title">copyDataVersion2</span><span class="params">(source: <span class="type">MutableList</span>&lt;<span class="type">T</span>&gt;, destination: <span class="type">MutableList</span>&lt;<span class="type">R</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (item <span class="keyword">in</span> source) &#123;</span><br><span class="line">        destination.add(item)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码搞定了子类的数据复制，到此结束！？当然没有， Kotlin 提供了一个更加优雅的解决方案，不信你看看下面的代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">copyDataVersion3</span><span class="params">(source: <span class="type">MutableList</span>&lt;<span class="type">out</span> <span class="type">T</span>&gt;, destination: <span class="type">MutableList</span>&lt;<span class="type">T</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (item <span class="keyword">in</span> source) &#123;</span><br><span class="line">        destination.add(item)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>什么叫做优化？什么叫做改进？学习了！下面是测试代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(<span class="keyword">vararg</span> parameters:<span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> source = arrayListOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">    <span class="keyword">val</span> destination = arrayListOf&lt;Any&gt;()</span><br><span class="line">    <span class="comment">//copyDataVersion1(source, destination) //Error! Cannot compile!</span></span><br><span class="line">    copyDataVersion2(source, destination) <span class="comment">//Fine.</span></span><br><span class="line">    copyDataVersion3(source, destination) <span class="comment">//Nice!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>4、 Kotlin 中 DSL 使用带有 object 参数的中缀函数</strong></p>
+<p>我只想说，“厉害了，我的 Kotlin 哥”！ Kotlin 中 DSL 真的很好用，像大名鼎鼎的 anko 库，使用 DSL 实现 Android Layout 非常给力啊，还有 SQL 数据库操作，另外用过一段时间的 TornadoFX ，用 DSL 写 GUI 程序也是给力极了！</p>
+<p>看下面一句话，还是来自教材：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"kotlin"</span> should start with <span class="string">"kot"</span></span><br></pre></td></tr></table></figure>
+
+<p>Sorry ，说错了，不是<strong>一句话</strong>，是<strong>一段代码</strong>！对，这段代码没啥稀奇的了，不就是中缀函数拼凑起来吗？</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"kotlin"</span>.should(start).with(<span class="string">"kot"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>没错，但是他的精髓你发现了没？精髓在于 <code>start</code> 的妙用！它是一个 <code>object</code> 单例，那么既然是单例为啥不直接使用，还要去作为 <code>should</code> 函数的参数呢？这不是毫无意义吗？ No ！这是 DSL 哦，它并不是作为数据参数传递给函数，而是作为语法的一部分！！！因此你可以有很多 <code>object</code> ，作为不同的语法使用，这就是精髓之处啊！</p>
+<p>我相信，看了下面的代码你就能一目了然、豁然开朗了！</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> start</span><br><span class="line"><span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> String.<span class="title">should</span><span class="params">(x: <span class="type">start</span>)</span></span>: StartWrapper = StartWrapper(<span class="keyword">this</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StartWrapper</span></span>(<span class="keyword">val</span> value: String) &#123;</span><br><span class="line">    <span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> <span class="title">with</span><span class="params">(prefix: <span class="type">String</span>)</span></span> = <span class="keyword">if</span> (!value.startsWith(prefix)) <span class="keyword">throw</span> AssertionError(<span class="string">"String does not start with <span class="variable">$prefix</span>: <span class="variable">$value</span>"</span>) <span class="keyword">else</span> println(<span class="string">"OK"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>激动的我赶紧写下了几行流利的英语： :joy:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"kotlin"</span> should start with <span class="string">"kot"</span></span><br><span class="line"><span class="string">"kotlin"</span> should end with <span class="string">"in"</span></span><br><span class="line"><span class="string">"kotlin"</span> should have substring <span class="string">"otl"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>5、 Bonus： 使用 inline 属性</strong></p>
+<p>对，你没看错，这是额外加的一个新姿势，并不是从《 Kotlin in Action 》书中学到的，看到了我就马上记下来了，写到一起作为学习笔记吧。</p>
+<p>参考以下代码，扩展一个属性非常简单：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="keyword">var</span> View.isVisible</span><br><span class="line">    <span class="keyword">get</span>() = visiblity = Visible</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.layout_activity_main)</span><br><span class="line">        <span class="keyword">val</span> button = <span class="keyword">this</span>.findViewById&lt;Button&gt;(R.id.button)</span><br><span class="line">        <span class="keyword">if</span>(button.isVisible) &#123;</span><br><span class="line">            toast(<span class="string">"I am visible!"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>毫无疑问代码是没有问题的，那么我们看下反编译 Kotlin 后的 Java 代码（无关省略）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(GlobalKt.isVisible((View)button)) &#123;</span><br><span class="line">    ToastsKt.toast(<span class="keyword">this</span>, (CharSequence)<span class="string">"I am visible!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很正常啊， Kotlin 的风格，使用静态方法完成扩展呀。但是，我就是没想到为啥不用 inline 呢？省去静态方法，不是更快更方便吗？</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> View.isVisible</span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">get</span>() = <span class="keyword">this</span>.visibility == View.VISIBLE</span><br></pre></td></tr></table></figure>
+
+<p>反编译后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">View $receiver$iv = (View)button;</span><br><span class="line"><span class="keyword">if</span>($receiver$iv.getVisibility() == <span class="number">0</span>) &#123;</span><br><span class="line">    ToastsKt.toast(<span class="keyword">this</span>, (CharSequence)<span class="string">"I am visible!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>是不是更加得体了呢？反正我是这么认为的，省去了没必要的静态类方法。另外， inline 也可以写得更加优雅，也有需要注意的地方哦：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="keyword">val</span> View.isVisible</span><br><span class="line">    <span class="keyword">get</span>() = <span class="keyword">this</span>.visibility == View.VISIBLE</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">var</span> View.someVarProperty:String</span><br><span class="line">    <span class="keyword">get</span>() = <span class="string">"OK"</span></span><br><span class="line">    <span class="keyword">set</span>(value) &#123;</span><br><span class="line">        println(<span class="string">"Value was set!"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Error! Won't compile!</span></span><br><span class="line"><span class="keyword">var</span> upperCaseString:String = <span class="string">""</span></span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">get</span>() = field.toUpperCase()</span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">set</span>(value) &#123;</span><br><span class="line">        println(<span class="string">"Field set!"</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>更多可以参考原文： <a href="https://blog.egorand.me/inlining-kotlin-properties/" target="_blank" rel="noopener">Inlining Kotlin Properties</a></p>
+<p>三、完</p>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Kotlin/" class="button small">Kotlin</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/10/12/learning-notes-of-2d-roguelike-tutorial-in-unity3d/" class="alignleft prev" title="【学习笔记】Unity3D官方游戏教程：2D Roguelike"><i class="fa fa-angle-double-left"></i>&nbsp;【学习笔记】Unity3D官方游戏教程：2D Roguelike</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/09/30/translation-of-realm-objectbox-or-room-which-one-is-for-you/" class="alignright next" title="【翻译】Realm ， ObjectBox ，还是 Room ，哪个适合你？">【翻译】Realm ， ObjectBox ，还是 Room ，哪个适合你？&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

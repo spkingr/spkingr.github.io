@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="Godot, 开源游戏引擎, 2D游戏开发, 游戏教程, RigidBody2D, 物理碰撞, 刚体,刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之十五：RigidBody2D刚体节点的几种应用场景及示例"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之十五：RigidBody2D刚体节点的几种应用场景及示例 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之十五：RigidBody2D刚体节点的几种应用场景及示例</h1>
+    <div class="meta">
+        <span>2019-07-31</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>这一次，让我们来做一些轻松有趣的东西，嘿嘿。 :grin:</p>
+<p>在上一篇 <a href="http://liuqingwen.me/blog/2019/07/20/introduction-of-godot-3-part-14-make-a-game-with-rigidbody2d-node-and-the-fsm-introduction">Godot3游戏引擎入门之十四：刚体RidigBody2D节点的使用以及简单的FSM状态机介绍</a>的文章中，我们主要讨论了刚体节点 <em>RigidBody2D</em> 的一些常用属性以及在游戏中的简单使用，利用刚体节点开发了一个简单的太空飞船射击小游戏，这一章我们继续探讨刚体节点，研究一下刚体节点的其他几个重要属性，并在场景中做一些简单应用。</p>
+<p>除此之外，我还会穿插着介绍一下 Godot 引擎自带的 <em>AStar</em> 最短路径寻路 API 的简单使用。</p>
+<blockquote>
+<p>主要内容： RigidBody2D 刚体节点的几个有趣的应用场景<br>阅读时间： 10 分钟<br>永久链接： <a href="http://liuqingwen.me/blog/2019/07/31/introduction-of-godot-3-part-15-several-usage-examples-of-rigidbody2d-node-in-games/">http://liuqingwen.me/blog/2019/07/31/introduction-of-godot-3-part-15-several-usage-examples-of-rigidbody2d-node-in-games/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>废话不多说，由于自己知识和经验的局限性，暂时我能想到的 <em>RigidBody2D</em> 的应用场景主要有这几个：</p>
+<ol>
+<li>刚体节点作为普通的游戏物品或者元素</li>
+<li>刚体节点响应鼠标事件进行拖拽</li>
+<li>利用刚体节点实现爆破特效</li>
+<li>随机生成地图的应用</li>
+</ol>
+<p>注：为了缩短文章篇幅，涉及到的代码只提供核心部分，其他部分代码将省略，有兴趣的朋友可以直接到我的 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github 仓库</a>下载项目的全部源码查看。</p>
+<h3 id="1-普通元素"><a href="#1-普通元素" class="headerlink" title="1. 普通元素"></a>1. 普通元素</h3><p>在<a href="http://liuqingwen.me/blog/2019/07/20/introduction-of-godot-3-part-14-make-a-game-with-rigidbody2d-node-and-the-fsm-introduction">上一篇</a>文章中，我们使用刚体节点制作了太空飞船和太空岩石，由于是在太空，它们都不会受到重力的影响。实际应用场景中，刚体默认会受到重力的作用，在重力影响下刚体会发生一些有趣的碰撞反馈，我们可以充分利用 <em>RigidBody2D</em> 刚体节点的物理特性，无需手动编写代码即可实现一些简单的特效。</p>
+<p><img src="result_1.gif" alt="result_1.gif"></p>
+<p>在这个场景中，木箱子和子弹球都是刚体模型，与我们之前游戏中使用 Area2D 作为根节点的“子弹”场景不同，使用 <em>RigidBody2D</em> 作为根节点，“子弹”可以直接和游戏世界中的其他物体产生碰撞互动。另外，游戏场景中玩家根节点为 KinematicBody2D 节点，能与刚体产生直接互动。从上图中可以看出来，勾选和不勾选 <code>player infinite inertia</code> 选项，玩家和其他刚体的碰撞效果完全不一样，我们先看下玩家 Player 场景的主要代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var _velocity := Vector2.ZERO</span><br><span class="line">var _isInfInertia := true</span><br><span class="line"></span><br><span class="line">func _physics_process(delta):</span><br><span class="line">    var hDir := int(Input.is_action_pressed(<span class="string">'ui_right'</span>)) - int(Input.is_action_pressed(<span class="string">'ui_left'</span>))</span><br><span class="line">    var vDir := int(Input.is_action_pressed(<span class="string">'ui_down'</span>)) - int(Input.is_action_pressed(<span class="string">'ui_up'</span>))</span><br><span class="line">    var velocity := Vector2(hDir, vDir <span class="keyword">if</span> isTopDown <span class="keyword">else</span> <span class="number">0</span>).normalized() * moveSpeed</span><br><span class="line">    <span class="keyword">if</span> !isTopDown:</span><br><span class="line">        velocity.y = _velocity.y + gravity * delta</span><br><span class="line">    _velocity = self.move_and_slide(velocity, FLOOR_NORMAL, true, <span class="number">4</span>, PI / <span class="number">2</span>, _isInfInertia)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 省略代码……</span></span><br><span class="line"></span><br><span class="line">func _shoot() -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> ! bulletScene || ! _canShoot:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    _canShoot = false</span><br><span class="line">    _timer.start()</span><br><span class="line">    var ball := bulletScene.instance() <span class="keyword">as</span> RigidBody2D</span><br><span class="line">    ball.position = _bulletPosition.global_position</span><br><span class="line">    ball.apply_central_impulse(bulletForce * _bulletPosition.transform.x)</span><br><span class="line">    self.get_parent().add_child(ball)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置玩家是否为无限惯性力</span></span><br><span class="line">func setInfiniteInertia(value : bool) -&gt; void:</span><br><span class="line">    _isInfInertia = value</span><br></pre></td></tr></table></figure>
+
+<p>影响玩家与刚体碰撞反馈核心方法是 <em>KinematicBody2D</em> 的方法 <code>move_and_slide()</code> ，这个方法在 Godot 3.1 版本中新增加了一个参数，即最后一个参数 <code>infinite_inertia</code> ，表示玩家是否为无限惯性。如果玩家具有无限惯性属性，那么玩家移动时可以推动刚体，甚至挤压物体，但是不会检测与刚体的碰撞；如果玩家非无限惯性，那么刚体就像静态碰撞体一样会阻止玩家的移动。参数默认值为 <code>true</code> 表示无限惯性。其他的都比较简单了，之前的文章也有讨论。</p>
+<h3 id="2-鼠标拖拽"><a href="#2-鼠标拖拽" class="headerlink" title="2. 鼠标拖拽"></a>2. 鼠标拖拽</h3><p>另一个有意思的应用场景是：我们可以使用鼠标来拖拽刚体进行移动，同时与其他刚体进行交互，最后使用鼠标将其“抛”出去。</p>
+<p><img src="result_2.gif" alt="result_2.gif"></p>
+<p>实现这个效果不难，这里我们需要使用到刚体的另一个重要的属性： <code>Mode</code> 属性，即刚体的模式。在刚体属性面板中，我们会发现该属性有 4 种取值设置：</p>
+<ul>
+<li>Rigid 即普通刚体模式，为默认值</li>
+<li>Static 静态模式，刚体表现和静态碰撞体一样</li>
+<li>Kinematic 图形学模式，和 KinematicBody2D 一样</li>
+<li>Character 人物模式，和普通刚体一样，但是不会发生旋转</li>
+</ul>
+<p>利用这一点，我们可以找到实现刚体拖拽的思路：拖拽开始时刻设置刚体的模式为 <code>MODE_STATIC</code> 静态模式，同时控制刚体的全局位置跟随鼠标移动，拖拽结束即松开鼠标后，复原刚体的模式为 <code>MODE_RIGID</code> 普通模式，接着可以给刚体一个临时冲量使其运动。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">export var mouseSensitivity := <span class="number">0.25</span></span><br><span class="line">export var deadPosition := <span class="number">800.0</span></span><br><span class="line"></span><br><span class="line">var _isPicked := false  <span class="comment"># 判断当前刚体是否被鼠标拖拽</span></span><br><span class="line"></span><br><span class="line">func _input_event(viewport, event, shape_idx):</span><br><span class="line">    <span class="comment"># 右键按下时拖拽箱子</span></span><br><span class="line">    var e : InputEventMouseButton = event <span class="keyword">as</span> InputEventMouseButton</span><br><span class="line">    <span class="keyword">if</span> e &amp;&amp; e.button_index == BUTTON_RIGHT &amp;&amp; e.pressed:</span><br><span class="line">        pickup()</span><br><span class="line"></span><br><span class="line">func _unhandled_input(event):</span><br><span class="line">    <span class="comment"># 右键松开时抛掉箱子</span></span><br><span class="line">    var e : InputEventMouseButton = event <span class="keyword">as</span> InputEventMouseButton</span><br><span class="line">    <span class="keyword">if</span> e &amp;&amp; e.button_index == BUTTON_RIGHT &amp;&amp; ! e.pressed:</span><br><span class="line">        <span class="comment"># 传入鼠标的移动速度</span></span><br><span class="line">        var v := Input.get_last_mouse_speed() * mouseSensitivity</span><br><span class="line">        drop(v)</span><br><span class="line"></span><br><span class="line">func _physics_process(delta):</span><br><span class="line">    <span class="comment"># 更新拖拽盒子的位置，跟随鼠标移动</span></span><br><span class="line">    <span class="keyword">if</span> _isPicked:</span><br><span class="line">        self.global_transform.origin = self.get_global_mouse_position()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 盒子掉出地图之外删除</span></span><br><span class="line">    <span class="keyword">if</span> self.position.y &gt; deadPosition:</span><br><span class="line">        self.queue_free()</span><br><span class="line"></span><br><span class="line">func pickup() -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> _isPicked:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    _isPicked = true</span><br><span class="line">    self.mode = RigidBody2D.MODE_STATIC   <span class="comment"># 拾起盒子，更改为静态模式</span></span><br><span class="line"></span><br><span class="line">func drop(velocity: Vector2 = Vector2.ZERO) -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> ! _isPicked:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    _isPicked = false</span><br><span class="line">    self.mode = RigidBody2D.MODE_RIGID   <span class="comment"># 抛掉盒子，更改为刚体模式</span></span><br><span class="line">    <span class="comment"># self.sleeping = false              # 防止刚体睡眠</span></span><br><span class="line">    self.apply_central_impulse(velocity) <span class="comment"># 给盒子一个抛力</span></span><br></pre></td></tr></table></figure>
+
+<p>核心部分为 <code>pickup()</code> 和 <code>drop()</code> 这两个方法，实现起来非常简单，这里需要提醒的是，对于 <em>RigidBody2D</em> 刚体节点，如果需要响应鼠标事件，即 <code>_input_event()</code> 方法的正常调用，我们必须<strong>勾选设置刚体节点的 <code>Pickable</code> 属性</strong>：</p>
+<p><img src="godot_15_pickable.jpg" alt="godot_15_pickable.jpg"></p>
+<p>另外，在代码中有一个值得注意的地方是，松开鼠标后，复原刚体模式为普通模式的同时不能让其进入默认的睡眠状态。阻止刚体睡眠状态有两种方法：</p>
+<ul>
+<li><code>sleeping = false</code> 即设置睡眠属性</li>
+<li><code>apply_central_impulse(Vector2.ZERO)</code> 给刚体添加一个冲量，大小为 0 也可以</li>
+</ul>
+<p>鼠标松开后，我们给物体一个抛力使其运动，所以我们选择第二种方式即可。</p>
+<h3 id="3-爆破特效"><a href="#3-爆破特效" class="headerlink" title="3. 爆破特效"></a>3. 爆破特效</h3><p>“物品爆破”特效在游戏中很常见，可以直接使用动画实现，这里我讲的是通过代码来实现物体的爆破特效。我使用了 Github 上一个开源库，非常容易地实现了爆破效果，开源库链接地址： <a href="https://github.com/hiulit/Godot-3-2D-Destructible-Objects" target="_blank" rel="noopener">Godot-3-2D-Destructible-Objects</a> 。如何使用这个开源库在其主页上有详细的说明，实际使用过程中，我遇到了的一个问题，如下图所示的场景结构图：<strong>特效代码不能直接放在需要爆破的子场景中，而应该放在子场景实例化后的节点上！</strong></p>
+<p><img src="godot_15_explosion_scene.jpg" alt="godot_15_explosion_scene.jpg"></p>
+<p>另外，源代码中自带的控制爆炸的方式是鼠标左键点击事件，这里我稍微修改了一下源码，让效果只有在爆炸体与玩家或者子弹碰撞后才会触发，部分代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 引起爆炸的物体分组名集合，这里为玩家和子弹</span></span><br><span class="line">export(Array, String) var triggerGroups := [<span class="string">'player'</span>, <span class="string">'bullet'</span>]</span><br><span class="line"></span><br><span class="line">func _on_Area2D_area_or_body_entered(area_or_body):</span><br><span class="line">    <span class="keyword">for</span> group <span class="keyword">in</span> triggerGroups:</span><br><span class="line">        <span class="keyword">if</span> area_or_body.is_in_group(group):</span><br><span class="line">            $Explode.explode()</span><br><span class="line">            $Area2D.queue_free()</span><br><span class="line">            <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<p>大家可以自己尝试，效果图如下：</p>
+<p><img src="result_3.gif" alt="result_3.gif"></p>
+<h3 id="4-随机地图"><a href="#4-随机地图" class="headerlink" title="4. 随机地图"></a>4. 随机地图</h3><p>在游戏中随机生成地图是一个非常“巨大”、非常“深入”的话题，不过本篇中我要介绍的随机地图生成只是涉及到其中的一点点皮毛，对这个话题感兴趣的朋友可以到网上找找相关的资料。怎么生成一个随机的地图呢？我的思路大概是这样的：</p>
+<ul>
+<li>地图由一个一个的小房间构成</li>
+<li>房间之间没有重叠，就像刚体不能互相交叉渗入一样</li>
+<li>房间个数、大小、位置都随机</li>
+<li>房间之间有路径可达，整个地图必须有一条完整的路径</li>
+</ul>
+<p>如何实现这个特别的“房间”呢？其实很简单，我们可以使用 <em>RigidBody2D</em> 节点作为房间场景的根节点，充分利用其物理特性，这里最重要的一点就是设置刚体节点的 <code>Mode</code> 模式属性为 <code>Character</code> 人物模式，以保证其不会发生旋转：</p>
+<p><img src="godot_15_room_property.jpg" alt="godot_15_room_property.jpg"></p>
+<p>同时，不需要考虑重力因素，设置重力影响系数设为 <code>0</code> 即可，房间场景 <em>Room</em> 的代码非常简单：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置房间的位置和大小</span></span><br><span class="line">func makeRoom(pos: Vector2, size: Vector2) -&gt; void:</span><br><span class="line">    self.position = pos</span><br><span class="line">    _size = size</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取房间的位置尺寸，可以传入一个偏差值</span></span><br><span class="line">func getRect(tolerance : float = 0.0) -&gt; Rect2:</span><br><span class="line">    var s = _size - Vector2(tolerance, tolerance)</span><br><span class="line">    <span class="keyword">return</span> Rect2(self.position - s / <span class="number">2</span>, s)</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们主要分三步实现随机地图的轮廓。第一步，我们在主场景中生成一定数量的大小随机的房间，利用“人物”刚体模式的特性，房间添加到场景后会自动彼此分开；第二步，我们随机地删除一些房间，让地图显得更加随机；第三步，使用 <em>AStar</em> 寻路算法将我们产生的房间之间的最短路劲找出来。最后一步，肯定是替换“房间”为真正的“地图”，这一步我就没有介绍了，大家完全可以动手实现一个，或者参考我后面给出的相关资料。好了，我们看下效果：</p>
+<p><img src="result_4.gif" alt="result_4.gif"></p>
+<p>主要的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">export var roomScene : PackedScene = null  <span class="comment"># 房间子场景</span></span><br><span class="line">export var roomCount : int = <span class="number">25</span>            <span class="comment"># 房间总数量</span></span><br><span class="line">export var tileSize : int = <span class="number">32</span>             <span class="comment"># 地图瓦片单元尺寸</span></span><br><span class="line">export var minSize : int = <span class="number">4</span>               <span class="comment"># 房间最小尺寸，乘以瓦片尺寸</span></span><br><span class="line">export var maxSize : int = <span class="number">10</span>              <span class="comment"># 房间最大尺寸，乘以瓦片尺寸</span></span><br><span class="line">export(float, <span class="number">0.0</span>, <span class="number">1.0</span>) var cullTolerance : float = <span class="number">0.4</span>  <span class="comment"># 剔除部分房间，系数</span></span><br><span class="line"></span><br><span class="line">onready var _roomContainer := $RoomContainer</span><br><span class="line">onready var _camera := $Camera2D</span><br><span class="line">onready var _windowSize : Vector2 = self.get_viewport_rect().size</span><br><span class="line"></span><br><span class="line">var _isWorking := false                    <span class="comment"># 是否正在进行生成中</span></span><br><span class="line">var _astarPath : AStar = null              <span class="comment"># AStar算法实例</span></span><br><span class="line">var _zoom : Vector2 = Vector2.ONE          <span class="comment"># 相机缩放</span></span><br><span class="line">var _offset : Vector2 = Vector2.ZERO       <span class="comment"># 相机偏移</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机地图生成方法，可以拆分为多个函数，这里分4步</span></span><br><span class="line">func generateRooms() -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> ! roomScene || _isWorking:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 标记，删除旧房间</span></span><br><span class="line">    _isWorking = true</span><br><span class="line">    _astarPath = null</span><br><span class="line">    <span class="keyword">for</span> room <span class="keyword">in</span> _roomContainer.get_children():</span><br><span class="line">        room.queue_free()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 随机生成新的房间，尺寸随机</span></span><br><span class="line">    randomize()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(roomCount):</span><br><span class="line">        var room : Room = roomScene.instance()</span><br><span class="line">        var width := randi() % (maxSize - minSize) + minSize</span><br><span class="line">        var height := randi() % (maxSize - minSize) + minSize</span><br><span class="line">        var size := Vector2(width, height) * tileSize</span><br><span class="line">        room.makeRoom(Vector2.ZERO, size)</span><br><span class="line">        _roomContainer.add_child(room)</span><br><span class="line">    print(<span class="string">'Step 1 is done.'</span>) <span class="comment"># 第一步完成</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 停留1秒，让生成的房间有足够时间分散开</span></span><br><span class="line">    <span class="keyword">yield</span>(self.get_tree().create_timer(<span class="number">1.0</span>), <span class="string">'timeout'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 随机删除一部分房间，把房间的位置全部添加到数组，注意时 Vector3 类型</span></span><br><span class="line">    var allPoints : Array = []</span><br><span class="line">    <span class="keyword">for</span> room <span class="keyword">in</span> _roomContainer.get_children():</span><br><span class="line">        <span class="keyword">if</span> randf() &lt; cullTolerance:</span><br><span class="line">            room.queue_free()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            room.mode = RigidBody2D.MODE_STATIC</span><br><span class="line">            allPoints.append(Vector3(room.position.x, room.position.y, <span class="number">0.0</span>))</span><br><span class="line">    print(<span class="string">'Step 2 is done.'</span>) <span class="comment"># 第二步完成</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建新的AStar算法，添加第一个点</span></span><br><span class="line">    _astarPath = AStar.new()</span><br><span class="line">    _astarPath.add_point(_astarPath.get_available_point_id(), allPoints.pop_front())</span><br><span class="line">    <span class="comment"># 循环所有【未添加的点】，循环所有AStar中【已添加的点】</span></span><br><span class="line">    <span class="comment"># 找出【未添加点】与【已添加点】的距离中，【最短】的距离点，并添加到AStar中</span></span><br><span class="line">    <span class="comment"># 同时将该点从【未添加点集合】中删除</span></span><br><span class="line">    <span class="keyword">while</span> allPoints:</span><br><span class="line">        var minDistance : float = INF</span><br><span class="line">        var minDistancePosition : Vector3</span><br><span class="line">        var minDistancePositionIndex : int</span><br><span class="line">        var currentPointId :int = <span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> point <span class="keyword">in</span> _astarPath.get_points():</span><br><span class="line">            <span class="keyword">for</span> index <span class="keyword">in</span> range(allPoints.size()):</span><br><span class="line">                var pos = allPoints[index]</span><br><span class="line">                var distance = _astarPath.get_point_position(point).distance_to(pos)</span><br><span class="line">                <span class="keyword">if</span> distance &lt; minDistance:</span><br><span class="line">                    minDistance = distance</span><br><span class="line">                    minDistancePosition = pos</span><br><span class="line">                    minDistancePositionIndex = index</span><br><span class="line">                    currentPointId = point</span><br><span class="line">        var id = _astarPath.get_available_point_id()</span><br><span class="line">        _astarPath.add_point(id, minDistancePosition)</span><br><span class="line">        _astarPath.connect_points(currentPointId, id)</span><br><span class="line">        allPoints.remove(minDistancePositionIndex)</span><br><span class="line">    print(<span class="string">'Step 3 is done.'</span>) <span class="comment"># 第三步完成</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待一帧的时间，用于等待被删除的房间被彻底移除</span></span><br><span class="line">    <span class="keyword">yield</span>(self.get_tree(), <span class="string">'idle_frame'</span>)</span><br><span class="line">    <span class="keyword">if</span> _roomContainer.get_child_count() == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 找出所有房间最左上角和最右下角的两个坐标，确定摄像机的缩放和位移</span></span><br><span class="line">    var minPos := Vector2(_roomContainer.get_child(<span class="number">0</span>).position.x, _roomContainer.get_child(<span class="number">0</span>).position.y)</span><br><span class="line">    var maxPos := minPos</span><br><span class="line">    <span class="keyword">for</span> room <span class="keyword">in</span> _roomContainer.get_children():</span><br><span class="line">        var rect := room.getRect() <span class="keyword">as</span> Rect2</span><br><span class="line">        <span class="keyword">if</span> rect.position.x &lt; minPos.x:</span><br><span class="line">            minPos.x = rect.position.x</span><br><span class="line">        <span class="keyword">if</span> rect.end.x &gt; maxPos.x:</span><br><span class="line">            maxPos.x = rect.end.x</span><br><span class="line">        <span class="keyword">if</span> rect.position.y &lt; minPos.y:</span><br><span class="line">            minPos.y = rect.position.y</span><br><span class="line">        <span class="keyword">if</span> rect.end.y &gt; maxPos.y:</span><br><span class="line">            maxPos.y = rect.end.y</span><br><span class="line">    _zoom = Vector2.ONE * ceil(max((maxPos.x - minPos.x) / _windowSize.x, (maxPos.y - minPos.y) / _windowSize.y))</span><br><span class="line">    _offset = (maxPos + minPos) / <span class="number">2</span></span><br><span class="line">    print(<span class="string">'Step 4 is done.'</span>) <span class="comment"># 第四步完成</span></span><br><span class="line"></span><br><span class="line">    _isWorking = false</span><br></pre></td></tr></table></figure>
+
+<p>代码虽然有点长，不过并不难，相信大家很容易就能看懂，你完全可以把 <code>generateRooms()</code> 方法拆分为多个子方法来实现，这里关于 <em>AStar</em> 的用法我已经在注释中作了简要说明，形象一点，可以参考下图：</p>
+<p><img src="Astar.gif" alt="Astar.gif"></p>
+<p>另外，随机生成房间的时候，你可以设置一下房间的坐标位置，比如放置在同一条水平线上等。这里我给大家看下最终的实现效果：</p>
+<p><img src="godot_dungeon_generation.gif" alt="godot_dungeon_generation.gif"></p>
+<p>相关内容可以参考如下链接：</p>
+<ul>
+<li><a href="https://docs.godotengine.org/en/3.1/classes/class_astar.html" target="_blank" rel="noopener">AStar API</a></li>
+<li><a href="http://kidscancode.org/blog/tags/procgen/" target="_blank" rel="noopener">http://kidscancode.org/blog/tags/procgen/</a></li>
+<li><a href="http://kidscancode.org/blog/2018/12/godot3_procgen6/" target="_blank" rel="noopener">Procedural Generation in Godot - Part 6: Dungeons</a></li>
+</ul>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>简单的介绍了 <em>RigidBody2D</em> 节点的几个应用场景，不知道大家感觉怎样？有没有更好玩的点子？期待大家的留言，哈哈。</p>
+<p>本篇的 Demo 以及相关代码已经上传到 Github ，地址： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a> ， 后续继续更新，<strong>原创不易</strong>，希望大家喜欢！ :smile:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/blog/images/wexin_1.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2020/07/22/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-1/" class="alignleft prev" title="Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（上）"><i class="fa fa-angle-double-left"></i>&nbsp;Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（上）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2019/07/21/translation-of-state-in-game-programming-patterns/" class="alignright next" title="【翻译】游戏设计模式之状态机">【翻译】游戏设计模式之状态机&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

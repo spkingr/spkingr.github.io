@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之五：上下左右移动动画（上）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之五：上下左右移动动画（上） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之五：上下左右移动动画（上）</h1>
+    <div class="meta">
+        <span>2018-10-10</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>前面的几篇文章陆陆续续开始介绍 2D 游戏中对玩家的一些基本操作流程了，不过功能实现非常有限，接下来我想完完整整的打造一个小 Demo ：在封闭的游戏场景里控制玩家自由移动，从而达到一些简单的目标。那么， first thing first ，从解决<em>上下左右</em>移动功能实现开始！</p>
+<p>上下左右移动也叫 <em>Top-down</em> 移动动画，这篇文章我会通过 Godot 中的节点以及相关的代码来实现玩家主角的基本移动控制。之后，再改造一下游戏场景，让我们的主角自由行走在有限的世界里。一如往常，老司机带路，如果你是编程新手，那么，前方高能请系好安全带啦！当然，前面的文章也讨论过了， GDScript 脚步非常简单，不熟悉的话可以浏览一下本系列之前的文章。</p>
+<blockquote>
+<p>主要内容： Godot 2D 中玩家的上下左右移动及碰撞实现<br>阅读时间： 5 分钟<br>永久链接：<a href="http://liuqingwen.me/blog/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/">http://liuqingwen.me/blog/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
+<li>使用 AnimationPlayer 节点工具创建状态动画</li>
+<li>使用代码控制玩家的上下左右移动功能</li>
+<li>简单的摄像机使用和地图碰撞检测实现</li>
+<li>通过代码实现 RigidBody2D 刚体节点的运动</li>
+</ol>
+<h3 id="创建动画"><a href="#创建动画" class="headerlink" title="创建动画"></a>创建动画</h3><p>相信看了<a href="http://liuqingwen.me/blog/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/">上篇文章</a>的朋友应该对 <em>AnimationPlayer</em> 这个功能强大的动画工具有了一定的了解。之前只是利用它最基础的功能实现了一个简单的天鹅飞舞动画，接来下我们要使用 <em>AnimationPlayer</em> 节点实现稍微复杂的动画制作——玩家的各种状态动画实现。</p>
+<p>我们先创建一个场景，根节点改名为 <em>Game</em> ，添加两个子节点： <em>Sprite</em> （命名为 <em>Player</em> ）和 <em>AnimationPlayer</em> 节点。 <em>Player</em> 节点的图片材质是一张 4x5 的 SpriteSheet 精灵图集，四行分别代表下、左、右、上移动动画：</p>
+<p><img src="player_sprite_sheet.png" alt="player_sprite_sheet.png"></p>
+<p>和上篇文章制作天鹅动画操作一样，分别制作四个移动动画，这四个动画都设置为循环播放，动画时长和步进大家可以自己尝试进行设置不同的时间，直到自己满意为止吧，我的就随便设置了： 时长 0.8 ，步进 0.2 ，具体设置参考上一篇文章：<a href="http://liuqingwen.me/blog/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/">Godot3游戏引擎入门之四：给主角添加动画（下）</a>。接下来才是重点：我们制作一个游戏启动时刻玩家入场动画。其实这个游戏大可不必这样做，完全是为了演示 <em>AnimationPlayer</em> 的强大功能，并增加一些喜感吧，当然也有一定借鉴意义，哈哈。</p>
+<p>玩家 <em>Player</em> 入场动画的基本思路是这样的：主角从场景中央稍微偏上的位置快速移动到屏幕中央（ <code>position</code> ），同时尺寸由小逐渐放大到正常缩放（ <code>scale</code> ），并伴随透明度从<em>完全透明</em>到<em>完全不透明</em>（ <code>modulate/a</code> ），动画最后再加上一段玩家闪现的动画进行强调（ <code>visible</code> ）。哈哈，颇有主角粉墨登场的戏份啊！欢呼吧，骚年~ :sunglasses:</p>
+<p>思路有了，关键在于使用 <em>AnimationPlayer</em> 来进行创建了。之前的动画制作都是一个轨道解决一个动画，但是这个动画不同了，需要一个动画实现多个属性的控制，这里就需要多个轨道了，每个属性分别创建一个轨道，然后对属性设置关键帧进行动画控制，这里需要注意的第一点是： Godot 3.1 alpha 版本中对<strong>位置和缩放</strong>属性不能直接使用<strong>钥匙🗝️</strong>按钮创建相应的轨道和关键帧，会重复创建轨道，这应该是一个 Bug ，不过不要紧，我们使用普通的做法，手动创建 <code>Property Track</code> 属性轨道，选择 <em>Player</em> 节点的相应属性，之后可以正常使用<strong>钥匙🗝️</strong>按钮创建关键帧，部分操作如下图：</p>
+<p><img src="godot_5_property_track.jpg" alt="godot_5_property_track.jpg"></p>
+<p>上图中的<em>勾选贝塞尔曲线过渡方式*大家可以尝试一下，看看和平滑过渡有什么不同的效果吧。接下来，动画中透明度的设置是通过 *Sprite</em> 节点的 <em>Modulate</em> 颜色属性的 <em>Alpha(A)</em> 通道设置实现的，至于闪现是通过控制节点的可见性 <em>Visible</em> 属性实现的，只要是属性， <em>AnimationPlayer</em> 就能创建动画，就是这么强！</p>
+<p><img src="godot_5_visible_and_color.jpg" alt="godot_5_visible_and_color.jpg"></p>
+<p>最后记得把入场动画（名为 <code>start</code> ）设置为<strong>自动播放</strong>，不要设置循环播放，毕竟主角登场了就不要重复了。</p>
+<h3 id="代码控制"><a href="#代码控制" class="headerlink" title="代码控制"></a>代码控制</h3><p>动画制作完后的任务就交给代码来实现了！代码和上一篇文章里的左右移动代码没啥本质区别，只是多了两个方向而已，不过有两点新鲜玩意。第一个是我设置了速度变量，它是一个 <code>Vector2</code> 矢量，这样做的目的是：即使我们同时按住两个按键，玩家依然可以跑动或者原地踏步！大家可以体会下和上一节的不同之处。</p>
+<p>第二个可谓是一个可以“节约生命”的功能，还记得上一节里怎么监控按键的吗？需要一个一个的常亮比如： <code>KEY_A/KEY_LEFT</code> 表示 <em>A</em> 键和左方向键。如果你是 Unity 的开发者，那么你对按键设置肯定非常熟悉，这里我不得不说 Unity 在这方面做得还是非常棒的，对键盘、操纵杆的控制设置很到位。 Godot 中同样也可以进行简化设置，比如把 <em>A</em> 键和左方向键统一到自定义按键 <code>left</code> 中，具体设置在 <em>Project Settings</em> 中的 <em>Input Map</em> 下添加自定义输入控制：</p>
+<p><img src="godot_5_keyboard_settings.jpg" alt="godot_5_keyboard_settings.jpg"></p>
+<p>设置完就可以开森地写代码了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">extends Node2D</span><br><span class="line"></span><br><span class="line">onready var player = $Player</span><br><span class="line">onready var animationPlayer = $Player</span><br><span class="line"></span><br><span class="line">var currentAnimation = <span class="string">'start'</span></span><br><span class="line">var speed = <span class="number">200</span></span><br><span class="line"></span><br><span class="line">func _ready():</span><br><span class="line">    camera.position = player.position</span><br><span class="line"></span><br><span class="line">func _process(delta):</span><br><span class="line">    var velocity = Vector2(<span class="number">0</span>, <span class="number">0</span>) <span class="comment"># 速度变量</span></span><br><span class="line">    var isMoving = false <span class="comment"># 是否按键移动</span></span><br><span class="line">    var newAnimation = currentAnimation <span class="comment"># 动画变量</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> Input.is_action_pressed(<span class="string">'left'</span>):</span><br><span class="line">        velocity.x += <span class="number">-1</span></span><br><span class="line">        newAnimation = <span class="string">'left'</span></span><br><span class="line">        isMoving = true</span><br><span class="line">    <span class="keyword">if</span> Input.is_action_pressed(<span class="string">'right'</span>):</span><br><span class="line">        velocity.x += <span class="number">1</span></span><br><span class="line">        newAnimation = <span class="string">'right'</span></span><br><span class="line">        isMoving = true</span><br><span class="line">    <span class="keyword">if</span> Input.is_action_pressed(<span class="string">'up'</span>):</span><br><span class="line">        velocity.y += <span class="number">-1</span></span><br><span class="line">        newAnimation = <span class="string">'up'</span></span><br><span class="line">        isMoving = true</span><br><span class="line">    <span class="keyword">if</span> Input.is_action_pressed(<span class="string">'down'</span>):</span><br><span class="line">        velocity.y += <span class="number">1</span></span><br><span class="line">        newAnimation = <span class="string">'down'</span></span><br><span class="line">        isMoving = true</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 速度不为0，移动玩家位置</span></span><br><span class="line">    <span class="keyword">if</span> velocity.length() &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 注意这里 normalize 速度矢量，否则会出现斜着走速度比单方向速度快</span></span><br><span class="line">        player.position += velocity.normalized() * speed * delta</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 根据是否有按键按下和新动作更新动画</span></span><br><span class="line">    updateAnimation(isMoving, newAnimation)</span><br><span class="line"></span><br><span class="line">func updateAnimation(isMoving, newAnimation):</span><br><span class="line">    <span class="comment"># 如果有移动按键按下，并且改变方向，则切换动画</span></span><br><span class="line">    <span class="keyword">if</span> isMoving <span class="keyword">and</span> currentAnimation != newAnimation:</span><br><span class="line">        animationPlayer.current_animation = newAnimation</span><br><span class="line">        animationPlayer.play(newAnimation)</span><br><span class="line">        currentAnimation = newAnimation</span><br><span class="line">    <span class="comment"># 未移动，但又非开始的情况，那么止移动动画</span></span><br><span class="line">    <span class="keyword">elif</span> ! isMoving <span class="keyword">and</span> currentAnimation != <span class="string">'start'</span>:</span><br><span class="line">            animationPlayer.stop()</span><br><span class="line">            currentAnimation = <span class="string">'start'</span></span><br><span class="line">    <span class="comment"># 其他情况比如同方向继续移动，或者在开始的时候都不用处理</span></span><br></pre></td></tr></table></figure>
+
+<p>完成后效果：</p>
+<p><img src="godot_5_result1.gif" alt="godot_5_result1.gif"></p>
+<h3 id="摄像机节点"><a href="#摄像机节点" class="headerlink" title="摄像机节点"></a>摄像机节点</h3><p>对于上面实现的效果感想如何？嗯，移动是没问题了，入场动画有，只是没有录制进来，有兴趣的朋友可以到 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github</a> 上下载源码自己运行看看效果。不过，问题是，玩家完全可以脱离视野离家出走啊——所谓破墙而走！三种解决方式：</p>
+<ol>
+<li>第一种是限制移动，让玩家在固定视窗内行动，即通过判断玩家位置坐标计算有没有超出限制范围，上一篇介绍过了</li>
+<li>第二种是使用物理碰撞，把假的墙壁设置为真实的墙壁，这种方式下面会将</li>
+<li>第三种是非正面解决方式，即给我们的游戏添加一个摄像机，而这个摄像机时刻跟随主角运动，那么主角就不会脱离视野了</li>
+</ol>
+<p>好吧，后面两种是这篇文章的目标，对于设置摄像机，和其他游戏引擎没有区别：添加一个摄像机节点，设置一下就好了，非常简单。在 Godot 中摄像机节点是 <em>Camera2D</em> ，添加一个节点到游戏场景后，我们通过代码控制摄像机保持和玩家位置一致，这里唯一一个要设置的地方就是：勾选 <em>Camera2D</em> 的 <em>Current</em> 属性，激活摄像机。同时，我还稍微拉伸了镜头，使得游戏场景被放大——通过设置摄像机的 <em>Zoom</em> 参数实现。</p>
+<p><img src="godot_5_camera_viewport.jpg" alt="godot_5_camera_viewport.jpg"></p>
+<p>上图中，最下方的文字说明了视窗属性的设置：视口模式 <em>Mode</em> 为 <em>2d</em> ，缩放模式 <em>Aspect</em> 设置为 <em>keep</em> ，即保持比例，这些设置都在 <em>Project Settings</em> 里能找到。作用很简单，如果不设置，那么默认情况下，我们的游戏进入全屏状态后是不会进行缩放的，就像下面这样：</p>
+<p><img src="godot_5_no_camera.jpg" alt="godot_5_no_camera.jpg"></p>
+<p>最后在 <code>player.position += velocity.normalized() * speed * delta</code> 这一句后面添加一点代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 省略代码......</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 速度不为0，移动玩家位置</span></span><br><span class="line"><span class="keyword">if</span> velocity.length() &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="comment"># 注意这里 normalize 速度矢量，否则会出现斜着走速度比单方向速度快</span></span><br><span class="line">    player.position += velocity.normalized() * speed * delta</span><br><span class="line">    <span class="comment"># 更新摄像机，玩家始终在视窗内活动</span></span><br><span class="line">    updateCameraPosition()</span><br><span class="line">    <span class="comment"># 省略代码......</span></span><br><span class="line"></span><br><span class="line">func updateCameraPosition():</span><br><span class="line">    camera.position = player.position</span><br></pre></td></tr></table></figure>
+
+<p>运行游戏，查看效果：</p>
+<p><img src="godot_5_result2.gif" alt="godot_5_result2.gif"></p>
+<p>接下来解决玩家移动无范围限制的问题。 :smiley:</p>
+<h3 id="添加碰撞"><a href="#添加碰撞" class="headerlink" title="添加碰撞"></a>添加碰撞</h3><p>文章有点长，偷下懒，暂时到这里，接下来的内容放到下一节。 Stay tuned!</p>
+<h2 id="三、小结（上）"><a href="#三、小结（上）" class="headerlink" title="三、小结（上）"></a>三、小结（上）</h2><p>除了代码，这是一篇非常简单的文章，使用 <em>AnimationPlayer</em> 制作多个动画，以及单个动画多个轨道；使用 <em>Camera2D</em> 跟随玩家移动视野；设置按键规则和视窗缩放属性等。接下来的重点就交给本章的下节吧。</p>
+<p>假期没有更新，带孩子在外面和家里玩了 8 天，哈哈！话说回来，嗯，还是那句：<strong>原创不易</strong>啊，希望大家喜欢！ :smile:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzg3MjAwMjI4Mg==&mid=100000071&idx=1&sn=440b2050b4c7495c64f66c41b028c406&send_time=1536712211" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/" class="alignleft prev" title="Godot3游戏引擎入门之五：上下左右移动动画（下）"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之五：上下左右移动动画（下）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/" class="alignright next" title="Godot3游戏引擎入门之四：给主角添加动画（下）">Godot3游戏引擎入门之四：给主角添加动画（下）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

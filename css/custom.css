@@ -1,0 +1,107 @@
+/*
+    Added by me.
+    For the head navigation menus.
+    And other configurations or modifications.
+*/
+
+.outer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background: #585858;
+    padding-top: 0.1em;
+}
+
+.outer div{
+    max-width: 68em;
+    margin: 0 auto;
+    padding: 0 2.5em;
+}
+
+.outer ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.outer ul li{
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+.outer ul li a{
+    display: block;
+    padding: 0 1em;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: #d5d5d5;
+}
+
+.outer ul li.search{
+    float: right;
+}
+
+@media screen and (max-width: 768px) {
+    .outer ul li.search{
+        display: none;
+    }
+}
+
+/* url */
+ul.links{
+    list-style-type: none;
+    padding-left: 0;
+    margin: -1em 0 2em -1em;
+}
+ul.links li{
+    display: inline-block;
+    padding: 1em 0 0 1em;
+}
+ul.links li a.zhihu {
+    background: no-repeat center url("http://liuqingwen.me/images/zhihu.png");
+}
+ul.links li a.jianshu {
+    background: no-repeat center url("http://liuqingwen.me/images/jianshu.png");
+}
+ul.links li a.juejin {
+    background: no-repeat center url("http://liuqingwen.me/images/juejin.png");
+}
+ul.links li a.csdn {
+    background: no-repeat center url("http://liuqingwen.me/images/csdn.png");
+}
+ul.links li a.indienova {
+    background: no-repeat center url("http://liuqingwen.me/images/indienova.png");
+}
+
+/* for pre-next links */
+.separator {
+    color: #f2849e;
+    margin: 0 1em;
+    display: none;
+}
+
+.clearfix{
+    clear: both;
+}
+
+div.prev_next{
+    padding: 0.5em;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+a.alignleft{
+    text-align: left;
+}
+a.alignright{
+    text-align: right;
+}
+a.prev{
+    float: left;
+}
+a.next{
+    float: right;
+}

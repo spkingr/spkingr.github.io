@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（下）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（下） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（下）</h1>
+    <div class="meta">
+        <span>2018-12-25</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>继续讲解我们的第二个小游戏：太空射击游戏，本篇为<a href="http://liuqingwen.me/blog/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/">上一篇文章</a>的继续。在上一节中我给大家介绍了 <em>Particles2D</em> 粒子节点的相关参数以及简单的应用，这一节则介绍这个小游戏中的主要场景和关键的代码实现。</p>
+<p>PS ：在写文章的这两天， Godot 官方又紧凑地发布了第四个 Alpha 版本，大家可以到这里下载： <a href="https://downloads.tuxfamily.org/godotengine/3.1/alpha4/" target="_blank" rel="noopener">Godot 3.1 Alpha4</a> ，本以为圣诞节前会发布第一个 Beta 版本，目前来看还会有第五个 Alpha 版本， Beta 版本肯定要等到 2019 年啦！嗯，热情期待中……</p>
+<blockquote>
+<p>主要内容：太空射击游戏场景与代码（下篇）<br>阅读时间： 12 分钟<br>永久链接： <a href="http://liuqingwen.me/blog/2018/12/25/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-2/">http://liuqingwen.me/blog/2018/12/25/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-2/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
+<li>介绍 Godot 中自带的粒子系统（上篇）</li>
+<li>了解其他几个常见节点的使用（上篇）</li>
+<li>本射击游戏场景介绍和代码</li>
+</ol>
+<h3 id="游戏所有场景"><a href="#游戏所有场景" class="headerlink" title="游戏所有场景"></a>游戏所有场景</h3><p>太空射击游戏的场景主要分为：玩家、敌人（外星人和岩石）、子弹、 UI 界面 、入口主场景等，每个场景的构造都很简单，所应用到的几个新节点我也在<a href="http://liuqingwen.me/blog/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/">上一篇文章</a>中作了简短的介绍，其他节点相信看过我本系列文章的朋友都应该很熟悉啦，哈哈。 :wink:</p>
+<p><img src="godot_11_scenes.png" alt="所有场景"></p>
+<p>提醒大家的是，子弹场景有两个： <code>Bullet.tscn</code> 和 <code>EnemyBullet.tscn</code> ，从名字可以看出来，一个是用于玩家发射的子弹，一个是敌人发射的子弹，他们除了<strong>子弹的图片也就是外观不同</strong>之外，其他部分，包括代码都是完全一样的，因为 <code>EnemyBullet.tscn</code> 就是直接从 <code>Bullet.tscn</code> <strong>继承</strong>实例化而来。（如何实例化一个场景？还记得 🔗 这个图标吗？找一找吧。）</p>
+<p>浏览一下所有场景“构造图”，接下来简单地一一介绍下所有场景及其核心代码部分。</p>
+<h4 id="1-子弹场景"><a href="#1-子弹场景" class="headerlink" title="1. 子弹场景"></a>1. 子弹场景</h4><p>首先是子弹场景，它比较特殊，有<strong>两个</strong>。子弹场景主要用于玩家和敌人发射的子弹，每颗子弹在发射后会一直往一个方向飞行，飞行过程中检查是否与其他对象相撞，然后在代码中做出相应的处理：</p>
+<figure class="highlight python"><figcaption><span>Bullet.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">extends Area2D</span><br><span class="line"></span><br><span class="line">signal destroy_object(type)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 子弹种类：玩家、敌人</span></span><br><span class="line">export(String, <span class="string">'player'</span>, <span class="string">'enemy'</span>) var type = <span class="string">'player'</span></span><br><span class="line"></span><br><span class="line">var _velocity = Vector2() <span class="comment"># 子弹速度</span></span><br><span class="line"></span><br><span class="line">func _process(delta):</span><br><span class="line">    self.position += _velocity * delta</span><br><span class="line"></span><br><span class="line">func _on_Bullet_area_entered(area):</span><br><span class="line">    <span class="comment"># 敌人的子弹击中玩家</span></span><br><span class="line">    <span class="keyword">if</span> area.is_in_group(<span class="string">'player'</span>) &amp;&amp; type == <span class="string">'enemy'</span>:</span><br><span class="line">        area.destroy()</span><br><span class="line">        self.queue_free()</span><br><span class="line">    <span class="comment"># 子弹击中敌人，对玩家子弹和敌人子弹处理不同</span></span><br><span class="line">    <span class="keyword">elif</span> area.is_in_group(<span class="string">'enemy'</span>) || area.is_in_group(<span class="string">'rock'</span>):</span><br><span class="line">        <span class="keyword">if</span> type == <span class="string">'player'</span>:</span><br><span class="line">            area.destroy()</span><br><span class="line">            var objectType = <span class="string">'enemy'</span> <span class="keyword">if</span> area.is_in_group(<span class="string">'enemy'</span>) <span class="keyword">else</span> <span class="string">'rock'</span></span><br><span class="line">            self.emit_signal(<span class="string">'destroy_object'</span>, objectType)</span><br><span class="line">        <span class="keyword">if</span> ! (area.is_in_group(<span class="string">'enemy'</span>) &amp;&amp; type == <span class="string">'enemy'</span>):</span><br><span class="line">            self.queue_free()</span><br><span class="line">    <span class="comment"># 敌人的子弹和玩家子弹相撞</span></span><br><span class="line">    <span class="keyword">elif</span> area.is_in_group(<span class="string">'bullet'</span>) &amp;&amp; area.type != type:</span><br><span class="line">        area.queue_free()</span><br><span class="line">        self.queue_free()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 子弹飞出屏幕</span></span><br><span class="line">func _on_VisibilityNotifier2D_screen_exited():</span><br><span class="line">    self.queue_free()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置子弹速度</span></span><br><span class="line">func start(velocity):</span><br><span class="line">    velocity = velocity</span><br></pre></td></tr></table></figure>
+
+<p>那么如何在玩家和敌人场景中分别使用这两个子弹场景呢？只需要在 <em>Player</em> 脚本以及 <em>Alien</em> 脚本代码中，添加一句代码即可： <code>export(PackedScene) var bulletScene</code> ，也就是把各自要用到的子弹场景暴露为显示在编辑器中的变量，这样我们就可以直接拖拽相对应的子弹场景到各自的 <code>bulletScene</code> 属性中。</p>
+<p><strong>一个场景（节点）应用到多个场合</strong>在游戏中是很常见的，对于子弹场景除了我所采用的这种处理方式，还有另外一种常见的方法：只需要设置一个 <code>Bullet.tscn</code> 子弹场景，然后在代码中创建子弹的时候，动态设置子弹的材质就可以了。这样一个子弹场景就能轻松地被玩家和敌人分别使用，伪代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var playerBulletImageTexture = load(<span class="string">'res://Assets/Images/player_bullet.png'</span>);</span><br><span class="line">var enemyBulletImageTexture = load(<span class="string">'res://Assets/Images/enemy_bullet.png'</span>);</span><br><span class="line"></span><br><span class="line">func setType(type):</span><br><span class="line">    match type:</span><br><span class="line">        <span class="string">'player'</span>: $Sprite.texture = playerBulletImageTexture;</span><br><span class="line">        <span class="string">'enemy'</span>: $Sprite.texture = enemyBulletImageTexture;</span><br></pre></td></tr></table></figure>
+
+<p>关于资源加载函数 <code>load()</code> 我想在后面会继续讨论。一般游戏中会优先使用第二种方式，但是第一种方式更加适合新手，而且扩展性也更好，比如我想在敌人的子弹场景中再加一些其他的效果，让它变得更酷，这都是非常方便且直接的，另外结合 <code>export(PackedScene)</code> 更可以轻松的拖拽其他场景到对应的场景属性下，非常方便，大家多多感受下。</p>
+<h4 id="2-背景场景"><a href="#2-背景场景" class="headerlink" title="2. 背景场景"></a>2. 背景场景</h4><p>关于背景图片我已经在<a href="http://liuqingwen.me/blog/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/">上一篇文章</a>中说明过了，不过并没有详细阐述其原理，也没有提供任何代码，其实背景场景的代码是最少的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">extends ParallaxBackground</span><br><span class="line"></span><br><span class="line">export(float) var scrollSpeed = <span class="number">50</span></span><br><span class="line"></span><br><span class="line">func _process(delta):</span><br><span class="line">    <span class="comment"># 手动控制背景滚动</span></span><br><span class="line">    self.scroll_offset.y -= scrollSpeed * delta</span><br></pre></td></tr></table></figure>
+
+<p>然后参考一下其相关节点的设置你就能明白其中的道理：</p>
+<p><img src="godot_11_parallax_layer.png" alt="godot_11_parallax_layer.png"></p>
+<p>前面两个节点很好理解，实际开发中，对于 ParallaxBackground 背景节点，我们一般会应用于有<em>摄像机*节点的游戏中，这样背景会自动跟随摄像机滚动，在 2D 游戏中我们可以设置多层背景，比如靠近玩家的树木、远离玩家的山岭、最远方的太阳或者月亮等，很显然，越远的物体滚动速度越慢，也就是 *Scale</em> 属性值越小，越近则滚动越快，大家可以结合之前的图片体会一下。那么，像本游戏中没有摄像机该如何处理呢？依然很简单，如上代码，<strong>手动设置背景的滚动属性</strong>就可以啦。</p>
+<h4 id="3-敌人场景"><a href="#3-敌人场景" class="headerlink" title="3. 敌人场景"></a>3. 敌人场景</h4><p>游戏中敌人主要有两种，一种是外星人，另一种是坠落的岩石，脚本代码也都很好理解，这里我给敌人添加了一些有趣的随机元素，它们可以水平移动并且随机发射子弹，核心代码如下：</p>
+<figure class="highlight python"><figcaption><span>Alien.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 移动并发射，生命周期内无限循环</span></span><br><span class="line">func _moveAndShoot():</span><br><span class="line">    <span class="comment"># 第一次移动，不发射子弹</span></span><br><span class="line">    var nextMovement = rand_range(<span class="number">0.5</span>, <span class="number">1.5</span>)</span><br><span class="line">    <span class="keyword">yield</span>(self.get_tree().create_timer(nextMovement), <span class="string">"timeout"</span>)</span><br><span class="line">    <span class="comment"># 2/3几率发生水平移动，否则只做垂直运动</span></span><br><span class="line">    var shouldMove = randi() % <span class="number">3</span> &gt;= <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> shouldMove:</span><br><span class="line">        _hMovement = randi() % <span class="number">3</span> - <span class="number">1</span></span><br><span class="line">    nextMovement = rand_range(<span class="number">1.0</span>, <span class="number">1.5</span>)</span><br><span class="line">    <span class="keyword">yield</span>(self.get_tree().create_timer(nextMovement, false), <span class="string">"timeout"</span>)</span><br><span class="line">    _hMovement = <span class="number">0</span></span><br><span class="line">    <span class="comment"># 如果在屏幕范围内，则发射子弹</span></span><br><span class="line">    <span class="keyword">if</span> _isInShootableArea():</span><br><span class="line">        _shoot()</span><br><span class="line">    <span class="comment"># 继续下一轮操作</span></span><br><span class="line">    _moveAndShoot()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 省略代码……</span></span><br></pre></td></tr></table></figure>
+
+<p>这是一个无限循环：<em>外星人进入游戏场景后，随机飞行一段时间，随后有一定的概率发生水平移动，接下来判断外星人是否在屏幕范围内，在范围内则发射一颗子弹</em>。方法中我使用了很多随机时间节点，也是为了丰富游戏场景，让游戏稍微有点挑战性吧。</p>
+<p>对于岩石场景的代码我就不贴出来了，岩石只有滚动和一定大小的随机缩放，代码很简单，不再啰嗦。</p>
+<h4 id="4-爆炸场景"><a href="#4-爆炸场景" class="headerlink" title="4. 爆炸场景"></a>4. 爆炸场景</h4><p>爆炸场景使用了 <em>Particles2D</em> 粒子节点，一个爆炸场景我使用在了这三个地方：岩石爆炸、敌人爆炸以及玩家爆炸。他们的处理方式稍微不同，这里可以从代码中看出来：</p>
+<figure class="highlight python"><figcaption><span>Explosion.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 爆炸对象的类型：岩石、敌人、玩家</span></span><br><span class="line">var type = <span class="string">'rock'</span> setget _setType</span><br><span class="line"></span><br><span class="line">func _ready():</span><br><span class="line">    match type:</span><br><span class="line">        <span class="string">'rock'</span>:</span><br><span class="line">            self.amount = <span class="number">40</span></span><br><span class="line">            _audioPlayer.stream = rockAudio</span><br><span class="line">        <span class="string">'player'</span>:</span><br><span class="line">            <span class="comment"># 延长玩家爆炸特效的时长</span></span><br><span class="line">            _lifeTimer.wait_time = <span class="number">2.0</span></span><br><span class="line">            _audioPlayer.stream = playerAudio</span><br><span class="line">        <span class="string">'alien'</span>:</span><br><span class="line">            self.amount = <span class="number">50</span></span><br><span class="line">            _audioPlayer.stream = alienAudio</span><br><span class="line">            _audioPlayer.pitch_scale = <span class="number">2.0</span></span><br><span class="line">    _audioPlayer.play()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 省略代码……</span></span><br></pre></td></tr></table></figure>
+
+<p>嗯，区别在于三种爆炸的音效不同，粒子数量稍微有点差别而已。关于粒子我在<a href="http://liuqingwen.me/blog/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/">上篇文章</a>中已经详细讲述，如果有不清楚的，大家可以下载源码参考一下。 :laughing:</p>
+<h4 id="5-玩家场景"><a href="#5-玩家场景" class="headerlink" title="5. 玩家场景"></a>5. 玩家场景</h4><p>玩家场景就非常熟悉啦，主要是控制玩家的移动，还有子弹的发射：</p>
+<figure class="highlight python"><figcaption><span>Player.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 射击函数</span></span><br><span class="line">func _shoot():</span><br><span class="line">    <span class="keyword">if</span> bulletScene == null:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="comment"># 生成一个子弹对象</span></span><br><span class="line">    var bullet = bulletScene.instance()</span><br><span class="line">    <span class="comment"># 设置子弹的全局位置</span></span><br><span class="line">    bullet.position = _shootPoint.global_position</span><br><span class="line">    <span class="comment"># 调用子弹的公开方法，设置速度</span></span><br><span class="line">    bullet.start(Vector2(<span class="number">0</span>, - bulletSpeed))</span><br><span class="line">    <span class="comment"># 连接子弹的信号</span></span><br><span class="line">    bullet.connect(<span class="string">'destroy_object'</span>, self, <span class="string">'_on_Bullet_destroy_object'</span>)</span><br><span class="line">    <span class="comment"># 把子弹添加到游戏root根节点</span></span><br><span class="line">    self.get_tree().get_root().add_child(bullet)</span><br><span class="line">    <span class="comment"># 音效</span></span><br><span class="line">    _shootSound.play()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 省略代码……</span></span><br></pre></td></tr></table></figure>
+
+<p>这里核心代码在于 <code>self.get_tree().get_root().add_child(bullet)</code> 这一句，可以看出来，我把发射子弹后生成的子弹节点添加到了游戏的根节点 <code>root</code> 下，这样保证发射出去的子弹和玩家没有任何关系，不会发生内存泄漏。</p>
+<h4 id="6-游戏主场景"><a href="#6-游戏主场景" class="headerlink" title="6. 游戏主场景"></a>6. 游戏主场景</h4><p>主场景是所有子场景和代码的组合，主要负责游戏的整体控制，关键代码在于生成并添加当前关卡的所有敌人，包括岩石和外星人，另外在 <code>_process(delta)</code> 方法中还会不断地判断敌人是否已经被消灭完或者游戏是否已经结束。</p>
+<figure class="highlight python"><figcaption><span>Game.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">var _isGameOver = false <span class="comment"># 游戏是否结束</span></span><br><span class="line">var _score = <span class="number">0</span>          <span class="comment"># 分数</span></span><br><span class="line">var _currentWave = <span class="number">0</span>    <span class="comment"># 敌人波数</span></span><br><span class="line">var _totalAliens = <span class="number">0</span>    <span class="comment"># 敌人总数</span></span><br><span class="line">var _totalRocks = <span class="number">0</span>     <span class="comment"># 岩石总数</span></span><br><span class="line">var _enemyCount = <span class="number">-1</span>    <span class="comment"># 计数：敌人+岩石</span></span><br><span class="line"></span><br><span class="line">func _process(delta):</span><br><span class="line">    <span class="comment"># 如果计数为0，且所有敌人被移除则进入下一波</span></span><br><span class="line">    <span class="keyword">if</span> !_isGameOver &amp;&amp; _enemyCount == <span class="number">0</span> &amp;&amp; _enemyContainer.get_child_count() == <span class="number">0</span>:</span><br><span class="line">        _enemyCount = <span class="number">-1</span></span><br><span class="line">        _nextLevel()</span><br><span class="line">    <span class="comment"># 如果游戏结束，且所有敌人被移除，显示开始按钮</span></span><br><span class="line">    <span class="keyword">elif</span> _isGameOver &amp;&amp; _enemyContainer.get_child_count() == <span class="number">0</span>:</span><br><span class="line">        _ui.showStartButton()</span><br><span class="line"></span><br><span class="line"><span class="comment"># （重新）开始游戏</span></span><br><span class="line">func _restart():</span><br><span class="line">    _isGameOver = false</span><br><span class="line">    _score = <span class="number">0</span></span><br><span class="line">    _ui.updateScore(_score)</span><br><span class="line">    _currentWave = <span class="number">0</span></span><br><span class="line">    _audioPlayer.play()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 添加玩家到当前场景</span></span><br><span class="line">    <span class="keyword">if</span> playerScene != null:</span><br><span class="line">        var player = playerScene.instance()</span><br><span class="line">        player.connect(<span class="string">'game_over'</span>, self, <span class="string">'_on_Player_game_over'</span>)</span><br><span class="line">        player.connect(<span class="string">'score_updated'</span>, self, <span class="string">'_on_Player_score_updated'</span>)</span><br><span class="line">        player.position = _startPosition</span><br><span class="line">        self.add_child(player)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 开启第一关</span></span><br><span class="line">    _nextLevel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 消灭（避开）所有敌人，进入下一关</span></span><br><span class="line">func _nextLevel():</span><br><span class="line">    _currentWave += <span class="number">1</span></span><br><span class="line">    _ui.updateWave(_currentWave)</span><br><span class="line">    <span class="keyword">yield</span>(self.get_tree().create_timer(<span class="number">3.0</span>), <span class="string">'timeout'</span>)</span><br><span class="line">    _ui.hideMessage()</span><br><span class="line">    _calculateEnemies()</span><br><span class="line">    _enemyCount = _totalAliens + _totalRocks</span><br><span class="line">    _generateRocks()</span><br><span class="line">    _generateAliens()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每隔一定时间（随机）生成岩石</span></span><br><span class="line">func _generateRocks():</span><br><span class="line">    <span class="keyword">if</span> rockScene == null:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(_totalRocks):</span><br><span class="line">        <span class="keyword">if</span> _isGameOver:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        var rock = rockScene.instance()</span><br><span class="line">        var yPosition = rand_range(<span class="number">-40</span>, <span class="number">-100</span>)</span><br><span class="line">        rock.position = Vector2(<span class="number">80</span> * (randi() % <span class="number">6</span>) + <span class="number">40</span>, yPosition)</span><br><span class="line">        _enemyContainer.add_child(rock)</span><br><span class="line">        _enemyCount -= <span class="number">1</span></span><br><span class="line">        var nextTime = rand_range(<span class="number">0.5</span>, <span class="number">1.5</span>)</span><br><span class="line">        <span class="keyword">yield</span>(self.get_tree().create_timer(nextTime, false), <span class="string">'timeout'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每隔一定时间（随机）生成敌人</span></span><br><span class="line">func _generateAliens():</span><br><span class="line">    <span class="keyword">if</span> alienScene == null:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(_totalAliens):</span><br><span class="line">        <span class="keyword">if</span> _isGameOver:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        var alien = alienScene.instance()</span><br><span class="line">        var yPosition = rand_range(<span class="number">-40</span>, <span class="number">-100</span>)</span><br><span class="line">        alien.position = Vector2(<span class="number">60</span> * (randi() % <span class="number">5</span>) + <span class="number">80</span>, yPosition)</span><br><span class="line">        _enemyContainer.add_child(alien)</span><br><span class="line">        _enemyCount -= <span class="number">1</span></span><br><span class="line">        var nextTime = rand_range(<span class="number">1.0</span>, <span class="number">2.5</span>)</span><br><span class="line">        <span class="keyword">yield</span>(self.get_tree().create_timer(nextTime, false), <span class="string">'timeout'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据当前关卡得出敌人数量</span></span><br><span class="line">func _calculateEnemies():</span><br><span class="line">    _totalAliens = _currentWave * <span class="number">2</span> + <span class="number">3</span></span><br><span class="line">    _totalRocks = _currentWave * <span class="number">3</span> + <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 省略代码……</span></span><br></pre></td></tr></table></figure>
+
+<p>同样省略了一些代码，这里核心函数是 <code>_nextLevel()</code> 方法，方法里又调用了另外两个重要方法： <code>_generateRocks()</code> 和 <code>_generateAliens()</code> ，通过大量使用 <code>yield</code> 关键字创建时间计时器，这样让游戏更加随机性，让太空显得更加真实。</p>
+<h3 id="游戏完善"><a href="#游戏完善" class="headerlink" title="游戏完善"></a>游戏完善</h3><p>好啦，看一下我们的成果吧，最终效果一览：</p>
+
+<video src="Spaceshooter.mp4" controls="controls" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"><img src="http://liuqingwen.me/blog/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/result_1.gif" alt="太空射击游戏" title="太空射击游戏" /></video>
+
+
+<p>大家可以自己尝试做这么个小游戏，也可以直接下载源码然后运行，对于热爱游戏的朋友，我觉得不应该只停留在“ play ”上，这个游戏可以做得更加有趣，你觉得呢？所以，我建议新手朋友们可以继续尝试尝试以下几点完善：</p>
+<ol>
+<li>可以丰富子弹系统，提供一些更加有趣的子弹样式、发射方式</li>
+<li>可以丰富怪物系统，比如每个关卡设置一个最终 BOSS 等</li>
+<li>可以实现多人游戏，这个对新手有点难度，我想以后会谈的</li>
+</ol>
+<p>只是自己的一点点想法，哈哈。</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>这个小游戏的制作就此结束啦，总结一下本篇上下文的主要知识点：</p>
+<ol>
+<li>Godot 中自带粒子系统的相关参数说明</li>
+<li>游戏中应用到的其他几个有用的节点</li>
+<li>太空射击游戏的所有场景构造及其关键点</li>
+<li>游戏代码逻辑的核心部分解析</li>
+</ol>
+<p>本篇的 Demo 以及相关代码已经上传到 Github ，地址： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a> ，最后，<strong>原创不易</strong>，希望大家喜欢吧！ :smile:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="https://github.com/spkingr/test-git/raw/master/images/weixin/weixin_it_258.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/" class="alignleft prev" title="Godot3游戏引擎入门之十二：Godot碰撞理论以及KinematicBody2D的两个方法"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之十二：Godot碰撞理论以及KinematicBody2D的两个方法</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/" class="alignright next" title="Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（上）">Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（上）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

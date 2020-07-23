@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之六：制作TileMap瓦片地图"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之六：制作TileMap瓦片地图 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之六：制作TileMap瓦片地图</h1>
+    <div class="meta">
+        <span>2018-10-19</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>收到一个高兴的消息： 2018 年 Github 最新统计出炉， Godot 是所有项目里增长速度最快的第三位！所以，我还是非常看好它的，哈哈！链接在此： <a href="https://octoverse.github.com/projects" target="_blank" rel="noopener">Fastest growing open source projects</a> ，截图如下：</p>
+<p><img src="godot_in_github.jpg" alt="godot_in_github.jpg"></p>
+<p>吹逼结束，本着承上启下的精神，本篇一起来学习并打造一个“美丽壮观”的游戏世界。使用的工具是 Godot 中的 <em>TileMap</em> 瓦片地图节点。<strong>注意：本系列文章包括本篇依旧使用 <a href="https://downloads.tuxfamily.org/godotengine/3.1/alpha1/" target="_blank" rel="noopener">Godot 3.1 预览版</a>讲述故事的经过，但这并不影响学习使用 Godot 3.0 版本中的瓦片地图制作，不过在此我要提醒的是：预览版中 <em>TileMap</em> 新增了一些强大且实用的功能，这些我会在后面讲解，然后请记得在使用这些新功能的时候，务必时刻保存你的游戏项目，不然有可能因为 Crash 发生奔溃而前功尽弃！嗯，预览版还是有点小 Bug 的， Good luck!</strong></p>
+<blockquote>
+<p>主要内容： Godot 2D 中瓦片地图 TileMap 的制作和使用<br>阅读时间： 10 分钟<br>永久链接：<a href="http://liuqingwen.me/blog/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">http://liuqingwen.me/blog/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
+<li>了解瓦片地图的一些理论知识</li>
+<li>使用图片制作瓦片集 TileSet</li>
+<li>使用 SpriteSheet 制作瓦片集 TileSet</li>
+<li>介绍 Godot 3.1 中 TileMap 的一些新特性</li>
+</ol>
+<h3 id="TileMap介绍"><a href="#TileMap介绍" class="headerlink" title="TileMap介绍"></a>TileMap介绍</h3><p>要打造一个好的 2D 平面游戏，没有一个好的游戏地图，那是万万不行的！你可以没有悦耳的背景音乐，可以没有花哨的粒子特效，没有动人的剧情设计，但是你至少得有一个完整的游戏地图场景来证明你那“伟大”的游戏的存在吧？！在 2D 游戏中，要制作游戏地图相对来时还是很简单的，特别是涉及多个关卡地图，我们通常都是使用 <em>TileMap</em> 瓦片地图来实现， <em>TileMap</em> 操作简单，效率也高，支持的软件完善，很多游戏都采用它，比如我们小时候耳熟能详的一些“小霸王”游戏：超级玛利亚、坦克大战、魂斗罗等等。</p>
+<p><img src="tilemap_games.jpg" alt="tilemap_games.jpg"></p>
+<p>瓦片地图，简单地说就是一个个瓦片堆积起来的一个地图。如果你有 iOS 游戏开发经验，熟悉 <a href="https://developer.apple.com/spritekit/" target="_blank" rel="noopener">SpriteKit</a> 的话，那么你肯定对 <em>TileMap</em> 非常了解， <a href="https://developer.apple.com/xcode/" target="_blank" rel="noopener">Xcode</a> 对瓦片地图的支持非常完善，功能很强大也易于上手，缺点是 <a href="https://developer.apple.com/xcode/" target="_blank" rel="noopener">Xcode</a> 只支持 Mac OS 或者 iOS 系统。另外，熟悉  <a href="https://unity3d.com/" target="_blank" rel="noopener">Unity3D</a> 的朋友们也知道，在 <em>Unity 2018</em> 版本之前，使用 <em>Unity</em> 制作 2D 游戏的地图也是很不方便的，如果你想在 Android 或者 Window/Linux 等其他操作系统上开发游戏，那么你需要使用其他的第三方软件来辅助制作地图了。</p>
+<p>这里我强烈推荐一款开源软件名为 <a href="https://www.mapeditor.org/" target="_blank" rel="noopener">Tiled</a> ，功能非常强大！使用超方便！能很好地支持并导出你设计好的地图到其他游戏引擎中使用，比如配合 <a href="https://libgdx.badlogicgames.com/" target="_blank" rel="noopener">LibGDX</a> 框架开发跨平台 2D 游戏。本节的瓦片地图图片就是从 <a href="https://www.mapeditor.org/" target="_blank" rel="noopener">Tiled</a> 软件自带的例子中拿过来的，建议大家了解一下这款软件，有兴趣的可以玩一玩，对瓦片地图的制作和了解还是有帮助的。 :smiley:</p>
+<p><img src="tiled-screenshot.jpg" alt="tiled-screenshot.jpg"></p>
+<p>一个游戏场景就是一个简单的世界，我们可以为这个世界添加很多有趣的元素，让玩家有兴趣去探索，这里我们使用瓦片地图来制作我们的游戏场景，实际上，它是由很多小瓦片组成，当然，完全可以根据情况再添加一些背景，这些小瓦片我们称之为： <em>Tile</em> 。瓦片可以很简单，也可以非常复杂，但是在同一个游戏世界里其大小都是统一的，瓦片的类型主要有三种类型： 90° 直角俯视地图（ <em>Orthogonal/Square</em> ）、45° 等距斜视地图（ <em>Isometric</em> ）、等六边形地图（ <em>Hexagonal</em> ）。这三种类型在 Godot 中都是支持的，本篇文章我们主要讨论第一种类型，也是最常用的一种类型吧。 :grin:</p>
+<h3 id="制作TileSet"><a href="#制作TileSet" class="headerlink" title="制作TileSet"></a>制作TileSet</h3><p>理论到此结束，撸起袖子开始干起！要打造瓦片地图，我们首先需要准备好所有的瓦片——也就是所谓的 <em>TileSet</em> 瓦片集。在 Godot 中制作瓦片集是非常简单的，我这里介绍常用的两种方式，以及第三种：利用 Godot 3.1 中瓦片地图新特性快速打造自动瓦片地图集！</p>
+<p><strong>第一种方式：使用单独的图片制作瓦片</strong></p>
+<p>第一种方式算是比较古老的一种方法了，在图片数量比较少的时候我们可以选择这种方式，快捷又方便。首先我们需要准备一些相同大小的图片：</p>
+<p><img src="godot_6_images_folder.jpg" alt="godot_6_images_folder.jpg"></p>
+<p>接下来，我们需要把所有图片制作成一个一个的 <em>Sprite</em> 精灵节点，这些节点最好是放在一个单独的游戏场景中，方便我们日后编辑。这里我单独创建一个名为 <em>TileSet_Sprites</em> 的游戏场景，然后把所有瓦片图片资源直接拖拽到场景中，并选择 <em>Sprite</em> 方式创建所有的节点。接着使用 Godot 菜单直接把场景中的所有 <em>Sprite</em> 节点转化为瓦片，制作 <em>TileSet</em> 瓦片集资源。在菜单栏中依次选中： <em>Scene -&gt; Convert To -&gt; TileSet</em> ，选择项目中某个位置保存资源为 <code>tileset_sprits.tres</code> ，一键完成制作我们所需要的瓦片集，既简单又快捷！</p>
+<p><img src="godot_6_convert_tileset.jpg" alt="godot_6_convert_tileset.jpg"></p>
+<p>瓦片集准备好了，下一步就是使用它来制作你那伟大的游戏地图了！我们制作地图的节点叫做 <em>TileMap</em> 瓦片地图，使用也很简单，只要把 <em>TileSet</em> 资源添加到 <em>TileMap</em> 即可。首先创建一个主场景，在根目录下添加一个 <em>TileMap</em> 地图节点，注意，这里一定要设置好<strong>地图的单元尺寸</strong>，即 <em>Cell</em> 属性，示例中瓦片尺寸都是 <em>32x32</em> 像素，所以按此设置即可。接着在 <em>Tile Set</em> 属性菜单下点击 <em>Load</em> 加载我们刚才制作完的瓦片集资源 <code>tileset_sprits.tres</code> ，这时你会看到所有的小瓦片都出现在编辑器中了，选中任意一个瓦片，开始你的艺术创作吧，骚年！ :sunglasses:</p>
+<p><img src="godot_6_load_tileset.jpg" alt="godot_6_load_tileset.jpg"></p>
+<p><strong>第二种方式：使用图片合集制作瓦片</strong></p>
+<p>当我们制作的地图元素非常多的时候，第一种方式明显不合常理了！图片过多导致文件难以管理，加载性能也会下降，这时候我们一般会把图片制作成 <em>SpriteSheet</em> 图片精灵集，这样既能减少文件数量，方便管理，又能提高加载速度和游戏的性能，关于 <em>SpriteSheet</em> 的原理我推荐大家到 <a href="https://www.codeandweb.com" target="_blank" rel="noopener">TexturePacker</a> 软件官网上浏览开发者的相关文章： <a href="https://www.codeandweb.com/what-is-a-sprite-sheet" target="_blank" rel="noopener">What is a sprite sheet?</a> ，这篇文章图文详细介绍了什么是 <em>SpriteSheet</em> ，以及它的优势和原理。</p>
+<p>除了图片资源形式不同，其他原理和第一种方式并没有什么不一样：我们把单张 <em>SpriteSheet</em> 图片转化为一个一个的 <em>Sprite</em> 节点，然后一键转换为 <em>TileSet</em> 资源就可以了。理论如此，但在操作过程中会有一个问题：一张大图由很多的小图拼成，这些小图需要制作成一个个的 <em>Sprite</em> 节点，那么如何精确的把这张大图划分为大小统一的小图呢？这样做工作量岂不是比第一种方式要大很多？——别急， Godot 肯定想到这点了，既然大小统一，我们只需要开启 <em>Snap</em> 吸附功能就可以轻松完成区域划分了！具体操作在场景窗口的上方菜单栏选项里，打开吸附功能，并设置相关参数，然后就可以精确地进行相关操作了：</p>
+<p><img src="godot_6_snap_setting.jpg" alt="godot_6_snap_setting.jpg"></p>
+<p>停！！！貌似这并没有什么卵用啊？是的，这个吸附功能只在场景编辑操作中适用，和我们现在要制作的精灵节点并没有半毛钱关系，不过原理是一样的。创建一个 <em>Sprite</em> 节点，把 <em>SpriteSheet</em> 大图拖拽到 <em>Texture</em> 属性下，然后勾选开启 <em>Region</em> 特性，打开 <em>TextureRegion</em> 编辑工具窗口，吸附功能就在这个窗口中进行设置。注意：我所使用的这张图的每一个小图片都有偏移，偏移像素为 1 个像素，所以需要在 <em>Grid Snap</em> 网格吸附选项里进行相关设置。具体操作如下动图：</p>
+<p><img src="godot_6_texture_region.gif" alt="godot_6_texture_region.gif"></p>
+<p>虽然我只操作了两张图，不过还是蛮快的，只要按住 <em>Ctrl + D</em> 复制一下节点，利用吸附功能框选一下 <em>Sprite</em> 的材质区域即可，付出一点耐心，很快就能把所有节点制作完成，最后和第一种方式一样，一键把场景转化为 <em>TileSet</em> 资源。在游戏主场景中，再创建一个新的地图，隐藏刚才的创建的地图，选择我们新建的 <em>TileSet</em> 资源进行地图绘画，效果如下，注意我框选的几个角落：</p>
+<p><img src="godot_6_tilemap_painting.jpg" alt="godot_6_tilemap_painting.jpg"></p>
+<p><strong>第三种方式：新版本中瓦片地图新特性</strong></p>
+<p>终于轮到新版本中的地图新特性了！这种方式最为方便，也是功能最强大的一种方式，操作流程也与上面两种方式截然不同。再次提醒一下：<strong>在使用 Godot 3.1 预览版中的 TileMap 新功能的时候，务必时刻保存你的游戏项目，因为预览版还不够稳定，有可能会产生意想不到的奔溃，牢记牢记！</strong></p>
+<p>第一步，使用瓦片地图之前，我们需要手动创建一个空的 <em>TileSet</em> 资源，并保存到合适位置：</p>
+<p><img src="godot_6_create_resource.jpg" alt="godot_6_create_resource.jpg"></p>
+<p>记住，这种方式同样适用于其他资源的创建。第二步就是愉快地使用 Godot 3.1 版本中的地图新特性了，使用新功能快捷创建一个强大的<strong>自动地图集</strong>。啥叫<em>自动地图集</em>？参考上面的那张效果图，注意几个角落，所谓的自动地图集，顾名思义就是画地图的时候不需要手动去添加那八个角落了， Godot 自动帮我们完成，是不是很方便？</p>
+<p><img src="godot_6_autotile.gif" alt="godot_6_autotile.gif"></p>
+<p>如果上图看不清可以查看大图： <a href="godot_6_autotile_1350x982.gif">Godot 3.1 自动地图集操作详细动图</a>。另外， <em>TileMap</em> 新特性中的有些功能是我们没见过的，比如，我们制作 <em>TileSet</em> 范围就是勾画 <em>Region</em> 区域，而 <em>Bitmask</em> 区域则是告诉 <em>TileMap</em> 如何自动完成整片地图的绘制， <em>Priority</em> 代表图片出现的概率， <em>Icon</em> 用来设置自动地图图标，还有我们后续游戏场景中会使用到的碰撞功能： <em>Collision</em> 碰撞区域设置，详细说明我在下图中都勾选出来了。总之，这么多新特性，大家可以多做一些尝试。 :smile:</p>
+<p><img src="godot_6_new_tilemap_tools.jpg" alt="godot_6_new_tilemap_tools.jpg"></p>
+<h3 id="其他说明"><a href="#其他说明" class="headerlink" title="其他说明"></a>其他说明</h3><p>这里我们只是简单地尝试了一下 Godot 中的瓦片地图制作，后续有机会我还会介绍如何在瓦片地图上添加一些其他物理特性，比如光照遮挡，或者添加真正的碰撞体，以实现游戏世界中的墙壁、地面等。</p>
+<p>最后， Godot 3.1 中还有一个辅助小特性，可以设置瓦片集合 <em>Atlas</em> ，即一组瓦片组成一个集合，方便地图绘制，如下图：</p>
+<p><img src="godot_6_atlas_tiles.jpg" alt="godot_6_atlas_tiles.jpg"></p>
+<p>附加知识：关于旧版本 Godot 中的瓦片地图绘制，如果不熟悉可以先看看 <a href="https://developer.apple.com/xcode/" target="_blank" rel="noopener">Xcode</a> 中的关于瓦片地图的一些标记：</p>
+<p><img src="tile_terrain.png" alt="tile_terrain.png"></p>
+<p>这里有一个例子，如何画一片海洋区域：</p>
+<p><img src="tile_terrain_explain.png" alt="tile_terrain_explain.png"></p>
+<h2 id="三、小结"><a href="#三、小结" class="headerlink" title="三、小结"></a>三、小结</h2><p>本篇就这样利用多图完成了，不知道读者朋友们看完有啥感想？如果你能坚持从我的 Godot 系列第一篇文章读到本篇文章，那么非常感谢你的阅读，其实我最近更新的速度越来越慢，写完一篇文章至少要耗费我 3 天的闲暇时间，这篇文章更是花费了我一周，因为平时要工作，闲余时间还不一定有空，所以，等待更新的朋友要耐心点了。读完，我相信你应该会和我感受一样： Godot 必定能火！哈哈！最后，附上 InfoQ 中关于 Github 的最新统计信息报告： <a href="https://mp.weixin.qq.com/s/ccEYMl2_0QZ5B5VHSqDXLA" target="_blank" rel="noopener">GitHub发布史上最大更新，年度报告出炉！</a></p>
+<p><strong>原创实属不易</strong>，希望大家喜欢！ :smile:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzg3MjAwMjI4Mg==&mid=100000071&idx=1&sn=440b2050b4c7495c64f66c41b028c406&send_time=1536712211" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/10/22/introduction-of-godot-3-part-7-add-collision-and-move-player-in-map/" class="alignleft prev" title="Godot3游戏引擎入门之七：地图添加碰撞体制作封闭的游戏世界"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之七：地图添加碰撞体制作封闭的游戏世界</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/" class="alignright next" title="Godot3游戏引擎入门之五：上下左右移动动画（下）">Godot3游戏引擎入门之五：上下左右移动动画（下）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

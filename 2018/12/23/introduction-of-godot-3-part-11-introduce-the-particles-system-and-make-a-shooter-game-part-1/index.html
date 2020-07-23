@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（上）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（上） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（上）</h1>
+    <div class="meta">
+        <span>2018-12-23</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>第一个<a href="http://liuqingwen.me/blog/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/">收集金币的小游戏</a>结束了，洋洋洒洒写了三篇文章，分别介绍了相关节点、场景以及所有的代码，作为新手能够独立使用 Godot 完成自己的第一个游戏也算是正式入门了！接下来，我们开启第二个完整的小游戏介绍：太空射击小游戏！同样很简单，但是有更多的发挥空间，当然，我只介绍最简单的游戏实现，更多的关卡设计、游戏思路和游戏元素则留给大家去摸索开发吧。</p>
+<p><img src="result_1.gif" alt="太空射击游戏效果图"></p>
+<p>我选择这个游戏的灵感来自于我刚开始学习 Unity 游戏开发时，在官方视频教程中看到的一个游戏： <a href="https://unity3d.com/learn/tutorials/s/space-shooter-tutorial" target="_blank" rel="noopener">Space Shooter tutorial</a> ，你会发现我在游戏里使用的素材都是来自这个游戏。除此之外，我推荐大家去下载另一个使用 Godot 引擎制作的太空射击类小游戏： <a href="https://github.com/PacktPublishing/Godot-Game-Engine-Projects" target="_blank" rel="noopener">Space Rocks</a> ，这个游戏的玩法截然不同，它的原理也更加值得新手去学习，代码中有许多的关于<strong>刚体模型物理碰撞的处理</strong>。</p>
+<p>本节分为上下两篇文章，源码我已经完整地上传到 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github 仓库</a>，欢迎大家克隆并提交 issue ，在开始之前我得申明一下：</p>
+<ol>
+<li>我使用的 Godot 版本依然是最新的预览版： <a href="https://downloads.tuxfamily.org/godotengine/3.1/alpha2/" target="_blank" rel="noopener">Godot 3.1 Alpha3</a></li>
+<li>这已经是本系列教程的第十一篇，所以会忽略部分细节，有问题请随时留言</li>
+<li>推荐加入国内 Godot 游戏开发 QQ 交流群： <em>691534145</em> （<strong>本人非群主</strong>）</li>
+</ol>
+<blockquote>
+<p>主要内容：粒子系统的介绍（上篇）<br>阅读时间： 9 分钟<br>永久链接： <a href="http://liuqingwen.me/blog/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/">http://liuqingwen.me/blog/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
+<li>介绍 Godot 中自带的粒子系统</li>
+<li>了解其他几个常见节点的使用</li>
+<li>本射击游戏场景介绍和代码（下篇）</li>
+</ol>
+<h3 id="粒子系统介绍"><a href="#粒子系统介绍" class="headerlink" title="粒子系统介绍"></a>粒子系统介绍</h3><p>中大型游戏中，几乎没有哪个游戏不使用粒子特效的。掌握粒子系统对游戏开发极其重要，合理地使用粒子特效对游戏效果绝对是锦上添花、如虎添翼，常见的粒子特效有：烟花、灰尘、火焰、爆炸、光环、雪花、雨滴、溅射等等等等。比如下面的这张非常熟悉的效果图，使用的就是粒子特效：</p>
+<p><img src="particles_effect.gif" alt="游戏中粒子效果"></p>
+<p>想要实现很酷的粒子特效是需要一定的学习和经验积累的，这里推荐大家去油管（ <a href="https://www.youtube.com/" target="_blank" rel="noopener">youtube</a> ）上订阅一个名叫 Duc Vu 的泰国人的频道，专做特效视频教程，虽然他大部分教程里使用的是 Unity 粒子，但是思想理论和部分设置都是大体相同的，直达连接： <a href="https://www.youtube.com/channel/UC5ZauAWNyh931gRJUqB1QPw" target="_blank" rel="noopener">https://www.youtube.com/channel/UC5ZauAWNyh931gRJUqB1QPw</a></p>
+<p><img src="game_fx_by_DucVu.jpg" alt="game_fx_by_DucVu.jpg"></p>
+<p>在本射击游戏中，我在四个地方使用了粒子特效，不过这都是一些非常简单的效果，设置起来也很轻松，简单的参数调整即可，接下来我们一起来讨论下这些重要的参数吧！ :smiley:</p>
+<h3 id="粒子系统参数"><a href="#粒子系统参数" class="headerlink" title="粒子系统参数"></a>粒子系统参数</h3><p>粒子节点 <em>Particles2D</em> 是 Godot 中所有节点里参数最多的一个，这也是为什么同一个材质，打造出的粒子特效千变万化的原因之一。如果想要实现自己心中的效果，我们需要多尝试、多调试、多实践，当然，有几个参数是对结果影响最直接的，请听我一一道来。</p>
+<p>首先是粒子节点中最基本的一些参数，大部分参数看名字就知道其意义，如下表格：</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Emitting</td>
+<td align="left">是否发射粒子</td>
+<td align="left">如果 One Shot 勾选， Emitting 将会被取消勾选</td>
+</tr>
+<tr>
+<td align="left">Amount    ⭐⭐</td>
+<td align="left">发射粒子的总数量</td>
+<td align="left">粒子消亡将重新产生新粒子，配合 Lifetime 生命周期参数</td>
+</tr>
+<tr>
+<td align="left">Lifetime  ⭐⭐</td>
+<td align="left">粒子的生命周期</td>
+<td align="left">通过计算，每隔 Lifetime/Amount 的时间产生一颗新粒子</td>
+</tr>
+<tr>
+<td align="left">One Shot</td>
+<td align="left">只发射一次</td>
+<td align="left">非常适用于爆炸等特效，在代码中控制发射</td>
+</tr>
+<tr>
+<td align="left">Preprocess</td>
+<td align="left">预热，提前发射粒子</td>
+<td align="left">比如游戏中的下雪场景，也叫 Pre-warm</td>
+</tr>
+<tr>
+<td align="left">Speed Scale</td>
+<td align="left">速度缩放系数</td>
+<td align="left">整体效果，影响粒子材质中的 Velocity 速度参数</td>
+</tr>
+<tr>
+<td align="left">Explosiveness</td>
+<td align="left">爆炸系数</td>
+<td align="left">粒子从中间往四周扩散，爆炸特效必备</td>
+</tr>
+<tr>
+<td align="left">Randomness</td>
+<td align="left">随机系数</td>
+<td align="left">粒子产生的随机性，取值 1 为完全随机</td>
+</tr>
+<tr>
+<td align="left">Local Coords ⭐</td>
+<td align="left">是否为本地坐标</td>
+<td align="left">位于 Drawing 子菜单，粒子运动在本地坐标还是世界坐标</td>
+</tr>
+</tbody></table>
+<p>这些是 <em>Particles2D</em> 节点的主要参数，控制粒子的一些整体效果，当然，仅仅依靠这些参数是不行的，当我们在使用粒子节点的时候，必须要给粒子节点添加一个 <em>Material</em> 材质，否则你不会看到有任何效果发生，在 <em>Process Material</em> 菜单下，材质分为两种： <em>ShaderMaterial</em> 和 <em>ParticlesMaterial</em> 。</p>
+<p><img src="godot_11_particles2d_node.png" alt="godot_11_particles2d_node.png"></p>
+<p>这里我们选择给粒子节点创建一个新的 <em>ParticlesMaterial</em> 粒子材质，在粒子材质中又有更丰富的参数配置，通过调节这些参数达到我们想要的效果，主要参数如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">解释</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Emission Shape</td>
+<td align="left">发射体的形状</td>
+<td align="left">有点、球体、方体、多点等形状</td>
+</tr>
+<tr>
+<td align="left">Spread           ⭐</td>
+<td align="left">粒子产生的范围</td>
+<td align="left">最大值为 180 度乘以 2 倍，即全范围发射： -180°~180°</td>
+</tr>
+<tr>
+<td align="left">Gravity</td>
+<td align="left">重力加速度</td>
+<td align="left">设置为 0 粒子将不受重力控制</td>
+</tr>
+<tr>
+<td align="left">Initial Velocity ⭐</td>
+<td align="left">粒子发射初始速度</td>
+<td align="left">与生命周期 Lifetime 参数结合产生特效</td>
+</tr>
+<tr>
+<td align="left">Angular Velocity</td>
+<td align="left">粒子的角速度</td>
+<td align="left">类似 Initial Velocity</td>
+</tr>
+<tr>
+<td align="left">Linear Accel</td>
+<td align="left">粒子的加速度</td>
+<td align="left">与 Initial Velocity 参数配合</td>
+</tr>
+<tr>
+<td align="left">Radial Accel</td>
+<td align="left">粒子旋转加速度</td>
+<td align="left">与 Angular Velocity 参数配合</td>
+</tr>
+<tr>
+<td align="left">Damping</td>
+<td align="left">阻尼系数</td>
+<td align="left">类似遇到逆风、摩擦阻力的效果</td>
+</tr>
+<tr>
+<td align="left">Angle</td>
+<td align="left">粒子角度</td>
+<td align="left">粒子的旋转角度，非发射方向</td>
+</tr>
+<tr>
+<td align="left">Scale            ⭐</td>
+<td align="left">粒子缩放尺寸</td>
+<td align="left">可以设置随机，随时间变化而调整粒子的缩</td>
+</tr>
+<tr>
+<td align="left">Color            ⭐</td>
+<td align="left">粒子的颜色</td>
+<td align="left">可以设置渐变颜色，粒子颜色随时间而变化</td>
+</tr>
+</tbody></table>
+<p>粒子材质的这些参数非常好理解，其中比较重要的参数我已经标记了，大家可以自己尝试不同参数值对效果的影响。</p>
+<p><img src="godot_11_particles_material.png" alt="godot_11_particles_material.png"></p>
+<p>一般来说，我们在使用粒子系统制作理想效果的时候，还会经常遇到随机参数以及曲线设置。粒子系统中很多参数设置都有曲线功能，比如 <em>Scale</em> 缩放参数，我们可以给它设置一个 <em>Scale Curve</em> 曲线，在曲线上通过添加、删除、移动锚固点来调整曲线的样式，最终粒子的大小缩放也就会随时间顺应曲线而变化。</p>
+<p>如果你熟悉 Unity 粒子，你会发现 Unity 粒子的曲线功能调整更加方便，这里顺便赞一下 <a href="https://blogs.unity3d.com/2018/12/13/introducing-unity-2018-3/" target="_blank" rel="noopener">Unity 2018.3</a> 新版本的一些新功能、新特性、新改进，互相学习很重要嘛。 :grin:</p>
+<p>除此之外，真正的特效一般都会使用到各种各样的图片作为粒子材质纹理， Godot 中粒子节点还支持使用 <em>SpriteSheet</em> 精灵图集、动画材质、地图材质等，位于 <em>Textures</em> 纹理菜单下，本游戏并没有使用到，大家可以去研究研究。</p>
+<h3 id="简单粒子效果"><a href="#简单粒子效果" class="headerlink" title="简单粒子效果"></a>简单粒子效果</h3><p>我在射击游戏中实现的粒子特效都极其简单，也没有使用任何其他的图片作为粒子的材质纹理：</p>
+<p><img src="godot_11_particles_all.gif" alt="粒子效果一览"></p>
+<p>注意这三个效果中的爆炸效果需要 <em>Explosiveness</em> 参数的配合，相信大家都能做出以上简单的粒子特效。总之，对于粒子特效的应用就是对粒子属性的熟悉度，我给新手朋友们的建议是：<em>尽量使用最少的参数配置出近视的效果</em>，当效果接近理想目标后，再进行其他参数的调整。还有提醒大家的是： Godot 中的 <strong>2D 粒子完全可以使用在 3D 游戏中！</strong>骚年们，充分发挥自己的创意，尽情打造酷炫的效果吧！ :sunglasses:</p>
+<h3 id="其他几个节点"><a href="#其他几个节点" class="headerlink" title="其他几个节点"></a>其他几个节点</h3><p>游戏中除了 <em>Particles2D</em> 节点，我还使用了其他三个新的节点： <em>VisibilityNotifier2D/ParallaxBackground/TextureButton</em> ，这里我也简单地说明一下：</p>
+<ul>
+<li>VisibilityNotifier2D 用于控制节点进出视窗、屏幕通知，比如用于物体飞出屏幕就删除等</li>
+<li>TextureButton 一个按钮控件，和普通按钮不同的是，它可以设置按钮在鼠标的各种状态下的图片显示</li>
+<li>ParallaxBackground 节点配合 ParallaxLayer 实现滚动特效，主要属性参数为 Scroll 和 Scale 等</li>
+</ul>
+<p>说明：游戏中我就是使用 <em>ParallaxBackground</em> 节点实现的无限太空背景滚动效果，它需要一个或者多个子节点 <em>ParallaxLayer</em> 的配合，其原理就是通过各个 <em>ParallaxLayer</em> 层不同的滚动速度来实现背景远近的视觉效应，效果类似如下平台游戏：</p>
+<p><img src="godot_11_parallaxbackground_effect.gif" alt="滚动背景效果"></p>
+<h2 id="三、总结（上）"><a href="#三、总结（上）" class="headerlink" title="三、总结（上）"></a>三、总结（上）</h2><p>好了，上篇就介绍这些内容吧，下篇主要内容是代码的重点解析。总结一下本篇主要知识点：</p>
+<ol>
+<li>Godot 中自带粒子系统的相关参数说明</li>
+<li>游戏中应用到的其他几个有用的节点</li>
+</ol>
+<p>本篇的 Demo 以及所有代码已经上传到 Github ，地址： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a></p>
+<p>未完待续……！</p>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/12/25/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-2/" class="alignleft prev" title="Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（下）"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（下）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/12/12/make-a-python-script-to-duplicate-blog-html-files-for-uploading-to-server/" class="alignright next" title="解决Hexo博客批量上传的小问题：利用 Python 脚本提取 HTML 文件">解决Hexo博客批量上传的小问题：利用 Python 脚本提取 HTML 文件&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

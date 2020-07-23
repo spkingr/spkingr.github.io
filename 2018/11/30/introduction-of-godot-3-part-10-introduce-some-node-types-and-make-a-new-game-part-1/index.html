@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）</h1>
+    <div class="meta">
+        <span>2018-11-30</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>时间飞快，我有一段时间没有发表博客了，这段时间并不忙，一方面我自己也在不断学习，另一方面暂时不知写哪方面的内容了，感觉 Godot 中一些基础的部分我都或多或少谈到了，所以我打算使用我们学习过的知识来做一个小游戏吧。</p>
+<p>这个游戏非常简单，但是对于完全“门外汉”的初学者来时还算有一定难度，不过别急，我会把我制作这个小游戏的一些思路以及常用的技巧娓娓道来，而且源代码我于上周就已经上传到 Github 啦： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a> ，另外这个游戏来源于一本书：<a href="https://www.packtpub.com/game-development/godot-game-engine-projects" target="_blank" rel="noopener">《 Godot Engine Game Development Projects 》</a>，官网也有这个 <a href="https://github.com/PacktPublishing/Godot-Game-Engine-Projects" target="_blank" rel="noopener">Demo(Coin Dash)</a> 以及其他示例的代码，我的思路和代码和官方有点不同，也实现了一些其他功能比如游戏暂停、金币数量显示等，强烈建议大家去围观。 :smiley:</p>
+<p><img src="result_1.gif" alt="result_1.gif"></p>
+<p>本文分上下两篇，第一篇，也就是在进入“金币”小游戏的开发制作讲解之前，我先把之前文章里没有遇到过的一些非常重要的节点介绍一下，还有一个提醒：最好的学习方法应该是先尝试一遍或者边思考边把代码浏览一下，然后再来看我的文章，这样效果会比较好。嗯，废话不多说，我们开始吧！</p>
+<blockquote>
+<p>主要内容：认识一些新的节点和代码学习<br>阅读时间： 10 分钟<br>永久链接： <a href="http://liuqingwen.me/blog/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/">http://liuqingwen.me/blog/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
+<li>学习使用一些新的 Godot 节点</li>
+<li>最基本的游戏开发规则</li>
+<li>编写代码的规范</li>
+</ol>
+<h3 id="Godot-中常用节点"><a href="#Godot-中常用节点" class="headerlink" title="Godot 中常用节点"></a>Godot 中常用节点</h3><p><strong>1. Timer 节点</strong></p>
+<p>看名字就知道这是一个“计时器”。在 Godot 中<strong>一切皆节点</strong>，所以看到这种<em>纯功能性*的节点不要觉得奇怪，同时，我们完全可以不使用节点，直接使用代码 <code>Timer.new()</code> 动态创建一个计时器也是没任何问题的；甚至我们完全可以通过设置变量，利用 <code>_process(delta)</code> 方法来计算时间，不过显然没有 *Timer</em> 节点来得方便简洁！</p>
+<p><img src="godot_10_timer_node.png" alt="godot_10_timer_node.png"></p>
+<p>Timer 时间计时器节点的属性非常简单，根据需求可以设置其等待时间、重复计时以及是否自动开始，这些属性我们也可以在 GDScript 脚本中使用代码修改：</p>
+<ul>
+<li><code>wait_time</code> ：等待时间，即计时时长，结束触发 <code>timeout</code> 信号</li>
+<li><code>one_shot</code> ：是否是一次性，如果是，只会触发一次 <code>timeout</code> 信号</li>
+<li><code>autostart</code> ：自动开始，载入场景后计时，也可以使用 <code>start</code> 方法手动开启</li>
+</ul>
+<p>游戏中计时功能使用非常频繁，不过，有部分计时场合我们还可以使用 <code>yield</code> 关键字代替，这样会省去节点的创建和信号的连接等繁琐、重复代码，这是分使用场合的，后面我会详述。 :smile:</p>
+<p><strong>2. Tween 节点</strong></p>
+<p>在游戏开发过程中，我们一般使用 <em>AnimationPlayer</em> 节点来实现移动、缩放、颜色渐变等动画效果，但实际上，在有些场景中我们可能会直接使用 <em>AnimatedSprite</em> 节点，再结合一系列图片来实现动画特效，这个时候由于图片的限制（比如我们只做了金币的闪耀图片，并没有做金币的消失图片），我们并不能添加实现其他普通动画，那是不是没有其他办法呢？——办法当然有，这就需要 <em>Tween</em> 节点的隆重登场了！</p>
+<p><img src="godot_10_tween_node.png" alt="godot_10_tween_node.png"></p>
+<p>Tween 即<em>渐进/过渡</em>的意思，从一种状态在一定时间内变化到另一种状态，从而产生一种视觉动画。渐变节点使用非常简单方便，可以对一个物体的任意属性进行动画控制，当然，也可以同时处理多个动画对象。其主要方法有以下几个：</p>
+<ul>
+<li><code>repeat</code> ：是否重复</li>
+<li><code>start()</code> ：开始渐变，结束后触发 <code>tween_completed</code> 信号</li>
+<li><code>interpolate_property()</code> ：设置进行动画的节点属性以及时长等，需要传递属性名称、开始结束值、时长等参数</li>
+</ul>
+<p>这里最重要的方法是 <code>interpolate_property()</code> ，可以在 Godot 编辑器中按 <kbd>F4</kbd> 搜索 <em>Tween</em> 类进行查看。当然，和 <em>Timer</em> 节点一样，我们完全可以在代码中动态创建 <em>Tween</em> 对象。</p>
+<p><strong>3. Path2D 节点</strong></p>
+<p><em>Path2D</em> 是一个路径节点，由很多位置点组成，这个路径可以是曲线，也可以是直线。实际上 <em>Path2D</em> 一般是与 PathFollow2D 配合使用，关于 <em>Path2D</em> 的使用，我推荐去看看官方的一个例子： <a href="https://docs.godotengine.org/en/latest/getting_started/step_by_step/your_first_game.html" target="_blank" rel="noopener">Your first game</a> 。</p>
+<p><img src="https://docs.godotengine.org/en/latest/_images/dodge_preview.gif" alt="Your first game"></p>
+<p>在我要讲解的这个小 Demo 中，我使用 <em>Path2D</em> 路径节点绘制了一些点来保存需要用到的位置，后续我会详述。 :smiley:</p>
+<p><img src="godot_10_path2d_node.png" alt="godot_10_path2d_node.png"></p>
+<h3 id="GDScript-几个重要关键字"><a href="#GDScript-几个重要关键字" class="headerlink" title="GDScript 几个重要关键字"></a>GDScript 几个重要关键字</h3><p><em>1. export(PackedScene)/export(AudioStream)</em></p>
+<p>在之前的文章中我们使用过 <code>export(int) var speed = 10</code> 来定义一个可以在编辑器中修改设置的整数值，以表示速度，同样地，我们可以使用 <code>export</code> 关键字来定义可以在编辑器中编辑的其他类型变量，比如：子场景、音频流等。</p>
+<p><code>export(AudioStream)</code> 用于定义一个<em>音频流</em>变量， <code>export(PackedScene)</code> 用于定义一个<em>子场景</em>变量，想象一下，游戏中我们制作了 3 种不同颜色的金币，每个关卡使用的金币可能不一样，这里我们就可以在关卡中定义一个 <code>PackedScene</code> 变量，然后直接在编辑器中选择对应的金币进行设置就可以了，非常方便。有点抽象，不过在后面的游戏代码中我们会应用到。</p>
+<p><em>2. preload(‘res://resource.tscn’)</em></p>
+<p><code>preload</code> 方法可以在代码中动态加载场景、文字、图片、音频等资源，比如我们可以预加载制作好的金币子场景，然后在代码中实例化，生成多个金币节点并添加到舞台中，实现动态添加金币的效果。 <code>preload</code> 是一个常用方法，不过在这个游戏中我并没有使用到，暂时提一下，以后讲 <a href="http://docs.godotengine.org/en/3.0/getting_started/step_by_step/singletons_autoload.html" target="_blank" rel="noopener">Singleton</a> 单例再详述吧。</p>
+<p><em>3. ProjectSettings.get(‘display/window/size/width’)</em></p>
+<p>在游戏创建的时候，我们都会对项目相关属性进行设置，比如游戏屏幕显示尺寸大小等，那么如何在代码中动态获取这些参数值呢？我们可以直接使用 <code>ProjectSettings</code> 这个单例，通过传入属性的路径，比如窗口大小的高度： <code>display/window/size/height</code> 即可获取相对应的配置值，这样能避免<em>硬编码</em>，即使修改了配置游戏依然能正常运行！</p>
+<p><em>4. rand_range/randomize/randi</em></p>
+<p>很多游戏中都会大量使用<strong>随机</strong>值，比如金币数量随机、金币品类随机、出现时机随机等等，在 GDScript 脚本中使用随机同样非常简单直接，一个方法 <code>randi()</code> 即可生成一个随机整数，不过这个整数的范围很大，需要生成范围限制的随机数则可以用 <code>rand_range()</code> 方法，接收两个参数，一个最小值，一个最大值。</p>
+<p>除了这两个方法，还有一个 <code>randomize()</code> 方法，这个方法有什么用呢？如果你在游戏中使用随机数，你会发现每次运行游戏，这个随机数都是相同的，这是因为生成随机数需要一个 <code>seed</code> 也就是名为<strong>种子</strong>的整数，因为种子并没有随机，所以根据这颗种子生成的随机数自然也就不会变化了，如何做到真正的随机呢？——在使用随机方法前，调用一下 <code>randomize()</code> 方法就可以啦！</p>
+<p><em>5. get_tree().paused</em></p>
+<p>我在游戏中添加了<strong>暂停</strong>的功能，相信大部分游戏都有这个功能吧。在 Godot 中暂停功能非常容易实现！直接调用 <code>get_tree().paused = true</code> 这一行代码就可以了，是不是感觉非常轻松直接？哈哈，不过记住：一旦运行这行代码后，我们的游戏会<strong>完全处于暂停状态</strong>，也就是说不论游戏本身、还有输入、甚至弹出的 UI 界面等都一律等闲视之——后果就是你不能继续游戏了！</p>
+<p>当然，解决这个问题是非常简单的，我们只需要把<em>那些不被默认暂停的元素（暂停状态下依然可用）*的 *Pause Mode</em> 暂停模式设置由 <code>inherit</code> 属性改成 <code>process</code> 就可以了：</p>
+<p><img src="godot_10_pause_mode.png" alt="godot_10_pause_mode.png"></p>
+<p><em>6. yield()</em></p>
+<p>这可以算是 GDScript 脚本的一个高级功能，它和 Python 中的 <code>yield</code> 关键字如出一辙，如果你熟悉<em>协程</em>的概念，像 Unity C# 中的 <code>StartCoroutine()</code> 方法， Kotlin 中的 <code>Coroutine</code> 协程， Dart/JavaScript 语言中的 <code>await/async</code> 关键字，那么 <code>yield</code> 的工作原理是很好理解的。</p>
+<blockquote>
+<p>对于新手来说，我觉得可以把协程简单地理解为：程序运行到该位置（ yield ），暂停挂起在当前位置，继续执行其他代码，当时机到来，回到刚才挂起的位置继续执行。</p>
+</blockquote>
+<p>嗯，听起来有点玄乎，不过在代码中使用起来非常简洁，参考运行下面的代码吧：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'开始运行程序……'</span>)</span><br><span class="line"><span class="keyword">yield</span>(get_tree().create_time(<span class="number">1.0</span>), <span class="string">'timeout'</span>) <span class="comment"># 挂起 1 秒钟</span></span><br><span class="line">print(<span class="string">'1秒钟后输出：结束运行。'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="游戏开发的几个小-Tips"><a href="#游戏开发的几个小-Tips" class="headerlink" title="游戏开发的几个小 Tips"></a>游戏开发的几个小 Tips</h3><p>几个实用的小技巧或者说开发规则，也是我自己在开发实践中、他人的书籍里、一些博客文章中学到的，总结的不多，不过对于初学者来说还是比较重要的，可以先按部就班，之后再发展处自己的风格思路吧！ :grin:</p>
+<p><strong>1. 文件夹的管理</strong></p>
+<p>在我之前的文章里，对于小项目我都没有做特殊的文件管理，但是当游戏项目越来越大的时候，我们需要引起足够的重视，因为这会影响开发速度、以及团队合作的效率。其实，你完全可以按照自己的风格去管理资源文件，但是更推荐官方的一些做法和建议： <a href="https://docs.godotengine.org/en/3.0/getting_started/workflow/project_setup/project_organization.html" target="_blank" rel="noopener">Project organization</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/project.godot</span><br><span class="line">/docs/.gdignore</span><br><span class="line">/docs/learning.html</span><br><span class="line">/models/town/house/house.dae</span><br><span class="line">/models/town/house/window.png</span><br><span class="line">/models/town/house/door.png</span><br><span class="line">/characters/player/cubio.dae</span><br><span class="line">/characters/player/cubio.png</span><br><span class="line">/characters/enemies/goblin/goblin.dae</span><br><span class="line">/characters/enemies/goblin/goblin.png</span><br><span class="line">/characters/npcs/suzanne/suzanne.dae</span><br><span class="line">/characters/npcs/suzanne/suzanne.png</span><br><span class="line">/levels/riverdale/riverdale.scn</span><br></pre></td></tr></table></figure>
+
+<p>这里我简单地比较了 Unity 和 Godot 中文件管理的风格样式，我个人更倾向于 Godot 的文件组织方式，因为等会我还会讨论一条重要的开发原则：<strong>尽量保持每个子场景的独立性</strong>！</p>
+<p><img src="file_orgnization_unity_vs_godot.png" alt="file_orgnization_unity_vs_godot.png"></p>
+<p><strong>2. 保持场景独立</strong></p>
+<p>嗯，我认为这是 Godot 中开发游戏最重要的一条原则了！它能明显地提升开发效率，提高团队合作，更利于 Debug 调试。因为 Godot 中一切基于场景，场景中可以包含多个子场景，子场景依然可以由多个其他子场景组成，而且<strong>每个子场景是可以单独运行的！</strong>打开子场景，按 <kbd>F6</kbd> 来单独运行、测试，及早发现问题，提高程序的健壮性。</p>
+<p>如何保持场景独立？这就需要我们去仔细思考了，具有独立功能的部分我们都可以抽离出来作为一个单独的子场景，通用、具有类似功能的节点也可以抽离出来以继承关系实现，需要说明的是：<strong>独立并不意味着不与其他场景发生任何关系了</strong>，独立只是让它能单独运行，能单独测试一部分功能，这是很重要的。</p>
+<p><strong>3. 代码编写规范</strong></p>
+<p>代码构成了游戏的灵魂，代码编写不规范带来的直接后果就是：</p>
+<ul>
+<li>自己看不懂，遇到 BUG 后越改越乱</li>
+<li>团队里其他开发者看不懂，很难或者无法 DEBUG</li>
+<li>不利于后续功能的开发、重构等</li>
+</ul>
+<p>和文件组织管理方式一样，其实代码编写规范也会因人而异，在 Godot 中官方所推荐的方式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 枚举、常量等变量命名</span></span><br><span class="line">enum State&#123;INIT, IDLE, PLAYING, DEAD&#125;</span><br><span class="line">const CONST_GRAVITY = <span class="number">98</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 普通变量、私有变量命名</span></span><br><span class="line">var player_sprite = <span class="number">1</span></span><br><span class="line">var _walk_speed = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 私有方法命名</span></span><br><span class="line">func _private_method():</span><br><span class="line">    get_tree().paused = true</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 公有方法命名</span></span><br><span class="line">func public_method():</span><br><span class="line">    _private_method()</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，在 GDScript 中是没有 <code>private/public/protected</code> 等关键字来规范访问限制的，类似 Python ，这也正是我们需要保持一定的编码规范的原因之一。不过，你会发现我的命名方式会有所不同！我比较习惯 Java/C#/Dart 等语言的命名规则，采用<em>驼峰式</em>，同时利用 <code>_</code> 下横线来标记私有变量或者方法，而且调用<em>内部方法</em>的时候我都会<em>显式</em>使用 <code>self</code> 关键字：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 枚举、常量等变量命名</span></span><br><span class="line">enum State&#123;INIT, IDLE, PLAYING, DEAD&#125;</span><br><span class="line">const CONST_GRAVITY = <span class="number">98</span></span><br><span class="line"></span><br><span class="line">var playerSprite = <span class="number">1</span> <span class="comment"># 公有变量</span></span><br><span class="line">var _walkSpeed = <span class="number">2</span> <span class="comment"># 私有变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 私有方法命名</span></span><br><span class="line">func _privateMethod():</span><br><span class="line">    self.get_tree().paused = true</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 公有方法命名</span></span><br><span class="line">func publicMethod():</span><br><span class="line">    _private_method()</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>至于选哪种，我觉得只要保持规范，符合个人或者团队共识就好啦！ :smiley:</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>本篇文章算是一个经验小总结吧，也是为了更好地解释我们后面要出场的游戏项目，林林总总地列举了一些不成文的条条列列，不知道大家看后的感受是怎样的呢？</p>
+<p>嗯，有两周没有写文章了，因为最近有其他的事情和同学在忙乎，不过我一定会坚持下去的，还是那句话，<strong>原创非常不易</strong>，希望大家喜欢！ :smile:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://github.com/spkingr/test-git/raw/master/images/weixin/weixin_it_258.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/12/05/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-2/" class="alignleft prev" title="Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中）"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/11/20/translation-of-textclassification-part-3/" class="alignright next" title="【翻译】TextClassification介绍（三）">【翻译】TextClassification介绍（三）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

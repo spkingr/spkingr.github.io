@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="理解Unity3D中的四种坐标体系"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>理解Unity3D中的四种坐标体系 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">理解Unity3D中的四种坐标体系</h1>
+    <div class="meta">
+        <span>2017-07-31</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Unity3D/">Unity3D</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="unity-coordinate-all.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>刚开始接触 Unity3D 的时候，经常会被 Unity 中各种坐标系搞得昏头转向不知所措，毕竟是一个 3D 兼 2D 游戏开发殷勤，还要把 3D 作品最终发布到 2D 的桌面或者手机系统中，所以熟悉掌握 Unity3D 中的坐标系是非产重要的。</p>
+<p>其实如果仅仅只有 3D 坐标系还是很简单的，就目前来说我们所见过的三维建模软件或者游戏开发软件所用的坐标系分两种：左手坐标系和右手坐标系。怎么区别呢？大家看下图就知道了：</p>
+<p><img src="unity-3d-coordinate-system.jpg" alt="unity-3d-coordinate-system.jpg"></p>
+<p>区分坐标系可以按上图方法，这里我也有个简单的判断方法：用手握住 z 轴，大拇指朝向 z 轴正方向，然后用手的四指从 x 轴正方向握拳头，如果是左手 90 度就能把四指握到 y 轴就是左手坐标系，如果是右手 90 度握紧后到了 y 轴就是右手坐标系。</p>
+<p>除了 3D 世界中的坐标系，还有其他的几个坐标系也非常常用，比如我们经常要把世界三维坐标系转换成我们最终屏幕中的二维坐标系，或者把手机屏幕的二维坐标系转化成游戏世界中的三维坐标系等，各个坐标系各有特别，不能混用，为了更好的学习 Unity 游戏开发，自己在此总结一下 Unity 当中的坐标系和相关用法，以作备忘和学习。</p>
+<h2 id="二、坐标体系"><a href="#二、坐标体系" class="headerlink" title="二、坐标体系"></a>二、坐标体系</h2><p>Unity3D 当中基本的坐标体系主要有下面这四种：</p>
+<ol>
+<li>世界坐标系 (World Space)</li>
+<li>屏幕坐标系 (Screen Space)</li>
+<li>视口坐标系 (Viewport Space)</li>
+<li>GUI界面坐标系 (GUI System)</li>
+</ol>
+<p><img src="Blog-unity-coordinate-all.jpg" alt="Blog-unity-coordinate-all.jpg"></p>
+<p>这四种坐标系可以说没有一个是完全相同的，各个坐标系所代表的意思也可以从字面含义中理解出来，它们之间都是可以相互转换的，不过 GUI 坐标体系除外，它比较特殊，也相对来说是最简单的，那么我们就从最简单的说起吧。 :smile:</p>
+<p><strong>1. 绘制 GUI 界面的坐标体系</strong></p>
+<p>我们在做 Unity 游戏开发的时候，经常会使用内置的 GUI 来做一些测试，比如显示一个按钮控制游戏，画一个文本显示相关信息等。它的代码全部控制在 <code>OnGUI()</code> 函数中：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (GUI.Button(<span class="keyword">new</span> Rect(<span class="number">0f</span>, <span class="number">0f</span>, <span class="number">160f</span>, <span class="number">40f</span>), <span class="string">"Click Me"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//button clicked and do something here...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个按钮 <code>Button</code> 所在的坐标系就是 GUI 绘制坐标系。大家稍微测试一下就知道了，它的原点 <code>(0, 0)</code> 在最左上角，因为屏幕宽度是 <code>Screen.width</code> ，高度是 <code>Screen.height</code> ，所以 GUI 体系右下角的坐标为： <code>(Screen.width, Screen.height)</code> , 这是一个二维的坐标体系，坐标 <code>z</code> 的值都为 0 。大家可以看下图加深理解：</p>
+<p><img src="unity-gui-coordinate-a.jpg" alt="unity-gui-coordinate-a.jpg"></p>
+<p><strong>2. 视口 Viewport 坐标体系</strong></p>
+<p>当我们使用多个相机，在同一个场景中显示多个视口的时候，我们就需要用上视口坐标系了。</p>
+<p>视口坐标系对于场景的显示非常重要，对于新手来说我们经常使用一个相机就够了，但是当需要使用到多个视口的时候，我们就必须关注视口坐标体系了，大家可以在相机 <code>Camera</code> 的属性中看到 <code>Viewport Rect</code> 就是视口坐标系的设置：</p>
+<p><img src="unity-viewport-coordinate2-a.jpg" alt="unity-viewport-coordinate2.jpg"></p>
+<p>一个相机对应一个视口，视口预览（ Camera Preview ）展示了相机所看到的所有物体，很显然，它默认大小是 <code>(width = 1, height = 1)</code> ，位置也是从 0 到 1 ，这个位置就是我们所讨论的坐标系：左下角为 <code>(0, 0)</code> ，右上角是 <code>(1, 1)</code> ，一般视口坐标系主要用在相机显示中，我们简单的进行 <code>Viewport Rect</code> 的设置就可以了。</p>
+<p>另外，新手朋友们可以记住这么一个快捷键： <code>Ctrl + Shift + F</code> ，可以快速设置相机视口到当前场景窗口的视口位置。下图是视口坐标系和鼠标在屏幕上的坐标系的转换结果：</p>
+<p><img src="unity-viewport-coordinate1-a.jpg" alt="unity-viewport-coordinate1.jpg"></p>
+<p><strong>3. 屏幕 Screen 坐标体系</strong></p>
+<p>嗯，非常重要！不管怎样，最终我们所有的成果都会发布到各个平台（屏幕）上，所以，任何坐标系的坐标和屏幕坐标系的转换都是非常重要的。比如我们经常需要处理鼠标的相关事件（鼠标位置、单击、双击事件等），或者手机上的触摸反馈，这些原始数据都是屏幕坐标系相关的。</p>
+<p>虽然重要，其实屏幕坐标系处理起来很简单直接， <code>Input.mousePosition</code> 获取的就是鼠标在屏幕中的位置坐标。大家可以测试一下，屏幕坐标系中原点 <code>(0, 0)</code> 位于左下角，那么右上角必然就是 <code>(Screen.width, Screen.height)</code> ，对了，还有一个 <code>z</code> 呢？都为 0 吗？答案是肯定的，既然是二维坐标系那么 <code>z</code> 肯定是 0 了，和 GUI 坐标系一样，但是话又说回来，屏幕坐标系转换成世界坐标系 <code>z</code> 还是 0 吗？其实不然，屏幕坐标转换成世界坐标后物体的 <code>z</code> 值是取决于相机的，因此： <code>gameObject.z = camera.z</code> ，其实在上面视口坐标系介绍中的图中我已经把 <code>Mouse Point</code> 鼠标位置转换成世界坐标（ <code>World Point</code> ）了，大家应该注意到了吧。</p>
+<p>那么，除了坐标系的转换，还有什么值得注意的呢？这里我要告诉大家的是，我们在控制相机的时候，因为屏幕显示的就是相机所看到的内容，而<strong>屏幕的宽高比直接影响了相机的显示</strong>，也就是 <code>Aspect Ratio</code> 的值，大家可以在 Game 面板中轻松地设置 <code>Aspect</code> 宽高比，查看对游戏画面的影响：</p>
+<p><img src="unity-screen-coordinate-aspect1-a.jpg" alt="unity-screen-coordinate-aspect1.jpg"></p>
+<p>如下图，相机的宽高比和屏幕宽高比一致，显示结果也一致：</p>
+<p><img src="unity-screen-coordinate-aspect2-a.jpg" alt="unity-screen-coordinate-aspect2.jpg"></p>
+<p>如果相机的宽高比设置的和屏幕宽高比不一样的话，显示结果就有点不同了：</p>
+<p><img src="unity-screen-coordinate-aspect3-a.jpg" alt="unity-screen-coordinate-aspect3.jpg"></p>
+<p>所以，在游戏开发中，<strong>我们要重视相机的宽高比 <code>Camera.aspect</code> 的值，一般我们会保持相机宽高比不变，然后通过改变相机的视口尺寸 <code>Camera.orthographicSize</code> 来显示场景中需要显示的物体</strong>，关于这个主题我会在我的下一篇文章中提到，大家可以关注我的博客。如何通过宽高比获取摄像机视口尺寸呢？首先可以从上图中知道宽高比的计算方法： <code>aspect = width / height</code> ，当你同时获取到 <code>width</code> 和 <code>height</code> 的时候，你通过 <code>Mathf.Max(height, width / aspect)</code> 来得出最终的尺寸大小（<em>注意这个结果是 2 倍视口尺寸哦</em>）。这个在游戏场景中应用的还是比较多的，比如你有这么个需求：两个玩家移动对战，你的相机要把两个移动的玩家随时放置在屏幕显示中。 :grin:</p>
+<p><strong>4. 世界 World 三维坐标系</strong></p>
+<p>最后，世界坐标系！世界坐标系不是最简单的，但却是我们最常用的坐标系。记住一点，任何情况下： <code>transform.position</code> 都是返回物体的世界坐标值，及时你所使用的是子物体！另外，从上面所讲的屏幕坐标系转换成世界坐标系也是非常简单的，它以当前相机为参考：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> position = Input.mousePosition;</span><br><span class="line"><span class="keyword">var</span> worldPoint = Camera.main.ScreenToWorldPoint(position);</span><br></pre></td></tr></table></figure>
+
+<p>另一方面，我们在游戏开发过程中，经常要处理<strong>子物体</strong>的相对 <code>transform</code> 值，这个时候我们就需要稍微动点脑子了，当然如何转变 Unity 已经帮我们预制好相应的函数方法了，你只要<strong>把父物体当做世界，子物体当做世界中的物体</strong>，使用这些函数，换一下坐标就和处理绝对坐标一样了，不知道大家理解没有。我举个例子，我们在游戏开发中会遇到这种情况，你的相机如果直接放到世界中那么必然会需要调整它的旋转角度才能达到满意的视口位置，如何不让相机产生任何旋转就能把世界中的游戏物体放到合适的视口位置呢？</p>
+<p>办法就是：我们<strong>把相机放到一个产生了合适旋转角度的父物体当中！</strong>这样做的效果就是：相机就相当于子物体，父物体旋转了，子物体就不需要额外旋转了，这时候相机的<strong>局部旋转就为 0</strong> 。这在有些场景中使用起来很方便，相机已经是父物体世界中的子物体了。</p>
+<p><img src="unity-world-coordinate-a.jpg" alt="unity-world-coordinate.jpg"></p>
+<p>怎么计算相对坐标呢？在 Unity 中都有相应的函数，使用比较简单：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取的是世界坐标</span></span><br><span class="line"><span class="keyword">var</span> childPosition = childObject.transform.position;</span><br><span class="line"><span class="comment">//转化为父物体下的相对坐标，相当于位于父物体世界中</span></span><br><span class="line"><span class="keyword">var</span> relativePosition = parentObject.transform.InverseTransformPoint(childPosition);</span><br><span class="line"><span class="comment">//转化为世界坐标，注意：这里不能传入 childPosition ，因为 childPosition 就是世界坐标</span></span><br><span class="line"><span class="keyword">var</span> worldPosition = parentObject.transform.InverseTransformPoint(relativePosition);</span><br><span class="line"></span><br><span class="line"><span class="comment">//所以，下面结果是相等的！</span></span><br><span class="line">print(childPosition == worldPosition);</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>当然，在使用坐标系过程中我们还要关注其他方方面面，比如欧拉角的旋转，万向锁，平滑过渡视野等等，这些我想我会在后面的文章总结中写道吧。这次就总结介绍了这几个坐标系，看上去有点复杂，总体来说还是挺很好理解的，有什么不对的或者可以加强的请给我留言，谢谢！ :smile:</p>
+<p>最后附上刚开始的总结一图：</p>
+<p><img src="Blog-unity-coordinate-all.jpg" alt="Blog-unity-coordinate-all.jpg"></p>
+<blockquote>
+<p>资料：<br>Unity3d数学基础之坐标系： <a href="http://www.jianshu.com/p/86decf1697b0" target="_blank" rel="noopener">http://www.jianshu.com/p/86decf1697b0</a><br>Unity空间坐标相关知识： <a href="http://www.jianshu.com/p/9ed5f8d023ff" target="_blank" rel="noopener">http://www.jianshu.com/p/9ed5f8d023ff</a></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Unity3D/" class="button small">Unity3D</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/08/03/learning-notes-of-tanks-tutorial-in-unity3d/" class="alignleft prev" title="【学习笔记】Unity3D官方游戏教程：Tanks Tutorial"><i class="fa fa-angle-double-left"></i>&nbsp;【学习笔记】Unity3D官方游戏教程：Tanks Tutorial</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/07/04/solve-several-problems-of-kotlin-plugin-in-intellij-idea/" class="alignright next" title="IDEA上使用Kotlin插件出现的几个小问题">IDEA上使用Kotlin插件出现的几个小问题&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

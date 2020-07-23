@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【翻译】17位谷歌专家称号大牛如何看待Kotlin"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>【翻译】17位谷歌专家称号大牛如何看待Kotlin - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">【翻译】17位谷歌专家称号大牛如何看待Kotlin</h1>
+    <div class="meta">
+        <span>2017-06-03</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Kotlin/">Kotlin</a> <a href="/tags/翻译/">翻译</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="google-kotlin.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、译前说明"><a href="#一、译前说明" class="headerlink" title="一、译前说明"></a>一、译前说明</h2><p>貌似 Kotlin 是不是已经过了最火爆的那段时期了？其实不管怎样，我都要把这篇文章尽我最大努力翻译出来给大家看看，尽管 Kotlin 已经被招安，尽管文章的观点因为谷歌 IO 大会而过时，尽管本人翻译水平是那么的不靠谱，但是至少我还是不会曲解人意的，至少他是大牛们的观点，我能做的是尽量把翻译做更好吧。 :blush:</p>
+<p>这篇文章由 Kotlin 布道者： <a href="http://antonioleiva.com/" target="_blank" rel="noopener">Antonio Leiva</a> 在谷歌 IO 大会（ 5 月 17 日）开展之前发布的（ 发布时间是 5 月 15 日），相信有一部分同学熟悉这位大神：<strong>我姑且认为他是最早出版安卓 Kotlin 相关书籍的大牛，而且毫无疑问他的书是最早关于 Kotlin 方面的安卓书籍被翻译成中文版的。</strong>但是，我这里还是要说但是，你可以从文章内容看出来，他认为谷歌接受并支持 Kotlin 为官方开发语言是没有什么可能性的，这也许是他采访 17 位谷歌大牛并发表他们对 Kotlin 看法文章的动机吧。</p>
+<h2 id="二、译文"><a href="#二、译文" class="headerlink" title="二、译文"></a>二、译文</h2><p>谷歌已经多次表态申明他们并无反对 Kotlin 的使用，而编译器能够正确地编译识别 Kotlin 代码表明谷歌并没有阻止任何人对 Kotlin 的使用。</p>
+<p>但是，<strong>很多人还是一直在等待谷歌官方的正式支持</strong>，但这几乎是不可能的事情。</p>
+<p>尽管我们在等待这个时刻的到来，但是我认为了解<strong>谷歌安卓开发专家们对它的看法</strong>还是很有必要的。</p>
+<p>你是听说过，<a href="https://developers.google.com/experts/all/technology/android" target="_blank" rel="noopener">谷歌开发专家</a> （ GDEs ）是谷歌赋予那些在特定领域有着独特贡献的专业人士的荣誉称号。</p>
+<p>我只联系上了其中一些专家们（谷歌开发专家人员列表非常的长！），并得到了他们当中 17 位的回答。非常感谢他们的友好真诚的心以及能够抽出时间来为我解答。</p>
+<p>我只是问了他们一点点关于 Kotlin 的信息，以及他们是怎样看待 Kotlin 的。毫无疑问，我并没有对他们的看法做过任何修改，因此在文章中你能同时看到有支持和反对（或许并非如此）两种声音。</p>
+<p>我由衷希望<strong>这些观点能有助于你了解 Kotlin 是如何改变游戏规则的</strong>，并且，如果你是一名安卓开发者的话，至少能让你开始考虑使用 Kotlin 吧。</p>
+<p>马上进入正题，以下就是我们这些谷歌大牛们的观点，排名不分先后：</p>
+<h3 id="1-Annyce-Davis"><a href="#1-Annyce-Davis" class="headerlink" title="1. Annyce Davis"></a>1. Annyce Davis</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Annyce Davis.jpg" alt="Annyce Davis" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Annyce](http://www.adavis.info) 是一名谷歌安卓开发专家，她在过去 6 年里一直致力于多种多样的安卓生态系统相关应用开发。
+同时她也是一名国际会议演讲专家、作者，同他人分享在安卓开发中的经验。
+</blockquote>
+<p>我曾经开发过 Grails 应用，使用的是 Groovy 这门开发语言。 Groovy 相对于 Java 有相当巨大的改进。它非常简洁且避免了很多当时在 Java 6 中出现的代码重复模板工作。<strong>当 Kotlin 出现在我的视野时，我立刻被那些我记忆中 Groovy 类似的语法所吸引</strong>。它同样的清晰而简洁。</p>
+<p>我是一名狂热的学习份子，我如饥似渴的学习 Kotlin 并开始玩转 Kotlin Koans 。我也预定了早期版本的 Kotlin in Action 这本书。最终让我转变的是 Hadi 的 Kotlin 广播。最终我决定认真地对待 Kotlin 并在它的 1.1 版本发布之后开始把它应用到我的产品开发当中。</p>
+<p><strong>对于安卓开发者来说它有很多优势</strong>。最重要的一点是它的类型系统和空指针异常处理特性。这会强制你明确哪个变量可空，并作相对应的处理。编译器接着跟进并保证赋值总是有效的。<a href="https://antonioleiva.com/google-kotlin/nullity-kotlin/" target="_blank" rel="noopener">空指针异常</a>是我在安卓应用开发中遇到的最常见的一种异常。 <strong>Kotlin 在这个方面创造了一个良好的平台</strong>。</p>
+<p>在我看来，另一个巨大的制胜点就是它的函数扩展功能。它能够为 Context ， Activity 添加扩展方法，同时它的数据类也<strong>使得我的代码更加简洁</strong>，可读性也有增强。</p>
+<p>使用 Kotlin ，我的代码变得简洁而又健壮！</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>Kotlin 对于安卓开发者有很多优势。采用 Kotlin 开发，我的代码变得简洁而又健壮！</strong></p>
+</blockquote>
+<h3 id="2-Sebastiano-Poggi"><a href="#2-Sebastiano-Poggi" class="headerlink" title="2. Sebastiano Poggi"></a>2. Sebastiano Poggi</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Sebastiano Poggi.jpg" alt="Sebastiano Poggi" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+在意大利北部雾都平原做智能手表开发后他开始崭露头角，[Sebastiano](https://twitter.com/seebrock3r) 带着他那缕卷发来到了伦敦准备大干一场。
+作为会议演讲嘉宾以及网络思维传教士的他在 2014 年获得谷歌程序开发专家的称号。最近他沉迷于 UI 和 UX 设计，目前在 Novoda 公司写一些很酷的软件。
+</blockquote>
+<p><strong>我非常、非常的喜欢这门语言！</strong>我个人感觉<strong>是它让写代码成为了一种乐趣</strong>，相反这些在 Java 中确是非常痛苦和厌烦的事情。我算不上一名专家，因为我还没有在我的日常工作中着重使用它，但是我在自己边缘项目中使用过。你听说过传说中的 10 倍效率开发者吗？ <strong>Kotlin 有时候让我有种自己就是传说中的 10 倍效率开发者的感觉</strong>（我一直不相信有谁能够成为 10 倍效率的开发者，但是现在是个很好转变思维的开始）。</p>
+<p>这门语言除了明显简洁语法特性之外，<strong>我非常喜欢那些额外的 API 和它所打造的整个生态系统</strong>。例如，不可变集合，有时候我认为他是非常有必要的，如果在软件开发中没有使用（部分没有使用？） Guava 的话，你根本不可能在 Java 中使用到它；然而这在 Kotlin 中是第一步就被实现了的。而且这意味着很多东西。噢，我有没有提到我非常兴奋地看到了他们在发布了对 LLVM 的支持后还将会发生的一些事情？</p>
+<p>就像我刚提到的，我的日常工作并没有包含 Kotlin 的使用。有很多理由可以解释这个项目能够从中受益，但是我们的项目如要采用 Kotlin 地话也非易事，如此大的团队规模是这个产生这个困难的主要原因。我也能观察到 Kotlin 存在的问题：<strong>缺乏静态分析工具，也没有现成的设计模式</strong>。</p>
+<p>后者相对来说不是一个大问题，如果你的项目没有那么复杂的话。但是如果有 10 个开发者同时工作在一个代码模块上，而且还拥有将近 10 年的迭代历程，那么有一个较好的现成的模式将会极大地稳定你的军心。当然，你可以使用 Java 的模式，但是<strong>并不是所有那些模式都适合 Kotlin 的</strong>，因为有不少模式的设计局限在 Java 之上。这是一个很长的话题，我就此打断以让我继续完成我的整个看法。</p>
+<p><strong>前面提到的那个问题，对于我来说，是非常关键的一个问题</strong>，而且确实是一个致命的问题。原因在于实际开发中你不能使用 PMD ， Checkstyle ， Findbugs 和其他一些工具（我没有尝试过 Errorprone ）这将会形成一种非常危险的状况。比如，你有 3 到 4 个以上的开发者，你不能总是期望一直对代码编写风格上进行严格的监督。更重要的是，你所使用的工具中缺少很多深层次的 BUG 检查机制。我请你举起手来，如果你从来没有使用过静态分析工具（正确使用）的话，我根本不相信！目前，我知道有一些 IDE 带有基本的检查机制，但是那些还远远不够强大（暂时）；也有一些项目给 Kotlin 带来了静态分析功能，但是这些项目暂时还不能成为你所能依赖的对象。我很期待看到它们变得越来越成熟，最终能让我们自信地采用他们！</p>
+<p>话说回来，我现在正在我自己的小项目中使用 Kotlin ，我非常喜欢它。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>你听说过传说中的 10 倍效率开发者吗？ Kotlin 有时候让我有种自己就是 10 倍效率开发者的感觉。</strong></p>
+</blockquote>
+<h3 id="3-Jorge-Barroso"><a href="#3-Jorge-Barroso" class="headerlink" title="3. Jorge Barroso"></a>3. Jorge Barroso</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Jorge Barroso.jpg" alt="Jorge Barroso" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Jorge Barroso](https://twitter.com/flipper83) 是 Karumi 公司的安卓开发者也是公司合伙人。一个独特的小型软件开发工作室，总部坐落在 Madrid ，专注于开发简洁而又稳定的原生程序，同时和团队一起致力于技术提升。
+Jorge 有着长达 10 年的软件工程经验，他把自己定义为一个实用主义码农，专注于提升安卓项目的架构，是一名坚定的语义性代码概念和软件开发测试的倡导者。他持续不断的学习并研磨安卓代码技巧，努力了解并适应内部框架的演变。
+</blockquote>
+<p><strong>Kotlin 是安卓开发界的一大进步</strong>。安卓缺少一些东西，相比较其他的 Java 平台它是有点落后了，即使是 Java 8 的推出也不能阻止它成为一门我们所喜欢的现代语言。</p>
+<p><strong>我觉得目前最大的问题在于移植</strong>，很难说服一个公司转型到 Kotlin 并告诉他们价值所在。对于科技型公司这会相对轻松些，因为这是对公司开发者的一种激励和挑战，但是对于小型企业却很难。另外，很多企业担心 Kotlin 得不到谷歌公司的支持，这会导致移植结果半途而废。</p>
+<p><strong>我喜欢这门语言以及它所构建的生态系统</strong>，我希望能够在我的日常开发中更多地去使用它，但是，很显然我的工作项目并不允许我这么做。<strong>我鼓励大家去尝试一下</strong>，不仅仅是 Kotlin 这门语言，还有其他的一些语言，因为这会开拓大家的视野并且在软件编写过程中学到很多东西。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>Kotlin 是安卓开发界的一大进步，我喜欢这门语言以及它所构建的生态系统。</strong></p>
+</blockquote>
+<h3 id="4-Donn-Felker"><a href="#4-Donn-Felker" class="headerlink" title="4. Donn Felker"></a>4. Donn Felker</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Donn Felker.jpg" alt="Donn Felker" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Donn Felker](https://caster.io/) 是 Caster.IO 的创始人和首席执教官， Fragmented Pdocast 的合伙人，谷歌安卓开发专家，同时也是手机类畅销书的作者。
+</blockquote>
+<p>它很有趣，我很喜欢。它给安卓开发界带来了一缕新鲜的空气。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>我喜欢 Kotlin 。他给安卓开发界带来了一缕新鲜的空气。</strong></p>
+</blockquote>
+<h3 id="5-Mark-Allison"><a href="#5-Mark-Allison" class="headerlink" title="5. Mark Allison"></a>5. Mark Allison</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Mark Allison.jpg" alt="Mark Allison" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Mark Allison](https://blog.stylingandroid.com/) 是自由职业安卓开发者，也是 stylingandroid.com 网站博客作者。
+</blockquote>
+<p>虽然 Kotlin 有很多让我喜欢的地方，但是<strong>我认为它在投入项目实际生产中还不够成熟</strong>。 Kotlin 中缺乏现有的模式以及最佳实践，这会导致代码很难维护。</p>
+<p>这反映在 <strong>Kotlin 缺乏静态代码分析工具</strong>上。他并不能完美地利用 Java 的静态代码分析工具，这会是技术债务的一个明显的信号灯。 Java 工具不能用在 Kotlin 上是因为这些工具只是专门分析 Java 源码。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>我认为 Kotlin 在项目成品中应用还不够成熟</strong></p>
+</blockquote>
+<h3 id="6-Huyen-Tue-Dao"><a href="#6-Huyen-Tue-Dao" class="headerlink" title="6. Huyen Tue Dao"></a>6. Huyen Tue Dao</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Huyen Tue Dao.jpg" alt="Huyen Tue Dao" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Huyen Tue Dao](https://twitter.com/queencodemonkey) 就职于 Atlassian 的 Trello 平台。一半的工作是处理安卓对话框。
+</blockquote>
+<p>我完全地、疯狂地迷恋上了 Kotlin （那个词是“ C ”还是“ K ”？）。在工作上我们已 100% 使用 Kotlin ，而且，当然<strong>包括实际产品代码！</strong>实际上，只要我能做到的地方我都用 Kotlin 编写代码，这得益于和 Java 的完全互操作性。在享受和利用 Kotlin 的强大的现代语言特性的同时，我仍然可以随意访问平台的 API 以及其他已经编写好的代码集和类库。</p>
+<p>因为 Kotlin 是新出的，所以我们现在全部都在探索和定义最佳的实践方式，<strong>我不得不仔细审查每一行代码在不同层次带来的作用</strong>。这很有趣，也强迫我对一些决定做出更多的深思熟虑和责任担当。</p>
+<p>这门语言超乎想象的简洁。我喜欢安卓，但是我们做了大量重复的模板工作， Kotlin 能帮我们减少很多重复的工作。当然过于简洁会导致可读性方面的问题，但是我认为大部分时间里 <strong>Kotlin 实际上提升了代码可读性</strong>，我们也不至于太过于疯狂地在意我们所需要的最佳实践效果。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>在工作上我们 100% 采用 Kotlin ，而且，当然包括产品代码！</strong></p>
+</blockquote>
+<h3 id="7-Dmytro-Danylyk"><a href="#7-Dmytro-Danylyk" class="headerlink" title="7. Dmytro Danylyk"></a>7. Dmytro Danylyk</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Dmytro Danylyk.png" alt="Dmytro Danylyk" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Dmytro Danylyk](https://twitter.com/dmytrodanylyk) 是一名开发者，作者和讲师。对安卓开发和平面设计充满激情。目前在 Atlassian 的悉尼工作室工作，对于他来说，这是澳大利亚提供的最好的工作环境了。
+</blockquote>
+<p><strong>Kotlin 打破了那些争执于安卓开发界的游戏规则</strong>。它有很多我喜欢的特性比如：空指针安全，数据类，属性，懒加载属性，函数扩展性，协程，不可变性等等。</p>
+<p>我很享受使用 Kotlin 编程，因为<strong>我完全就不需要使用其他的第三方类库了</strong>， Kotlin 已经提供了大部分现成的功能。</p>
+<p>感谢 JetBrains 公司<strong>给我们提供了强大的 IDE 支持</strong>以及众多的学习材料，甚至包括在线 REPL 编程。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>我很享受使用 Kotlin 编程，因为这样我完全不需要使用其他的第三方类库。</strong></p>
+</blockquote>
+<h3 id="8-Anup-Cowkur"><a href="#8-Anup-Cowkur" class="headerlink" title="8. Anup Cowkur"></a>8. Anup Cowkur</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Anup Cowkur.jpeg" alt="Anup Cowkur" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Anup Cowkur](https://twitter.com/anupcowkur) 是一名谷歌安卓技术专家，是 GO-JEK 公司安卓骑行航海产品的技术研发组长。
+他在印度 Droidcon , Stockholm 等地演讲过。多篇安卓论文的作者， Bangalore 安卓用户群组的组织者。
+</blockquote>
+<p>我曾经使用过像 Haskell 和 Elixir 这样的语言进行编程，我当时就在想，<strong>“为什么我们在安卓上没有那些好东西呢？”</strong></p>
+<p><strong>但是，现在有了，我们有了 Kotlin 。</strong></p>
+<p>可选类型自动由系统处理，函数成为一等公民，正则匹配（部分）以及不可变类型，这些特性<strong>让我能够在安卓上做真正的函数式编程。</strong></p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>Kotlin 让我能够在安卓上做真正的函数式编程。</strong></p>
+</blockquote>
+<h3 id="9-David-Vavra"><a href="#9-David-Vavra" class="headerlink" title="9. David Vávra"></a>9. David Vávra</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="David.jpg" alt="David Vávra" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[David Vávra](https://twitter.com/vavradav) 是安卓和 Firebase 谷歌技术专家。他带领他的初创公司进行安卓架构的开发工作。他是 Prague 地区 GDG 的组织者，非常热爱开源，小程序和实况角色扮演。
+</blockquote>
+<p><strong>我已经在产品开发中使用 Kotlin 进行主程序开发</strong>（ <a href="http://www.settleup.info/" target="_blank" rel="noopener">Settle Up</a> ）。它已经足够成熟，相比 Java （任何版本） 有很多优势。它完全兼容现有的 Java 工具集和类库，在 Android Studio 中完美工作。</p>
+<p>如果我启动一个新的 APP ，<strong>我会毫不犹豫地从 Kotlin 开始</strong>。一种很常见的反对观点是：“如果我的队友不会的话，那将会产生抱怨以致影响生产效率”。我不同意这种观点，<strong>从 Java 转变过来是不费吹灰之力的</strong>。而且，那些优势也会在早期的进度中就能显现出来。比方说，使用 RxJava 库极其麻烦。</p>
+<p>对于现有的 APP 移植——这就要看情况了。打个比方<strong>你可以只用 Kotlin 写一部分代码</strong>，如果你想充分利用这门语言的优势的话，你最好做到 100% 的转变。这很难说服项目的持有者。</p>
+<p>唯一 <strong>Kotlin 需要的是一个谷歌官方的“批准盖章”</strong>。谷歌目前没有任何动作，除了或许可能会在文档中添加 Kotlin 版本的代码（就像 Swift / ObjectiveC 那样）。如果成为现实的话，我们将会看到 Kotlin 成为主要生产力。为今年的 I/O 大会祈祷吧！</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>我在产品开发中使用 Kotlin 开发主程序。它已经足够成熟而且有很多优势。</strong></p>
+</blockquote>
+<h3 id="10-Cesar-Valiente"><a href="#10-Cesar-Valiente" class="headerlink" title="10. César Valiente"></a>10. César Valiente</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Valiente.jpg" alt="César Valiente" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[César Valiente](https://twitter.com/CesarValiente) 是微软公司的一名安卓工程师，前 Wunderlist 公司核心安卓开发人员。 FLOSS （免费开源软件）的布道者。谷歌安卓开发专家。演讲家。他是一个非常好相处的人。
+</blockquote>
+<p><strong>我认为 Kotlin 是一门神奇的现代语言。</strong></p>
+<p>它的学习曲线非常平滑，你可以在某一天上午研究一下，然后当天结束后你也许就能用它写一些代码了。<strong>用它写代码很享受，使用起来也很有趣，它非常简洁，拥有其他现代语言所拥有的特性</strong>，它由 JetBrains 公司的牛逼技术团队持续不断地开发，也得到了社区的大力支持，而且， <strong>Kotlin 是开源的哦！</strong></p>
+<p>我不会花很多时间来解释 Kotlin 的那些让程序员生活得更美好的特性，对于这些特性，你可以看一下那描述地相当好的文档，对于练习的话，你可以直接在我们的 IDE 中使用 Koans 或者到网上找那些<strong>不断由社区发布的不可思议的新东西。</strong></p>
+<p>在安卓方面， Kotlin 给我们安卓开发者带来了一缕新鲜的空气，给了我们重新享受软件开发的新理由，并且在每天的工作之中很重要的一点是<strong>使用 Kotlin 你会写少编写很多的代码</strong>，避免了大量重复模板，代码的可读性也变得更好，得益于你写代码所花的时间越来越少，<strong>你的效率也变得更高</strong>，而且就像我之前说的， Kotlin 会给你带来享受乐趣！</p>
+<p>问题也摆在那里，至少对于安卓社区来说，那就是：现在 Kotlin 可以投入生产了吗？我的答案是……<strong>当然可以啦</strong>， JetBrains 去年就发布了 1.0 的稳定版本。</p>
+<p>你会认为 JetBrains 公司的那些天才们在还不能投入生产前就发布 Kotlin 吗？当然不会。<strong>他们自己就使用了 Kotlin 做项目</strong>，并且其他的一些被认可的大公司也在使用 Kotlin 投入生产了。</p>
+<p>好吧，好吧，貌似一切都是那么美好，也应该会有那么一点不好的地方，是吧？当然是的，<strong>这其中一个问题是社区急切渴望的静态分析工具</strong>。静态分析工具对于开发团队来说非常重要。我们在 Kotlin 上仍然缺少这样的工具，当然你可以做构建，测试等实质性的重要事情，但是目前 Kotlin 仍然不能使用那些在 Java 中极其重要的工具比如 Checkstyle， PMD ，findbugs 等。（好吧，我们在 IntelliJ 中有内部代码分析功能但是这还不够强大）。</p>
+<p>因此，如果你在一个大团队里工作，那么静态分析工具在你的日常基本工作中是非常重要的（理应如此），那么你也需要更深入地去关注这一点。如果你是在一个小团队工作，或者你能掌控一切的话，那么就不要犹豫了吧！</p>
+<p>总而言之，<strong>我想说的是 Kotlin 真的很强大</strong>，你会更加觉得有乐趣而且你也会更加高效（至少对于 Java-Android 组合来说），尽管静态分析工具还是大家需要考虑的问题，但如果你不需要这个工具也能进行的话，那么请勇往直前，尝试一下吧，你也会爱上它的！</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>在安卓方面， Kotlin 给我们安卓开发者一缕新鲜的空气，给了我们享受软件开发的新理由。</strong></p>
+</blockquote>
+<h3 id="11-Nelson-Glauber"><a href="#11-Nelson-Glauber" class="headerlink" title="11. Nelson Glauber"></a>11. Nelson Glauber</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Nelson Glauber.jpg" alt="Nelson Glauber" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Nelson Glauber](http://www.nglauber.com.br/) 是 Mokriya 的一位高级安卓开发工程师，也是巴西东北部继续教育扩展课程手机开发方向的教授。 2014 年谷歌第一次提名他为拉丁美洲的安卓开发专家。 2015 年他加入了英特尔创新者计划。
+他在多个国家和区域的活动中做过演讲，为自己的个人博客和一些专业杂志撰写过关于手机开发方面的文章。他也是《精通安卓：从入门到高级》这本书的作者（葡萄牙语），出版于 2015 年 1 月份。
+</blockquote>
+<p><strong>Kotlin 是一门令人印象深刻的语言</strong>。这门语言有着令人惊奇的特性，相比 Java 语言它去掉了一大堆模板代码。更不用提它能兼容市面上大部分的类库了（包括 Java 代码编写的）。另外这门语言很容易被使用的一个理由是：<strong>它和 Android Studio 能完美而稳定地兼容</strong>。</p>
+<p><strong>对于 Java / 安卓开发者来说它的学习曲线非常低</strong>（可能对新手不会）。我从去年开始学习 Kotlin ，通过阅读 Antonio 的书（顺便提一下这本书真的很棒），从那时候起，我就已经在我的个人项目和课程中采用这门语言了。</p>
+<p>不幸的是，我目前并不能在我的产品开发中采用它，但是<strong>我丝毫不怀疑这门语言已经足够成熟并已准备好</strong>在大型产品开发中高效率地使用。</p>
+<p>在我看来，你还未曾使用这门语言的唯一理由是：<strong>一旦你开始用 Kotlin 编程，你就根本不会再用 Java 了</strong>。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>一旦你开始用 Kotlin 编程，你就根本不会再用 Java 了。</strong></p>
+</blockquote>
+<h3 id="12-Ryan-Harter"><a href="#12-Ryan-Harter" class="headerlink" title="12. Ryan Harter"></a>12. Ryan Harter</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Ryan Harter.jpg" alt="Ryan Harter" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Ryan Harter](http://ryanharter.com/) 是 Pixite 公司的安卓开发组组长，这是一个开发创意软件的小公司。他做了大量图形设计方面的工作，同时也很享受实现一些人们所喜爱的流畅、愉快的互动的相关开发工作。
+</blockquote>
+<p>大概在一年之前我就开始使用 Kotlin 编写代码了。有了一些经验后，<strong>我发现它很稳定，并且这门语言的一些特性所提供的便利为迁移和转变提供了足够的理由</strong>。得益于与 Java 的互操作性，一旦遇到任何 Kotlin 中我不能解决的问题，我都能回滚到 Java 中解决。</p>
+<p>这门语言最强大的，说来也是简单的一个<strong>特性是函数扩展功能，它确实简化了我的工作流程</strong>。在我的图形工作中，我最终需要做很多算法和矩阵相关的内容，这意味着需要很多的工具类。函数扩展功能极大地简化了这一点并且让我的代码变得更加简洁。混合着函数编程功能让我的工作流程变得更加享受。</p>
+<p>我给那些需要考虑迁移的开发者们一个最大建议是： <strong>Kotlin 并不意味一切也非完全不是</strong>。它能很好地和现有的 Java 代码一起工作，因此你可以浅尝辄止然后在适当时机到来之时再深入。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>Kotlin 最强大的特性是函数扩展功能，的确简化了我的图形工作流程。</strong></p>
+</blockquote>
+<h3 id="13-Ubiratan-Soares"><a href="#13-Ubiratan-Soares" class="headerlink" title="13. Ubiratan Soares"></a>13. Ubiratan Soares</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Ubiratan Soares.jpg" alt="Ubiratan Soares" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Ubiratan Soares](https://twitter.com/ubiratanfsoares) 是一名软件工程师，经验丰富的安卓开发者。
+</blockquote>
+<p>从目前开发者体验的角度来讲， <strong>Kotlin 是安卓的未来</strong>。</p>
+<p><strong>Kotlin 目前正在做的就如同 Gradle 三年前对安卓开发者所做的一样</strong>；作为安卓开发者社区的一员，我们应该拥抱 Kotlin ，广泛传播 Kotlin ，让 Kotlin 更加强大并吸引大量开发者，因为用更好的方式开发安卓软件能让我们的客户满意，也让我们的工作更美好这些都是我们应得的。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>作为安卓开发者，我们应该拥抱 Kotlin ，广泛传播 Kotlin ，让 Kotlin 更加强大并吸引大量的开发者。</strong></p>
+</blockquote>
+<h3 id="14-Philippe-Breault"><a href="#14-Philippe-Breault" class="headerlink" title="14. Philippe Breault"></a>14. Philippe Breault</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Philippe Breault.jpg" alt="Philippe Breault" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Philippe Breault](http://twitter.com/pbreault) 是居住在 Montréal 地区的一名法裔加拿大开发者。他是一名谷歌安卓开发专家，喜欢尝试去说服每一个人转移到 Kotlin 上。你可以经常在推特上看到他。
+</blockquote>
+<p><strong>Kotlin 带来了一缕新鲜的气息</strong>，对于安卓开发者来说。</p>
+<p><strong>我喜欢用 lambda 表达式所完成的工作</strong>。让 Kotlin 编译器支持内联函数，这是很有意义的，对于我们安卓开发者来说，使用内联函数能够在多级循环中避免不断地实例化新物体。</p>
+<p>它同样也很简洁：没有冒号，同一行对变量的赋值不需要重复写出类型，属性代替 getters/setters 等等。<strong>它让代码更加易于理解</strong>。</p>
+<p>唯一一件<strong>我希望看到的事情是能够提升安卓 Gradle 插件和 Kotlin 插件之间的交互性</strong>。目前为止，如果你试图停留在两方交锋边缘的话，它可能每过一会儿就会崩溃。</p>
+<p>言下之意，<strong>每个安卓开发者都应该关注一下这门语言</strong>或者，最好是尝试一下吧！</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>每个安卓开发者都应该关注一下这门语言，甚至最好是尝试一下吧！</strong></p>
+</blockquote>
+<h3 id="15-Inaki-Villar"><a href="#15-Inaki-Villar" class="headerlink" title="15. Iñaki Villar"></a>15. Iñaki Villar</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Villar.jpg" alt="Iñaki Villar" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Iñaki Villar](https://twitter.com/inyaki_mwc) 在 5 年前就是一名安卓开发者，他曾今在西班牙开发银行软件有三年之久。之后他搬到爱尔兰为航空公司和 GSM 运营商开发软件。现在他定居泰国为 Agoda 工作。他是一名谷歌开发专家，活跃于安卓社区。
+</blockquote>
+<p><strong>Kotlin 给安卓平台带来了新的酷点子</strong>。这不仅仅只是意味着使用其他语言来编写一些类或者 Activities 。</p>
+<p>目前<strong>我们正在把自动化框架部署到 Kotlin</strong> ，我们非常享受用声明的方式定义我们自己的 DSL 的过程，这让开发人员和质量评估员能够写出更加流利的测试代码。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>Kotlin 给安卓平台带来了新的酷点子。这不仅是意味着用其他语言编写类。</strong></p>
+</blockquote>
+<h3 id="16-Dan-Lew"><a href="#16-Dan-Lew" class="headerlink" title="16. Dan Lew"></a>16. Dan Lew</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Dan Lew.jpg" alt="Dan Lew" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Dan Lew](https://twitter.com/danlew42) 是 Trello 的一名安卓开发者，一名极客玩家。
+</blockquote>
+<p>Kotlin 能够<strong>在不牺牲安全和性能的前提下写出比 Java 更加简洁和易读的代码</strong>。 Kotlin 是编译成二进制代码的，所以它能保持和 Java 一样的效率。它和 Java 一样能够在编译时进行代码检查（还有更多，比如内置空指针检查等）。更重要的是， Kotlin 的语言特性和标准函数库能写出更加简洁、有效的代码。</p>
+<p>此外， Kotlin 的生态系统很强盛。很自然的， JetBrians 的工具支持也非常好。除此之外，<strong>这门语言一直在维护和提升之中</strong>。 JetBrains 在每次更新时也都没有打破 Kotlin 的兼容性。而且， Kotlin 能友好地和 Java 互动，这使得从 Java 迁移到 Kotlin 变得很容易。</p>
+<p>最后，作为一名安卓开发者，对于我的选择来说还有一个很重要的理由是： <strong>Kotlin 能独立于操作系统进行更新</strong>。由于 Java 的功能是绑定在安卓对应系统上的，所以你经常会错过一些新的语言特性和标准的 API 库。恰恰相反，你立刻就能采用所有 Kotlin 新版本刚发布时的新特性。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>Kotlin 能够在不牺牲安全和性能的前提下写出比 Java 更加简洁和易读的代码。</strong></p>
+</blockquote>
+<h3 id="17-Enrique-Lopez-Manas"><a href="#17-Enrique-Lopez-Manas" class="headerlink" title="17. Enrique López Mañas"></a>17. Enrique López Mañas</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="Enrique.jpeg" alt="Enrique López Mañas" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+[Enrique López Mañas](https://twitter.com/eenriquelopez) 是一名谷歌开发专家，独立 IT 顾问。他从 2007 年就开始学习并从事手机技术开发工作。他是一名狂热的开源社区和免费开源软件贡献者，在德国跻身于 Java 开源贡献者中的前十名。他是谷歌 LaunchPad 加速器的成员，他积极参与其中，影响了来自全球各地的数百家最好的创业公司。他也是大数据和机器学习的爱好者。
+</blockquote>
+<p>我自从成为一名 Java 成员后就自然而然的开始了安卓软件开发。 Kotlin 这门语言出现后，我就决定做一些尝试。在那个时刻确实是一个充满意义的选择。对于我个人而言，要从 2009 年那个时间开始。</p>
+<p>Java 诞生于 1995 年。从那个时候开始陆陆续续发布了一些版本更新，扩大和提升了一些基础的特性，一直到现在的 Java 8 版本。 <strong>Java 是在 22 年前设计的，并考虑了整个技术发展的演进</strong>，一直到现在都还有一些难以忽略的问题。作为一个开发者，我经常会尝试其他的语言。其中最值得一提的解决 Java 这些问题的一门语言是 Scala 。而另一个转折点是我看到了 Swift 这门语言。我也在 iOS 上编写代码，我注意到了 Swift 是如何克服像空异常这类很明显的问题的方式，这让我关注到了在 Java 中经常被忽略的一些问题。</p>
+<p>基于它的特性，安卓天生支持所有 Java 7 版本的功能，但是只支持一部分 Java 8 所展示的特性。这意味着减速了安卓生态系统平台的发展。好在 Kotlin 现在可以帮助填补这个空白了。</p>
+<p>Kotlin 是一门现代语言（版本 1.0 发布于 2016 年 2 月份）。<strong>它的最初目标就是解决 Java 中的不足</strong>，就如同 Scala 做的，不过它只解决了一部分现有的问题（比如编译时长）。 JetBrains 在 Kotlin 中做了一些了不起的事情，而且上个版本中在编译时长这点上有很大的进步。作为 Kotlin 新手，我当初所担心的问题现在在我心里都已经有了解答：</p>
+<p>—— 和 Java 的互操作性： <strong>Kotlin 能够直接和 Java 的类进行交互</strong>。这是一个基本出发点：我的确需要重用我的代码库并应用到 Koltin 当中。</p>
+<p>—— 转换工具：尽管不能盲目的相信 Java 自动转成 Kotlin ，但是它确实做的非常好了。当我在转化 Java 类库的时候，我想到的结果是能够让我很轻松地重用 60%-70% 的代码。我的目标并不是想一夜之间把整个 Java 代码库转换成 Kotlin 的代码，但是只要一步一步的照做，那么在应用了自动转化之后，进行代码修改的时间是最少的。</p>
+<p>对于 Kotlin 自身来说，在使用 Java 多年后，能够尝试一些新鲜的事物会是一种非常美好的体验。<strong>如果你是一名 Java 程序员，那么 Kotlin 的语法会让你感到非常熟悉自然的</strong>。又或者你是一个 Swift 程序者，你也会有同样的感受，而且你会有一个优势就是更加容易理解其中的一些概念，比如可选空等。那些吸引我的 Kotlin 特性有以下这些：</p>
+<p>—— 可选空值：这能够让你的产品开发避免三分之二的异常，非常具有吸引力。而且在你使用 Kotlin 之前你根本不会意识到 Java 是那么的一团糟。</p>
+<p>—— 函数式编程：对的， Kotlin 是支持函数式编程的，和 Scala 一样。</p>
+<p>—— 默认值和命名参数：这又是那些你如果不去尝试，你就根本不知道你会错过的东西。<strong>在 Kotlin 中你可以为函数的参数设置默认值</strong>，同时给每个参数一个命名。这让代码的易读性和可读性呈指数级地提升。</p>
+<p>—— 智能转换：是不是对先用 <code>instanceof</code> 然后再做转换的做法累觉不爱了？这些看上去是非常冗余的，但是按道理也应该很容易被避免。现在 Kotlin 自动为您做到了。</p>
+<p>还有很多 Kotlin 值得讨论的特性，继续深入的话都能够分条别类地写成长编大论了。概括地说： Kotlin 是一门提升和完善 Java 缺陷的一门语言。他的学习曲线对于 Java 开发者来说非常缓和。这不是一个 <em>要么/或</em> 的问题，因为你完全可以在你的 Java 基础上同时使用它们俩。 <strong>Kotlin 将大大提高你的效率，从中长期来看这会让你成为一名更加优秀的程序员</strong>。</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>Kotlin 将大大提成你的效率，从中长期来看这会让你成为一名更优秀的程序员。</strong></p>
+</blockquote>
+<h3 id="00-某某大神级人物"><a href="#00-某某大神级人物" class="headerlink" title="00. 某某大神级人物"></a>00. 某某大神级人物</h3><blockquote>
+<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="zhuanjia.jpg" alt="某某大神级人物" width=100 style="border-radius: 50%; float: left; margin-right: 20px;" />
+**某某大神级人物**是谷哥一名技术探索专家，精通 AE 、 PS 、 AI 、 PR 等的安装和卸载，熟练 Java 、 Ruby 、 Swift 、 Python 、 Objective-C 等的单词拼写，掌握 Windows 、 Linux 、 MacOS 等系统的开关机，并同时掌握 VA 、 VC 、 VD 以及 VE-- 、 B# 、 SBython 和 JB 语言的大神级人物，目前正在 Psychiatric Syndrome 公司开发自己独特的产品，使用的是 Cobol-R 和 Lisp-C 语言混合开发。
+</blockquote>
+<p>哦，啊，你好，我有说过吗？我很喜欢 Kotlin ，对，是的，但是还是不能撼动 PHP 的地位，确定。它真的，噢，对，他真的算是一门好语言！我同意，我同意。</p>
+<p>但是，我却不赞同你过早的使用它或者你可以采用一种观望的态度，你可以让其他人先踏入坑，你再踩着他们进场，难道不是更好吗？</p>
+<p>当然，这样做你也就不至于浪费很多时间，人生苦短，都用 Python ，是吗？至少，因为我觉得 Kotlin 还不够强大，还不够成熟，而且，对的，很重要的一点，我想说的是，噢，对，你难道不知道吗？它是，是这样的，它居然没有一个靠谱的静态代码分析工具。这让我这种在上千人面前工作的人很懊恼！</p>
+<p>这是不可以接受的，谷歌也不会接受这种语言，这让安卓开发者们很难堪，是的，对的，你没猜错， Kotlin 不会成为主流语言。</p>
+<p>我第一次看到 Kotlin 的时候，我就觉得这门语言有能力成为热门讨论的话题语言，但是，请相信我，这会让你很囧，真的，它那函数表达式写起来非常像 Callback Hell ，噢，知道 Callback Hell 吗？我不想在这里解释很多，你可以谷歌或者百度搜索，这是一种地狱，你会在写代码的时候感觉自己陷入了地狱之中，真是，真是很不好，很不好的一种体验，难道不是吗？</p>
+<p>有人说他是空安全的，我不认为，你会认为加了一个 ？ 就是空安全了吗？至少我不这么认为，这种看法太过于草率，是的，太草率了，如果真的加了一个问好或者叹号就能达到空安全的目的，那么你是不是说价格破折号就能达到 DEBUG 的目的？显然这太滑稽了。</p>
+<p>我承认，这门语言有点现代化，比如我就喜欢他和 Forthron 友好的交互性，它能转化成 VB 语言，是世界上除了 PHP 和 Python 之外最好的语言，他还能生成 Object-B 语言，对的，你没听错，它能生成在电视机、电冰箱、空调上使用的 Object-B 语言（对，他们都是 Object ），他不需要打分号，我不得不说这是一种突破，我曾经写的代码里有三分之一的代码量是分号，这是让我唯一感到高兴的一个新特性。难道我错了吗？噢，好吧。</p>
+<p>够了，够了，我不掩饰我喜欢 Kotlin 语言的扩展功能，它甚至能把 <code>Int</code> 扩展成接口，把数字扩展成 <code>38</code> 进制，还能把异常扩展成工具类。这是现代语言应该有的特性，就像 <code>SQL</code> 一样能够写 <code>GUI</code> 也能够写服务器。总而言之，它很像一门现代语言，我不得不承认。</p>
+<p>即使如此，我并不推崇它，世界上还有更好的语言，你说不是吗？像 PHP 这种世界级流行语言，它能做所有的事情，能写类、能扩展接口、能写出优雅的函数、能够不断更新、可以写界面也可以写后面，能泡妞，能下饭，还能够带你上天堂。所以，我们可以观望，有时间我们可以更多的学习 AutoCAD 、 AutoDraw 这种高级自动化语言，这不是更美好吗？你说是吗？</p>
+<p>噢，对了，我也许忘了，对对，但是我不能忘，你知道 Swift 吗？他是 MAC 公司的现代化语言，我想你应该知道，现在已经在开发版本 4.0 了，我很欣赏 MAC 公司的这门语言以及他们的员工所做的一切，但是，对，但是， Kotlin 才发布 1.0 版本， Kotlin 明显有抄袭 Swift 的可能，你可能已经想到我要说什么了，对的，如果你继续使用 Kotlin 可能会面临被 MAC 公司起诉的危险哦，嗯，那很不值得，我的天啦。</p>
+<p>总之，对，我是不是说太多了？噢，没关系，我还好，你是不是很累了？你是不是随机采访了 17 位码农对 Kotlin 的看法？噢，我的天！他们对你说了什么？他们都做了什么？噢，该死，他们之中居然连一个戴眼镜的近视眼都没有看到，他们肯定没认真面对过显示器吧？他们怎么能对你发表意见呢？好吧，你还好吗？噢，我很好，对，没关系，真的没关系，什么？我的主治医生来了吗？噢，那不好意思，抱歉，我想说我很抱歉，再见，我的朋友！希望今天的话能对你有益！再会！</p>
+<blockquote>
+<p><strong>观点：</strong><br><strong>无观点……</strong></p>
+</blockquote>
+<h2 id="三、写在最后"><a href="#三、写在最后" class="headerlink" title="三、写在最后"></a>三、写在最后</h2><p>我已经在圈子里看到有朋友翻译过这篇文章了，我也提到了，他的翻译虽好但是每位谷歌大牛的简历确是贴图，如果你对谷歌专家称号的大牛怀有敬仰之情的话，我觉得就算我翻译的一般，你也会有限考虑我的文章的，哈哈。 :sunglasses:</p>
+<blockquote>
+<p>作者： <a href="http://antonioleiva.com/" target="_blank" rel="noopener">Antonio Leiva</a><br>我很喜欢 Kotlin ，我已经学习 Kotlin 好几年，在安卓开发中采用并理解所有这些知识，那样你可以不费吹灰之力地掌握它。<a href="http://twitter.com/lime_cl" target="_blank" rel="noopener">Twitter</a> | <a href="https://plus.google.com/+AntonioLeivaGordillo" target="_blank" rel="noopener">Google+</a> | <a href="https://www.linkedin.com/in/antoniolg" target="_blank" rel="noopener">Linkedin</a> | <a href="https://github.com/antoniolg" target="_blank" rel="noopener">Github</a><br>原文地址： <a href="https://antonioleiva.com/google-kotlin/" target="_blank" rel="noopener">https://antonioleiva.com/google-kotlin/</a></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Kotlin/" class="button small">Kotlin</a> <a href="/tags/翻译/" class="button small">翻译</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/06/11/solve-several-problems-of-gradle-in-android-studio-3-0-on-mac/" class="alignleft prev" title="MAC上使用Android Studio 3.0的Gradle问题小解"><i class="fa fa-angle-double-left"></i>&nbsp;MAC上使用Android Studio 3.0的Gradle问题小解</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/05/31/the-4-ways-control-spline-movement-in-C4D/" class="alignright next" title="C4D中四种基本的曲线运动控制方式">C4D中四种基本的曲线运动控制方式&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

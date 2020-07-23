@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【学习笔记】Unity3D官方游戏教程：2D Roguelike"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>【学习笔记】Unity3D官方游戏教程：2D Roguelike - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">【学习笔记】Unity3D官方游戏教程：2D Roguelike</h1>
+    <div class="meta">
+        <span>2017-10-12</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Unity3D/">Unity3D</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="cover-2d-roglike.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>继续上次的 3D 游戏： <a href="http://liuqingwen.me/blog/2017/06/25/leanrning-notes-of-survival-shooter-tutorial-in-unity3d/">Survival Shooter</a> 以及 <a href="https://unity3d.com/learn/tutorials/projects/tanks-tutorial" target="_blank" rel="noopener">Tanks tutorial</a> 学习总结之后，这次是官方的另一个游戏教程： <a href="https://unity3d.com/learn/tutorials/projects/2d-roguelike-tutorial" target="_blank" rel="noopener">2D Roguelike</a></p>
+<p>这是官方的一个 2D 游戏，也是自己认真学习并制作的第一个 2D 游戏。相对于 3D 游戏， 2D 游戏制作和代码编写上感觉会简单点，但是不能小瞧 2D 游戏，毕竟手机上很多游戏都是 2D 画面。</p>
+<p>最近很忙，写代码的时间大幅缩水，编写代码的效率也降低了不少，得加油了！总之，学而时习之不亦乐乎，学而不思则罔，思而不学则殆！没毛病，老铁！ :joy:</p>
+<h2 id="二、知识点"><a href="#二、知识点" class="headerlink" title="二、知识点"></a>二、知识点</h2><p><strong>1. DontDestroyOnLoad 的使用</strong></p>
+<p>我们知道，每次加载新的场景的时候，所有当前场景的物体都会被销毁，如果想要保存当前场景的一些数据，我自己的做法是保存数据到一个全局类中。不过，通过这次学习可以使用 <code>DontDestroyOnLoad</code> 来保证当前物体不会被销毁。</p>
+<figure class="highlight cs"><figcaption><span>GameManager.cs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> GameManager instance = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">//确保当前 GameManager 是单一实例</span></span><br><span class="line">    <span class="keyword">if</span> (GameManager.instance == <span class="literal">null</span>) &#123;</span><br><span class="line">        GameManager.instance = <span class="keyword">this</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (GameManager.instance != <span class="keyword">this</span>) &#123;</span><br><span class="line">        Destroy(<span class="keyword">this</span>.gameObject);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//保证当前 GameManager 不会被销毁</span></span><br><span class="line">    DontDestroyOnLoad(<span class="keyword">this</span>.gameObject);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里新建了一个静态实例是为了能在其他地方引用到它，而且这个实例是唯一且数据不会被销毁的。 :smile:</p>
+<p><strong>2. 关卡场景加载方法</strong></p>
+<p>在 Unity 当中加载场景非常简单，不过那是“简单的场景”，如果场景非常庞大，想象一下，加载新的场景是需要时间的，这时候我们恰好又要在场景加载完后做一些初始化，初始化代码怎么放呢？</p>
+<p>这里可以使用 Unity 中的 <code>RuntimeInitializeOnLoadMethod</code> 标签（我暂时这么叫吧，哈），结合 C# 中的 delegate 时间机制，非常简单就能实现，参考如下代码：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加载场景的代码，注意放到方法里</span></span><br><span class="line">SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个方法只家在一次，这个标签的参数指明了这个方法是在场景加载完后才会调用</span></span><br><span class="line"><span class="comment">//（否则这个方法会在场景加载开始的时候就会调用，这不是我们想要的）</span></span><br><span class="line">[<span class="meta">RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)</span>]</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">CallbackInitialization</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    SceneManager.sceneLoaded += OnSceneLoaded;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C# 事件，调用这个方法！</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">OnSceneLoaded</span>(<span class="params">Scene scene, LoadSceneMode mode</span>)</span> &#123;</span><br><span class="line">    <span class="comment">//After scene loaded, do something here...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个对我来说是新知识点，有待加强学习啊！</p>
+<p><strong>3. 几个关键字：abstract/protected/virtual/override/new</strong></p>
+<p>学过 Java 的同学对方法重写非常熟悉，但是 C# 中的一些机制却又有另一片天空，这个 2D 游戏中就让我重新认识了不少关键字： <code>abstract</code> 、 <code>virtual</code> 、 <code>new</code> 等</p>
+<p>以游戏代码为例， <code>Player</code> 玩家和 <code>Enemy</code> 敌人都是继承于 <code>MovingObject</code> 基类的：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">MovingObject</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> foodPoints;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">new</span> Rigidbody2D rigidbody2D;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">bool</span> AttemptMove&lt;T&gt;(<span class="keyword">int</span> xDir, <span class="keyword">int</span> yDir) <span class="keyword">where</span> T : Component &#123;</span><br><span class="line">        <span class="comment">//do something here...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> OnCantMove&lt;T&gt;(T component) <span class="keyword">where</span> T : Component;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Player</span> : <span class="title">MovingObject</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">bool</span> AttemptMove&lt;T&gt;(<span class="keyword">int</span> xDir, <span class="keyword">int</span> yDir) <span class="keyword">where</span> T : Component &#123;</span><br><span class="line">        <span class="comment">//do something here...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> OnCantMove&lt;T&gt;(T component) &#123;</span><br><span class="line">        <span class="comment">//do something here...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Enemy</span> : <span class="title">MovingObject</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> OnCantMove&lt;T&gt;(T component) &#123;</span><br><span class="line">        <span class="comment">//do something here...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>简单的说一下代码中的关键字的含义：</p>
+<ul>
+<li><span markdown="1" style="color: #fb0af2; "><code>new</code> 关键字用在属性面前用于区分（隐藏）基类同名的属性，比如基类 <code>MonoBehaviour</code> 就有一个属性是： <code>rigidbody2D</code></span></li>
+<li><span markdown="1" style="color: #fb0af2; "><code>abstract</code> 用来描述抽象类和抽象方法，抽象方法没有具体实现，但是子类必须实现</span></li>
+<li><span markdown="1" style="color: #fb0af2; "><code>virtual</code> 也是用来描述抽象方法的，但是这个方法并不抽象，可以有实际代码，子类可以不重写，它的作用就是告诉子类：你可以重新我</span></li>
+<li><span markdown="1" style="color: #fb0af2; "><code>protected</code> 和 <code>override</code> 就没什么好说的了，这和 Java 中差不多，表示子类属性方法可见性以及重写父类方法（ C# 父类中的 <code>virtual</code> 方法）</span></li>
+</ul>
+<p><strong>4. Unity 中各种平台代码的混写方式</strong></p>
+<p>这个好像和 C++ 中写法一样，不是很熟悉，不过也很简单，模板代码吧：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_IOS || UNITY_ANDROID</span></span><br><span class="line">    <span class="keyword">private</span> Vector2 touchOrigin = -Vector2.one;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> UNITY_IOS || UNITY_ANDROID</span></span><br><span class="line">    <span class="comment">//code here for MOBILE platform</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> UNITY_STANDALONE || UNITY_EDITOR || UNITY_WEBPLAYER</span></span><br><span class="line">    <span class="comment">//code here for other platform</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>没什么好说的，继续学习！</p>
+<blockquote>
+<p>资料：<br>2D Roguelike (Unity3D) ： <a href="https://unity3d.com/learn/tutorials/projects/2d-roguelike-tutorial" target="_blank" rel="noopener">https://unity3d.com/learn/tutorials/projects/2d-roguelike-tutorial</a><br>简单易懂的解释c#的abstract和virtual的用法和区别： <a href="http://blog.csdn.net/wzj0808/article/details/51388034" target="_blank" rel="noopener">http://blog.csdn.net/wzj0808/article/details/51388034</a></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Unity3D/" class="button small">Unity3D</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/10/26/translation-of-diving-deep-into-kotlin-coroutines/" class="alignleft prev" title="【翻译】深入 Kotlin 协程"><i class="fa fa-angle-double-left"></i>&nbsp;【翻译】深入 Kotlin 协程</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/10/03/reading-notes-of-kotlin-in-action-part-2/" class="alignright next" title="【读书笔记】《Kotlin in Action》学习笔记（下）">【读书笔记】《Kotlin in Action》学习笔记（下）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

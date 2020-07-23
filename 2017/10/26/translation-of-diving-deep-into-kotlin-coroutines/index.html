@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【翻译】深入 Kotlin 协程"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>【翻译】深入 Kotlin 协程 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">【翻译】深入 Kotlin 协程</h1>
+    <div class="meta">
+        <span>2017-10-26</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Kotlin/">Kotlin</a> <a href="/tags/翻译/">翻译</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="kotlin_coroutines.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p><strong>翻译好的文章也是一种学习方法！</strong> :smiley:<br>原文标题：<a href="https://www.kotlindevelopment.com/deep-dive-coroutines/" target="_blank" rel="noopener">Diving deep into Kotlin Coroutines</a><br>原文地址：<a href="https://www.kotlindevelopment.com/deep-dive-coroutines/" target="_blank" rel="noopener">https://www.kotlindevelopment.com/deep-dive-coroutines/</a><br>原文作者：<a href="https://www.kotlindevelopment.com/author/adrian-bukros/" target="_blank" rel="noopener">Adrian Bukros</a></p>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>编写 Kotlin 协程相关的文章是当下比较流行的一个话题，这当然是有极好的理由支撑着的。JetBrains 公司的伙伴们创造了一门非常实用的计算机语言，赢得了成千上万开发者们的心，还介绍了一个稳定（目前仍在实验阶段）的特性，承诺在避免冗繁的前提下编写出优雅的异步代码。我将会指导你使用协程相关的基本示例，并观察背后到底发生了什么。</p>
+<h3 id="为什么像协程这种解决方案非常有必要？"><a href="#为什么像协程这种解决方案非常有必要？" class="headerlink" title="为什么像协程这种解决方案非常有必要？"></a>为什么像协程这种解决方案非常有必要？</h3><p>在现代应用程序开发中，处理多线程任务是不可避免的工作。一边在 UI 上显示花哨的加载动画一边等待网络请求就是一个简单的例子，这不得不使用异步代码来解决。在手机操作系统上，比如 Android 的 UI 线程用于处理用户交互，像那些点击按钮和手势操作，以及显示层的渲染工作等。这些都是最基本的，让我们来看一个例子吧！点击一个按钮之后，应用程序开始从网络上下载 JSON 数据，然后反序列化，最后把结果更新在显示层上。（反序列化和网络交互通常可以用一些聪明的类库来处理，以降低程序员的开发复杂度，但是为了展示例子的目的，还是让我们看这个例子吧。）那么你会如何写代码呢？</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">fetchUserString</span><span class="params">(userId: <span class="type">String</span>)</span></span>: String &#123;</span><br><span class="line">  <span class="comment">// request user from network</span></span><br><span class="line">  <span class="comment">// return user String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">deserializeUser</span><span class="params">(userString: <span class="type">String</span>)</span></span>: User &#123;</span><br><span class="line">  <span class="comment">// deserialize</span></span><br><span class="line">  <span class="comment">// return User</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">button.setOnClickListener &#123;</span><br><span class="line">  <span class="keyword">val</span> userString = fetchUserString(<span class="string">"1"</span>)</span><br><span class="line">  <span class="keyword">val</span> user = deserializeUser(userString)</span><br><span class="line">  showUserData(user)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我觉得这是最直接（也很幼稚）的一种方式，提供了解决上述问题的方案。但是这里面有很大的问题。</p>
+<ol>
+<li>在 UI 线程上启动一个网络请求是不明智的做法（在安卓上这甚至不可能，因为你的应用程序会抛出一个丑陋的 <code>NetworkOnMainThreadException</code> 异常），由于网络请求经常会花费至少半秒的时长，而此期间 UI 更新将会被暂停。没有花哨的加载动画，也不能滚动，等等。</li>
+<li>反序列化是一个很消耗 CPU 资源的操作，这会吃掉帧渲染所需的大量资源。本质上，这个结果和前面一点是一样的。</li>
+</ol>
+<p>那么我们怎么解决这些问题呢？我们需要把网络请求和反序列化分派到一个后台进程中执行。听起来很简单，但是实现它的最好方式是什么呢？</p>
+<h4 id="解决方案-1-：Callbacks-回调"><a href="#解决方案-1-：Callbacks-回调" class="headerlink" title="解决方案 1 ：Callbacks 回调"></a>解决方案 1 ：Callbacks 回调</h4><p>假设现在重构我们的 <code>fetchUserString</code> 方法和 <code>deserializeUser</code> 方法来使它在后台的线程中工作。程序仍然需要等待后台任务完成后在 UI 上执行返回结果的显示。我们可以通过给运行函数提供回调来达到目的，就像这样：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">button.setOnClickListener &#123;</span><br><span class="line">  fetchUserString(<span class="string">"1"</span>) &#123; userString -&gt;</span><br><span class="line">    deserializeUser(userString) &#123; user -&gt;</span><br><span class="line">      showUserData(user)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但这个解决方案导致的问题是随着回调函数调用次数的增加，代码开始变得不那么易读了。这种现象叫做：<strong>回调的地狱</strong>。我们必须避免这种情况发生。</p>
+<h4 id="解决方案-2-：-Reactive-反应链方法"><a href="#解决方案-2-：-Reactive-反应链方法" class="headerlink" title="解决方案 2 ： Reactive 反应链方法"></a>解决方案 2 ： Reactive 反应链方法</h4><p>这种反应链的方法提供了一种更加有效的代码编写方式，它能组合方法的回调以避免函数方法的多重嵌套：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">button.setOnClickListener &#123;</span><br><span class="line">  fetchUserString(<span class="string">"1"</span>)</span><br><span class="line">    .flatMap &#123; userString -&gt;</span><br><span class="line">      deserializeUser(userString)</span><br><span class="line">    &#125;</span><br><span class="line">    .subscribe &#123; user -&gt;</span><br><span class="line">      showUserData(user)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大部分人对这种反应链解决方式感到非常满意（包括我自己），但是我们必须不得不承认的是，这个代码仍然离我们的刚开始的写法相差甚远 —— 对于使用者来说还是有那么一点复杂度的。那么还有其他的更加有效的方式来实现程序并行计算运行吗？有的。</p>
+<h4 id="解决方案-3-：-Coroutines-协程"><a href="#解决方案-3-：-Coroutines-协程" class="headerlink" title="解决方案 3 ： Coroutines 协程"></a>解决方案 3 ： Coroutines 协程</h4><p>这是我们使用协程来实现的代码的模样：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">button.setOnClickListener &#123;</span><br><span class="line">  launch(UI)&#123;</span><br><span class="line">    <span class="keyword">val</span> userString = fetchUserString(<span class="string">"1"</span>).await()</span><br><span class="line">    <span class="keyword">val</span> user = deserializeUser(userString).await()</span><br><span class="line">    showUserData(user)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个代码看起来基本上和我们一开始写的代码是一样的，并且效果和预期的一致（不会阻塞 UI 线程）。那么让我们来看看具体怎样使用命令式的风格写出类似的异步代码吧！</p>
+<h3 id="如何使用协程？"><a href="#如何使用协程？" class="headerlink" title="如何使用协程？"></a>如何使用协程？</h3><p>协程基于一种新的函数类型，叫做<em>挂起</em>函数。我们可以在函数名称前使用一种新的语言关键字 <code>suspend</code> 来标记。用这个关键字标记的函数能够暂停一个协程的执行，且不会阻塞当前线程。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">fetchUserData</span><span class="params">(userId: <span class="type">String</span>)</span></span>: String &#123;</span><br><span class="line">  <span class="comment">// return user String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个挂起的函数只能被协程或者其他挂起的函数调用。通常我们会在协程库中 lambda 函数表达式的参数中看到他们，比如 <code>async</code> 函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">async</span><span class="params">( … , … , block: <span class="type">suspend</span> <span class="type">CoroutineScope</span>.() -&gt; <span class="type">T</span>)</span></span>: Deferred&lt;T&gt; &#123;</span><br><span class="line">…</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>launch{}</strong></p>
+<p>如果你不考虑返回值，那么 <code>launch</code> 函数是使用协程的最简单工具。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> job = launch &#123;</span><br><span class="line">  <span class="keyword">val</span> userString = fetchUserString(<span class="string">"1"</span>)</span><br><span class="line">  <span class="keyword">val</span> user = deserializeUser(userString)</span><br><span class="line">  log(user.name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>被函数包裹的代码会分派到一个后台的线程中，而这个函数自己则返回一个 <code>Job</code> 实例，它可以在其他的协程中使用并被控制执行。调用 <code>Job</code> 类的 <code>join()</code> 方法将暂停它所包含的协程的运行。</p>
+<p><strong>async{}</strong></p>
+<p>通过使用 <code>async</code> 函数你可以达到和 <code>launch</code> 一样的效果，唯一一个非常重要的差别是：它有返回值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> user = async &#123;</span><br><span class="line">  <span class="keyword">val</span> userString = fetchUserString(<span class="string">"1"</span>)</span><br><span class="line">  <span class="keyword">val</span> user = deserializeUser(userString)</span><br><span class="line">  user</span><br><span class="line">&#125;.await()</span><br></pre></td></tr></table></figure>
+
+<p>这个异步方法返回一个 <code>Defered&lt;T&gt;</code> 实例，访问它的 <code>await()</code> 方法你能够得到最后计算的实际结果。</p>
+<p>重构我们的代码，这个问题的解决方案如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">fetchUserString</span><span class="params">(userId: <span class="type">String</span>)</span></span> = async &#123;</span><br><span class="line">  <span class="comment">// request user from network</span></span><br><span class="line">  <span class="comment">// return user String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">deserializeUser</span><span class="params">(userString: <span class="type">String</span>)</span></span> = async &#123;</span><br><span class="line">  <span class="comment">// deserialize</span></span><br><span class="line">  <span class="comment">// return User</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">launch(UI) &#123;</span><br><span class="line">  <span class="keyword">val</span> userString = fetchUserString(<span class="string">"1"</span>).await()</span><br><span class="line">  <span class="keyword">val</span> user = deserializeUser(userString).await()</span><br><span class="line">  showUserData(user)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们知道了如何获取协程执行后的返回值，但是如果我们需要多个返回值呢？那就是 <code>Channel</code> 要做的事情了 —— 你可以在<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#channel-basics" target="_blank" rel="noopener">这里</a>阅读了解更多关于它的资料。</p>
+<p>在深入协程之前，让我们来看看其他编程语言关于异步编程模式的不同实现方式！</p>
+<h3 id="光天化日之下无新鲜感……或者还是有的？"><a href="#光天化日之下无新鲜感……或者还是有的？" class="headerlink" title="光天化日之下无新鲜感……或者还是有的？"></a>光天化日之下无新鲜感……或者还是有的？</h3><p>在 C# 5.0 中，追溯到 2012 年，关于异步函数微软提出了一个特性，非常类似 Kotlin 中的协程：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;T&gt; <span class="title">doWork</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// do some work</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result = <span class="keyword">await</span> doWork()</span><br></pre></td></tr></table></figure>
+
+<p>他们的实现方式在关于异步代码应该写成什么样的看法上拥有一致的基本理念，但是有几个主要的区别。</p>
+<ol>
+<li>在 C# 中 <code>async</code> 和 <code>await</code> 都是关键字</li>
+<li>在 C# 中 <code>async</code> 函数只能返回一个 <code>Task</code> 实例或者返回空</li>
+</ol>
+<p>如果你仔细观察协程的这个例子，你会看到在 Kotlin 中， <code>launch{}</code> ， <code>async{}</code> ， 以及 <code>await()</code> 函数都是普普通通的的函数（它们有些采用 <code>suspend</code> 关键字标记了）。这在命名和返回值类型方面给开发者手头留了一个最灵活的工具。</p>
+<h4 id="线程-vs-协程"><a href="#线程-vs-协程" class="headerlink" title="线程 vs 协程"></a>线程 vs 协程</h4><p>唤醒一个线程需要巨大的资源开销。在一个现代化系统上，一个线程非常容易就能吃掉 1M 多的内存。在当前的上下文中，我们可以通过调用协程（根据文档）来作为“轻量级”的线程。通常，一个协程坐落在一个实际的线程池当中，专门用于后台任务的执行操作，这也就是协程为什么如此高效的原因。它只会在需要的时候才会使用系统资源。参考如下代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> jobs = List(<span class="number">100_000</span>) &#123;</span><br><span class="line">  launch &#123;</span><br><span class="line">    delay(<span class="number">1000</span>)</span><br><span class="line">    print(<span class="string">"."</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">jobs.forEach &#123; it.join() &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你不使用协程而是使用实际的线程，那么程序将会非常耗时，甚至有可能被系统终结运行。一个 <code>OutOfMemoryException</code> 内存溢出的异常在没有使用协程而是大量线程运行下很容易发生，这并不是什么新鲜事了。</p>
+<h3 id="原理是什么？"><a href="#原理是什么？" class="headerlink" title="原理是什么？"></a>原理是什么？</h3><p>让我们看一下 <code>async{}</code> 函数的签名是什么样子的！</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">async</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  context: <span class="type">CoroutineContext</span> = DefaultDispatcher,</span></span></span><br><span class="line"><span class="function"><span class="params">  start: <span class="type">CoroutineStart</span> = CoroutineStart.DEFAULT,</span></span></span><br><span class="line"><span class="function"><span class="params">  block: <span class="type">suspend</span> <span class="type">CoroutineScope</span>.() -&gt; <span class="type">T</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>: Deferred&lt;T&gt;</span><br></pre></td></tr></table></figure>
+
+<p>第一个参数是 <code>CoroutineContext</code> ，它定义了线程执行的位置。它有个默认值，最终指向一个定义好了的线程池。当然这完全可以使用其他实现方式。在上面那个例子中，我是在 <code>UI</code> 这个协程的上下文中使用 <code>launch</code> 函数，来自于 <a href="https://www.kotlinresources.com/library/anko/" target="_blank" rel="noopener">Anko</a> 库。在那种特定上下文的情形下，调用一个协程可以保证与 UI 相关连的代码（比如设置标签的文本）都能在 UI 线程中被调用。</p>
+<p>第二个参数 <code>start</code> 是指明协程何时应该开始执行。默认情况下，当运行到 <code>async{}</code> 或者 <code>launch{}</code> 函数的时候，协程内部任务就开始执行。通过使用 <code>CoroutineStart.LAZY</code> 这个值，可以让协程只在开发者显式调用返回的 <code>Deferred&lt;T&gt;</code> 实例或者 <code>Job</code> 实例的 <code>await()</code> 方法或者 <code>join()</code> 方法才开始运行。</p>
+<h4 id="神奇的状态机"><a href="#神奇的状态机" class="headerlink" title="神奇的状态机"></a>神奇的状态机</h4><p>协程的内部实现机制涉及到一些关于编译器危险魔法的黑色艺术。作为简化描述，这里发生的事情包括：</p>
+<p><strong>每一个挂起的函数和 lambda 表达式都有一个隐藏的参数，它在函数唤醒的时候会被隐式地传入到函数中。这个参数就是一个 <code>Continuation</code> 实例，它代表着一段应该在某个协程挂起后才执行的代码块。</strong></p>
+<p>让我们看看这个 <code>await</code> 函数，就像下面的代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Deferred<span class="type">&lt;T&gt;</span>.<span class="title">await</span><span class="params">()</span></span>: T</span><br></pre></td></tr></table></figure>
+
+<p>然而，实际上它更像这样：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Deferred<span class="type">&lt;T&gt;</span>.<span class="title">await</span><span class="params">(continuation: <span class="type">Continuation</span>&lt;<span class="type">T</span>&gt;)</span></span>: Any?</span><br></pre></td></tr></table></figure>
+
+<p>这个 <code>await</code> 函数的返回值类型参数 <code>T</code> 现在是 <code>continuation</code> 里的类型参数了。结尾返回值的签名 <code>Any</code> 是用于控制协程运行的流程。如果它被挂起，那么这个 <code>await</code> 的结果将会是一个特殊的值： <code>COROUTINE_SUSPENDED</code> 。如果没有被挂起，它会返回这个函数的类型参数 <code>T</code> 的结果。</p>
+<p>对应于每一个协程的 lambda 表达式，都将会在编译期间创建一个新的类。这个类本质上就是一个状态机。编译器会分析这些代码并查找那些挂起的函数 —— 这些函数的位置点就对应这个状态机的当前状态（因为这是程序能被挂起暂停的地方）。</p>
+<p>根据我们的代码示例如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">launch(UI)&#123;</span><br><span class="line">  <span class="keyword">val</span> userString = fetchUserString(<span class="string">"1"</span>).await() <span class="comment">// suspension point #1</span></span><br><span class="line">  <span class="keyword">val</span> user = deserializeUser(userString).await() <span class="comment">// suspension point #2</span></span><br><span class="line">  showUserData(user)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个生成的类中，当运行代码所在的线程没有被阻塞时，程序的执行将从某个状态跳到另一个状态。在某个挂起的函数执行结束后，同时函数返回结果也处于可用状态，那么它的 <code>Continuation</code> 参数将会触发这个状态机，使其跳转到下一个状态中。</p>
+<h4 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h4><p>异常处理和平常没两样。想象一下之前所描述的状态机被嵌入到一个巨大的 <code>try/catch</code> 代码块中！如果某个地方抛出了一个异常，它将会被捕获并传播下去，意味着你不需要做任何的改变。工作照常进行。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">launch(UI) &#123;</span><br><span class="line">  progressBar.visibility = View.VISIBLE</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">val</span> userString = fetchUserString(<span class="string">"1"</span>).await()</span><br><span class="line">    <span class="keyword">val</span> user = deserializeUser(userString).await()</span><br><span class="line">    showUserData(user)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (ex: Exception) &#123;</span><br><span class="line">    log(ex)</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    progressBar.visibility = View.GONE</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="可取消作业"><a href="#可取消作业" class="headerlink" title="可取消作业"></a>可取消作业</h4><p>取消一个协程是可行的，类似取消线程的运行：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> job = launch &#123;</span><br><span class="line">  <span class="comment">// do work</span></span><br><span class="line">&#125;</span><br><span class="line">job.cancel()</span><br></pre></td></tr></table></figure>
+
+<p>调用 <code>Job</code> 或者 <code>Deferred&lt;T&gt;</code> 实例的 <code>cancel()</code> 方法将会终止协程的内部运行，前提是处理 <code>isActive</code> 标志被正确实现。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> job = launch &#123;</span><br><span class="line">  <span class="keyword">while</span> (isActive)&#123;</span><br><span class="line">    <span class="comment">//do work</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同时， <code>isActive</code> 的值在标准库中会在子协程的挂起点之间被检查，所以你仅仅只需检查你自己的处于长时间计算运行代码块中的 <code>isActive</code> 值就可以了。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>协程依然还处在实验阶段，意味着 API 会发生变化，但是这些特性确实已经很稳定 —— 它会一直在这里的。 JetBrains 公司在开发者背后全力以赴地开发，我已经迫不及待地想看到并行编程的将来会是怎样了。值得一试，这是肯定的！</p>
+<h3 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h3><p><a href="https://www.youtube.com/watch?v=4W3ruTWUhpw" target="_blank" rel="noopener">Andrey Breslav - Kotlin Coroutines</a><br><a href="https://www.youtube.com/watch?v=XEgibiHdJtQ" target="_blank" rel="noopener">MCE 2017: Svetlana Isakova, Coroutines in Kotlin</a><br><a href="https://kotlinlang.org/docs/reference/coroutines.html" target="_blank" rel="noopener">Kotlinlang.org Coroutines</a><br><a href="https://www.kotlindevelopment.com/deep-dive-coroutines/%22https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md%22" target="_blank" rel="noopener">Github.com Kotlin coroutines</a></p>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Kotlin/" class="button small">Kotlin</a> <a href="/tags/翻译/" class="button small">翻译</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/08/11/continue-writing-blog-post-in-2018/" class="alignleft prev" title="重新开始我的写作之旅"><i class="fa fa-angle-double-left"></i>&nbsp;重新开始我的写作之旅</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/10/12/learning-notes-of-2d-roguelike-tutorial-in-unity3d/" class="alignright next" title="【学习笔记】Unity3D官方游戏教程：2D Roguelike">【学习笔记】Unity3D官方游戏教程：2D Roguelike&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

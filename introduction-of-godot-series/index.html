@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot游戏引擎的介绍与入门教程"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot游戏引擎的介绍与入门教程 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    <h1 class="title">Godot游戏引擎的介绍与入门教程</h1>
+    <div class="meta">
+        <span>2018-12-17</span>
+        <!-- changed and content added by me -->
+        <span>  by Liuqingwen </span>
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+    </div>
+
+
+
+<!-- Gallery -->
+
+
+
+    <form id="search-form">
+        <div class="tipue_search_left"><img src="/tipuesearch/search.png" class="tipue_search_icon"></div>
+        <div class="tipue_search_right" style="width:80%;"><input  type="text" name="q" id="tipue_search_input" autocomplete="off" required placeholder="search" style="width:80%;" /></div>
+    </form>
+    <p>关于 Godot 开源游戏引擎的一些介绍和简单的入门教程！</p>
+<ul>
+<li>欢迎关注我的博客： <a href="http://liuqingwen.me">www.liuqingwen.me</a></li>
+<li>所有 Godot 相关文章： <a href="http://liuqingwen.me/blog/tags/Godot/">Godot 入门介绍系列</a></li>
+<li>所有的源码可以在我的 Github 仓库中找到： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a></li>
+</ul>
+<p>另外我也会在以下专题网站发表相关的文章：</p>
+<ul>
+<li>简书： <a href="https://www.jianshu.com/u/756bad579149" target="_blank" rel="noopener">https://www.jianshu.com/u/756bad579149</a></li>
+<li>掘金： <a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" target="_blank" rel="noopener">https://juejin.im/user/59d1d5b1f265da0656048d2b</a></li>
+<li>知乎： <a href="https://zhuanlan.zhihu.com/godot" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/godot</a></li>
+<li>INDIE NOVA （计划中）: <a href="https://indienova.com/groups/309" target="_blank" rel="noopener">https://indienova.com/groups/309</a></li>
+</ul>
+<hr>
+<h2 id="13-Introduction-of-Godot-3-part-13-The-player-jump-implementation-and-make-a-platform-game"><a href="#13-Introduction-of-Godot-3-part-13-The-player-jump-implementation-and-make-a-platform-game" class="headerlink" title="13. Introduction of Godot 3 part 13 - The player jump implementation and make a platform game"></a>13. Introduction of Godot 3 part 13 - The player jump implementation and make a platform game</h2><p>文章链接：</p>
+<ul>
+<li><a href="http://liuqingwen.me/blog/2019/01/17/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-1/">Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（上）</a></li>
+<li><a href="http://liuqingwen.me/blog/2019/01/26/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-2/">Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（下）</a></li>
+</ul>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>重力加速度知识和简单的跳跃实现方法</li>
+<li>二次跳跃的实现</li>
+<li>精确高度的跳跃实现</li>
+<li>游戏场景结构与主要代码</li>
+<li>三种敌人的行为和实现</li>
+<li>其他的一些效果介绍</li>
+<li>问题和总结</li>
+</ol>
+<p><img src="index/demo9.gif" alt="Demo9"></p>
+<h2 id="12-Introduction-of-Godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-KinematicBody2D"><a href="#12-Introduction-of-Godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-KinematicBody2D" class="headerlink" title="12. Introduction of Godot 3 part 12 - talk about collision and move_and_collide vs move_and_slide in KinematicBody2D"></a>12. Introduction of Godot 3 part 12 - talk about collision and move_and_collide vs move_and_slide in KinematicBody2D</h2><p>文章链接：<a href="http://liuqingwen.me/blog/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/">Godot3游戏引擎入门之十二：Godot碰撞理论以及KinematicBody2D的两个方法</a></p>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>三种 2D 物理节点以及 Area2D 节点的回顾</li>
+<li>碰撞层和碰撞掩码理论知识</li>
+<li>KinematicBody2D 两个方法详述</li>
+<li>简单的应用场景分析</li>
+</ol>
+<p><img src="index/demo8.gif" alt="Demo8"></p>
+<h2 id="11-Introduction-of-Godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game"><a href="#11-Introduction-of-Godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game" class="headerlink" title="11. Introduction of Godot 3 part 11 - introduce the particles system and make a shooter game"></a>11. Introduction of Godot 3 part 11 - introduce the particles system and make a shooter game</h2><p>文章链接：</p>
+<ul>
+<li><a href="http://liuqingwen.me/blog/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/">Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（上）</a></li>
+<li><a href="http://liuqingwen.me/blog/2018/12/25/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-2/">Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（下）</a></li>
+</ul>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>Godot 中自带粒子系统的相关参数说明</li>
+<li>游戏中应用到的其他几个有用的节点</li>
+<li>太空射击游戏的所有场景构造及其关键点</li>
+<li>游戏代码逻辑的核心部分解析</li>
+</ol>
+<p><img src="index/demo7.gif" alt="Demo7"></p>
+<h2 id="10-Introduction-of-Godot-3-part-10-introduce-some-node-types-and-make-a-new-game"><a href="#10-Introduction-of-Godot-3-part-10-introduce-some-node-types-and-make-a-new-game" class="headerlink" title="10. Introduction of Godot 3 part 10 - introduce some node types and make a new game"></a>10. Introduction of Godot 3 part 10 - introduce some node types and make a new game</h2><p>文章链接：</p>
+<ul>
+<li><a href="http://liuqingwen.me/blog/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/">Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）</a></li>
+<li><a href="http://liuqingwen.me/blog/2018/12/05/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-2/">Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中）</a></li>
+<li><a href="http://liuqingwen.me/blog/2018/12/06/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-3/">Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（下）</a></li>
+</ul>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>学习了一些新的 Godot 节点，以及一些新的关键词</li>
+<li>探讨了一些基本的游戏开发规则，包括编写代码的规范</li>
+<li>编写实现游戏中相关逻辑代码，完成我们第一个完整的小游戏</li>
+</ol>
+<p><img src="index/demo6.gif" alt="Demo6"></p>
+<h2 id="9-Introduction-of-Godot-3-part-9-add-audio-effects-and-UI-elements"><a href="#9-Introduction-of-Godot-3-part-9-add-audio-effects-and-UI-elements" class="headerlink" title="9. Introduction of Godot 3 part 9 - add audio effects and UI elements"></a>9. Introduction of Godot 3 part 9 - add audio effects and UI elements</h2><p>文章链接：<a href="http://liuqingwen.me/blog/2018/11/09/introduction-of-godot-3-part-9-add-audio-effects-and-ui-elements/">Godot3游戏引擎入门之九：创建UI界面并添加背景音乐</a></p>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>给游戏添加 UI 控件元素，使用 CanvasLayer 节点</li>
+<li>创建独立的游戏主界面，使用按键切换游戏场景</li>
+<li>添加背景音乐和其他声音效果及动画、代码控制</li>
+<li>其他小知识点：分组、代码中信号连接、字体资源等</li>
+</ol>
+<p><img src="index/demo5-3.gif" alt="Demo5-3"></p>
+<h2 id="8-Introduction-of-Godot-3-part-8-add-collectable-elements-and-sub-scenes"><a href="#8-Introduction-of-Godot-3-part-8-add-collectable-elements-and-sub-scenes" class="headerlink" title="8. Introduction of Godot 3 part 8 - add collectable elements and sub-scenes"></a>8. Introduction of Godot 3 part 8 - add collectable elements and sub-scenes</h2><p>文章链接：<a href="http://liuqingwen.me/blog/2018/11/02/introduction-of-godot-3-part-8-add-collectable-elements-and-sub-scenes/">Godot3游戏引擎入门之八：添加可收集元素和子场景</a></p>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>创建子场景并实例化子场景： SubScene</li>
+<li>连接订阅事件信号，处理信号： Signal</li>
+<li>学习使用 Godot 3.1 动画中的方法调用特性： Call Method Track</li>
+<li>Area2D 节点简介，碰撞处理，多轨道动画设计</li>
+</ol>
+<p>源码链接： <a href="https://github.com/spkingr/Godot-Demos/tree/v0.3" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos/tree/v0.3</a></p>
+<p><img src="index/demo5-2.gif" alt="Demo5-2"></p>
+<h2 id="7-Introduction-of-Godot-3-part-7-add-collision-and-move-player-in-map"><a href="#7-Introduction-of-Godot-3-part-7-add-collision-and-move-player-in-map" class="headerlink" title="7. Introduction of Godot 3 part 7 - add collision and move player in map"></a>7. Introduction of Godot 3 part 7 - add collision and move player in map</h2><p>文章链接：<a href="http://liuqingwen.me/blog/2018/10/22/introduction-of-godot-3-part-7-add-collision-and-move-player-in-map/">Godot3游戏引擎入门之七：地图添加碰撞体制作封闭的游戏世界</a></p>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>Godot 3.1 中 Tile 瓦片的碰撞体添加和设置</li>
+<li>Godot 中调试地图和玩家的碰撞体运行状态</li>
+<li>几个有用的 GDScript 脚本代码技巧： <code>export</code>, <code>flip_h</code>, <code>move_and_collide</code></li>
+</ol>
+<p>源码链接： <a href="https://github.com/spkingr/Godot-Demos/tree/v0.2" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos/tree/v0.2</a></p>
+<p><img src="index/demo5-1.gif" alt="Demo5-1"></p>
+<hr>
+<h2 id="6-Introduction-of-Godot-3-part-6-make-tile-map-in-godot"><a href="#6-Introduction-of-Godot-3-part-6-make-tile-map-in-godot" class="headerlink" title="6. Introduction of Godot 3 part 6 - make tile map in godot"></a>6. Introduction of Godot 3 part 6 - make tile map in godot</h2><p>文章链接：<a href="http://liuqingwen.me/blog/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">Godot3游戏引擎入门之六：制作TileMap瓦片地图</a></p>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>创建 TileSet 瓦片集资源</li>
+<li>创建 TileMap 瓦片地图</li>
+<li>介绍 Godot 3.1 中 TileMap 的一些新特性</li>
+</ol>
+<p>源码链接： <a href="https://github.com/spkingr/Godot-Demos/tree/v0.1" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos/tree/v0.1</a></p>
+<h2 id="5-Introduction-of-Godot-3-part-5-base-topdown-movement"><a href="#5-Introduction-of-Godot-3-part-5-base-topdown-movement" class="headerlink" title="5. Introduction of Godot 3 part 5 - base topdown movement"></a>5. Introduction of Godot 3 part 5 - base topdown movement</h2><p>文章链接：</p>
+<ul>
+<li><a href="http://liuqingwen.me/blog/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/">Godot3游戏引擎入门之五：上下左右移动动画（上）</a></li>
+<li><a href="http://liuqingwen.me/blog/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/">Godot3游戏引擎入门之五：上下左右移动动画（下）</a></li>
+</ul>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>使用 AnimationPlayer 节点工具创建状态动画</li>
+<li>使用代码控制玩家的上下左右移动功能</li>
+<li>简单的摄像机使用和地图碰撞检测实现</li>
+<li>通过代码实现 RigidBody2D 刚体节点的运动</li>
+</ol>
+<p><img src="index/demo4.gif" alt="Demo4"></p>
+<h2 id="4-Introduction-of-Godot-3-part-4-add-some-cute-animations"><a href="#4-Introduction-of-Godot-3-part-4-add-some-cute-animations" class="headerlink" title="4. Introduction of Godot 3 part 4 - add some cute animations"></a>4. Introduction of Godot 3 part 4 - add some cute animations</h2><p>文章链接：</p>
+<ul>
+<li><a href="http://liuqingwen.me/blog/2018/09/25/introduction-of-godot-3-part-4-add-some-cute-animations-part-1/">Godot3游戏引擎入门之三：移动我们的主角（上）</a></li>
+<li><a href="http://liuqingwen.me/blog/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/">Godot3游戏引擎入门之三：移动我们的主角（下）</a></li>
+</ul>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>使用 AnimatedSprite 节点创建多个多图动画</li>
+<li>使用 Sprite 节点和 GDScript 脚本代码创建背景动画</li>
+<li>介绍了 Sprite 节点的原点设置：左上角或者居中</li>
+<li>相关 GDScript 脚本知识：<code>onready/$/position/animation</code></li>
+</ol>
+<p><img src="index/demo3.gif" alt="Demo3"></p>
+<h2 id="3-Introduction-of-Godot-3-part-3-move-the-character-with-inputs"><a href="#3-Introduction-of-Godot-3-part-3-move-the-character-with-inputs" class="headerlink" title="3. Introduction of Godot 3 part 3 - move the character with inputs"></a>3. Introduction of Godot 3 part 3 - move the character with inputs</h2><p>文章链接：<a href="http://liuqingwen.me/blog/2018/09/18/introduction-of-godot-3-part-3-move-character-with-inputs/">Godot3游戏引擎入门之三：移动我们的主角</a></p>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>图片材质的导入模式</li>
+<li>节点渲染顺序</li>
+<li>最基础的 GDScript 脚本入门</li>
+<li>使用脚本获取节点属性，侦听输入控制主角移动</li>
+</ol>
+<p><img src="index/demo2.gif" alt="Demo2"></p>
+<h2 id="2-Introduction-of-Godot-3-part-2-game-scene-and-node"><a href="#2-Introduction-of-Godot-3-part-2-game-scene-and-node" class="headerlink" title="2. Introduction of Godot 3 part 2 - game scene and node"></a>2. Introduction of Godot 3 part 2 - game scene and node</h2><p>文章链接：<a href="http://liuqingwen.me/blog/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/">Godot3游戏引擎入门之二：第一个简单的游戏场景</a></p>
+<p><em>本篇讲解到的知识点：</em></p>
+<ol>
+<li>几个基本的节点添加和使用</li>
+<li>刚体碰撞体设置</li>
+<li>静态碰撞体设置</li>
+<li>材质背景平铺设置</li>
+<li>可视化 Debug 功能</li>
+</ol>
+<p><img src="index/demo1.gif" alt="Demo1"></p>
+<h2 id="1-Introduction-of-Godot-3-part-1-the-editor"><a href="#1-Introduction-of-Godot-3-part-1-the-editor" class="headerlink" title="1. Introduction of Godot 3 part 1 - the editor"></a>1. Introduction of Godot 3 part 1 - the editor</h2><p>文章链接：<a href="http://liuqingwen.me/blog/2018/09/03/introduction-of-godot-3-part-1-the-editor/">Godot3游戏引擎入门之一：熟悉编辑器界面</a></p>
+<hr>
+<blockquote>
+<p>欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/blog/images/wexin_2.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+    <div id="tipue_search_content"></div>
+
+<!-- Content -->
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

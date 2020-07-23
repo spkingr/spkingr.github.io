@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="修理更换苹果AIR笔记本键盘"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>修理更换苹果AIR笔记本键盘 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">修理更换苹果AIR笔记本键盘</h1>
+    <div class="meta">
+        <span>2017-05-29</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Mac/">Mac</a> <a href="/tags/DIY/">DIY</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="repaire-mac-air-keyboard.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、起因"><a href="#一、起因" class="headerlink" title="一、起因"></a>一、起因</h2><p>真是折腾人啊！就因为家里灰尘太多，用清洗套装把 Mac Air 笔记本稍微清洗了一下键盘，然后就出问题了…… :sweat: 问题是这样的：只要我按下 Q 键就会出现 Q1 ，相当于 Q 和 1 键粘贴一起了，按 1 键也是一样的效果，同时出现 Q1 的结果，不仅 Q 键，同样从 W2/E3/R4/T5/Y6/U7/I8/O9 一直到 0 和 P 才没问题。虽然我可以打出两个字后删除一个以达到自己的目的，但是那样编写文字是不是有点太痛苦了？我就说苹果笔记本是不是有点过于脆弱啊——就像笔记本中那一位弱不禁风的金枝玉叶似的。 :joy:</p>
+<p><img src="air_keyboard_m800.gif" alt="苹果笔记本 MAC AI 键盘问题"></p>
+<p>这个问题我在网上搜过，一般是键盘进水短路或者老化引起，外国也有朋友遇到这种情况了：<a href="https://discussions.apple.com/thread/4819996?start=0&tstart=0" target="_blank" rel="noopener">Q: 1=q1, w=w2, e=e3, r=r4, etc. help!</a> ，他的最终解决方案也是——更换笔记本。 :joy:</p>
+<p>我的苹果笔记本曾今也拆过，而且无线网卡也有点问题了，现在又不能保修，鉴于苹果笔记本那专业而又特殊的键盘结构，我要么送给专业人士修理，要么自己继续折腾。其实我拆过的笔记本不少，包括我现在手里的 DELL M3800 是我用全部件组装的，拆过联想天逸某型号、惠普 NC6400 、联想 B460 、IBM T400 、惠普 ENVY 17-3D 、惠普 ENVY17 （某型号） 、戴尔 M6700 、戴尔 7420 、神舟 P177SM 、富士通某型号、宏碁笔记本、HP MINI 210 、HP 2560P ……即使苹果的玩意都是精工细作，我还是想牛刀小试一下。我想过两个方案：</p>
+<ol>
+<li><strong>拆开后用吹风机吹干键盘尝试让它重回正轨</strong></li>
+<li><strong>如上述方法不行的话就直接更换键盘吧</strong></li>
+</ol>
+<p>针对专业的 MAC 笔记本，准备好以下专业点的东西：</p>
+<ul>
+<li>专用的螺丝刀就有三把</li>
+<li>一把拔铆钉的钳子（听说可以用指甲钳）</li>
+<li>100个左右的键盘小螺丝</li>
+<li>新的相匹配的键盘</li>
+<li>一些辅助小工具</li>
+</ul>
+<h2 id="二、拆解"><a href="#二、拆解" class="headerlink" title="二、拆解"></a>二、拆解</h2><p>第一步拆开笔记本的后盖，然后拆下笔记本的电池和喇叭。拆主板前，要小心查看所有的排线，<strong>主板上的网卡和硬盘是可以不拆下来的</strong>，但是旁边的排线需要小心拿下。</p>
+<p><img src="air-keyboard-1.jpg" alt="拆开笔记本后外壳"></p>
+<p>特别注意<strong>主板右上角风扇的位置有个小螺丝</strong>，拧松取下后才能顺利把主板拿下。下图是拆掉主板和电池喇叭后。</p>
+<p><img src="air-keyboard-2.jpg" alt="卸下螺丝取下主板风扇小板"></p>
+<p>主板和小板没必要拆开，可以不用分开，但是风扇和排线要拿下。</p>
+<p><img src="air-keyboard-3.jpg" alt="电池、喇叭、连接线、风扇、主板、小板放好"></p>
+<p>这里要告诫拆机的朋友们，键盘背光由<strong>背光板</strong>和<strong>背光膜</strong>组成，背光膜是粘在背光板上的，可以和背光板一起拆下，我之前就是没注意，把他们分开拆下来了，导致背光膜撕掉了几个小块，不过这并无大碍。</p>
+<p><img src="air-keyboard-4.jpg" alt="这里的键盘背光要注意，不需要分开背光膜"></p>
+<p>记住，在把背光膜周边稍微掀开后直接把背光板撕下来，因为背光板是粘在键盘上的，但是被背光膜覆盖了看不到，需要掀开周边。拆下背光板后，键盘被四周螺丝和里面大量的铆钉固定着。这是最棘手的部位。</p>
+<p><img src="air-keyboard-5.jpg" alt="这是键盘了，由螺丝和铆钉固定"></p>
+<p>但是也不要紧，因为键盘已经无药可救，卸掉小螺丝后，直接拔掉键盘吧，注意要慢慢拔，刚开始比较难，用点力，后面很轻松，拔掉后键盘变形很大，基本废弃。</p>
+<p><img src="air-keyboard-6.jpg" alt="暴力拆下键盘后录下的铆钉"></p>
+<p>拆解的最后就是细致活了，留下的铆钉一颗颗小心翼翼的用钳子拧下来，我在拧的过程中剪断了好几个，不过只要不是太多，还是没有大碍的，毕竟固定的螺丝孔还是有这么多的。</p>
+<p><img src="air-keyboard-7.jpg" alt="用钳子拔掉残留下的铆钉"></p>
+<p>最后就简单了，只要把键盘放好，然后四周用原来的小螺丝固定，里面铆钉留下的孔也用小螺丝固定好，大功告成！</p>
+<p><img src="air-keyboard-8.jpg" alt="换上键盘用小螺丝固定在铆钉位置"></p>
+<p markdown="1" style="
+    color: red; 
+    font-weight: bold; " >PS: 我之前在拆掉背光板后，用吹风机把背光板和没有拆下来的键盘都吹了一下，居然把数字键 1-9 的功能都修复了，但是 Q|W|E|R|T|Y|U|I 字母键还是老毛病，如果你的键盘能在吹风机吹干后有效的话，那就没必要拔铆钉换键盘了！ :grin:</p> 
+
+<h2 id="三、说明"><a href="#三、说明" class="headerlink" title="三、说明"></a>三、说明</h2><p>苹果笔记本确实是精工细作，主板很小巧，和电池的固定也都非常巧妙，所以也不难拆卸，只要你准备好专用的螺丝刀就可以。但是键盘就比较麻烦了，要拔掉铆钉，还要换上螺丝，立马变得不专业了。 :joy:</p>
+<p>我的 DELL M3800 也是类似的键盘固定在 C 壳上，但是只有四周由小螺丝固定，拆解还是很方便的。</p>
+<p>最后，大家如果也有拆苹果笔记本的话，在全部步骤弄好之后，记住<strong>先不要全部拧上所有螺丝和组件（比如我不会装上喇叭或者电池，有些排线像网卡线也不需要连接上，而且螺丝也只是先拧上几个就可以），先测试好没问题了，最后再把全部螺丝拧好</strong>那样会比较好，毕竟有时候我们忘了个别排线或者忘了哪个小部件、小螺丝没弄好，导致又要重新拆一次的麻烦事。</p>
+<p>最后祝大家 DIY 愉快！ :laughing:</p>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Mac/" class="button small">Mac</a> <a href="/tags/DIY/" class="button small">DIY</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/05/31/the-4-ways-control-spline-movement-in-C4D/" class="alignleft prev" title="C4D中四种基本的曲线运动控制方式"><i class="fa fa-angle-double-left"></i>&nbsp;C4D中四种基本的曲线运动控制方式</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/05/23/why-you-learn-new-skills-so-later/" class="alignright next" title="我为何早先于你学习并应用Kotlin">我为何早先于你学习并应用Kotlin&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

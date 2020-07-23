@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【转载】加锁还是不加锁，这是一个问题"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>【转载】加锁还是不加锁，这是一个问题 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">【转载】加锁还是不加锁，这是一个问题</h1>
+    <div class="meta">
+        <span>2017-06-14</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/随笔/">随笔</a> <a href="/tags/Java/">Java</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<blockquote>
+<p>非常浅显易懂又寓意深刻的一篇文章，转载自微信公众号【码农翻身】的文章，好文分享：加锁还是不加锁，这是一个问题，原文链接： <a href="http://mp.weixin.qq.com/s/qJNQeuDWjRCxkSG2nSK5Uw" target="_blank" rel="noopener">http://mp.weixin.qq.com/s/qJNQeuDWjRCxkSG2nSK5Uw</a></p>
+</blockquote>
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>上次我说过，我们这个线程的世界是个弱肉强食的地方，大家为了争抢资源大打出手，时不时闹出些内存数据互相被覆盖的事故，给人类带了无穷的烦恼。</p>
+<p>后来线程元老院强势出手，发明了一种锁的机制，这才制止了内乱。从此以后我们要访问共享的资源（共享变量，文件…）都得想办法先申请到一把锁才可以。</p>
+<p>（码农君注：关于锁的故事在《<a href="http://chuansong.me/n/1816403351008" target="_blank" rel="noopener">编程世界中的那把锁</a>》有讲述）</p>
+<h2 id="二、互斥锁"><a href="#二、互斥锁" class="headerlink" title="二、互斥锁"></a>二、互斥锁</h2><p>虽说锁是个好东西，但是我们线程日常使用的都是互斥锁，所谓互斥，就是同一时刻只有获得锁的那个线程才有资格去操作共享资源，别的线程都阻塞住了，被放到了一个叫锁池（ Lock pool ）的地方，什么事情都干不了。</p>
+<p><img src="image1.png" alt="image1.png"></p>
+<p>比如说这个简单的 <code>Sequence</code> 类吧，有 100 个线程拼命地挤破头去进入 <code>next()</code> 方法，但由于 <code>synchronized</code> 的存在，大家必须得获得一把锁才可以，隔壁的小明运气不错，获得了操作系统的垂青，喜滋滋地得到了宝贵的锁，进入了 <code>next()</code> 方法去做事了。</p>
+<p>而我们剩下的 99 个线程大眼瞪小眼，除了叹口气，感慨下人生之不如意十之八九，还能干嘛？</p>
+<p>老老实实地进入锁池里待着去吧！</p>
+<p>等到隔壁小明做完了事情，美滋滋地拿着最新的 <code>value</code> 值出来以后，我们这 99 个在锁池里吹牛的线程一跃而起，去竞争那个刚刚被释放的锁。</p>
+<p>但是下一个幸运儿是谁呢？不知道？</p>
+<p>有时候人类为了公平，会搞个队列让我们排好队，先进先出。但是我已经活了 4.998 秒，人生快走到了尽头，在这么长的人生里，我体会到的真理是：公平实在是个稀缺货，不公平才是常态！</p>
+<p>所以年轻人不要老是抱怨这个社会，没用的，还是老老实实的奋斗吧。</p>
+<h2 id="三、不要加锁？"><a href="#三、不要加锁？" class="headerlink" title="三、不要加锁？"></a>三、不要加锁？</h2><p>平淡的日子就这么过着，有一天线程世界来了一个年轻人，自称为小李，他看着我们这么努力地奋斗着去争抢那把锁，不由地嘲笑道：你们真傻啊，难道不知道不加锁也能做事吗？</p>
+<p>我们愣了一下，人群中立刻发出一阵爆笑：哈哈哈，这小子疯了，没有锁岂不又回到互相覆盖数据的日子了！</p>
+<p>小李不甘示弱：你们这帮土老帽，把元老院的那帮老家伙的话当做圣旨，岂不知天外有天，人外有人，这世界大得很呐！</p>
+<p>这句话把我们镇住了，我小心翼翼地问：那你说说，不加锁怎么才能保证正确性呢？</p>
+<p>就拿你们的那个 <code>Sequence</code> 类来说吧，不就是并发的更新内存中的一个值吗，可以这么分为三步来做：</p>
+<ol>
+<li>从内存中读取 <code>value</code> 值，假设为 10 ，我们把这个值称为 <code>A</code></li>
+<li><code>B = A + 1</code> 得到 <code>B = 11</code></li>
+<li>用 <code>A</code> 和内存的值相比，如果相等（就是说在过去的一段时间，没人修改内存的值），那就把B的值（ 11 ）写入内存，如果不相等（就是说过去的一段时间，有人修改了内存 <code>value</code> 的值），意味着 <code>A</code> 已经不是最新值了，那就放弃这次修改，跳回第 1 步去</li>
+</ol>
+<p>我们面面相觑，就这么简单？真的没有加锁啊。</p>
+<p>隔壁的小明反应最快：小李子，你这第三步有问题啊，你看需要读内存吧，需要比较吧，还得写入内存吧，这不是一个原子操作，在我们多线程并发执行的时候，肯定会出问题！</p>
+<p>小李说： “唉，说你们老土吧，你们还不服气，听说过 <code>comare and swap</code> 这个硬件指令没有？那个第三步其实就是一条硬件指令，保证原子执行。在单个CPU上就不用说了，如果是有多个CPU，这个指令甚至会锁住总线，确保同一时刻只有一个CPU能访问内存！</p>
+<p>这样吧，干脆写成个指令： <code>compareAndSwap(内存的值，A ，B)</code> ，这下子明白了吧？还不明白？估计是人类的语言你们听起来不太明白，来吧，给你们来点熟悉的代码：”</p>
+<p><img src="image2.png" alt="image2.png"></p>
+<p>看到了我们熟悉的代码，我的脑海飞速盘算：</p>
+<p>假定我和小明都同时进入了这段代码，都读到了内存的值 <code>A = 10</code> ，然后小明的时间片到了，只好退出CPU，我则愉快的继续执行。</p>
+<p>对于我来说 <code>A = 10</code> ， <code>B = 11</code> ，然后我运行 <code>compareAndSwap</code> ，我发现我的 <code>A</code> 值和内存值是相等的，于是就把新的值 <code>B</code> 写入内存，并且返回，退出 <code>next</code> 函数，收工回家。</p>
+<p>等到小明再次被运行的时候，由于他的初始值 <code>A</code> 也是 10 ，他也得到 <code>B = 11</code> ，当他运行 <code>compareAndSwap</code> 就发现 <code>A</code> 的值和内存不相等了（因为我改成了 11 ），那小明只好再次循环，获得 <code>A = 11，B = 12</code> ，再次调用 <code>compareAndSwap</code> ，如果还是被别人抢了先，小明只好再次循环，从内存获得 <code>A = 12 ，B =13</code> …. 直到成功为止。</p>
+<p>想到小明一直循环下去，累得要死的样子，我“邪恶”地笑了。</p>
+<p>我抬起头，正好和小明的目光相遇，看到他不怀好意的样子，估计也是把我置于无限循环的想象中了。</p>
+<h2 id="四、Java中的CAS"><a href="#四、Java中的CAS" class="headerlink" title="四、Java中的CAS"></a>四、Java中的CAS</h2><p>小李说： “ <code>Compare And Swap</code> 这个词太长了，以后简称 CAS ，希望你们听得懂。”</p>
+<p>小明问道：“我们是 Java 语言，你那个读取内存的值该怎么办，还有那个 <code>compareAndSwap</code> 函数，我们实现不了啊？”</p>
+<p>小李说：“你们 Java 不是有 JNI(Java native interface) 吗？可以用 C 语言来实现，然后在 Java 中封装一下不就得了？”</p>
+<p><img src="image3.png" alt="image3.png"></p>
+<p>“看看这个 <code>AtomicInteger</code> ，他就代表了那个内存的值，那个 <code>count.compareAndSet</code> 方法只有两个参数，实际上内存的值隐藏在了 <code>AtomicInteger</code> 当中，你们 Java 不是喜欢面向对象嘛！”</p>
+<p>我们仔细地审视这段代码，它根本没有加锁，每个人都可以进入 <code>next()</code> 方法，读取数据，操作数据，最后使用 CAS 来决定这次操作是否有效，如果内存值被别人改过，那就再次循环尝试。</p>
+<p>小李总结到：“你们之前的 <code>synchronized</code> 叫做悲观锁，元老院太悲观了，总是怕你们把事情搞砸，你看现在乐观一点儿，不也玩的挺好嘛！每个线程都不用阻塞，不用在那个无聊的锁池里待着。要知道，阻塞，激活是一笔不小的开销啊。”</p>
+<h2 id="五、CAS的扩展"><a href="#五、CAS的扩展" class="headerlink" title="五、CAS的扩展"></a>五、CAS的扩展</h2><p>使用非阻塞算法的线程越来越多，小李趁热打铁，提供了一系列所谓 <code>Atomic</code> 的类：</p>
+<ul>
+<li>AtomicBoolean</li>
+<li>AtomicInteger</li>
+<li>AtomicLong</li>
+<li>AtomicIntegerArray</li>
+<li>AtomicLongArray</li>
+</ul>
+<p>这些工具类都很好用，大家非常喜欢，只是我们发现小李的这些工具类只支持简单的类型，对于一些复杂的数据结构，就不好使用 CAS 了，因为使用 CAS 需要频繁的读写内存数据，并且做数据的比较，如果数据结构很复杂，那读写内存是不可承受之重，还不如最早的悲观锁呢！</p>
+<p>小李胸有成竹，马上给出了改进：不要比较数据啊，只比较引用不就得了，这里有一个 <code>AtomicReference</code> ，拿去用吧。</p>
+<p>我们向元老院做了推荐，那些老家伙们可真是有两把刷子，立刻提出了一个我做梦都没有想到的问题：</p>
+<p>假设有两个线程，线程 1 读到内存的数值为 <code>A</code> ，然后时间片到期，撤出 CPU 。线程 2 运行，线程 2 也读到了 <code>A</code> ，把它改成了 <code>B</code> ，然后又把 <code>B</code> 改成原来的值 <code>A</code> ，简单点说，修改的次序是 <code>A -&gt; B -&gt; A</code> 。然后线程 1 开始运行，它发现内存的值还是 <code>A</code> ，完全不知道内存中已经被操作过。</p>
+<p>（码农君注： 这就是著名的 ABA 问题）</p>
+<p>我想了一下，好像没什么啊，不就是把数字改成了原来的值吗？也没什么影响。</p>
+<p>可是小李却陷入了沉思，看来这是一个挺难的问题，他口中念念有词：如果只是简单的数字，那没什么，可是如果使用 <code>AtomicReference</code> ，并且操作的是复杂的数据结构，就可能会出问题了。对了，我可以用一个版本号来处理啊，给每个放入 <code>AtomicReference</code> 的对象都加入一个 <code>version</code> ，这样以来尽管值相同，也能区分开了！嗯，我就叫他 <code>AtomicStampedReference</code> 吧。</p>
+<p>元老院很满意，但是还是发了一个公告：</p>
+<p>鉴于最近使用 <code>AtomicXXXX</code> 的线程越来越多，元老院有责任提醒各位，用这些类实现非阻塞算法是非常容易出错的，在你自己实现之前，看看元老院有没有提供现成的类，例如： <code>ConcurrentLinkedQueue</code> 。如果非要自己写，也得提交给元老院审查通过才可以使用。</p>
+<h2 id="六、后记：-Doug-Lea"><a href="#六、后记：-Doug-Lea" class="headerlink" title="六、后记： Doug Lea"></a>六、后记： Doug Lea</h2><p>如果说要从 Java 世界中找一个并发编程的大牛，我想这个人非 Doug Lea 莫属，从 JDK 1.5 开始， Java 引入了一个非常著名的线程并发库 <code>java.util.concurrent</code> ，由于其良好的抽象，这个库极大的降低了并发编程的难度，其作者就是并发编程的权威 Doug Lea ，他是纽约州立大学 Oswego 分校计算机科学系教授， JCP （ Java Community Process ）执行委员会成员， JSR166 （并发编程）的主席，文中的小李就是向 Doug Lea 致敬。</p>
+<p>![Doug Lea](Doug Lea.jpg)</p>
+<blockquote>
+<p>你看到的只是冰山一角，更多精彩文章，请移步《码农翻身文章精华》<br>有心得想和大家分享？ 欢迎投稿 ！ 我的联系方式：微信：liuxinlehan  QQ: 3340792577<br>码农翻身<br>用故事给技术加点料<br><img src="image4.jpg" alt="码农翻身"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/随笔/" class="button small">随笔</a> <a href="/tags/Java/" class="button small">Java</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/06/20/object-vs-companion-object-in-kotlin/" class="alignleft prev" title="【学习笔记】区别Kotlin中的object和companion object关键字"><i class="fa fa-angle-double-left"></i>&nbsp;【学习笔记】区别Kotlin中的object和companion object关键字</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/06/11/solve-several-problems-of-gradle-in-android-studio-3-0-on-mac/" class="alignright next" title="MAC上使用Android Studio 3.0的Gradle问题小解">MAC上使用Android Studio 3.0的Gradle问题小解&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="分享一个精致实用的HEXO博客小插件：日历云"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>分享一个精致实用的HEXO博客小插件：日历云 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">分享一个精致实用的HEXO博客小插件：日历云</h1>
+    <div class="meta">
+        <span>2018-10-26</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Hexo/">Hexo</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="hexo-plugin.png" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近更新文章的频率比以前高了，在翻阅之前文章的时候发现我的博客页面有一个缺陷：不能快速浏览或者查看与日期相关的文章数据！我的博客主题使用已接近两年，整体来说还是偏于简洁实用型，基本上没有什么其他扩展功能，既然在<a href="https://hexo.io/plugins/" target="_blank" rel="noopener">官方网站</a>没找到合适的插件，也不会自己打造一个插件，就一直保持了下来，现在用起来不便，才到网上搜索查找与日历相关的插件，还真发现了一个精致实用的日历云小插件，捣鼓了一番，用上后感觉非常实用，所以晾出来分享给大家，有需要的朋友可以拿去。 :smile:</p>
+<p><img src="calendar_widget.jpg" alt="calendar_widget.jpg"></p>
+<p>另外，如果你还没有创建博客，推荐使用 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 搭建；如果刚创建博客，还在搜寻可用插件，那么可以参考我之前的两篇文章：</p>
+<ul>
+<li><a href="http://liuqingwen.me/blog/2017/04/11/hexo-blog-creation-work-progress/">「Hexo On Win10」新手搭建博客过程</a></li>
+<li><a href="http://liuqingwen.me/blog/2017/05/16/share-several-extra-functionality-of-hexo-plugins/">分享几个实用的HEXO博客功能插件</a></li>
+</ul>
+<p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo 博客主题</a>非常丰富，根据不同的主题，相应的插件安装和配置都会有稍许差别，我的博客主题是： <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank" rel="noopener">Phantom Blog Hexo</a> ，并不支持 <em>Widget</em> 功能，如果你是以下两款主题，可以参考原文作者文章：</p>
+<ul>
+<li><a href="https://link.jianshu.com/?t=https://github.com/pengloo53/Hexo-theme-light_cn" target="_blank" rel="noopener">Hexo-theme-light_cn</a> 主题，那么可以直接参考这篇文章： <a href="https://www.jianshu.com/p/b9665a8e8282" target="_blank" rel="noopener">Hexo 主题中添加日历云功能</a>，文章解说非常详细，按步照班即可。</li>
+<li><a href="http://howiefh.github.io/2014/04/20/hexo-optimize-and-my-theme-landscape-f/" target="_blank" rel="noopener">Landscape-F</a> 主题，你可以参考这篇文章： <a href="http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/" target="_blank" rel="noopener">Hexo 日历插件</a> ，博主正是插件的作者：<a href="http://howiefh.github.io/" target="_blank" rel="noopener">净土</a>。</li>
+<li>其他主题，没有日历功能的，可以参考我的方法，在上面两篇文章的基础上加以修改，快速打造一款好用的精美日历云插件，请继续往下看。 :smiley:</li>
+</ul>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>安装过程稍许繁杂，大致需要完成以下几个步骤：</p>
+<ol>
+<li>插件的安装，使用插件生成数据文件</li>
+<li>插件的安装位置，即页面显示位置，由你来决定</li>
+<li>插件的表现形式，也就是 CSS 样式，自由修改</li>
+</ol>
+<p>准备几个代码文件，已备好下载链接：<a href="calendar_files.zip">日历云相关文件</a>，解压后复制到相应位置：</p>
+<ul>
+<li><code>calendar.ejs</code> 为 HTML 脚本，放在博客主题的布局文件夹下： <code>[blog_root]/themes/[your_theme]/laout/_widget/calendar.ejs</code> ，我的主题没有 <code>_widget</code> 文件夹的，手动创建即可。</li>
+<li><code>calendar.js</code> 和 <code>languages.js</code> 脚本文件，我直接放在了主题的 <code>js</code> 文件夹下： <code>[blog_root]/themes/[your_theme]/source/js/calendar.js</code> ，两个文件一样，用于动态生成日历 HTML 代码。</li>
+<li><code>calendar.css</code> 为日历的样式文件，我放在 <code>[blog_root]/themes/[your_theme]/source/css/calendar.css</code> 目录下，如果你使用的是 <code>styl</code> 格式的样式文件，你也可以转化为 CSS 文件或者参考上面提到的<a href="https://www.jianshu.com/p/b9665a8e8282" target="_blank" rel="noopener">博主的文章</a>。</li>
+</ul>
+<h3 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1. 安装插件"></a><strong>1. 安装插件</strong></h3><p>和其他插件安装一样，首先需要安装 <em>Calendar</em> 日历插件 <code>hexo-generator-calendar</code> 的渲染源文件，在博客根目录下运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install git://github.com/howiefh/hexo-generator-calendar.git --save</span><br></pre></td></tr></table></figure>
+
+<p>插件安装好之后，如果你使用 <code>hexo g</code> 重新生成博客代码同时，会产生一个 <code>calendar.json</code> 文件在博客的根目录，这也是最重要的数据文件，保存了你的所有文章的标题、链接、日期等信息，内容格式大致如下：</p>
+<figure class="highlight json"><figcaption><span>calendar.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"2018-10"</span>:[</span><br><span class="line">    &#123;<span class="attr">"title"</span>:<span class="string">"Godot3游戏引擎入门之六：制作TileMap瓦片地图"</span>,<span class="attr">"date"</span>:<span class="string">"2018-10-19T12:16:24.000Z"</span>,<span class="attr">"link"</span>:<span class="string">"/blog/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/"</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">"title"</span>:<span class="string">"Godot3游戏引擎入门之七：地图添加碰撞体制作封闭的游戏世界"</span>,<span class="attr">"date"</span>:<span class="string">"2018-10-22T12:23:17.000Z"</span>,<span class="attr">"link"</span>:<span class="string">"/blog/2018/10/22/introduction-of-godot-3-part-7-add-collision-and-move-player-in-map/"</span>&#125;</span><br><span class="line">    ],</span><br><span class="line"><span class="attr">"..."</span>:[<span class="string">"..."</span>],</span><br><span class="line"><span class="attr">"..."</span>:[<span class="string">"..."</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>PS:</strong> 这里有一个小 BUG ，如果你的博客配置了根目录 <code>root</code> 属性值，也就是说你的博客内容<strong>并不是放在服务器根目录</strong>，而是某个文件夹，那么 <em>Calendar</em> 插件生成的 <em>JSON</em> 数据文件中的链接 <code>link</code> 将全部无效，这时候需要手动 Hack 一下插件的源代码，当然你的配置是默认值 <code>root: /</code> 可以直接跳过。</p>
+<p>以我的博客为例，我在全局配置文件 <code>_config.yml</code> 中配置了博客根目录： <code>root: /blog/</code> 所以内容放在服务器下名为 <code>/blog/</code> 的文件夹下，因此日历上的链接路径也应该加上 <code>/blog/</code> 才能正常跳转，打开安装的插件源码，位置为： <code>[blog_root]/node_modules/_hexo-generator-calendar@0.0.1@hexo-generator-calendar/lib/generator.js</code> 修改代码如下注释部分：</p>
+<figure class="highlight js"><figcaption><span>generator.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">locals</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> rootConfig = <span class="keyword">this</span>.config; <span class="comment">// 添加部分</span></span><br><span class="line">  <span class="comment">//省略代码……</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> posts = locals.posts.sort(<span class="string">'date'</span>).filter(<span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> post.published;</span><br><span class="line">  &#125;).map(<span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      title: post.title,</span><br><span class="line">      date: post.date,</span><br><span class="line">      <span class="comment">// 修改链接生成代码</span></span><br><span class="line">      link: rootConfig.root + post.path <span class="comment">// 添加博客根目录</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;).reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev, cur, index, array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> key = generateKey(cur.date);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!prev.hasOwnProperty(key)) &#123;</span><br><span class="line">      prev[key] = [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    prev[key].push(cur);</span><br><span class="line">    <span class="keyword">return</span> prev;</span><br><span class="line">  &#125;, &#123;&#125;);</span><br><span class="line">  <span class="comment">//省略代码……</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-添加JS代码"><a href="#2-添加JS代码" class="headerlink" title="2. 添加JS代码"></a><strong>2. 添加JS代码</strong></h3><p>插件和文件都安装配置好之后，需要添加一段 <code>js</code> 代码，用于渲染页面，在 <code>[blog_root]/themes/[your_theme]/layout/_partial/after_footer.ejs</code> 文件中，添加如下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Calendar --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">config.calendar</span>)&#123; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/calendar.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"&lt;%- config.root %&gt;js/languages.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="javascript">        $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            $(<span class="string">'#calendar'</span>).aCalendar(</span></span><br><span class="line"><span class="actionscript">                <span class="string">'&lt;%= theme.calendar.language || config.language %&gt;'</span>,</span></span><br><span class="line"><span class="handlebars"><span class="xml">                &#123;single:<span class="tag">&lt;<span class="name">%=</span> <span class="attr">config.calendar.single</span> %&gt;</span>, root:'<span class="tag">&lt;<span class="name">%=</span> <span class="attr">config.calendar.root</span> %&gt;</span>'&#125;</span></span></span><br><span class="line">            );</span><br><span class="line"><span class="actionscript">            <span class="comment">// 下面的代码用于页面测试，可以不添加</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">            <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span>(<span class="attr">config.calendar.sample_id</span>)&#123; %&gt;</span></span></span></span><br><span class="line"><span class="javascript">                $(<span class="string">'#&lt;%= config.calendar.sample_id %&gt;'</span>).aCalendar(</span></span><br><span class="line"><span class="actionscript">                    <span class="string">'&lt;%= theme.calendar.language || config.language %&gt;'</span>,</span></span><br><span class="line"><span class="handlebars"><span class="xml">                    &#123;single:<span class="tag">&lt;<span class="name">%=</span> <span class="attr">config.calendar.single</span> %&gt;</span>, root:'<span class="tag">&lt;<span class="name">%=</span> <span class="attr">config.calendar.root</span> %&gt;</span>'&#125;</span></span></span><br><span class="line">                );</span><br><span class="line"><span class="handlebars"><span class="xml">            <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span></span></span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>PS:</strong> 这里又遇到一个坑，我发现原版 JS 代码并不能正常解析我在<strong>主题目录下</strong>的配置文件中的相关参数，所以在这里我删除了与配置相关的代码： <code>theme.config.calendar.options</code> ，忽略相关配置参数，然后在 <code>calendar.js</code> 中修改代码如下：</p>
+<figure class="highlight js"><figcaption><span>calendar.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//省略代码……</span></span><br><span class="line">$.fn.aCalendar.defaults = &#123;</span><br><span class="line">    months: [<span class="string">'January'</span>, <span class="string">'February'</span>, <span class="string">'March'</span>, <span class="string">'April'</span>, <span class="string">'May'</span>, <span class="string">'June'</span>, <span class="string">'July'</span>, <span class="string">'August'</span>, <span class="string">'September'</span>, <span class="string">'October'</span>, <span class="string">'November'</span>, <span class="string">'December'</span>],</span><br><span class="line">    dayOfWeekShort: [<span class="string">'S'</span>, <span class="string">'M'</span>, <span class="string">'T'</span>, <span class="string">'W'</span>, <span class="string">'T'</span>, <span class="string">'F'</span>, <span class="string">'S'</span>],</span><br><span class="line">    dayOfWeek: [<span class="string">'Sunday'</span>, <span class="string">'Monday'</span>, <span class="string">'Tuesday'</span>, <span class="string">'Wednesday'</span>, <span class="string">'Thursday'</span>, <span class="string">'Friday'</span>, <span class="string">'Saturday'</span>],</span><br><span class="line">    postsMonthTip: <span class="string">'Posts published in LMM yyyy'</span>,</span><br><span class="line">    titleFormat: <span class="string">'yyyy LMM'</span>,</span><br><span class="line">    titleLinkFormat: <span class="string">'/blog/archives/yyyy/MM/'</span>, <span class="comment">//这里我添加了我的博客根目录 blog</span></span><br><span class="line">    headArrows: &#123;<span class="attr">previous</span>: <span class="string">'&lt;span class="cal-prev"&gt;&lt;/span&gt;'</span>, <span class="attr">next</span>: <span class="string">'&lt;span class="cal-next"&gt;&lt;/span&gt;'</span>&#125;,</span><br><span class="line">    footArrows: &#123;<span class="attr">previous</span>: <span class="string">'« '</span>, <span class="attr">next</span>: <span class="string">' »'</span>&#125;,</span><br><span class="line">    weekOffset: <span class="number">0</span>,</span><br><span class="line">    single: <span class="literal">true</span>,</span><br><span class="line">    root: <span class="string">'/calendar/'</span>,</span><br><span class="line">    url: <span class="string">'/blog/calendar.json'</span> <span class="comment">//这里我添加了我的博客根目录 blog</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>特别注意代码中的<strong>两行注释</strong>，因为我的博客根目录 <code>root</code> 是在服务器的 <code>/blog/</code> 文件夹下，所以添加了相应的路径，这和博客根目录下的配置文件 <code>_config.yml</code> 相符，可以参考一下我的部分配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, </span></span><br><span class="line"><span class="comment">## set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://liuqingwen.me/blog</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/blog/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-相关配置"><a href="#3-相关配置" class="headerlink" title="3. 相关配置"></a><strong>3. 相关配置</strong></h3><p>首先在<strong>博客根目录</strong>下的配置文件 <code>_config.yml</code> 中添加配置参数：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Calendar</span></span><br><span class="line"><span class="attr">calendar:</span></span><br><span class="line">  <span class="attr">single:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">root:</span> <span class="string">calendar/</span> <span class="comment"># only used when single=false</span></span><br><span class="line">  <span class="attr">sample_id:</span> <span class="string">calendar-sample</span> <span class="comment"># only for samples in page content</span></span><br></pre></td></tr></table></figure>
+
+<p>这里最后一个参数 <code>sample_id</code> 是我自己添加的，用于渲染日历插件在某些特定页面上，可以做测试和展示，可以不用添加。</p>
+<p>然后在<strong>主题根目录</strong>下的配置文件 <code>[blog_root]/themes/[your_theme]/_config.yml</code> 中添加配置参数：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Calendar</span></span><br><span class="line"><span class="attr">calendar:</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line">  <span class="attr">options:</span></span><br><span class="line">    <span class="comment"># 参数忽略</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，因为我修改了 <code>calendar.js</code> 中的代码，这里的 <code>options</code> 参数配置直接忽略了。</p>
+<h3 id="4-展示位置"><a href="#4-展示位置" class="headerlink" title="4. 展示位置"></a><strong>4. 展示位置</strong></h3><p>基本工作都完成了，最后一步就是日历云的页面摆放位置了。这里你可以自由发挥，找到相应位置的源代码添加日历云插件即可！</p>
+<p>以我的博客为例，我选择在菜单栏中显示日历最佳，所以找到博客主题的 <code>.../layout/_partial/menu/ejs</code> 菜单栏文件，添加日历云控件代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Menu --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">id</span>=<span class="string">"menu"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 原代码，省略…… --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 增加日历代码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"widget-calender-xxx"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">_widget</span>/' + "<span class="attr">calendar</span>") %&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>好了，工作全部完成，直接使用 <code>hexo s</code> 启动并查看效果吧！</p>
+
+<div class="widget tag" style="width: 80%; max-width: 400px; color: #FFF; background: #585858;">
+    <h3 class="title">Calendar Sample</h3>
+    <div id="calendar-sample" style="margin: 0 auto;"></div>
+</div>
+
+
+<p>最后，记得修改样式文件 <code>calendar.css</code> ，打造一款完全属于你自己的日历云样式哦！ :grin:</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>实用！精致！简单！当然，有几个小 BUG 还是需要手动 Hack 一下的，如果有朋友愿意修改一下源代码并提交 PR 更新插件，请告知，非常感谢！</p>
+<p>Hexo 中的日历云插件，安装和分享，希望大家喜欢！最后附上文中提到的主要的源文件，下载链接：<a href="calendar_files.zip">日历云相关文件</a>。</p>
+<blockquote>
+<p>参考：<br>    Hexo 主题中添加日历云功能： <a href="https://www.jianshu.com/p/b9665a8e8282" target="_blank" rel="noopener">https://www.jianshu.com/p/b9665a8e8282</a><br>    Hexo 日历插件： <a href="http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/" target="_blank" rel="noopener">http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/</a><br>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号： <img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzg3MjAwMjI4Mg==&mid=100000071&idx=1&sn=440b2050b4c7495c64f66c41b028c406&send_time=1536712211" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Hexo/" class="button small">Hexo</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/10/28/translation-of-textclassification-part-1/" class="alignleft prev" title="【翻译】TextClassification介绍（一）"><i class="fa fa-angle-double-left"></i>&nbsp;【翻译】TextClassification介绍（一）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/10/22/introduction-of-godot-3-part-7-add-collision-and-move-player-in-map/" class="alignright next" title="Godot3游戏引擎入门之七：地图添加碰撞体制作封闭的游戏世界">Godot3游戏引擎入门之七：地图添加碰撞体制作封闭的游戏世界&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

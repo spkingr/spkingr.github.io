@@ -1,0 +1,151 @@
+.widget{
+  border: 1px dashed gray;
+  margin: 0 auto;
+  padding: 0.5em;
+}
+
+.widget h3{
+  color: #ffb800;
+  text-transform: capitalize;
+  margin: 0 0 1em 0;
+}
+
+.cal-head {
+  position: relative;
+  padding: 8px 6px;
+}
+
+.cal-prev,
+.cal-next {
+  position: absolute;
+  top: 9px;
+  width: 9px;
+  height: 10px;
+  padding: 3px 4px;
+  border: 1px solid transparent;
+  color: #333;
+  outline: 0;
+}
+
+.cal-prev {
+  left: 8px;
+}
+
+.cal-prev:before {
+  border-right: 9px solid #FFFFFF;
+}
+
+.cal-next {
+  right: 8px;
+}
+
+.cal-next:before {
+  border-left: 9px solid #ffffff;
+}
+
+.cal-prev:before,
+.cal-next:before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.cal-title,
+.cal-count {
+  width: 120px;
+  margin: 0 auto;
+  color: #a9a9a9;
+  font: bold 14px/18px Arial;
+  text-align: center;
+}
+
+.cal-title a{
+  border: 1px solid transparent;
+  color: #FFFFFF;
+}
+
+.cal-count a{
+  border: 1px solid transparent;
+  color: #FFFFFF;
+  display: block;
+  font-weight: bold;
+}
+
+.cal,
+.cal th,
+.cal td {
+  border: 1px solid #eee;
+}
+
+.cal {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-width: 1px 0 0 1px;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0;
+}
+
+.cal th {
+  color: #7fff00;
+  border-width: 0 1px 1px 0;
+  font-weight: 700;
+}
+
+.cal td {
+  border-width: 0 1px 1px 0;
+}
+
+.cal tbody a {
+  background-color: #585858;
+  color: #ffb800;
+  display: block;
+  font-weight: 700;
+}
+
+.cal tbody .cal-today {
+  color: #7fff00;
+  font-weight: bold;
+}
+
+.cal .cal-gray {
+  color: #ddd;
+}
+
+.cal th,
+.cal td {
+  font-weight: normal;
+  line-height: 2.5625;
+  padding: 0;
+  text-align: center;
+}
+
+.cal .cal-foot {
+  color: #7fff00;
+}
+
+.cal-title a:hover,
+.cal-count a:hover,
+.cal-prev:hover,
+.cal-next:hover {
+  background-color: #585858;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.cal .cal-foot:hover,
+.cal .cal-foot:focus {
+  background-color: #ffb800;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.cal tbody a:hover,
+.cal tbody a:focus {
+  background-color: #7fff00; /*007acc*/
+  color: #fff;
+  cursor: pointer;
+}

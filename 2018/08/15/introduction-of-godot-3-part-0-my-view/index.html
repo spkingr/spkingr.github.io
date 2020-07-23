@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之零零：简单的想法"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之零零：简单的想法 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之零零：简单的想法</h1>
+    <div class="meta">
+        <span>2018-08-15</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、缘由"><a href="#一、缘由" class="headerlink" title="一、缘由"></a>一、缘由</h2><p>今年 7 月份，也就是上个月，惊奇的发现世界上存在着这么一个小巧灵动的游戏引擎： <a href="https://godotengine.org/" target="_blank" rel="noopener">Godot Game Engine</a> ，图标非常可爱另类，研究了一番，现在已经是 3.0 的版本（目前是 3.0.6 ），看官方新闻，最新版 3.1 正在紧张有序的开发中，据说会有重大突破，期待。 :joy:</p>
+<p>这个游戏引擎虽小，但是真的是五脏俱全：支持 Window/Mac/Linux 主流操作系统，支持普通的 2D 和 3D 游戏开发，支持 Android/iOS/Blackberry OS 等主流手机平台，以及 XBox/Steam/GameRoom 等其他游戏平台的发布，当然 WebGL 也不在话下。你可以到<a href="https://godotengine.org/download" target="_blank" rel="noopener">官方网站</a>下载直接运行文件， Mac 也可以通过 <code>brew cask install godot</code> 安装，最大不超过 100M ，最低 20M ，但功能可谓是非常齐全啊。</p>
+<p><img src="godot_background_700.jpg" alt="godot background"></p>
+<p>令人惊喜的是，他是开源的！开源的，没错，你没有听错，早在四年前就已经开源了，哇哦~不过，不好意思，四年前我连如日中天的 Unity3D 是啥都不知道呢。去年底有机会接触并学习了一段时间的 Unity3D 游戏开发后，还是蛮喜欢这个游戏开发引擎的，但是现在我发现作为游戏开发爱好者菜鸟的我， Godot 更适合我，为啥？请听我慢慢道来：</p>
+<ol>
+<li>小巧开源，社区驱动，下载后无需安装，开箱即用，官方插件也齐全</li>
+<li>惊喜的 2D 游戏开发界面和 GUI 元素，适合新手，打开程序即可轻松上手游戏开发</li>
+<li>一切基于 Node ，想添加任何元素都是极其 Easy ，甚至 2D 和 3D 以及 GUI 元素混用都没关系</li>
+<li>每一个 Node 元素<strong>只能添加一个</strong> Script 脚本进行控制，这太符合是我这类有一点点 Adobe Flash 开发经验的朋友了</li>
+<li>如果深入点，它的流程设计，帮助文档，资源加载，一切可以基于场景进行设计，等等，都非常直接、非常贴切啊<del>~</del></li>
+</ol>
+<p>当然，学习曲线平缓也是我喜欢这个游戏引擎的另一个重要原因。这就是我接触 Godot 没超过两周的感受吧，当然还有更多更多的优点等着去挖掘和探索的，官方对此也列举了 Godot 平台的几乎所有的特性及优点，大家可以在此查看： <a href="https://godotengine.org/features" target="_blank" rel="noopener">Godot Features</a></p>
+<p>总之，就是这么一个五脏俱全、小巧玲珑的开源的游戏开发引擎让我爱不释手，我决定“冒天下之大不韪”对 Godot 进行个人方面的努力宣传尝试，为开源界也算是贡献我的一份渺小的力量吧。哈哈。 :joy:</p>
+<h2 id="二、内容"><a href="#二、内容" class="headerlink" title="二、内容"></a>二、内容</h2><p>因为自己对游戏开发也几乎是完全从 0 开始，目前有没有入门都还处于不确定阶段，我肯定不能进行一些深入的探讨，但是基础的部分我会边学习边记录下来，作为小专题来和喜欢 Godot 的朋友们一起讨论研究。</p>
+<p>关于内容的话，我初步给自己定了一个目标，找了些资料和书籍，主要基于 2D 游戏开发，参考了《 Godot Engine Game Development in 24 Hours, Sams Teach Yourself: The Official Guide to Godot 3.0 》这本书后，我把内容简单的列表如下：</p>
+<ol>
+<li>Godot 游戏引擎的介绍和安装、以及相关的资源</li>
+<li>Godot 的场景系统介绍和使用</li>
+<li>2D 图形相关元素和操作</li>
+<li>GDScript 脚本介绍和使用</li>
+<li>用户输入 Input 相关</li>
+<li>游戏物理引擎</li>
+<li>动画的使用</li>
+<li>简单的开发流程探讨</li>
+<li>文件系统和项目管理</li>
+<li>声音和粒子系统</li>
+<li>视口和 GUI 界面元素</li>
+<li>网络相关</li>
+<li>最后可能会探讨一下 Native 脚本吧</li>
+<li>其他……</li>
+</ol>
+<p>好吧，这真是画了一个好大的饼啊……希望自己跪着也能吃完吧，哈哈。 :joy:</p>
+<h2 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h2><p>啰嗦了一大堆，大家肯定会问：凭什么要上船呢？特别是很多朋友可能有其他游戏引擎的开发经验，比如国内如火如荼的 <a href="https://unity3d.com/" target="_blank" rel="noopener">Unity 3D</a> ，还有大名鼎鼎的老资格 <a href="https://unigine.com/" target="_blank" rel="noopener">Unreal Engine</a> ，以及游戏画面闻名的 <a href="https://www.cryengine.com/" target="_blank" rel="noopener">Cry Engine</a> 等等，还有手机上著名的 <a href="https://developer.apple.com/documentation/spritekit" target="_blank" rel="noopener">SpriteKit</a> 框架，以及开源跨平台的 <a href="https://libgdx.badlogicgames.com/" target="_blank" rel="noopener">LibGDX</a> 或者 <a href="http://www.cocos2d-x.org/" target="_blank" rel="noopener">Cocos2d-x</a> 游戏框架经验，等等，话说最近开源的 <a href="https://xenko.com/" target="_blank" rel="noopener">Xenko</a> 又是个什么梗？我想说，凭我的软文还不够大家上船，那么先来两篇文章安利一下大家吧：</p>
+<ul>
+<li>这里有一位国外大“屌”开发者，谈了他对 Godot 和自己多年 Unity3D 游戏开发经验的一些比较和看法，我觉得蛮有参照价值的，参考网址：</li>
+</ul>
+<blockquote>
+<p>Here is my personal opinion about Godot vs Unity<br><a href="https://news.ycombinator.com/item?id=16674933" target="_blank" rel="noopener">https://news.ycombinator.com/item?id=16674933</a>）：</p>
+</blockquote>
+<ul>
+<li>还有一个位大神，在去年底 Medium 上发了一篇文章，也是关于为什么选择 Godot 的原因，原文太长了，参考网址：</li>
+</ul>
+<blockquote>
+<p>Why we choose Godot Engine<br><a href="https://medium.com/@rockmilkgames/why-godot-engine-e0d4736d6eb0" target="_blank" rel="noopener">https://medium.com/@rockmilkgames/why-godot-engine-e0d4736d6eb0</a></p>
+</blockquote>
+<p>我感觉自己要翻译一下这两篇文章了，因为阅读这些英文有点浪费时间，我也并没有足够的说服力来让大家趟坑 Godot ，哈哈。那么，可能下篇见吧。 :sunglasses:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/blog/images/wexin_2.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/08/24/introduction-of-godot-3-part-1-why-we-choose-godot-engine/" class="alignleft prev" title="Godot3游戏引擎入门之零一：【翻译】为什么要选择 Godot 引擎"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之零一：【翻译】为什么要选择 Godot 引擎</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/08/13/translation-of-motionlayout-collapsing-toolbar-part-1/" class="alignright next" title="【翻译】MotionLayout实现折叠工具栏（Part 1）">【翻译】MotionLayout实现折叠工具栏（Part 1）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

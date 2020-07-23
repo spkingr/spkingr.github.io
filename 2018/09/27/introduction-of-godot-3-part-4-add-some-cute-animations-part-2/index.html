@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之四：给主角添加动画（下）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之四：给主角添加动画（下） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之四：给主角添加动画（下）</h1>
+    <div class="meta">
+        <span>2018-09-27</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本篇是上一节文章：<a href="http://liuqingwen.me/blog/2018/09/25/introduction-of-godot-3-part-4-add-some-cute-animations-part-1/">Godot3游戏引擎入门之四：给主角添加动画（上）</a>的继续。在这两篇文章里，我会详细讲述 Godot 3 中制作简单精灵动画的三种方法，其中上部分包含两种，下部分讨论第三种方式。 :smile:</p>
+<blockquote>
+<p>主要内容： Godot 2D 小游戏入门之三种动画创建方式（第三种）<br>阅读时间： 8-10 分钟<br>永久链接：<a href="http://liuqingwen.me/blog/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/">http://liuqingwen.me/blog/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
+<li>使用动画精灵 <em>AnimatedSprite</em> 节点创建 <em>Sprite</em> 骑士动画（上篇）</li>
+<li>使用 <em>Sprite</em> 节点和 <em>GDScript</em> 脚本代码共同创建背景滚动效果（上篇）</li>
+<li>使用 <em>AnimationPlayer</em> 节点制作天鹅飞舞的关键帧动画（下篇）</li>
+</ol>
+<h3 id="创建动画"><a href="#创建动画" class="headerlink" title="创建动画"></a>创建动画</h3><p>首先，简单回顾一下本篇上节内容中的两种游戏动画制作方式：</p>
+<p><strong>第一种方法：使用 AnimatedSprite 制作骑士动画</strong></p>
+<p>非常简单又符合直觉的一种方法，最适合于打造单个人物或物件的精灵动画特效。 <em>AnimatedSprite</em> 制作动画的原理相当简单，只需要提前准备好必须的图片资源即可，具体操作参考上节的内容。</p>
+<p><img src="godot_4_result1.gif" alt="godot_4_result1.gif"></p>
+<p><strong>第二种方法：使用代码控制背景天空滚动</strong></p>
+<p>这种方式相对第一种可以说是最符合<em>程序员</em>的思维习惯的的：通过代码直接控制并移动背景图片的位置就能达到我们所想要的动画特效。在上一节内容中，我们还了解到了 Godot 中图片的坐标原点位置的相关设置。</p>
+<p><img src="godot_4_result2.gif" alt="godot_4_result2.gif"></p>
+<p><strong>第三种方法：使用 AnimationPlayer 关键帧制作天鹅动画</strong></p>
+<p>上文介绍的两种动画制作方式简单也不失灵活性，在实际游戏开发过程中使用的也会比较多，但是，如果你认为 Godot 就这点能耐的话，那你也太小看它了，哈哈。接下来我们开始探讨第三种动画制作方式：关键帧动画！现在，隆重请出我们今天的主角： <em>AnimationPlayer</em> ！ :sunglasses:</p>
+<p><img src="godot_animation_keyframe.jpg" alt="godot_animation_keyframe.jpg"></p>
+<p>在深入讨论之前，我们先了解一下 <em>SpriteSheet</em> 相关知识，如果你有使用过 <a href="https://libgdx.badlogicgames.com/" target="_blank" rel="noopener">LibGDX</a> 跨平台游戏框架开发游戏的经验，或者熟悉 Unity 中的 2D 游戏动画制作，那么你肯定对 <em>SpriteSheet</em> 会非常了解。我们想象一下第一种动画方式，使用 <em>AnimatedSprite</em> 制作动画虽然简单，但是如果涉及到人物多种状态，比如攻击、跳跃、行走、死亡等，那么图片资源是不是会多如牛毛？而且操作过程中还容易出错，这就是 <em>SpriteSheet</em> 的由来之处了！简而言之， <em>SpriteSheet</em> 就是把很多图片，甚至不同类型的图片资源，放到一个大图片里，方便管理操作和使用，听说过 <a href="https://www.codeandweb.com/texturepacker" target="_blank" rel="noopener">TexturePacker</a> 这个软件吗？它就是专门干这事的。</p>
+<p>理论到此结束，我们来瞻仰一下我们要实现的天鹅动画的图片资源 <em>SpriteSheet</em> 精灵图集：</p>
+<p><img src="godot_4_swansheet.png" alt="godot_4_swansheet.png"></p>
+<p>图片结构很单一，可以看得出是由 8 张连续的小图拼接而成的，怎么使用呢？首先，我们还是和往常一样使用一个 <em>Sprite</em> 精灵节点来显示天鹅图片，改名为 <em>Swan</em> ，但是这里还需要进行一些简单的设置：</p>
+<p><img src="godot_4_hframes.jpg" alt="godot_4_hframes.jpg"></p>
+<p>如上图，我们设置属性 <em>Vframes</em> 值为 1 ， <em>Hframes</em> 为 8 ，意思很明确，即纵向分 1 帧，横向分 8 帧，然后总共 1x8 帧，而第三个属性 <em>Frame</em> 就表示当前显示第几帧画面，可以设置为 0-7 共 8 帧画面，操作浏览一下效果试试，你会发现 <em>Frame</em> 值从 0 到 1 然后慢慢设置到 7 的时候，天鹅图片就产生了一种不连续的动画效果，对，动画原理就是这么简单！这个时候你会想：我如果在代码中获取 <em>Swan</em> 的 <em>Frame</em> 属性，然后把它的值每次往前加 1 不就可以生成动画了吗？的确可以！代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func _process(delta):</span><br><span class="line">	<span class="keyword">if</span> $Swan.frame == <span class="number">7</span>:</span><br><span class="line">		$Swan.frame = <span class="number">0</span></span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		$Swan.frame += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>这和第二种方法的道理完全相同，也很值得一试！不过运行游戏场景后，你会发现天鹅飞舞的动画太快了！当然，这并不是什么大问题，添加一个时间控制的变量，让帧属性慢点往前加 1 就可以了。不过这不是我们要讨论的重点，我所要给大家介绍的是 Godot 中强大到能够控制一切的关键帧动画节点工具： <em>AnimationPlayer</em> ！</p>
+<p>对，在 Godot 中 <em>AnimationPlayer</em> 的确能操纵一切，简单的如位置、旋转、缩放的控制，还有其他节点的任意属性值的控制，甚至连方法的调用都能在 <em>AnimationPlayer</em> 中进行动画设定！同时，不仅强大，使用起来也非常简单。如何实现天鹅动画，这里我做了一个简单的操作示意图，大家可以感受下 <em>AnimationPlayer</em> 节点的使用步骤：</p>
+<p><img src="godot_4_keyframes.gif" alt="godot_4_keyframes.gif"></p>
+<p>下面进入细节部分，首选我们需要在游戏根节点下创建一个 <em>AnimationPlayer</em> 节点，这里要强调一下：我们要对 <em>Swan</em> 节点进行动画，所以他们需要放置在同一级别上！当然， <em>AnimationPlayer</em> 完全可以同时对其他节点比如<em>天空背景<em>或者</em>主角骑士*节点进行动画，你可以尝试一下。接下来，选择 *AnimationPlayer</em> 节点，新建一个动画轨道：</p>
+<p><img src="godot_4_create_animation.jpg" alt="godot_4_create_animation.jpg"></p>
+<p>然后对我们新建的动画轨道进行设置：自动播放、重复播放、动画时长等，部分细节如下图：</p>
+<p><img src="godot_4_keyframes_setting.jpg" alt="godot_4_keyframes_setting.jpg"></p>
+<p>OK ，大功告成，运行结果：</p>
+<p><img src="godot_4_result3.gif" alt="godot_4_result3.gif"></p>
+<p>最后，虽然动画有了但是天鹅并不能移动位置，我们需要让它随着时间不断移动位置就可以了。这里介绍一个小技巧：我们可以直接在节点上添加脚本！ Godot 推荐我们这么做，尽量让每一个节点独立，也就是和整个游戏场景<strong>解耦</strong>，在大项目中让合作开发更高效。</p>
+<p>Talk is cheap, show me the code! <strong>选择 Swan 节点</strong>，点击添加脚本，编写代码：</p>
+<figure class="highlight python"><figcaption><span>Swan.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">extends Sprite</span><br><span class="line"></span><br><span class="line"><span class="comment"># 速度常量</span></span><br><span class="line">const SPEED = <span class="number">100</span></span><br><span class="line"><span class="comment"># 最左边界和最右边界</span></span><br><span class="line">var minX = <span class="number">-100</span></span><br><span class="line">var maxX = <span class="number">800</span></span><br><span class="line"></span><br><span class="line">func _process(delta):</span><br><span class="line">	position.x -= SPEED * delta</span><br><span class="line">	<span class="comment"># 如果天鹅飞到左边边界，把它的x坐标置为最右边界</span></span><br><span class="line">	<span class="keyword">if</span> position.x &lt; minX:</span><br><span class="line">		position.x = maxX</span><br></pre></td></tr></table></figure>
+
+<p>最终效果：</p>
+<p><img src="godot_4_result4.gif" alt="godot_4_result4.gif"></p>
+<h3 id="所有代码"><a href="#所有代码" class="headerlink" title="所有代码"></a>所有代码</h3><p>我们的游戏终于完成了，这里我附上所有的代码，如果你已经阅读过前面两篇文章：<a href="http://liuqingwen.me/blog/2018/09/18/introduction-of-godot-3-part-3-move-character-with-inputs/">Godot3游戏引擎入门之三：移动我们的主角</a>，那么请跳过。</p>
+<figure class="highlight python"><figcaption><span>Game.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 继承于Node2D</span></span><br><span class="line">extends Node2D</span><br><span class="line"></span><br><span class="line"><span class="comment"># 常量，表示速度（像素）</span></span><br><span class="line">const SPEED = <span class="number">200</span></span><br><span class="line">const SKY_SPEED = <span class="number">50</span></span><br><span class="line"><span class="comment"># 定义一些变量，不需要类型</span></span><br><span class="line">var maxX = <span class="number">600</span> <span class="comment"># 角色运动右边界</span></span><br><span class="line">var minX = <span class="number">0</span> <span class="comment"># 角色运动左边界</span></span><br><span class="line"><span class="comment"># onready关键词使变量在场景加载完后赋值，保证不为null</span></span><br><span class="line">onready var knight = self.get_node(<span class="string">"Knight"</span>)</span><br><span class="line"><span class="comment"># 在Godot中$符号可以直接加子节点名字获得子节点对象，相当于get_node方法</span></span><br><span class="line">onready var sky1 = $Sky1</span><br><span class="line">onready var sky2 = $Sky2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 节点进入场景开始时调用此方法，常用作初始化</span></span><br><span class="line">func _ready():</span><br><span class="line">	maxX -= knight.frames.get_frame(<span class="string">'idle'</span>, <span class="number">0</span>).get_size().x / <span class="number">2</span></span><br><span class="line">	minX += knight.frames.get_frame(<span class="string">'idle'</span>, <span class="number">0</span>).get_size().x / <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每一帧运行此方法，delta表示每帧间隔</span></span><br><span class="line">func _process(delta):</span><br><span class="line">	<span class="comment"># 移动背景天空位置，生成滚动动画</span></span><br><span class="line">	updateSkyAnimation(SKY_SPEED * delta)</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># Input表示设备输入，这里D和右光标表示往右动</span></span><br><span class="line">	<span class="keyword">if</span> Input.is_key_pressed(KEY_D) <span class="keyword">or</span> Input.is_key_pressed(KEY_RIGHT):</span><br><span class="line">		moveKnightX(<span class="number">1</span>, SPEED, delta)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	<span class="keyword">elif</span> Input.is_key_pressed(KEY_A) <span class="keyword">or</span> Input.is_key_pressed(KEY_LEFT):</span><br><span class="line">		moveKnightX(<span class="number">-1</span>, SPEED, delta)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	<span class="comment"># 没有键盘控制，让骑士动画为idle状态</span></span><br><span class="line">	<span class="keyword">if</span> knight.animation != <span class="string">'idle'</span>:</span><br><span class="line">		knight.animation = <span class="string">'idle'</span></span><br><span class="line"></span><br><span class="line">func updateSkyAnimation(speed):</span><br><span class="line">	<span class="comment"># 移动，更新背景的位置</span></span><br><span class="line">	sky1.position.x -= speed</span><br><span class="line">	sky2.position.x -= speed</span><br><span class="line">	<span class="comment"># 如果滚动到最左边，那么移动到右边来</span></span><br><span class="line">	<span class="keyword">if</span> sky1.position.x &lt;= <span class="number">-1200</span>:</span><br><span class="line">		sky1.position.x += <span class="number">2400</span></span><br><span class="line">	<span class="keyword">elif</span> sky2.position.x &lt;= <span class="number">-1200</span>:</span><br><span class="line">		sky2.position.x += <span class="number">2400</span></span><br><span class="line">	</span><br><span class="line"><span class="comment"># 自定义函数，direciton表示方向，speed表示速度，delta是帧间隔</span></span><br><span class="line">func moveKnightX(direction, speed, delta):</span><br><span class="line">	<span class="comment"># 有键盘控制，让骑士动画为run状态，跑起来</span></span><br><span class="line">	<span class="keyword">if</span> knight.animation != <span class="string">'run'</span>:</span><br><span class="line">		knight.animation = <span class="string">'run'</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> direction == <span class="number">0</span>:</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	<span class="comment"># position属性为节点当前置，Vector2向量简单乘法</span></span><br><span class="line">	knight.position += Vector2(speed, <span class="number">0</span>) * delta * direction</span><br><span class="line">	<span class="comment"># 越界检测</span></span><br><span class="line">	<span class="keyword">if</span> knight.position.x &gt; maxX:</span><br><span class="line">		knight.position = Vector2(maxX, knight.position.y)</span><br><span class="line">	<span class="keyword">elif</span> knight.position.x &lt; minX:</span><br><span class="line">		knight.position = Vector2(minX, knight.position.y)</span><br><span class="line">	</span><br><span class="line">	knight.scale = Vector2(direction, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、小结（下）"><a href="#三、小结（下）" class="headerlink" title="三、小结（下）"></a>三、小结（下）</h2><p>三种方式已经全部讲解完毕，这里简单总结一下 Godot 3 中动画制作三种方式的优缺点：</p>
+<table>
+<thead>
+<tr>
+<th align="center">节点名</th>
+<th align="center">AnimatedSprite</th>
+<th align="center">Sprite + GDScript</th>
+<th align="center">AnimationPlayer</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">优点</td>
+<td align="center">简单明了，最适合制作主角多种状态动画</td>
+<td align="center">思路清晰，适合简单的动画，代码可控度高</td>
+<td align="center">最强大的动画系统，几乎能操纵一切元素来实现复杂的动画</td>
+</tr>
+<tr>
+<td align="center">缺点</td>
+<td align="center">只能使用图片，而且必须使用很多张图片，资源文件数量大增</td>
+<td align="center">对于复杂的属性动画很难使用代码达到理想效果</td>
+<td align="center">仅仅操作稍复杂点，节点的位置必须同级别</td>
+</tr>
+</tbody></table>
+<p>本篇上下节内容结束，还是那句话：<strong>原创不易</strong>啊，希望大家喜欢！ :smile:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzg3MjAwMjI4Mg==&mid=100000071&idx=1&sn=440b2050b4c7495c64f66c41b028c406&send_time=1536712211" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/" class="alignleft prev" title="Godot3游戏引擎入门之五：上下左右移动动画（上）"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之五：上下左右移动动画（上）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/09/25/introduction-of-godot-3-part-4-add-some-cute-animations-part-1/" class="alignright next" title="Godot3游戏引擎入门之四：给主角添加动画（上）">Godot3游戏引擎入门之四：给主角添加动画（上）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="IDEA上使用Kotlin插件出现的几个小问题"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>IDEA上使用Kotlin插件出现的几个小问题 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">IDEA上使用Kotlin插件出现的几个小问题</h1>
+    <div class="meta">
+        <span>2017-07-04</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Kotlin/">Kotlin</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>之前使用2016版本的 <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener">IntelliJ IDEA</a> 写 <a href="http://kotlinlang.org/" target="_blank" rel="noopener">Kotlin</a> 程序，遇到网络不给力的时候偶尔会莫名其妙地出现 Kotlin 不能正常使用的问题，特别是 Kotlin 有新版本更新的时候，正犹豫要不要下载新版本，问题又出来了，于是乎下载安装了 2017.1.4 版本的 IDEA 。下载后直接安装，中途它会提示卸载旧版本，不用删除老版本的配置文件，这样安装好后注册激活信息和主题配置以及工程项目列表都保持原样。</p>
+<p>使用新版本打开之前的 Gradle Kotlin 项目仍然遇到了一些问题，刚开始也不能正常运行，不过也不是什么大问题，自己 Google 搜索也就慢慢解决了，特此记录一下，以备下次查看。</p>
+<h2 id="二、问题解决"><a href="#二、问题解决" class="headerlink" title="二、问题解决"></a>二、问题解决</h2><p><strong>1. 新版本 Kotlin 插件安装</strong></p>
+<p>刚开始新版本是没有 Kotlin 插件配置的，但是很奇怪的是，打开 <code>File-&gt;Settings-&gt;Plugins</code> 搜索 Kotlin 显示 Kotlin 是安装好了的，就像下图：</p>
+<p><img src="idea_kotlin_plugin.JPG" alt="idea_kotlin_plugin.JPG"></p>
+<p>这就是一个坑了，我知道 Kotlin 插件并没有安装，这是错误的显示，只要刷新或者重启，或者点击插件窗口下面的 <code>Install JetBrains plugin...</code> 按钮，可以看到可以继续搜索并正常安装 Kotlin 插件了。安装好重启一切正常！</p>
+<p><strong>2. Kotlin not configured 错误</strong></p>
+<p>新版本我使用了 4.0 版的 Gradle 构建工具，但是刷新后构建项目出现 <code>Kotlin not configured</code> 的错误，也没有任何按钮提示可以操作。在 <a href="https://stackoverflow.com/" target="_blank" rel="noopener">StackOverflow</a> 上搜到了这个 Bug 的解决方法： <a href="https://discuss.kotlinlang.org/t/gradle-project-sync-failed-kotlin-not-configured/2495" target="_blank" rel="noopener">“Gradle project sync failed” &amp; “Kotlin not configured”</a> ：</p>
+<figure class="highlight groovy"><figcaption><span>build.gradle</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version'</span></span><br><span class="line">implementation <span class="string">'org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version'</span></span><br></pre></td></tr></table></figure>
+
+<p>就是把 <code>build.gradle</code> 文件的依赖文件中 <code>jre8</code> 部分删除并替换。然后 Gradle 重新刷新编译，就可以了。</p>
+<p><strong>3. 关于版本冲突警告</strong></p>
+<p>如果用过之前的 Kotlin 旧版本依赖，在新项目很容易出现下面的警告信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Warning:Kotlin: The <span class="string">'-d'</span> option with a directory destination is ignored because <span class="string">'-module'</span> is specified</span><br><span class="line">Warning:Kotlin: Runtime JAR files <span class="keyword">in</span> the classpath should have the same version. These files were found <span class="keyword">in</span> the classpath:</span><br><span class="line">    C:/Users/Qingwen/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jre8/1.1.2/2a0816780d551a5426a606b4f0f8ff0946e99662/kotlin-stdlib-jre8-1.1.2.jar (version 1.1)</span><br><span class="line">    C:/Users/Qingwen/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jre7/1.1.2/3e2709163c94bd7b8282ba5ea7530d446a985ad2/kotlin-stdlib-jre7-1.1.2.jar (version 1.1)</span><br><span class="line">    C:/Users/Qingwen/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.0.6/3d499d3b7768f88c4796e5a1e357933e11a8936d/kotlin-reflect-1.0.6.jar (version 1.0)</span><br><span class="line">    C:/Users/Qingwen/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.1.2/1177197713b6a249ecab40e5d153598bf7ccfd2b/kotlin-stdlib-1.1.2.jar (version 1.1)</span><br><span class="line">Warning:Kotlin: Consider providing an explicit dependency on kotlin-reflect 1.1 to prevent strange errors</span><br><span class="line">Warning:Kotlin: Some runtime JAR files <span class="keyword">in</span> the classpath have an incompatible version. Consider removing them from the classpath or use <span class="string">'-Xskip-runtime-version-check'</span> to suppress this warning</span><br></pre></td></tr></table></figure>
+
+<p>这个警告信息不会影响程序的编译，如果要排除的话也很简单，按照警告提示直接删除 <code>C:/Users/&lt;your name&gt;/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.0.</code> 这些类似的低版本文件夹，全部删除都没事，没有影响，删除继续刷新编译。</p>
+<p><strong>4. 旧版本编译错误 java.lang.NoClassDefFoundError</strong></p>
+<p>这个是旧版本的错误，其实在出现这个问题之前也遇到过一次同样的问题，自己按照相关信息解决了，不过这次新版本没有安装前出现的这个问题一直没有解决，直到重新安装了新版本。一部分错误错误信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"C:\Program Files\Java\jdk1.8.0_112\bin\java"</span> -Didea.launcher.port=7533 <span class="string">"-Didea.launcher.bin.path=D:\Software\Programme\IntelliJ IDEA 2016.3.4\bin"</span> -Dfile.encoding=UTF-8 -classpath <span class="string">"C:\Program Files\Java\jdk1.8.0_112\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\rt.jar;D:\Documents\Workspace\IntelliJ IDEA\KotlinSamples\build\classes\java\main;D:\Software\Programme\IntelliJ IDEA 2016.3.4\lib\idea_rt.jar"</span> com.intellij.rt.execution.application.AppMain version_all.RegTestKt</span><br><span class="line">Exception <span class="keyword">in</span> thread <span class="string">"main"</span> java.lang.NoClassDefFoundError: kotlin/jvm/internal/Intrinsics</span><br><span class="line">	at version_all.RegTestKt.main(RegTest.kt)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span><br><span class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span><br><span class="line">	at java.lang.reflect.Method.invoke(Method.java:498)</span><br><span class="line">	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)</span><br><span class="line">Caused by: java.lang.ClassNotFoundException: kotlin.jvm.internal.Intrinsics</span><br><span class="line">	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)</span><br><span class="line">	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)</span><br><span class="line">	at sun.misc.Launcher<span class="variable">$AppClassLoader</span>.loadClass(Launcher.java:331)</span><br><span class="line">	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)</span><br><span class="line">	... 6 more</span><br><span class="line"></span><br><span class="line">Process finished with <span class="built_in">exit</span> code 1</span><br></pre></td></tr></table></figure>
+
+<p><img src="idea_kotlin_error.JPG" alt="idea_kotlin_error.JPG"></p>
+<p>之前的解决方案大概是这样，可以尝试，如图定位到 <code>Project Structure</code> 下，找到出问题的包：</p>
+<p><img src="idea_kotlin1.JPG" alt="idea_kotlin1.JPG"></p>
+<p>然后删掉，或者替换成正确的包：</p>
+<p><img src="idea_kotlin2.JPG" alt="idea_kotlin2.JPG"></p>
+<p>还不行就直接删掉对应文件夹下的文件：</p>
+<p><img src="idea_kotlin3.JPG" alt="idea_kotlin3.JPG"></p>
+<p>以上方法不一定有效，不行再 Google 吧。 :joy:</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>几个小坑，还算顺利。由于网络不是很稳定，用 Gradle 有时候真是一个痛苦。另外推荐 <a href="https://blog.jetbrains.com/kotlin/2017/06/kotlin-1-1-3-is-out/" target="_blank" rel="noopener">Kotlin 1.1.3</a> 版本插件的最新几个小功能，比较酷：</p>
+<ul>
+<li>Semantic Highlighting</li>
+<li>Parameter Name Hints</li>
+<li>Type Hints</li>
+</ul>
+<p>具体开启方法看官方文档： <a href="https://blog.jetbrains.com/kotlin/2017/06/kotlin-1-1-3-is-out/" target="_blank" rel="noopener">Kotlin 1.1.3 is out</a></p>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Kotlin/" class="button small">Kotlin</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/07/31/understanding-coordinate-system-in-unity3d/" class="alignleft prev" title="理解Unity3D中的四种坐标体系"><i class="fa fa-angle-double-left"></i>&nbsp;理解Unity3D中的四种坐标体系</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/06/30/translation-of-clean-code-with-kotlin/" class="alignright next" title="【翻译】Kotlin致简代码之路">【翻译】Kotlin致简代码之路&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

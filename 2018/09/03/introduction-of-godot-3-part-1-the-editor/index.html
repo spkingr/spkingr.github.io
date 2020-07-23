@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之一：熟悉编辑器界面"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之一：熟悉编辑器界面 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之一：熟悉编辑器界面</h1>
+    <div class="meta">
+        <span>2018-09-03</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>Godot 3.1 第一个 Alpha 预览版本已经发布，预览版所有的新特性都已敲定，激动人心，就等着稳定的正式版了！大家可以去官网一探究竟：<a href="https://godotengine.org/article/dev-snapshot-godot-3-1-alpha-1" target="_blank" rel="noopener">DEV SNAPSHOT: GODOT 3.1 ALPHA 1</a> 。</p>
+<blockquote>
+<p>本篇内容： Godot 入门之编辑器相关介绍<br>阅读时间： 5 分钟<br>永久链接：<a href="http://liuqingwen.me/blog/2018/09/03/introduction-of-godot-3-part-1-the-editor/">http://liuqingwen.me/blog/2018/09/03/introduction-of-godot-3-part-1-the-editor/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="关于下载"><a href="#关于下载" class="headerlink" title="关于下载"></a>关于下载</h3><p>Godot 非常小，我下载的 64 位 Windows 版本总大小不到 40M ，官网下载页面直达： <a href="https://godotengine.org/download" target="_blank" rel="noopener">https://godotengine.org/download</a> ，下载 zip 包后解压无需安装，直接使用，不过这里有三件小事情我要告诉大家：</p>
+<ol>
+<li>下载对应的版本还有发布模板： Godot 支持多个操作系统，注意对应的系统以及架构（ 32 位或者 64 位操作系统），然后就是发布模板（ Export Templates ），这个在下载页面的下方可以找到，当然刚开始使用 Godot 玩玩的时候是没必要下载的，当你需要发布最终产品到 Windows/Mac/iOS/Android 等平台的时候你再下载也不迟，后面的文章我应该会提到模板使用。</li>
+<li>配置文件夹位置：如果你直接打开 <strong>Godot.exe</strong> ，那么它的配置文件默认生成在 C 盘目录下（我使用的是 Win10 系统），但是你可以随时改回来，只需要在 Godot 软件文件夹下创建一个 <code>_sc_</code> 的文件即可，后面我有截图说明。</li>
+<li>分辨率设置：如果你和我一样使用的是 4K 高分显示屏幕，那么你在打开 Godot 编辑器后需要进一步设置，这个现在提出来，等会介绍编辑器的时候我有截图作具体介绍。</li>
+</ol>
+<p>另外，在官网你会发现一个名为： <em>MONO VERSION (C# SUPPORT)</em> 的下载链接，这个是支持使用 C# 语言来进行游戏编程的，我没怎么使用，看官方介绍，我的建议是没必要下载这个版本，一方面它需要 MONO 的支持，而且 C# 支持现在还不是特别稳定（够用级别吧），另一方面，我觉得 Godot 的脚本语言 <strong>GDScript</strong> 非常简单，比 Python 还简单没压力，后续文章我会专门介绍。</p>
+<p><img src="godot_1_files_folders.jpg" alt="godot_1_files_folders.jpg"></p>
+<p>OK ，双击 exe 文件，开始那愉快的 Godot 之旅吧，骚年！ :sunglasses:</p>
+<h3 id="界面介绍"><a href="#界面介绍" class="headerlink" title="界面介绍"></a>界面介绍</h3><p><strong>首先是开场白</strong></p>
+<p>打开 Godot 第一眼是很普通的项目控制面板，这里可以设置编辑器的显示语言：</p>
+<p><img src="godot_1_startup_window.jpg" alt="godot_1_startup_window.jpg"></p>
+<p>选择创建一个游戏，或者打开已存在的游戏，也可以下载官方的 Demo ，双击进入编辑器主界面：</p>
+<p><img src="godot_1_editor_main.jpg" alt="godot_1_editor_main.jpg"></p>
+<p>Godot 的主界面很普通，用过 Unity 或者类似工具软件的朋友都不会感觉到陌生。 Godot 默认打开的是 3D 场景，可以通过上方的菜单进行切换，我推荐使用快捷键： <em>2D场景 -&gt; F1 ， 3D 场景 -&gt; F2 ， Script 脚本窗口 -&gt; F3 ， Help 搜索帮助 -&gt; F4</em> 。</p>
+<p><strong>开工前设置</strong></p>
+<p>如果你打开 Godot 窗口，发现字体很小，那很正常，因为我们没有设置过字体大小，可以在<em>编辑器 -&gt; 编辑器设置</em>菜单下进行设置：</p>
+<p><img src="godot_1_settings_editor.jpg" alt="godot_1_settings_editor.jpg"></p>
+<p>另外，如果是 4K 高分辨率屏幕，当你迫不及待地添加一个 Node 节点，然后保存，运行，选择刚才保存的场景，游戏开始，你会发现你的窗口不会出现在屏幕的正中央位置，而是右下方，看起来很不舒服，这是因为你没有开启 HIDPI 设置，别急，只需要在<em>项目 -&gt; 项目设置</em>里设置就可以了：</p>
+<p><img src="godot_1_settings_project.jpg" alt="godot_1_settings_project.jpg"></p>
+<p>勾选 HiDPI 然后运行你的游戏，就会显示在屏幕正中央了，如果不是 4K 高分屏这一步没必要。</p>
+<p><strong>节点和场景</strong></p>
+<p>在尝试运行游戏之前，你得创建一个<em>入场<em>场景，然后保存，接着设置为启动场景才能正常运行。添加节点非常简单，在节点窗口上方有个 *</em>+** 号，点击它，或者直接快捷键更方便： *CTRL + A</em> ，会弹出很多预制节点供您选择：</p>
+<p><img src="godot_1_node_1.jpg" alt="godot_1_node_1.jpg"></p>
+<p>注意， <em>Node</em> 是所有节点的父节点，你可以使用它来作为场景的根节点（ Root ），因为它既是 2D 节点的父节点，又是 3D 节点的父节点，所以你甚至可以使用 <em>Node</em> 来混合 2D 和 3D 游戏节点！当然，我更建议直接使用相对应的节点： <em>Node2D</em> 表示所有 2D 节点的父节点， <em>Spatial</em> 为所有 3D 节点父节点，而 <em>Control</em> 为所有控件的父节点。</p>
+<p>除此之外，你会发现，他们都有一套自己的颜色，比如 2D 节点图标是淡蓝色， 3D 节点是粉红色，控件则为绿色，还有一个，深入一点你就会发现，很多 2D 节点名字都对应一个 3D 节点，下面列举几个：</p>
+<table>
+<thead>
+<tr>
+<th align="center">3D 节点</th>
+<th align="center">2D 节点</th>
+<th align="center">节点名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Camera</td>
+<td align="center">Camera2D</td>
+<td align="center">相机</td>
+</tr>
+<tr>
+<td align="center">Light</td>
+<td align="center">Light2D</td>
+<td align="center">灯光</td>
+</tr>
+<tr>
+<td align="center">Particles</td>
+<td align="center">Particles2D</td>
+<td align="center">粒子</td>
+</tr>
+<tr>
+<td align="center">Area</td>
+<td align="center">Area2D</td>
+<td align="center">碰撞区域</td>
+</tr>
+<tr>
+<td align="center">KinematicBody</td>
+<td align="center">KinematicBody2D</td>
+<td align="center">物理学物体</td>
+</tr>
+<tr>
+<td align="center">StaticBody</td>
+<td align="center">StaticBody</td>
+<td align="center">静态物体</td>
+</tr>
+<tr>
+<td align="center">RigidBody</td>
+<td align="center">RigidBody2D</td>
+<td align="center">刚体</td>
+</tr>
+<tr>
+<td align="center">CollisionShape</td>
+<td align="center">CollisionShape2D</td>
+<td align="center">碰撞体形状</td>
+</tr>
+<tr>
+<td align="center">Path</td>
+<td align="center">Path2D</td>
+<td align="center">路径</td>
+</tr>
+</tbody></table>
+<p>如上图，你还可以直接通过搜索，更加方便的添加你所需要的节点。在 Godot 中一切基于节点，甚至 <em>Timer</em> 都是一个节点，所以它必须添加到节点树中才能正常使用，这些后续会提到。</p>
+<p><strong>属性面板和子菜单</strong></p>
+<p>我添加了一个 <em>Node2D</em> 作为场景的根节点，单击命名为 <code>Game</code> ，然后在 <code>Game</code> 根节点下添加一个子节点，可以直接 <em>CTRL + A</em> 来添加，这里我是直接把资源窗口中的 Logo 图片直接拖拽到了场景中，选择 <em>Sprite</em> 创建一个精灵：</p>
+<p><img src="godot_1_add_sprite.jpg" alt="godot_1_add_sprite.jpg"></p>
+<p>这个时候，右边场景中就会自动创建一个 <em>Sprite</em> 节点，选中这个节点，右下角就是这个节点对应的属性面板，你会发现， <em>Sprite</em> 的 <code>Texture</code> 属性已经自动设置为刚才拖拽的那张 logo 图片了。同时，你会发现在场景的下方多了一个菜单项： <em>Texture Region</em> 材质区域的编辑区，这就是对应该节点的底部栏操作面板，在后续的文章中，介绍动画的时候会经常用到这里的编辑区和菜单。</p>
+<p><img src="godot_1_bottom_part.jpg" alt="godot_1_bottom_part.jpg"></p>
+<p>如图，注意场景上方，额外有些子菜单可以进行操作，这些子菜单非常重要，后续对很多节点都会使用到，我这里列举几个类型节点对应的子菜单，如图：</p>
+<p><img src="godot_1_sub_menu_1.jpg" alt="godot_1_sub_menu_1.jpg"></p>
+<p><img src="godot_1_sub_menu_3.jpg" alt="godot_1_sub_menu_3.jpg"></p>
+<p><img src="godot_1_sub_menu_2.jpg" alt="godot_1_sub_menu_2.jpg"></p>
+<p>软件界面大概就这些了，常用的功能都应该差不多介绍到位了吧。 :smile:</p>
+<h3 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h3><p>在本系列的第一篇文章中，我说过如果你曾经是 Adobe Flash 的开发者，那么你对 Godot 中<strong>一个节点绑定一个脚本</strong>的约定会感觉非常熟悉。选择一个节点，在上方的右上角，一个带 <strong>+</strong> 号的书本按钮，点击便可以给相应节点添加脚本：</p>
+<p><img src="godot_1_add_script.jpg" alt="godot_1_add_script.jpg"></p>
+<p>注意：在打开的脚本编辑器里，也有对应的<strong>脚本菜单</strong>。另外， Godot 非常贴心的一点是，你随时可以按 F4 呼出帮助，然后搜索你想要了解的 API ，查看相关属性和方法，这对新手来说，简单不要太爽啊！</p>
+<p><img src="godot_1_sub_menu_4.jpg" alt="godot_1_sub_menu_4.jpg"></p>
+<p><img src="godot_1_search_api_1.jpg" alt="godot_1_search_api_1.jpg"></p>
+<p>关于脚本语言编程和使用，这个是一个很长的话题了，暂且到此吧，不过我觉得只要有点编程基础的朋友在 GDScript 脚本上是很容易上手的。后续我必须出个专门的文章，专门介绍一下 GDScript 脚本吧。</p>
+<h2 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h2><p>这次就说到这里，大家感觉这个<strong>游戏</strong>怎样？“什么？什么游戏？”哈哈，偷偷告诉你， Godot 编辑器本身也是由 Godot 引擎打造的一个游戏： <a href="https://github.com/godotengine/godot/issues/4181#issuecomment-203516916" target="_blank" rel="noopener">Godot’s Engine is a Godot Game itself!</a> ，惊不惊喜，意不意外？ :sunglasses:</p>
+<p>本章完结，下次继续，<strong>原创不易</strong>啊，希望大家喜欢！ :smile:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/blog/images/wexin_2.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/" class="alignleft prev" title="Godot3游戏引擎入门之二：第一个简单的游戏场景"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之二：第一个简单的游戏场景</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/08/31/translation-of-forget-rxjava-kotlin-coroutines-are-all-you-need-part-1-of-2/" class="alignright next" title="【翻译】忘了RxJava吧——你需要的是拥抱Kotlin协程（Part 1/2）">【翻译】忘了RxJava吧——你需要的是拥抱Kotlin协程（Part 1/2）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

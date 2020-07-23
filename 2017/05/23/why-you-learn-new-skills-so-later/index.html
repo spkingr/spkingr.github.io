@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="我为何早先于你学习并应用Kotlin"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>我为何早先于你学习并应用Kotlin - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">我为何早先于你学习并应用Kotlin</h1>
+    <div class="meta">
+        <span>2017-05-23</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/随笔/">随笔</a> <a href="/tags/Kotlin/">Kotlin</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、说在前面"><a href="#一、说在前面" class="headerlink" title="一、说在前面"></a>一、说在前面</h2><p>在 Google IO 大会后，<a href="http://kotlinlang.org/" target="_blank" rel="noopener">Kotlin</a> 马上成为各个群里最火热的话题！一时间， Kotlin QQ 群， Kotlin 微信群， Kotlin 公众号， Kotlin 参考文档……瞬间爆炸！是啊，谁让谷歌钦定了呢？讯息大爆炸之后是大家争先恐后抓住时间赶上潮流：了解新技术，准备学习新技术，找志同道合的同志（ :joy: ），为什么不呢？不行动就会落后，落后就要挨打，挨打打屁股。 :joy:</p>
+<p>但是，话锋一转，我想问的是，作为 Java or Android 开发技术人员的你，为什么才开始学习 Kotlin ，或者甚至夸张地才了解到 Kotlin 这个单词？其实，非科班出生的我早已经在 <a href="https://blog.jetbrains.com/kotlin/2016/02/kotlin-1-0-released-pragmatic-language-for-jvm-and-android/" target="_blank" rel="noopener">Kotlin 1.0</a> 版本发布之后的不久就开始学习并使用上了，什么都比你晚，但是今天我第一次感觉自己站在了更高的位置（应该摔得更疼），或许我们应该是时候改变一下自己因循守旧的思维模式了，那么就这个话题，以下将展示仅本人个人的观点论断！注：前方非高能，高手们请再会。 :joy:</p>
+<h2 id="二、我的做法"><a href="#二、我的做法" class="headerlink" title="二、我的做法"></a>二、我的做法</h2><p>非科班出身，也非技术大牛，无实战经验，可以说我是技术小渣渣。为啥我还能大言不惭？其实并不是说我技术功底有多厚，而是我提前了解了一些大家视而不见或者未曾了解的东西，因此显得我比你捷足先登了一步，尽管大牛们学习之后理论和实战都要比我厉害，不过谁知道以后还会不会出现程序潮流界类似改朝换代的时刻而你继续错过呢？未然。我想表达的思路从下载一个 APP 开始。</p>
+<h4 id="1-首先说说我是怎么下载简书APP的"><a href="#1-首先说说我是怎么下载简书APP的" class="headerlink" title="1. 首先说说我是怎么下载简书APP的"></a>1. 首先说说我是怎么下载简书APP的</h4><p>在我们学习或者开发过程中遇到问题时总会进行百度或者 Google 搜索，我去年下半年开始自学编程，记得当时做一个辅助软件时，我百度找了很多相关技术文章，最先了解到的是发现一批 CSDN 上的博客，很多技术大牛做的技术分享，顺其自然地我就在手机上下载了 CSDN 这个 APP，但是这个软件有个致命 BUG ：居然不能搜索（现在新版本已经解决），另外文章排版也不是特别舒服导致阅读体验不是很好，对于我来说这就显得不是那么友好了。然后我在网页上找到了其他好几篇不错的文章，同时令人满意的是排版也非常友好，对，就是它：<a href="http://www.jianshu.com/" target="_blank" rel="noopener">简书</a>。我能估计 99.99% 的程序员都知道【简书】这个 APP ，但是对于门外汉的我来说确是酒逢知己一般，顺势在手机上下载了这个软件。在之后的日子里，利用手机通过搜索找到了不少学习材料，一直到现在我都很喜欢在简书上搜索某些方面的技术文章，当然我现在也安装了<a href="https://juejin.im/" target="_blank" rel="noopener">掘金</a> APP 和其他一些软件。</p>
+<h4 id="2-我是如何了解到-Kotlin-的？"><a href="#2-我是如何了解到-Kotlin-的？" class="headerlink" title="2. 我是如何了解到 Kotlin 的？"></a>2. 我是如何了解到 Kotlin 的？</h4><p>为什么要说简书这个普普通通的 APP 呢？因为：搜索真的很重要！去年的我被一款叫做 <a href="https://unity3d.com/" target="_blank" rel="noopener">Unity3D</a> 的游戏开发软件吸引住而开始打算自学编程应用。这个软件使用的脚本是 C# ，我以前上大学的时候有点 Java 基础，初学问题不算太大。恰逢其时，我同学叫我帮忙弄个微信聊天功能辅助小软件，算桌面 GUI 程序，我当时感觉可以自己做，便拿来作为自己的练手项目，直接用 Java 就开始搞起来了。不得不说 Java 还是很难的，弄了个把月也没做出来什么，倒是学习了不少新知识，与此同时我找到了 <a href="http://docs.oracle.com/javase/8/javafx/get-started-tutorial/jfx-overview.htm#JFXST784" target="_blank" rel="noopener">JavaFX</a> ，你眼里的老技术对我来说确是焕然一新啊。在不断遇到问题解决问题的过程中，一个叫 <a href="https://github.com/edvin/tornadofx" target="_blank" rel="noopener">TornadoFX</a> 的开源项目走进我的视线： <em>Lightweight JavaFX Framework for Kotlin</em> ，不就是用其他语言实现的 JavaFX 吗？我为啥就关注它了呢？那是因为： <a href="https://www.gitbook.com/" target="_blank" rel="noopener">GitBooks</a> ！是的，当其他的 JavaFX 参考文件都只有官方那苍白无力的文档的时候， TornadoFX 有 PDF 甚至 Mobi 、 ePub 手机版的详细阅读资料，我下载到手机里，如饥似渴地阅读起来，在感受 Kotlin 魅力的同时尝试使用着 TornadoFX 的强大！</p>
+<h4 id="3-怎样高效学习-Kotlin-呢？"><a href="#3-怎样高效学习-Kotlin-呢？" class="headerlink" title="3. 怎样高效学习 Kotlin 呢？"></a>3. 怎样高效学习 Kotlin 呢？</h4><p>对于很多人来说，为了一个开源库而学习一门新的语言完全不值！刚开始我也这样认为，后面我发现新语言的新特性让我能用少量代码写出更优雅的程序，我立马下定决心学习 Kotlin ，在学习之前我还搜索了与 JVM 相关的其他语言，包括： Scala 、 Groovy 、 Clojure ，我觉得学习一门语言就应该有所比较，对它的历史也要有点认知，相比强大的 Scala ， Kotlin 的学习曲线很缓，适合新手的我！这期间，我的第一步就是下载 Kotlin 官方 PDF 文档，看完后找到了一本适合中国国情的好书：《 Programming Kotlin 》，我算是入门了。之后 TornadoFX 的文档我看了三遍，边看边用，边用边学，边学边想，最大化的理解和消化这些新知识。对了，学习一门语言，我不看视频，我觉得那是一种浪费时间的表现。</p>
+<h4 id="4-为什么我起步晚但学习-Kotlin-却比有些人早？"><a href="#4-为什么我起步晚但学习-Kotlin-却比有些人早？" class="headerlink" title="4. 为什么我起步晚但学习 Kotlin 却比有些人早？"></a>4. 为什么我起步晚但学习 Kotlin 却比有些人早？</h4><p>是偶然吗？我看未必。曾今我做过服装相关的行业，接触到服装行业的业内人士就知道，服装的流行元素首先是从国外流传到台湾的，然后再从台湾到香港，慢慢的，香港那边开始传播到了内陆。技术行业其实也不例外，如同服装流行元素一样，如果你想掌握先机的话，你必须先去国外了解最新的相关行业动态。怎么了解？还是搜索！而且要用英语搜索！我很喜欢用英文搜索，虽然之前也属于翻墙一员，但是能力有限不能解决 Chrome 上奇怪的 <code>500 internal server error</code> 而不能愉快地进行 Google 搜索，但是我用起了百度英文搜索！那句“您可以仅查看：英文结果”的话总是让我忍不住一点。同时，我在用 Google 搜索文章并阅读后总能额外了解到一些新知识，虽然是浅尝辄止，但并不影响我对新生事物的初识：我不会放过好文章中的一些专有名词以及相关技术。曾今我在 TornadoFX 的 Gitbooks 中的一段话中我就同时了解到了 <a href="http://fxexperience.com/controlsfx/" target="_blank" rel="noopener">ControlsFX</a> ， <a href="http://jfxtras.org/" target="_blank" rel="noopener">JFXtras</a> ， <a href="https://github.com/TomasMikula/ReactFX" target="_blank" rel="noopener">ReactFX</a> ， <a href="https://github.com/ReactiveX/RxJavaFX" target="_blank" rel="noopener">RxJavaFX</a> ， <a href="https://github.com/ReactiveX/RxKotlin" target="_blank" rel="noopener">RxKotlin</a> ， <a href="https://github.com/thomasnield/RxKotlinFX" target="_blank" rel="noopener">RxKotlinFX</a> 这些专业技术的概念和存在：</p>
+<p><img src="RX-serials.png" alt="RX-serials"></p>
+<blockquote>
+<p>TornadoFX:<br>It can work in conjunction with other popular JavaFX libraries such as <a href="http://fxexperience.com/controlsfx/" target="_blank" rel="noopener">ControlsFX</a> and <a href="http://jfxtras.org/" target="_blank" rel="noopener">JFXtras</a>. It works especially well with reactive frameworks such as <a href="https://github.com/TomasMikula/ReactFX" target="_blank" rel="noopener">ReactFX</a> as well as <a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="noopener">RxJava</a> and friends (including <a href="https://github.com/ReactiveX/RxJavaFX" target="_blank" rel="noopener">RxJavaFX</a>, <a href="https://github.com/ReactiveX/RxKotlin" target="_blank" rel="noopener">RxKotlin</a>, and <a href="https://github.com/thomasnield/RxKotlinFX" target="_blank" rel="noopener">RxKotlinFX</a>.</p>
+</blockquote>
+<h4 id="5-我们需要勇于做一些尝试"><a href="#5-我们需要勇于做一些尝试" class="headerlink" title="5. 我们需要勇于做一些尝试"></a>5. 我们需要勇于做一些尝试</h4><p>作为一位入门级“大师”，我并没有资格教大家如何学习，但是我却发现了不少人思维的局限性。我很赞同安卓大神 <a href="http://stormzhang.com/" target="_blank" rel="noopener">stormzhang</a> 的一个理念：如果是好文章，他肯定会逐字逐句看完并理解到位，并不是收藏起来之后阅读！对于我们大部分人来说，收藏有那么点自欺欺人的意思。我们也经常看到有人说：新语言坑太多了，填都填不过来！又或者：先瞧一瞧吧，万事初生三分热，等过了再看！（而之后一直没看）还有甚者：新版本出来旧版本全挂，尝试新的就是找死！……我们会被这种理所当然的赞同思维所影响，不知不觉的顺从了“有的人”的想法和行动。其实，给自己一点时间，给自己一点勇气，认识自己，审视过去，改变自己，尝试一下，去探索新的世界，说不定就能感受到更加新鲜的空气呢？记得几个月前我尝试第一次采用英语在 <a href="https://stackoverflow.com/" target="_blank" rel="noopener">StackOverFlow</a> 上求助一问题，那是我第一次用英语公开表达，而意想不到的是被相关主题作者回复并采纳到新功能更新中，我也为自己感到惊奇，哈哈！</p>
+<blockquote>
+<p>TornadoFX [Change Log]<br>[1.7.0] - 2017-03-04<br>EventBus subscribe(times = n) parameter will unregister listener after it has fired n times (<a href="http://stackoverflow.com/questions/42465786/how-to-unsubscribe-events-in-tornadofx" target="_blank" rel="noopener">http://stackoverflow.com/questions/42465786/how-to-unsubscribe-events-in-tornadofx</a>)</p>
+</blockquote>
+<h4 id="6-那么是技多不压身还是贪多嚼不烂？"><a href="#6-那么是技多不压身还是贪多嚼不烂？" class="headerlink" title="6. 那么是技多不压身还是贪多嚼不烂？"></a>6. 那么是技多不压身还是贪多嚼不烂？</h4><p>“技术多而不深则罔，技术虽少而精则怠，技术多而深则通啊”！再说安卓界大牛 <a href="http://stormzhang.com/" target="_blank" rel="noopener">stormzhang</a> 的一段分享主题：“为什么你觉得自己还达不到高级的标准”，他的观点很明确：你没有一个擅长的领域！是的，技多不压身，但是你就是不能跑在别人前面，问问我们自己：我擅长什么？我有什么厉害之处？我们为什么不精通某一个方向？何乐而不为啊！话又说回来，在时间资源非常紧缺的现代社会里，贪多而嚼不烂的想法自然占据了很多人的心理。我们疲于工作，忙于应酬，还有家事：房子、车子、老婆孩子……哪有时间掌握多门手艺？精通一门足矣。我也是这么认为的，但是，但是，但是，自从我在一个博客上看到一位老师既能用多种 3D 软件设计又能吉他弹奏，又看到一位魔术大师既是演员又能弹吉他还能编程后，我觉得，有时候我们更应该跳出思维的圈子，改变一下自己的思维方式。技多不深不可取，技少但精也别骄，技多且精最可贵！题目来自这篇文章：</p>
+<blockquote>
+<p>简书 <a href="http://www.jianshu.com/u/8dc5811b228f" target="_blank" rel="noopener">cleverfan</a> 的文章：<br>重新认识java（零） — 不积跬步无以至千里： <a href="http://www.jianshu.com/p/21b67448b286" target="_blank" rel="noopener">http://www.jianshu.com/p/21b67448b286</a></p>
+</blockquote>
+<h2 id="三、最后"><a href="#三、最后" class="headerlink" title="三、最后"></a>三、最后</h2><p>是不是感觉又上了一课？哈哈，我等小菜又有何德何能啊？！话又说回来，最近一个新闻：<strong>华为 35 岁员工被辞</strong>，貌似要验证我同学在 5 年前的一个预测，他的大意是：相当一部分人在 40 岁左右会被公司辞退！！！理由很简单：公司不愿意用不断提升工资的方式来保留一位老员工而更愿意用更少的金钱加一点点培训经费雇佣一位能做同样复制工作的年轻员工！简单，暴力，而充分！ :cold_sweat:</p>
+<blockquote>
+<p>参考资料：<br>TornadoFX Guide: <a href="https://edvin.gitbooks.io/tornadofx-guide/content/1.%20Why%20TornadoFX.html" target="_blank" rel="noopener">https://edvin.gitbooks.io/tornadofx-guide/content/1.%20Why%20TornadoFX.html</a><br>Kotlin Reference: <a href="http://kotlinlang.org/docs/reference/" target="_blank" rel="noopener">http://kotlinlang.org/docs/reference/</a><br>stormzhang (blog): <a href="http://stormzhang.com/" target="_blank" rel="noopener">http://stormzhang.com/</a></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/随笔/" class="button small">随笔</a> <a href="/tags/Kotlin/" class="button small">Kotlin</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/05/29/repaire-and-replace-mac-air-keyboard/" class="alignleft prev" title="修理更换苹果AIR笔记本键盘"><i class="fa fa-angle-double-left"></i>&nbsp;修理更换苹果AIR笔记本键盘</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/05/16/share-several-extra-functionality-of-hexo-plugins/" class="alignright next" title="分享几个实用的HEXO博客功能插件">分享几个实用的HEXO博客功能插件&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

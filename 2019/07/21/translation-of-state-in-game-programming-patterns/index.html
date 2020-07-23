@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【翻译】游戏设计模式之状态机"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>【翻译】游戏设计模式之状态机 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">【翻译】游戏设计模式之状态机</h1>
+    <div class="meta">
+        <span>2019-07-21</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a> <a href="/tags/翻译/">翻译</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="state-design-pattern.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本文是一篇关于游戏设计模式之状态模式的文章内容翻译，我在上一篇文章 <a href="http://liuqingwen.me/blog/2019/07/20/introduction-of-godot-3-part-14-make-a-game-with-rigidbody2d-node-and-the-fsm-introduction">Godot3游戏引擎入门之十四：刚体RidigBody2D节点的使用以及简单的FSM状态机介绍</a>中简单地介绍了 FSM 有限状态机的含义以及游戏中的简单实现，讲述的很浅显，如果你对游戏设计模式感兴趣，我相信本篇文章会适合你，如有翻译不当之处请谅解，哈哈。 :smiley:</p>
+<blockquote>
+<p>作者简介：<br><a href="http://www.gameprogrammingpatterns.com/" target="_blank" rel="noopener">Robert Nystrom</a> ，<a href="http://www.gameprogrammingpatterns.com/" target="_blank" rel="noopener">《 Game Programming Patterns 》</a>的作者<br>原文链接： <a href="http://www.gameprogrammingpatterns.com/state.html" target="_blank" rel="noopener">http://www.gameprogrammingpatterns.com/state.html</a></p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>忏悔时间：我对这一章节的内容有点夸大其词。表面上是关于状态设计模式的探讨，但我不得不谈及游戏中关于有限状态机制（或称为 “FSM” ）的基本概念。不过我一旦提及到这个，那么我想我也不妨介绍下<em>分层状态机</em>和<em>下推自动机</em>的概念以及相关原理。</p>
+<p>这会涵盖多方面的知识点，为了尽可能地缩短文章篇幅，文中使用的代码示例省略了一些细节，这些是您必须自己填写的。不管怎样，我还是希望这些知识点仍然能够清晰以便能让你了解整个理念。</p>
+<p>如果你从未听说过状态机，也请不要感到难过。状态机不像 AI 和编译器、黑客那样，它在编程圈子里没有那么耳熟能详。不过我认为它们更应该广为人知，所以我在这里会把它们抛到一个不同层次的问题上去看待。</p>
+<h3 id="我们曾经都见识过"><a href="#我们曾经都见识过" class="headerlink" title="我们曾经都见识过"></a>我们曾经都见识过</h3><p>假设我们正在研究一个往一边滚动的平台游戏。我们的工作是实现游戏中的女主角，即玩家在游戏世界中的化身。这意味着要让她响应用户的输入。比如按下 <key>B</key> 键，她应该跳跃。实现起来非常简单：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heroine::handleInput</span><span class="params">(Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input == PRESS_B)</span><br><span class="line">  &#123;</span><br><span class="line">    yVelocity_ = JUMP_VELOCITY;</span><br><span class="line">    setGraphics(IMAGE_JUMP);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有什么问题吗？</p>
+<p>目前还不能阻止“在空气中跳跃”的发生——当她在空中时继续点击 <key>B</key> 键，她将永远漂浮下去。这里最简单的解决方法是给 <code>Heroine</code> 添加一个 <code>isJumping_</code> 的布尔字段，用于跟踪判断她是否已经跳跃，然后再执行操作：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heroine::handleInput</span><span class="params">(Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input == PRESS_B)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (!isJumping_)</span><br><span class="line">    &#123;</span><br><span class="line">      isJumping_ = <span class="literal">true</span>;</span><br><span class="line">      <span class="comment">// 起跳...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来，我们希望实现：如果女主角在地面上，玩家按下<key>下方向键</key>按钮她就能进行躲闪，而松开按钮的时候，她又会重新站起来：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heroine::handleInput</span><span class="params">(Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input == PRESS_B)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 如果没有跳跃就起跳...</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (input == PRESS_DOWN)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (!isJumping_)</span><br><span class="line">    &#123;</span><br><span class="line">      setGraphics(IMAGE_DUCK);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (input == RELEASE_DOWN)</span><br><span class="line">  &#123;</span><br><span class="line">    setGraphics(IMAGE_STAND);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这次有没有发现问题所在？</p>
+<p>通过以上代码玩家可以实现：</p>
+<ol>
+<li>按下按键躲闪。</li>
+<li>按 <key>B</key> 键从闪避位置开始跳跃。</li>
+<li>在空中松开按钮也能站立。</li>
+</ol>
+<p>女主角跳跃在空中就能切换到她的站立姿势。是时候再添加另一个判断标记了……</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heroine::handleInput</span><span class="params">(Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input == PRESS_B)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (!isJumping_ &amp;&amp; !isDucking_)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 跳跃...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (input == PRESS_DOWN)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (!isJumping_)</span><br><span class="line">    &#123;</span><br><span class="line">      isDucking_ = <span class="literal">true</span>;</span><br><span class="line">      setGraphics(IMAGE_DUCK);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (input == RELEASE_DOWN)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (isDucking_)</span><br><span class="line">    &#123;</span><br><span class="line">      isDucking_ = <span class="literal">false</span>;</span><br><span class="line">      setGraphics(IMAGE_STAND);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来，如果能够实现女主角在跳跃过程中，玩家只要按下下方向键按钮女主角就可以进行俯冲攻击的话，那确实很炫：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heroine::handleInput</span><span class="params">(Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input == PRESS_B)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (!isJumping_ &amp;&amp; !isDucking_)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 跳跃...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (input == PRESS_DOWN)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (!isJumping_)</span><br><span class="line">    &#123;</span><br><span class="line">      isDucking_ = <span class="literal">true</span>;</span><br><span class="line">      setGraphics(IMAGE_DUCK);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      isJumping_ = <span class="literal">false</span>;</span><br><span class="line">      setGraphics(IMAGE_DIVE);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (input == RELEASE_DOWN)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (isDucking_)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 站立...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>又是寻找 Bug 的时候了。找到问题了吗？</p>
+<p>我们已经确定玩家在跳跃的过程中是不能继续在空中二次跳跃了，但这对于俯冲效果并不适用。看来我们又开辟了一个新的问题领域……</p>
+<p>我们的方法显然存在一些问题。每当我们修改这些代码，我们都会破坏某些逻辑。我们还需要添加更多的动作——我们还没有添加行走行为呢——但是按照目前这个进度，它会在我们完成之前就已经崩溃成一堆的 Bug 了。</p>
+<h3 id="有限状态机救场"><a href="#有限状态机救场" class="headerlink" title="有限状态机救场"></a>有限状态机救场</h3><p>有点沮丧，不过至少你可以扫除桌面上除了纸和笔之外的所有其他东西，并开始来绘制一个流程图。你把女主角可以做的每个动作都画成一个长方形框：站立，跳跃，闪避和俯冲。当她处于其中的某一个状态并按下某个按钮时，您就可以从该状态框中画出来一个箭头，箭头上用这个按钮做标记，然后将其连接到她应该切换到的另一个状态上。</p>
+<p><img src="state-flowchart.png" alt="state-flowchart.png"></p>
+<p>恭喜，您刚刚创建了一个<em>有限状态机<em>。这来自计算机科学的一个分支，被称为</em>自动机理论*，其数据结构所在家族还包括著名的图灵机。 *FSM</em> 是该家族中最简单的一位成员。</p>
+<p>几个要点是：</p>
+<ul>
+<li><strong>你有一套固定的机械状态。</strong>在我们的例子中，那就是站立，跳跃，闪避和俯冲。</li>
+<li><strong>机器一次只能处于一种状态中。</strong>我们的女主角不能同时既跳跃又站立。事实上，防止这种情况的发生正是我们将要采用 FSM 机制的原因之一。</li>
+<li><strong>一系列输入或者事件会被发送到机器。</strong>在我们的示例中，也就是原始的按键按下与释放动作。</li>
+<li><strong>每个状态都有一系列转换机制，每个转换与某个输入相关联并指向另一个状态。</strong>当有输入进入时，如果输入与当前状态的转换相匹配，则机器的状态将切换为转换所指向的新状态。</li>
+</ul>
+<p>例如，在站立状态时按下下方向键就可以过渡到闪避状态。在跳跃状态下按下下方向键可以过渡到俯冲状态。如果没有给当前状态的输入定义转换，那么这个输入会被忽略。</p>
+<p>说的纯粹点，它的整个组成就是：状态，输入和转换。您可以把它绘制成一个小流程图。不幸的是，编译器没法识别我们的涂鸦，那么我们如何才能实现一个呢？四人帮 <em>Gang of Four</em> 的状态模式就是其中的一种方案——我们可以做到———不过先让我们从简单点开始吧。</p>
+<h3 id="枚举和-Switch-语句"><a href="#枚举和-Switch-语句" class="headerlink" title="枚举和 Switch 语句"></a>枚举和 Switch 语句</h3><p>在我们的 <code>Heroine</code> 类中一个问题就是一些布尔字段的某些组合是无效的：比如， <code>isJumping_</code> 和 <code>isDucking_</code> 不能全部为 <code>true</code> 。如果你的一些标记中，符合一次只有一个是 <code>true</code> ，那就意味着你所需要的是一个 <code>enum</code> 枚举类。</p>
+<p>在这种情况下，枚举 <code>enum</code> 的内容恰好是我们 FSM 的状态集，所以我们给出如下定义：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> State</span><br><span class="line">&#123;</span><br><span class="line">  STATE_STANDING,</span><br><span class="line">  STATE_JUMPING,</span><br><span class="line">  STATE_DUCKING,</span><br><span class="line">  STATE_DIVING</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>取代了一堆布尔标志， <code>Heroine</code> 类中将只有一个 <code>state_</code> 的字段。同时我们将选择分支的对象进行了反转。在之前的代码中，我们先判断输入，然后再根据状态进行判断。这会把同一个按钮的输入事件全写在了一起，导致某一个状态的代码的混乱。我们希望对同一个状态的处理保持在一块，因此我们以状态进行分支处理。代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heroine::handleInput</span><span class="params">(Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (state_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">case</span> STATE_STANDING:</span><br><span class="line">      <span class="keyword">if</span> (input == PRESS_B)</span><br><span class="line">      &#123;</span><br><span class="line">        state_ = STATE_JUMPING;</span><br><span class="line">        yVelocity_ = JUMP_VELOCITY;</span><br><span class="line">        setGraphics(IMAGE_JUMP);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (input == PRESS_DOWN)</span><br><span class="line">      &#123;</span><br><span class="line">        state_ = STATE_DUCKING;</span><br><span class="line">        setGraphics(IMAGE_DUCK);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> STATE_JUMPING:</span><br><span class="line">      <span class="keyword">if</span> (input == PRESS_DOWN)</span><br><span class="line">      &#123;</span><br><span class="line">        state_ = STATE_DIVING;</span><br><span class="line">        setGraphics(IMAGE_DIVE);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> STATE_DUCKING:</span><br><span class="line">      <span class="keyword">if</span> (input == RELEASE_DOWN)</span><br><span class="line">      &#123;</span><br><span class="line">        state_ = STATE_STANDING;</span><br><span class="line">        setGraphics(IMAGE_STAND);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这看起来有点繁琐，但它确实在之前的代码上有了真正的改进。我们还缺少一些条件分支，不过我们将可变状态简化成了单个的字段。现在所有处理单个状态的代码都很好地集中在一块了。这是实现状态机的最简单方式，适用于某些用途。</p>
+<p>但是，你的问题很可能会超出这个方案。假设我们想要添加一个新动作，我们的女主角可以闪避一段时间以补充能量，然后发动某个特殊攻击。当她进行闪避动作时，我们需要跟踪其能量补充的时间。</p>
+<p>我们向 <code>Heroine</code> 类添加 <code>chargeTime_</code> 字段以存储攻击前所要花费的时间。假设我们已经有一个每帧都会调用的 <code>update()</code> 函数，我们在这里添加代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heroine::update</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (state_ == STATE_DUCKING)</span><br><span class="line">  &#123;</span><br><span class="line">    chargeTime_++;</span><br><span class="line">    <span class="keyword">if</span> (chargeTime_ &gt; MAX_CHARGE)</span><br><span class="line">    &#123;</span><br><span class="line">      superBomb();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们需要在她开始闪避的那一刻重置计时器，所以我们还需要修改 <code>handleInput()</code> 的代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heroine::handleInput</span><span class="params">(Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (state_)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">case</span> STATE_STANDING:</span><br><span class="line">      <span class="keyword">if</span> (input == PRESS_DOWN)</span><br><span class="line">      &#123;</span><br><span class="line">        state_ = STATE_DUCKING;</span><br><span class="line">        chargeTime_ = <span class="number">0</span>;</span><br><span class="line">        setGraphics(IMAGE_DUCK);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 处理其他输入...</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 其他状态...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总而言之，为了增加这种特殊的大招攻击状态，我们必须修改两个方法并在 <code>Heroine</code> 类上添加一个 <code>chargeTime_</code> 字段，即使这个字段只有在女主角处于闪避的状态下才有意义。我们倾向于将所有的代码和数据完美地整合在一起。这方面四人帮的设计模式已经涵盖了。</p>
+<h3 id="设计模式之状态模式"><a href="#设计模式之状态模式" class="headerlink" title="设计模式之状态模式"></a>设计模式之状态模式</h3><p>对于对面向对象思想有深入了解的人来说，每个条件分支都是一个使用动态分派的机会（换句话说，也就是在 C++ 中使用虚拟方法）。我估计你可能会太深入而掉进了那个兔子打的洞里。有时候你需要的仅仅是一个 <code>if</code> 语句而已。</p>
+<p>不过在我们的例子中，我们已经达到了一个转折点，即使用面向对象的思想更合适。这让我们顺理成章地使用<strong>状态模式</strong>。引用四人帮的话来说：</p>
+<blockquote>
+<p>允许对象在其内部状态发生变化时更改其行为。这个对象貌似会更改它所在的类。</p>
+</blockquote>
+<p>其实这并没有告诉我们多少东西。不过，我们的 <code>switch</code> 已经搞定了。他们所描述的具体模式，在我们的女主角类中实现起来像下面这样：</p>
+<h4 id="一个状态接口"><a href="#一个状态接口" class="headerlink" title="一个状态接口"></a>一个状态接口</h4><p>首先，我们为状态定义一个接口。每个行为都依赖于状态——就是我们之前每个 <code>switch</code> 分支的地方——都转变成该接口中的虚拟方法。对我们来说，这里的方法就是 <code>handleInput()</code> 和 <code>update()</code> ：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroineState</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">virtual</span> ~HeroineState() &#123;&#125;</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">handleInput</span><span class="params">(Heroine&amp; heroine, Input input)</span> </span>&#123;&#125;</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Heroine&amp; heroine)</span> </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="每个状态封装成类"><a href="#每个状态封装成类" class="headerlink" title="每个状态封装成类"></a>每个状态封装成类</h4><p>对于每个状态，我们定义一个实现接口的类。它的方法定义了女主角在该状态下的一些行为。换句话说，从之前的 <code>switch</code> 语句中获取每个 <code>case</code> 情形并将它们移动到其对应的 <code>state</code> 类中。例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DuckingState</span> :</span> <span class="keyword">public</span> HeroineState</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  DuckingState() : chargeTime_(<span class="number">0</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">handleInput</span><span class="params">(Heroine&amp; heroine, Input input)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (input == RELEASE_DOWN)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 转换为站立状态...</span></span><br><span class="line">      heroine.setGraphics(IMAGE_STAND);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Heroine&amp; heroine)</span> </span>&#123;</span><br><span class="line">    chargeTime_++;</span><br><span class="line">    <span class="keyword">if</span> (chargeTime_ &gt; MAX_CHARGE)</span><br><span class="line">    &#123;</span><br><span class="line">      heroine.superBomb();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">int</span> chargeTime_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>注意我们还会将 <code>chargeTime_</code> 字段从 <code>Heroine</code> 类中移出并移入到 <code>DuckingState</code> 类中。这真是太好了——这个数据段只有在该状态下才会有意义，现在的对象模型很明显地反映出了这一点。</p>
+<h4 id="状态委托"><a href="#状态委托" class="headerlink" title="状态委托"></a>状态委托</h4><p>接下来，我们给 <code>Heroine</code> 类一个指向她当前状态的指针，抛弃每段长长的 <code>switch</code> 语句，然后将其委托给状态：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Heroine</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">handleInput</span><span class="params">(Input input)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    state_-&gt;handleInput(*<span class="keyword">this</span>, input);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    state_-&gt;update(*<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 其他方法...</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  HeroineState* state_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>为了“改变状态”，我们只需要赋值 <code>state_</code> 变量以指向不同的 <code>HeroineState</code> 对象即可。整个就是状态模式的全部了。</p>
+<h3 id="状态对象实例在哪里？"><a href="#状态对象实例在哪里？" class="headerlink" title="状态对象实例在哪里？"></a>状态对象实例在哪里？</h3><p>在这里我掩饰了一些东西。为了改变状态，我们需要给 <code>state_</code> 字段赋值所要指向的新状态，但是这个新状态对象从哪里来呢？如果是通过我们的枚举类实现，这是一个欠缺思考的方式—— <code>enum</code> 枚举类型的值都是一些原始的基本数据类型，比如数字。但现在我们的状态的类型确是类，这意味着我们需要一个真实的实例来指向它。通常这有两种常见的方案：</p>
+<h4 id="静态类的状态"><a href="#静态类的状态" class="headerlink" title="静态类的状态"></a>静态类的状态</h4><p>如果状态对象没有任何其他字段，则它存储的唯一数据是一个指向内部虚拟方法表的指针，这样就可以实现其他方法的调用。在这种情况下，我们并没有什么理由让其拥有多个实例。无论如何，实例化的每个对象都是完全一样的。</p>
+<p>所以基于这种情形，你可以创建一个<em>静态的</em>类型实例。即使你有一堆的 FSM 状态机都是同时运行在同一个状态下，它们都是可以指向同一个实例的，因为它没有任何特定于某个机器的实例。</p>
+<p>把静态实例放在哪里这取决于你。最好是找一个有意义的地方吧。没有什么特别的原因的话，让我们把静态对象放在状态的基类中吧：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeroineState</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">static</span> StandingState standing;</span><br><span class="line">  <span class="keyword">static</span> DuckingState ducking;</span><br><span class="line">  <span class="keyword">static</span> JumpingState jumping;</span><br><span class="line">  <span class="keyword">static</span> DivingState diving;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 其他代码...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>每个静态字段都是游戏中使用的对应状态的一个实例。为了能让女主角正常跳跃，站立状态下应该是这样编写的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (input == PRESS_B)</span><br><span class="line">&#123;</span><br><span class="line">  heroine.state_ = &amp;HeroineState::jumping;</span><br><span class="line">  heroine.setGraphics(IMAGE_JUMP);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="实例化的状态"><a href="#实例化的状态" class="headerlink" title="实例化的状态"></a>实例化的状态</h4><p>但是有时候这并不管用。静态状态类不适用于闪避状态。它有一个 <code>chargeTime_</code> 字段，这个字段是特定于女主角的闪避状态的。如果碰巧只有一个女主角，这在我们的游戏中是没问题的，但如果我们假设添加多人玩家进行合作，同时在屏幕上出现两个女主角，那我们就会遇到问题了。</p>
+<p>在这种情况下，我们必须在进行状态转换的时候创建一个新的状态对象实例。这样每个 FSM 都有自己的状态实例。当然，如果我们分配了一个<em>新的</em>状态对象，那意味着我们需要释放<em>当前的</em>旧状态对象内存。我们得小心翼翼，因为触发状态改变的代码是位于当前的旧状态的方法内。我们不想从自己本身当中删除 <code>this</code> 引用。</p>
+<p>相反，我们将允许 <code>HeroineState</code> 中的 <code>handleInput()</code> 方法可选地返回一个新的状态。如果这样做， <code>Heroine</code> 将可以删除旧的状态然后转换为新的，代码如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heroine::handleInput</span><span class="params">(Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  HeroineState* state = state_-&gt;handleInput(*<span class="keyword">this</span>, input);</span><br><span class="line">  <span class="keyword">if</span> (state != <span class="literal">NULL</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">delete</span> state_;</span><br><span class="line">    state_ = state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样的话，在方法的返回值之前，我们不会删除先前的旧状态。现在，站立状态对象就可以通过创建新实例来转换为闪避状态了：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HeroineState* <span class="title">StandingState::handleInput</span><span class="params">(Heroine&amp; heroine, Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input == PRESS_DOWN)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 其他代码...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> DuckingState();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 停留在当前状态。</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果给我选择的话，我更倾向于使用静态状态模式，因为它们不会在每次状态更改的时候因为分配对象空间而消耗内存和 CPU 调用周期。当然，对于状态机，呃，这是一种思路。</p>
+<h3 id="动作的进入和退出"><a href="#动作的进入和退出" class="headerlink" title="动作的进入和退出"></a>动作的进入和退出</h3><p>状态模式的目的是将一个状态的所有行为和数据都封装在同一个类中。一般我们已经差不多实现，但仍然还有一些东西要完成。</p>
+<p>当女主角状态改变时，我们同时会切换她的精灵（ sprite ）图片显示。目前这个代码由她所要发生转换的旧状态持有。当她从闪避状态转为站立状态时，闪避状态就会设定其显示图形：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HeroineState* <span class="title">DuckingState::handleInput</span><span class="params">(Heroine&amp; heroine, Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input == RELEASE_DOWN)</span><br><span class="line">  &#123;</span><br><span class="line">    heroine.setGraphics(IMAGE_STAND);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> StandingState();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 其他代码...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们真正想要的是每个状态能控制其自己的图形显示。我们可以通过向状态类提供一个<em>进入（ enter ）</em>的行为来解决这个问题：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StandingState</span> :</span> <span class="keyword">public</span> HeroineState</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">enter</span><span class="params">(Heroine&amp; heroine)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    heroine.setGraphics(IMAGE_STAND);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 其他代码...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>回到 <code>Heroine</code> 类，我们修改一下处理状态更改的代码，以便在新状态下调用这个方法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heroine::handleInput</span><span class="params">(Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  HeroineState* state = state_-&gt;handleInput(*<span class="keyword">this</span>, input);</span><br><span class="line">  <span class="keyword">if</span> (state != <span class="literal">NULL</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">delete</span> state_;</span><br><span class="line">    state_ = state;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在新的状态上调用 enter 行为。</span></span><br><span class="line">    state_-&gt;enter(*<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这使我们可以简化闪避状态类的代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HeroineState* <span class="title">DuckingState::handleInput</span><span class="params">(Heroine&amp; heroine, Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input == RELEASE_DOWN)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> StandingState();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 其他代码...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在这段代码仅仅只用来处理切换到站立的状态而已，而图形显示由站立状态自行处理了。嗯，现在我们的状态类是真的被封装起来了。关于进入动作的一个特别好的效果就是它们一定是在进入该状态时才调用，而且不管你是从哪个状态转换而来。</p>
+<p>大多数真实的游戏中，状态图是会存在从多个状态转换到同一个状态的情况。例如，我们的女主角在她跳跃或俯冲后最终都呈现站立状态。这意味着我们最后还是会在状态转换所发生的每一个地方编写一些重复的代码。进入（ Entry ）状态的方法为我们提供了处理这一点的地方。</p>
+<p>当然，同样我们也可以扩展它以支持退出（ exit ）行为。这只是我们在切换到新状态之前所调用要离开的旧状态中的一个方法。</p>
+<h3 id="有何收获？"><a href="#有何收获？" class="headerlink" title="有何收获？"></a>有何收获？</h3><p>我已经花了这么多时间安利你 FSM 有限状态机，不过现在我要把你从飘飘然状态拉回原地了。到目前为止我所说的一切都是没有什么问题， FSM 非常适合解决某些问题。但是他们最大的优点也即他们最大的缺陷。</p>
+<p>状态机通过强制使用固定死的结构来帮助您解开那些乱成一团的代码。你所拥有的全部仅为一组固定的状态，一个单一的当前状态和一些用于进行状态转换的硬编码。</p>
+<p>如果您尝试使用状态机来处理游戏中更复杂的事情，例如游戏 AI ，那么你首先得弄清楚这个模型的局限性。值得庆幸的是，我们的先人已经为我们找到了避开这些疑难杂症的方法。我将通过向你介绍其中几个解决方案来结束本篇文章的主要内容。</p>
+<h3 id="并发状态机"><a href="#并发状态机" class="headerlink" title="并发状态机"></a>并发状态机</h3><p>我们决定让我们的女主角拥有携带枪支的能力。当她正在射击的时候，她仍然可以做之前所能做的一切动作：跑步，跳跃，闪避等等。而且她也能够在做这些动作的同时发射她的武器。</p>
+<p>如果我们坚持使用 FSM 的范畴，那么我们必须将拥有的状态数量扩大一倍。对于每个现有的状态，我们同时需要另外一个她背着武器做同样事情的状态：站立，背着枪站立，跳跃，背着枪跳跃，嗯，你应该明白了。</p>
+<p>再来添加几个武器，然后把状态进行组合，数量一下子爆增。不仅是大量的状态，而且还增加了大量的冗余：对于非武装和武装状态下的状态，除了处理射击的一点点代码外，其他几乎完全相同。</p>
+<p>这个问题在于我们将两个状态——她正在做什么以及她所携带的东西——塞进了一个单一的状态机中。为了模拟所有可能的组合，我们需要编写成对的状态。这个问题的解决方案也很明显：分别设立两个独立的状态机。</p>
+<p>我们先不管之前状态机做了些什么，我们只管保留原来的状态机。然后我们再分开单独定义一个她携带东西时的状态机。 <code>Heroine</code> 类将拥有两个“状态”引用，对应我们定义的两个状态机，如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Heroine</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="comment">// 其他代码...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  HeroineState* state_;</span><br><span class="line">  HeroineState* equipment_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>当女主角向各状态委托处理输入时，她将输入交给两个相应的函数分别进行处理：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Heroine::handleInput</span><span class="params">(Input input)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  state_-&gt;handleInput(*<span class="keyword">this</span>, input);</span><br><span class="line">  equipment_-&gt;handleInput(*<span class="keyword">this</span>, input);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后，每个状态机可以响应输入，生成相应的行为，并独立于其他状态机而各自更改其状态。这里两组状态机大多不会相关联，这样处理很有效。</p>
+<p>在项目实践中，你确实会发现某些情形下状态机之间会发生一些交互。例如，或者她并不能边跳跃边开火，或者如果她有武装，那么她就不能进行俯冲攻击。为了解决此类问题，在一个状态的代码中，你可能会简单地使用 <code>if</code> 语句测试其他机器的状态来协调它们之间的交互。这当然不是最优雅的解决方案，但它至少可以搞定这个目标。</p>
+<h3 id="分层状态机"><a href="#分层状态机" class="headerlink" title="分层状态机"></a>分层状态机</h3><p>在完善了我们的女主角的一些行为后，她可能会有一堆相似的状态。例如，她可能有站立，行走，跑步和滑动状态。在其中任何一个状态下，按下 <key>B</key> 键会跳跃再按下方向键则俯冲。</p>
+<p>如果通过一个简单的状态机实现，那么我们必须在每个状态中复制这段代码。如果我们能够只实现一次，然后在所有的状态中重用它那就更好了。</p>
+<p>如果把这当做面向对象中的代码而不是状态机，那么这些状态共享代码的一种方式就是使用继承。我们可以定义一个“在地面上”的类来处理跳跃和闪避。然后，站立，行走，跑步和滑动将继承于它并添加他们各自应有的附加行为。</p>
+<p>事实证明，这是一种被称为<em>分层状态机</em>的常见结构。一个状态可以有一个状态<em>超类</em>（使自己成为一个<em>子状态</em>）。当一个事件发生时，如果子状态没有处理它，它会顺着继承链到达状态的超类然后进行处理。换句话说，它就像继承中方法的重写一样。</p>
+<p>实际上，如果我们使用 State 状态模式来实现我们的 FSM 有限状态机，我们可以使用类继承来实现层次结构。为状态超类定义一个基类：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OnGroundState</span> :</span> <span class="keyword">public</span> HeroineState</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">handleInput</span><span class="params">(Heroine&amp; heroine, Input input)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (input == PRESS_B)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 跳跃...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (input == PRESS_DOWN)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 俯冲...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后每个子状态都继承于它：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DuckingState</span> :</span> <span class="keyword">public</span> OnGroundState</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">handleInput</span><span class="params">(Heroine&amp; heroine, Input input)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (input == RELEASE_DOWN)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 站立...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 不处理输入，顺着继承链往上走。</span></span><br><span class="line">      OnGroundState::handleInput(heroine, input);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>当然，这并不是实现层次结构的唯一方式。如果你没有使用 Gang of Four 四人帮的状态模式，这将不会起作用。相反，你可以使用一堆状态而不是主类中的单个状态来进行显式地模拟当前状态的超类继承链。</p>
+<p>当前状态处于堆栈的顶部，在它之下则是它的直接超类，然后是该超类的超类。当你提出一些特定于状态的行为时，你便可以从堆栈的顶部开始往下走，直到其中某一个状态能够处理它。 （如果没有，你就忽略它吧。）</p>
+<h3 id="下推自动机"><a href="#下推自动机" class="headerlink" title="下推自动机"></a>下推自动机</h3><p>有限状态机的另一个比较常见的扩充就是使用状态堆栈。令人困惑的是，堆栈实质上代表着一种完全不同的东西，它也是用于解决完全不同的问题。</p>
+<p>这里存在的问题是有限状态机没有什么<em>过往历史</em>概念。你仅知道自己<em>当前</em>处于什么状态，但对你<em>过去</em>所处的状态没有记忆保留。并没有什么方法可以回到以前的状态去。</p>
+<p>这里有一个例子：早些时候，我们让无畏的女主角先行全付武装起来。当她开枪时，我们需要一个新的状态来播放射击的动画并不断生成子弹和对应的视觉效果。因此，我们弄了一个 <code>FiringState</code> 拼到一起，同时还要弄出来所有那些当射击按钮按下时可以过渡到这个新状态的其他状态。</p>
+<p>而棘手的部分就是她在射击后所要过渡到的状态。她可以在站立，跑步，跳跃和闪避时弹出一些特效。当射击相关的一系列动作完成后，她应该回到她之前正在做的动作状态。</p>
+<p>如果我们坚持使用这香喷喷的 FSM ，那么我们早已经忘记了她之前所处的是什么状态了。为了跟踪之前的状态，我们必须又定义一系列几乎完全一样的状态——站立时射击，边跑边射击，射击时跳跃等等——这样每个人都有一套可以正确地回到之前状态的硬编码转换代码了。</p>
+<p>其实我们真正喜欢的方式是先存储她在射击之前所处的状态，之后再返回去调用它。同理，这就是自动机理论发挥作用的地方。相关数据结构被称为<a href="http://en.wikipedia.org/wiki/Pushdown_automaton" target="_blank" rel="noopener">下推自动机</a>。</p>
+<p>在有限状态机只有一个指向状态的指针的情况下，下推自动机则拥有一个状态堆栈。在 FSM 中，当转换到新状态后将覆盖前一个状态。下推自动机也可以让你这样处理，但它同时还为你提供了两个额外的操作：</p>
+<ol>
+<li>您可以将新的状态推入堆栈中。 “当前”的状态始终处于堆栈的顶部，这样实现转换为新的状态。同时它将先前的状态压在了新状态的下面，而不是直接丢弃它。</li>
+<li>您可以将最顶层的状态弹出堆栈。该状态被丢弃，而它下面的状态则成为新的当前状态。</li>
+</ol>
+<p><img src="state-pushdown.png" alt="state-pushdown.png"></p>
+<p>这正是我们解决射击状态所需要的。我们创建了一个单一的射击状态。当处于任何其他状态情况下，按下射击按钮时，我们将射击状态推到堆栈顶层。当射击动画完成后，我们将该状态弹出，同时下推自动机自动将我们的状态转回之前的状态。</p>
+<h3 id="那么，这些东西有用吗？"><a href="#那么，这些东西有用吗？" class="headerlink" title="那么，这些东西有用吗？"></a>那么，这些东西有用吗？</h3><p>即使对状态机的发展有这些常见的扩充，但是它们仍然非常有限。如今，人工智能游戏领域中的趋势更倾向于使用<a href="http://web.archive.org/web/20140402204854/http://www.altdevblogaday.com/2011/02/24/introduction-to-behavior-trees/" target="_blank" rel="noopener">行为树</a>和<a href="http://web.media.mit.edu/~jorkin/goap.html" target="_blank" rel="noopener">规划系统</a>等令人兴奋的事物。如果您感兴趣的是那些复杂的 AI ，那么本章内容一定能够刺激到您的胃口。你会想要阅读其他更多相关的书籍以满足自己的兴趣。</p>
+<p>这并不意味着有限状态机，下推自动机以及其他简单的系统都是毫无用处的。对于某类问题，它们确实是一个非常不错的模型工具。有限状态机在以下情况非常有用：</p>
+<ul>
+<li>你有一个实体，其行为根据某个内部状态变化而变化。</li>
+<li>该状态可以严格地划分为相对比较小的不同选项。</li>
+<li>随着时间推移，实体会对一系列的输入或者事件进行响应。</li>
+</ul>
+<p>在游戏中，它们最常用于 AI ，但它们在用户输入处理，菜单导航切换，文本解析，网络协议以及其他异步行为的实现中也很常见。</p>
+<h2 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h2><p>以上就是主要内容，有任何建议请给我留言吧，谢谢！ :sunglasses:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/blog/images/wexin_1.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a> <a href="/tags/翻译/" class="button small">翻译</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2019/07/31/introduction-of-godot-3-part-15-several-usage-examples-of-rigidbody2d-node-in-games/" class="alignleft prev" title="Godot3游戏引擎入门之十五：RigidBody2D刚体节点的几种应用场景及示例"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之十五：RigidBody2D刚体节点的几种应用场景及示例</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2019/07/20/introduction-of-godot-3-part-14-make-a-game-with-rigidbody2d-node-and-the-fsm-introduction/" class="alignright next" title="Godot3游戏引擎入门之十四：RigidBody2D刚体节点的应用以及简单的FSM状态机介绍">Godot3游戏引擎入门之十四：RigidBody2D刚体节点的应用以及简单的FSM状态机介绍&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

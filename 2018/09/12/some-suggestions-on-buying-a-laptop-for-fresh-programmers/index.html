@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="给买笔记本的新手程序员学生的一点建议"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>给买笔记本的新手程序员学生的一点建议 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">给买笔记本的新手程序员学生的一点建议</h1>
+    <div class="meta">
+        <span>2018-09-12</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/随笔/">随笔</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="cover_detail.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近有同学问我关于买笔记本能否提供一些建议，据我所知，大部分的学生对笔记本硬件或者配置相关知识几乎是空空如也，如果去了电脑城，必定会在各种忽悠之间晕头转向。所幸的是，现在是二十一世纪，有京东、天猫、亚马逊、易迅等网上商城，价格品质服务一览无余，童叟无欺，还可以边看介绍边悠然地比下价格，不像我们八零后、七零后，不仅要承受高价格，还要承受各种忽悠，甚至不断在正品和水货之间徘徊，犹豫不决。</p>
+<p>即便如此，面对众多的笔记本品牌，各式各样的高档配置，各种各样的折扣价格，结合自己的需求，我相信很多朋友还是会在选择面前左右为难。看来，要做一个选择对于初学者来说，还算是一个小难题，这里我必须声明的是我并不是什么笔记本大神，即使是，也被科技的日新月异所淘汰了，对市场同样也没有那么熟悉了，好在我对笔记本的一些配置，或者硬件系统还算是比较了解的。所以，从我个人的角度来说，我不能直接帮助任何一位决定最终选择，但是我可以给一些有效的建议吧。</p>
+<p>首先申明一下我在提出建议之前，我的一些经验和局限之处：</p>
+<ol>
+<li>从 06 年我的第一台联想笔记本（现在还在老家用着）到现在已有 12 年的笔记本电脑使用、拆机经验</li>
+<li>十多年我用过的笔记本（真正属于我自己的）应该超过 50 台了，涵盖了大部分品牌，目前我手头在用的新旧笔记本有 7 台</li>
+<li>尽管如此，我所用的几十台笔记本中几乎全是清一色的二手笔记本，新的电脑不过三台，所以在购买新笔记本上我肯定是欠缺经验的</li>
+<li>对笔记本硬件我算是了如指掌，不过只限于 2016 年前，现在已经没有任何兴趣去了解这些了，不过老旧的经验还能凑合排上用场</li>
+<li>我所使用的笔记本品牌包括：苹果、戴尔、联想、惠普、神舟、宏碁、华硕、明基，屏幕尺寸有： 14/15/17 寸</li>
+</ol>
+<p>基于这几点，我把大家关心的热门话题分几个方面稍微讨论一下，尽力给出个大概的、有效的建议。</p>
+<p><img src="laptop_1.jpg" alt="laptop_1.jpg"></p>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p><strong>苹果还是其他</strong></p>
+<p>我算是见证了苹果（ Apple ）在中国的迅猛崛起。苹果手机无处不在，同时也带热了现在的苹果笔记本电脑（ Mac 操作系统 ），很多学生就是冲着苹果那高端大气上档次的逼格去的。不过，问题在买回来以后，有些新手发现在苹果笔记本上连个 java 环境变量和一个文本编辑器都找不着北。所以这个问题上，我的看法是：</p>
+<ol>
+<li>首先你得承认，在中大型公司中，用苹果笔记本的绝对不是小数，苹果系统和 Linux 系统相比 Window 系统对程序员更加友好的，不过这是工作后的事情</li>
+<li>如果你是学生，不玩游戏，又善于折腾，卡里存款数字优美，那么我推荐苹果笔记本是没错的：它轻便美观，对程序员也挺友好，而且续航时间给力</li>
+<li>如果你还需要考虑玩游戏的话，那么其他因素暂时可以忽略了：放弃苹果，看看其他品牌吧！显卡性能、散热和轻薄外观必定是鱼和熊掌的关系</li>
+</ol>
+<p><strong>新品还是二手</strong></p>
+<p>如果我自己买笔记本电脑或者换笔记本的话，毫无疑问我会考虑<strong>二手</strong>（闲鱼上淘的多），一个原因肯定是因为价格便宜，另外追求性能的我升级更换笔记本会稍微频繁些，二手笔记比转手价格折损不大，相比新的就像手机等电器一样，前几年买的苹果 6 花了六千多，如今二手的闲置转手价值仅仅六七百，可见硬件更新换代之快！除此之外，还有一个很重要的因素就是：我对笔记本硬件的了解和拆装都特别熟悉。我买的二手笔记本很多都是空机，啥意思？就是说没有内存、硬盘之内，甚至有些笔记本 CPU 也可以更换升级（厚重的那些比如灵蛇、雷电、战神等显卡都可以更换），所谓家中常备内存条、固态硬盘，哈哈。</p>
+<p>买二手一定要考虑出了问题怎么解决，所以也是我不推荐大部分学生直接购买二手本本的原因。目前我手头有一台苹果 Air ，去年键盘出了问题我就换过，你可能觉得换个键盘很容易，我告诉你，你说的那是其他品牌，在苹果笔记本上，键盘由 60 多个铆钉固定，拔铆钉都得花费几个小时，然后还要用合适的螺丝装上，你可以拆拆试试，为此我专门发表了一篇博文记录我更换苹果笔记本键盘的痛苦历程：<a href="http://liuqingwen.me/blog/2017/05/29/repaire-and-replace-mac-air-keyboard/">修理更换苹果AIR笔记本键盘</a>。</p>
+<p>另外一方面，特别是对于大部分学生来说，售后服务也是一个非常重要的考虑要素，即使价格稍贵，但是花钱买的是服务，是多一份保险，出了问题不会修理的情况下可以快速直接找客服解决（戴尔有上门服务，不过是针对工作站和外星人系列）。这算是我的小建议。</p>
+<p><strong>性能还是散热</strong></p>
+<p>如果说笔记本有一个老生常谈的话题，那么我猜肯定是：<em>性能 vs 散热</em>这个热门话题了。买笔记本肯定要挑选性价比高的，而性价比就体现在硬件性能上，比如现在的笔记本 i3 的 CPU 都很少见了，低配也得选个 i5 是吧， i7 也贵不了多少。但是，别忽略了笔记本的散热功能：散热不良严重影响性能发挥！</p>
+<p>实际上，笔记本由于自身原因肯定会比台式机散热差，那么是不是不要考虑性能而应该根据散热好坏来挑选呢？也不完全对，我的建议是，大家在性能也就是配置方面没必要看得太重，一方面作为初学者来说根本就用不上那些高大上、耗内存、耗 CPU 的软件，相反一般的软件对性能需求是比较低的，配置一个 i3 的 CPU 加上个合格地显卡、固态硬盘、内存条配置平时用用都足够了，另一方面，可别忘了，大部分的笔记本是可以升级的！没错，买个低配，然后等性能不够用了，加个内存条，换个固态硬盘，让笔记本重焕生机，再战个三五年不成问题！</p>
+<p>既然散热好的笔记本那么有优势，怎么才知道哪款笔记本散热到底是好还是不好呢？这个问题算是难住我了，嗯，我的建议是，得在以下几个方面花点功夫了解下：</p>
+<ol>
+<li>多去笔记本相关论坛了解你所感兴趣的某个品牌型号的笔记本关于散热方面的测试和评价</li>
+<li>现场观察笔记本的外壳，购机时开启无数个程序然后查看 CPU 和显卡方面的温度报告</li>
+<li>当然，不是说买个个散热好的笔记本就毫无后顾之忧了，至少每年需要清理灰尘和更换硅脂一到两次，否则散热再好，时间久了也是灰尘满满，温度飙飙！</li>
+</ol>
+<p>这个时候，考虑外观的同学就会犹豫了，毕竟越轻薄的笔记本散热越差，这没办法，鱼和熊掌不可兼得，但是也别担心，这里我建议注重外观，想购买轻薄笔记本的同学就没必要再挑选配置很高的型号了，一方面配置高的 CPU 、显卡发热量大，另一方面对于初学者来说，笔记本电脑一般都是性能过剩的，相信我，哈哈。</p>
+<p>PS ：除了苹果笔记本，还有一款超薄推荐：微软的苏菲（ <a href="https://www.microsoft.com/zh-hk/surface" target="_blank" rel="noopener">Microsoft Surface</a> ），价格合适可以上。</p>
+<p><strong>国货不如人？</strong></p>
+<p>什么时代了？都 21 世纪了，如果你还有这个观点，那我……只能说，哎哟，小伙不错哦。 :joy:</p>
+<p>这个问题在 10 年前也算个热门，我也认为国产笔记本确实有点那啥，不咋滴吧，但是现在是什么时代？我曾用过 17 寸的神舟战神系列笔记本电脑，它的做工甚至比我使用过的其他某些国外牌子还好（应该是蓝天代工制作）。当然，我并不是夸奖国产笔记本一定就很好，但是你要知道，即使是国产笔记本，它的 CPU 不依然是使用国外英特尔或者 AMD 的？独立显卡不还是 AMD 或者英伟达？所谓外表国产内心充满洋货啊。抬头看下你的苹果手机，它还是富士康制造的呢！哈哈。</p>
+<p><strong>游戏还是学习</strong></p>
+<p>这个话题我不就不讨论了，原因你懂的！告辞，不送~ :sunglasses:</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>嗯，就这些吧，洋洋洒洒写了几百上千字，也没有什么实质性地建议，我觉得嘛，预算有限的同志，还是多去论坛了解以下，或者多听听有经验的朋友们的建议，多学点东西不是坏事啊。总结并附上我的一些建议：</p>
+<ol>
+<li>笔记本大部分性能有剩余，考虑超薄再加散热过得去即可</li>
+<li>配置的话， i5 够用，显卡能选择独立显卡更好，内存 8G 我看够用， 16G 绝对浪费</li>
+<li>在过去十多年里，我个人认为笔记本的性能瓶颈在于<strong>硬盘的读写</strong>上，所以我是极力推荐直接上固态硬盘</li>
+<li>品牌差别真心不大，配置相当下肯定可以考虑价格因素，别被所谓的高档货或者高配置忽悠了，另外还要注意售后</li>
+</ol>
+<p><img src="laptop_2.jpg" alt="laptop_2.jpg"></p>
+<p>对了，有人问我自己的使用的电脑型号，我的是戴尔的工作站 M3800 （二手，无疑问），打算今年底更换成 M5510 ，戴尔、惠普的笔记本都有工作站系列，对性能有需求的朋友可以了解一下。</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzg3MjAwMjI4Mg==&mid=100000071&idx=1&sn=440b2050b4c7495c64f66c41b028c406&send_time=1536712211" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/随笔/" class="button small">随笔</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/09/18/introduction-of-godot-3-part-3-move-character-with-inputs/" class="alignleft prev" title="Godot3游戏引擎入门之三：移动我们的主角"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之三：移动我们的主角</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/" class="alignright next" title="Godot3游戏引擎入门之二：第一个简单的游戏场景">Godot3游戏引擎入门之二：第一个简单的游戏场景&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

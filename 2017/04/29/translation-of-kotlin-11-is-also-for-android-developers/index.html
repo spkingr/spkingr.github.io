@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【翻译】Kotlin 1.1 新版本同样适合安卓开发者"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>【翻译】Kotlin 1.1 新版本同样适合安卓开发者 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">【翻译】Kotlin 1.1 新版本同样适合安卓开发者</h1>
+    <div class="meta">
+        <span>2017-04-29</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Kotlin/">Kotlin</a> <a href="/tags/翻译/">翻译</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="Android-app-development-Kotlin.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本文是一篇翻译文，尽量遵照了原文的意思，加上本人英语水平有限，第一次做翻译，如有不当之处请多包涵！</p>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><blockquote>
+<p>标题：Kotlin 1.1 新版本同样适合安卓开发者<br>2017年4月5号由 Roman Belov 发布<br>这是一篇邀请文，由 Antonio Leiva 编写，一位安卓工程师、培训导师，也是《Kotlin for Android Developers》书的作者</p>
+</blockquote>
+<p>Kotlin 1.1 的发布真是激动人心啊！新版本的新特性对于 Java 开发者来说非常有用，将给整个 JVM 开发界带来新的可能。</p>
+<p>但是这些新特性，比如协程，或者<a href="https://github.com/Kotlin/KEEP/blob/master/proposals/type-aliases.md" target="_blank" rel="noopener">类型别名</a>（举个列子）的特性，看起来似乎和安卓开发者沾不上边。</p>
+<p>我们仍然挣扎在低效率的、古老的 Java 6 版本中，以至于大部分开发者都忘记了还有其他平台的存在。</p>
+<p>那么有一个很严肃的问题是： Kotlin 团队能否在带来新特性的同时保持对 Java 6 的兼容性呢？这个问题的回答是肯定的！</p>
+<p><strong>所有的新特性仍然适用于 Java 6 ，同时作为扩展而适用于安卓开发者。</strong>更重要的是，今天我就要把这些都展示给您，让您知道在开发安卓程序过程中是多么的爽快。</p>
+<ul>
+<li><h3 id="类型别名：让你的事件监听更具可读性"><a href="#类型别名：让你的事件监听更具可读性" class="headerlink" title="类型别名：让你的事件监听更具可读性"></a>类型别名：让你的事件监听更具可读性</h3></li>
+</ul>
+<p>当然，类型别名是有很多用处的。但是在我看来首当其冲的是在使用 lambda 表达式的时候能够让事件监听增加可读性。</p>
+<p>如果之前你都还没有听说过<a href="https://github.com/Kotlin/KEEP/issues/4" target="_blank" rel="noopener">类型别名</a>的话，那我告诉你其实它的功能就是简单地重命名复杂的类型，使其更加具有可读性。</p>
+<p>比如你有个 <code>RecyclerViewadapter</code> 类会接收一个事件监听。众所周知， <code>RecyclerView</code> 和 <code>ListView</code> 一样没有标准的处理单项视图点击事件的方式，所以我们必须动手自己写。</p>
+<p>假设我们有个事件监听需要访问这个视图，我们的适配器类就像下面这样：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span></span>(<span class="keyword">val</span> items: List&lt;Item&gt;, <span class="keyword">val</span> listener: (View) -&gt; <span class="built_in">Unit</span>) : RecyclerView.Adapter&lt;MyAdapter.ViewHolder&gt;() &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同时你的 <code>ViewHolder</code> 可能也需要接收这个监听事件，把它赋值给这个视图的点击事件监听者：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span></span>(itemView: View) : RecyclerView.ViewHolder(itemView) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">bind</span><span class="params">(item: <span class="type">Item</span>, listener: (<span class="type">View</span>) -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">        itemView.setOnClickListener(listener)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种情况并不复杂，如你所见，在上下文之外，我们需要多次重复定义这个 lambda 表达式导致代码可读性降低。</p>
+<p>但是，我们可以使用类型别名来表示一个点击事件监听者： <code>typealias ClickListener = (View) -&gt; Unit</code><br>这样我们就能在任意需要这个事件监听的地方使用它，像这样： <code>class MyAdapter(val items: List&lt;Item&gt;, val listener: ClickListener)</code> 或者 <code>fun bind(item: Item, listener: ClickListener) { ... }</code></p>
+<ul>
+<li><h3 id="数据类的功能更加强大"><a href="#数据类的功能更加强大" class="headerlink" title="数据类的功能更加强大"></a>数据类的功能更加强大</h3></li>
+</ul>
+<p>数据类非常有用，因为它避免了大量的重复模板工作。但是他们在某些功能上的缺乏使得在有些场所并不能派上用场。</p>
+<p>Kotlin 1.1 中引入的一个新特性就是继承性：数据类也可以继承自其他类。这就允许数据类成为封装类的一部分：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">UiOp</span> </span>&#123;</span><br><span class="line">    <span class="keyword">object</span> Show : UiOp()</span><br><span class="line">    <span class="keyword">object</span> Hide : UiOp()</span><br><span class="line">    <span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Translate</span></span>(<span class="keyword">val</span> axis: Axis, <span class="keyword">val</span> amount: <span class="built_in">Int</span>): UiOp()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，<strong>封装类可以在父类之外定义了</strong>，就像这样：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">UiOp</span></span></span><br><span class="line"><span class="keyword">object</span> Show : UiOp()</span><br><span class="line"><span class="keyword">object</span> Hide : UiOp()</span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Translate</span></span>(<span class="keyword">val</span> axis: Axis, <span class="keyword">val</span> amount: <span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="lambda-表达式的解构体"><a href="#lambda-表达式的解构体" class="headerlink" title="lambda 表达式的解构体"></a>lambda 表达式的解构体</h3></li>
+</ul>
+<p>数据类在最初始的版本中就能够使用解构体，那是多亏了自动生成的 <code>componentX()</code> 方法。你可以把数据类的内容用这样的方式同时赋值给多个变量：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Item</span></span>(<span class="keyword">val</span> text: String, <span class="keyword">val</span> url: String)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">val</span> (text, url) = item</span><br></pre></td></tr></table></figure>
+
+<p>但是之前，这个非常有用而强大的特性却不能在 lambda 表达式中使用。现在这种方式被改变了，你可以像这样做：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">bind</span><span class="params">(item: <span class="type">Item</span>)</span></span> = item.let &#123; (text, url) -&gt;</span><br><span class="line">    textView.text = text</span><br><span class="line">    imageView.loadUrl(url)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这确实对于双元素或者字典中键值对设置非常有用，打个比方。</p>
+<ul>
+<li><h3 id="局部属性代理"><a href="#局部属性代理" class="headerlink" title="局部属性代理"></a>局部属性代理</h3></li>
+</ul>
+<p>属性代理被证明很有用，能够给类中的属性带来额外的效果。</p>
+<p>比如，一个很有用处的例子就是<strong>懒加载代理</strong>，它能延迟赋值的执行直到这个属性第一次被使用。</p>
+<p>懒加载对于局部变量也是很有用的，但是 Kotlin 却没有这样的特性。</p>
+<p>现在，我们可以这样使用局部属性代理：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testLocalDelegation</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> database <span class="keyword">by</span> lazy &#123; createDatabase() &#125;</span><br><span class="line">    <span class="keyword">val</span> cache <span class="keyword">by</span> lazy &#123; createMemoryCache() &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (mustUseDatabase()) &#123;</span><br><span class="line">        database.use &#123; ... &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        cache.use &#123; ... &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尽管这个例子完全可以不使用懒加载来做，但是这有助于我们理解相关概念。</p>
+<p>有一些相当耗资源的操作我们可能会执行也可能不会。通过使用懒加载，我们可以延迟资源的实例化直到我们必须使用它。</p>
+<p>当第一次运行的时候，大括号里的代码就会被执行，同时也会缓存起来供之后使用。</p>
+<ul>
+<li><h3 id="再也不要管理那些-lambda-表达式中不需要使用的变量了"><a href="#再也不要管理那些-lambda-表达式中不需要使用的变量了" class="headerlink" title="再也不要管理那些 lambda 表达式中不需要使用的变量了"></a>再也不要管理那些 lambda 表达式中不需要使用的变量了</h3></li>
+</ul>
+<p>有一种常见的情形就是：我们在 lambda 表达式中所定义的参数到最后都不能派上用场。</p>
+<p>这是因为在 Kotlin 1.0 版本中我们没有一种有效的方式来抛弃那些不需要使用的参数。</p>
+<p>举个例子，在文章的前面我解释了如何使用代理更新一个 RecyclerView 的适配器，后面的代码是这样的：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items: List&lt;Content&gt; <span class="keyword">by</span> Delegates.observable(emptyList()) &#123;</span><br><span class="line">    prop, old, new -&gt;</span><br><span class="line">    autoNotify(old, new) &#123; o, n -&gt; o.id == n.id &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个 prop 参数并没有用上，但是却必须要有它的定义。现在，你可以采用下划线来避免这种情况：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items: List&lt;Content&gt; <span class="keyword">by</span> Delegates.observable(emptyList()) &#123;</span><br><span class="line">    _, old, new -&gt;</span><br><span class="line">    autoNotify(old, new) &#123; o, n -&gt; o.id == n.id &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不过还有一种最糟糕的情况就是所有的参数你都不会使用。如果你的 lambda 表达式中有多个参数，尽管你不会使用但是你必须全部写出来。</p>
+<p>现在，我们可以这样忽略他们：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items: List&lt;Item&gt; <span class="keyword">by</span> Delegates.observable(emptyList()) &#123;</span><br><span class="line">    _, _, _ -&gt;</span><br><span class="line">    notifyDataSetChanged()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这不仅使得我们减少了变量的定义，还能让代码更具有可读性。现在，你不需要去判断哪些参数用了哪些没用。这真是一清二楚！</p>
+<ul>
+<li><h3 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h3></li>
+</ul>
+<p>在 Kotlin 1.1 中协程是一个令人振奋的新闻。尽管最后发布的依然是带有“实验性”的包，<strong>不过它已经功能齐全并且从今天开始你也可以开始在你的项目中使用了！</strong></p>
+<p>协程能够让你像写同步代码块一样写异步代码，能够编写流畅的代码使得在某刻挂起任务的执行以等待结果的返回。</p>
+<p>想必你有可能已经知道 Kotlin 中协程并不是一个库或者一种特殊的实现，<strong>它是一种语言特性，允许我们通过它创造实用的库。</strong></p>
+<p>因此，即使我们同样实现的代码看上去大同小异，但很重要的一点就是我们懂得协程归更到底是创建了子线程并在主线程中返回得到结果，这在安卓中尤为重要。</p>
+<p>辛运的是， Kotlin 团队开发极其迅速，已经<strong>有好些库把协程的威力带到了安卓开发中。</strong>这里有几个例子：</p>
+<p>第一个是你很可能希望看到的 Jetbrains 官方提供的库：</p>
+<ul>
+<li><a href="https://github.com/Kotlin/kotlinx.coroutines/tree/master/ui/kotlinx-coroutines-android" target="_blank" rel="noopener">kotlinx-coroutines-android</a> ,这个库实现了协程在安卓中的使用。</li>
+<li><a href="https://github.com/Kotlin/anko" target="_blank" rel="noopener">Anko</a> ，这个库的最新 beta 版本已经包含了协程对很多框架的支持。</li>
+</ul>
+<p>同时也还有很多第三方库实现了他们自己版本的协程：</p>
+<ul>
+<li><a href="https://github.com/nhaarman/AsyncAwait-Android" target="_blank" rel="noopener">AsyncAwait-Android by Niek Haarman</a></li>
+<li><a href="https://github.com/metalabdesign/AsyncAwait" target="_blank" rel="noopener">Async / Await by Metalab</a></li>
+<li>如果你仅仅只需要 Retrofit 的支持，你可以看一下这个库： <a href="https://github.com/gildor/kotlin-coroutines-retrofit" target="_blank" rel="noopener">kotlin-coroutines-retrofit by Andrey Mischenko</a></li>
+</ul>
+<p>我强烈建议你们不仅要会使用他们，还要去看看他们是如何实现的。这也是开源的魅力所在！</p>
+<ul>
+<li><h3 id="其他一些对于安卓开发者来说很酷的事情"><a href="#其他一些对于安卓开发者来说很酷的事情" class="headerlink" title="其他一些对于安卓开发者来说很酷的事情"></a>其他一些对于安卓开发者来说很酷的事情</h3></li>
+</ul>
+<p>在这个版本中还有很多其他的改进，但是我想重点提出几个关于针对安卓开发的功能。</p>
+<p>第一个就是：你现在可以启用 Jack 编译器了，通过这样的设置： <code>jackOptions { true }</code> 。尽管谷歌已经宣布放弃 Jack 工具链，但是如果你还在 Java 8 中使用它，那么在 Android Studio 2.4 版本的的最终发布前，这会对你很有用。</p>
+<p>另外一个，将会<strong>有一个新的潮流就是使用 <code>@JvmOverloads</code> 来实现自定义视图组件的构造函数</strong>，这从文字意义上来说就是可以用一句话来实现自定义视图的构造函数（不过确实是很长的一句话），通过一个构造函数和默认的参数值：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomView</span> <span class="meta">@JvmOverloads</span> <span class="keyword">constructor</span></span>(</span><br><span class="line">        context: Context, attrs: AttributeSet? = <span class="literal">null</span>, defStyleAttr: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">) : View(context, attrs, defStyleAttr) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3></li>
+</ul>
+<p>Kotlin 1.1 带来的一大堆惊艳的特性毫无征兆地质问着我们：为什么还要继续使用 Java 呢？</p>
+<p>Kotlin 带给安卓开发者的益处毋庸置疑，你完全可以从今天开始就使用 Kotlin 来开发安卓软件。</p>
+<p>另外，如果你想学习使用 Kotlin 来开发安卓程序，<strong>那么你会对《[Kotlin for Android Developers]》(<a href="https://antonioleiva.com/kotlin-android-developers-book/)这本书感兴趣的。" target="_blank" rel="noopener">https://antonioleiva.com/kotlin-android-developers-book/)这本书感兴趣的。</a></strong></p>
+<blockquote>
+<p>这边文章发布在类目：<a href="https://blog.jetbrains.com/kotlin/category/android/" target="_blank" rel="noopener">安卓</a>，<a href="https://blog.jetbrains.com/kotlin/category/guestpost/" target="_blank" rel="noopener">访客文章</a>和<a href="https://blog.jetbrains.com/kotlin/tag/newsletter/" target="_blank" rel="noopener">新闻</a>标签下，订阅他的<a href="https://blog.jetbrains.com/kotlin/2017/04/kotlin-1-1-is-also-for-android-developers/" target="_blank" rel="noopener">永久地址</a>。<br>原文地址：<a href="https://blog.jetbrains.com/kotlin/2017/04/kotlin-1-1-is-also-for-android-developers/" target="_blank" rel="noopener">https://blog.jetbrains.com/kotlin/2017/04/kotlin-1-1-is-also-for-android-developers/</a></p>
+</blockquote>
+
+<p markdown="1" style="color: red; font-weight: bold; ">
+PS: 文中代码格式错乱，已更新，于 2018-10-27
+</p>
+
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Kotlin/" class="button small">Kotlin</a> <a href="/tags/翻译/" class="button small">翻译</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/05/05/learning-notes-of-swift-initialization/" class="alignleft prev" title="【学习笔记】SWIFT中的构造函数"><i class="fa fa-angle-double-left"></i>&nbsp;【学习笔记】SWIFT中的构造函数</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/04/16/gif-images-of-historic-sharing/" class="alignright next" title="很有意思的一些 GIF 古典动画图片">很有意思的一些 GIF 古典动画图片&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

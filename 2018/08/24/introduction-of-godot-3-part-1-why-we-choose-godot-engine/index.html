@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之零一：【翻译】为什么要选择 Godot 引擎"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之零一：【翻译】为什么要选择 Godot 引擎 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之零一：【翻译】为什么要选择 Godot 引擎</h1>
+    <div class="meta">
+        <span>2018-08-24</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a> <a href="/tags/翻译/">翻译</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本文作为我的 Godot 系列文章的第二篇，是一篇翻译文作为 Godot 的优点说明吧，虽然文章发布于去年，但还是很有借鉴意义，翻译的不是很好请海涵！ :smile:</p>
+<blockquote>
+<p>作者简介：<br>Rock Milk<br><img src="godot_why_rock_milk.jpg" alt="godot_why_rock_milk.jpg"><br>来自 Brasil 的另一个游戏开发高手。在此体验 Reakt 游戏：<a href="https://play.google.com/store/apps/details?id=co.rockmilk.reakt" target="_blank" rel="noopener">https://play.google.com/store/apps/details?id=co.rockmilk.reakt</a><br>发布时间：2017 年 9 月 27 日<br>原文链接： <a href="https://medium.com/@rockmilkgames/why-godot-engine-e0d4736d6eb0" target="_blank" rel="noopener">https://medium.com/@rockmilkgames/why-godot-engine-e0d4736d6eb0</a></p>
+</blockquote>
+<h2 id="二、原文：我们为什么选择-Godot-引擎"><a href="#二、原文：我们为什么选择-Godot-引擎" class="headerlink" title="二、原文：我们为什么选择 Godot 引擎"></a>二、原文：我们为什么选择 Godot 引擎</h2><p>现在是开发游戏的最好时机。第一个理由就是：你还活着，你如果挂了那就不能再开发游戏了。第二个理由是：获取开发工具从没有这么民主过啊。（哭）</p>
+<h3 id="那段美好的回忆"><a href="#那段美好的回忆" class="headerlink" title="那段美好的回忆"></a>那段美好的回忆</h3><p>我仍然还记得在 2004 年，那是我的计算机毕业课程的第一堂课。一个长大了的男孩，非常激动的学习如何开发并开始尝试创建一个模糊地存在我头脑中的蹩脚小游戏。我并不是想说我有多老或者多怀旧（尽管两者都有），但是回溯到那个时代，既没有推特（ Twitter ），没有脸书（ Facebook ），更没有其他所谓你现在正在使用的“信息分享”工具。</p>
+<p>在巴西我们所拥有最好的东西就是那些隐蔽的网络论坛，聚集了一大堆有着共同兴趣爱好的匿名伙伴们，互相分享着那点点滴滴游戏开发的经验和知识。我都不知道那个时候我是怎么开始使用谷歌搜索去学习游戏开发的。尽管 <a href="https://www.yoyogames.com/gamemaker" target="_blank" rel="noopener">GameMaker</a> 已经有 17 岁了，而且 <a href="http://www.rpgmakerweb.com/" target="_blank" rel="noopener">RPG Maker</a> 都已经 24 岁了（！），我还从未听说过他们或者使用过他们的某些产品。</p>
+<p>我在大学里的第一堂课就是计算机编程基础，教的是 C 语言。那个时候我学会了一点基本的语法，兴奋而又傻逼的我就决定做一个 Zelda 游戏：类似过去的克隆 / 启发型游戏。确实，每一个初学者都有点傻傻的。</p>
+<p>这门课程的期末考试是要求使用 <a href="http://liballeg.org/" target="_blank" rel="noopener">Allegro</a> 克隆一个 Pac-Man 吃豆游戏 ，但其实并不止于此！在我内心来说，贪婪的游戏开发者会觉得吃豆游戏又简单又单调，我想要做的是一个 Zelda 类型的大游戏！后来我发现，对于我这种才学会一个 for 循环的人来说（这都可以作为另一个文章主题来讨论了），吃豆子游戏竟然是一个非常耗时的任务。</p>
+<p>像我这种情况，无知就是幸运，没有什么东西可以阻挡我下载 Zelda 游戏中的射击图片，在一个我自己创造的简单粗暴的地图里，用来做移动和碰撞实验（这已经让我感觉自己就像程序上帝了）。不必说，我的吃豆子游戏从未见过天日，开发一个 Zelda 游戏简直有趣多了。</p>
+<h3 id="游戏引擎……到处都是游戏引擎"><a href="#游戏引擎……到处都是游戏引擎" class="headerlink" title="游戏引擎……到处都是游戏引擎"></a>游戏引擎……到处都是游戏引擎</h3><p>回到现在的日子，到处有着上亿数量的书籍、文章、开发日志，社交网络传播着相关的各种知识和各种引擎。一切都是免费或者类似免费的。按某种分类列举一些我头脑里所能想到的引擎：</p>
+<ul>
+<li><a href="https://unity3d.com/" target="_blank" rel="noopener">Unity</a> / <a href="https://www.unrealengine.com/en-US/what-is-unreal-engine-4" target="_blank" rel="noopener">Unreal</a> / <a href="http://www.cryengine.com/" target="_blank" rel="noopener">CryEngine</a> / <a href="https://aws.amazon.com/lumberyard/" target="_blank" rel="noopener">Lumberyard</a></li>
+<li><a href="https://www.scirra.com/" target="_blank" rel="noopener">Scirra’s Construct</a> / <a href="http://www.stencyl.com/" target="_blank" rel="noopener">Stencyl</a> / <a href="http://www.rpgmakerweb.com/" target="_blank" rel="noopener">GameMaker</a> / <a href="http://www.rpgmakerweb.com/" target="_blank" rel="noopener">RPG Maker</a></li>
+<li><a href="https://love2d.org/" target="_blank" rel="noopener">Love2D</a> / <a href="http://haxeflixel.com/" target="_blank" rel="noopener">HaxeFlixel</a> / <a href="http://www.cocos2d-x.org/" target="_blank" rel="noopener">Cocos2D</a> / <a href="https://phaser.io/" target="_blank" rel="noopener">Phaser</a></li>
+<li>我还能持续列举下去好几年……我没有开玩笑哦……</li>
+</ul>
+<p>因为太多的选择，我们内心通常是矛盾的，到底应该选择哪个呢？</p>
+<h3 id="屌丝：-Godot-引擎"><a href="#屌丝：-Godot-引擎" class="headerlink" title="屌丝： Godot 引擎"></a>屌丝： Godot 引擎</h3><p>在自我拼搏的这些年里，我和 <a href="https://twitter.com/matheusrma" target="_blank" rel="noopener">Matheus</a> 在引擎和编程语言上积累了大量的经验，不得不说，我们必须提到 Unity 这个引擎，我敢说这是目前在小工作室和独立开发者中最流行的引擎了。 2013 年，在我们深爱的 <a href="https://twitter.com/criticalstudio" target="_blank" rel="noopener">Critical Studio</a> 工作室，我们使用它开发了 <a href="http://store.steampowered.com/app/218130/Dungeonland/" target="_blank" rel="noopener">Dungeonland</a> 游戏，在当时来看，相对于其他引擎， Unity 是非常棒的选择。</p>
+<p><img src="godot_why_some_dungeonland_gameplay.jpg" alt="Some Dungeonland gameplay! Go play with 2 more friends, it&#39;s fun and free!"></p>
+<p>现在来看它仍然是一个很棒的引擎，特别是在 3D 方面。但是在 Critical Studio 工作室关闭后，我需要一个更为简单的工具来做开发。 Unity 体积膨胀大了，加载速度变得缓慢，开发 2D 游戏要 hack 很多东西。</p>
+<p>接着我发现了 HaxeFlixel （它更像一个框架而不是引擎），它非常适合快速高效地进行原型设计和小游戏开发，我也能够在多平台上重用同一个代码集，另外它还能够使用 Flash 快速地发布游戏，给我的朋友们进行玩赏尝试。</p>
+<p>但是，我觉得还是有什么东西缺失了，或许是某个本地平台和游戏框架之间的桥梁？我想要一个简单地类似 HaxeFlixel 的工具，但是却又拥有更多的自定义控制，就像 WYSIWYG 编辑器或者像 Unity 编辑器那样。</p>
+<p><img src="godot_why_1.png" alt="godot"></p>
+<p>接下来的事情，一个名不见经传的新屌丝出现在城里，它就是 Godot 引擎。 Godot 于 2007 年开始作为一个私有引擎被开发，一直到 2014 年开源。经过 10 年的沉淀，已经变得非常成熟。</p>
+<p>当我们发现它的时候，我们的感觉是它很可能拥有我和 <a href="https://medium.com/@rockmilkgames" target="_blank" rel="noopener">Rock Milk</a> 所正在搜寻的一切。我们把 <a href="https://play.google.com/store/apps/details?id=co.rockmilk.reakt&hl=en" target="_blank" rel="noopener">Reakt</a> 打造成了 Godot 测试用的实验项目，并定义了一套全新的产品开发流程。最终我们喜欢上了它，因为我们发现在其他引擎上的缺点都在这里完美解决了。</p>
+<h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p><img src="godot_why_disclaim.png" alt="Starting a Flame War 101"></p>
+<p>我并没有引发与其他编程语言、框架或者引擎口水战的意思，因此：</p>
+<ul>
+<li>我们并没有表示 Godot 比其他引擎更好、更强；（即使如此，也是个人观点而已）</li>
+<li>我们并没有表示其他引擎就很差</li>
+<li>我们并没有表示对于他们的缺点并不是没有任何解决方案</li>
+<li>我们并没有表示 Godot 的解决方案是完美无缺的</li>
+</ul>
+<p>这里的关键点在于：说明我们为什么喜欢它，以及它为什么更适合我们的商业和程序风格。如果我有冒犯的地方，请谅解，真的。（但是请不要动怒，没必要，是吧）</p>
+<p>OK ，开始吧……</p>
+<p><strong>开源和社区</strong></p>
+<p>Godot 开源并永久免费。通俗点说就是：</p>
+<ul>
+<li>没有个税，也没有所谓的年度、季度收入上限要求</li>
+<li>不强求使用它们的启动画面、他们的附加服务或者使用它们的云服务托管你的项目</li>
+</ul>
+<p>在 2015 年， Godot 加入了软件自由保护协会 <a href="https://sfconservancy.org/" target="_blank" rel="noopener">Software Freedom Conservancy</a> ，可以看出 Godot 对此非常关注。</p>
+<p>它的开发<a href="https://godotengine.org/community" target="_blank" rel="noopener">社区</a>非常活跃，更别说它们的<a href="https://github.com/godotengine/godot/commits/master" target="_blank" rel="noopener">仓库提交量</a>了，经常会有<a href="https://godotengine.org/news" target="_blank" rel="noopener">新的文章</a>和<a href="https://godotengine.org/devblog" target="_blank" rel="noopener">进度报告</a>。在 Discord 上能看到大家发挥出的热情互助，也有他们自己的一些游戏讨论。</p>
+<p><strong>跨平台编辑和发布</strong></p>
+<p>Godot 针对每一个操作系统都有一个对应版本的编辑器： Windows, Mac 和 Linux 。甚至还有一个由 <a href="https://twitter.com/cam12win" target="_blank" rel="noopener">cam12win</a> 放出的<a href="https://github.com/crabcrabcam/godot/releases" target="_blank" rel="noopener">树莓派实验版本</a>。</p>
+<p>其他一切如常：</p>
+<ul>
+<li>桌面发布平台： Windowx, Mac, Linux</li>
+<li>手机发布平台： Android, iOS, Windows Phone （实验阶段） 以及黑莓系统（我没有开玩笑哦）</li>
+<li>网页版发布，使用 Emscripten （ WebGL 2.0 和 WebAssembly 正在开发中）</li>
+</ul>
+<p>当然还有一些其他平台的构建计划，甚至 <a href="https://twitter.com/Shin_NiL" target="_blank" rel="noopener">Shin-Nil</a> 已经让他的 2D 平台展示游戏在他的 XBox One 中运行了：</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Uyw--v8EcWk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+<p>并且 <a href="https://twitter.com/godotengine/status/798643721294249985" target="_blank" rel="noopener">Deponia Playstation 4</a> 也是使用的 Godot 制作。</p>
+<p><strong>轻量级</strong></p>
+<p>构建好的 Godot 只需要占用你的硬盘的 30M 空间，包含（几乎）了所有内容。如果你需要构建手机版本，你需要下载额外的 200M 的构建模板，仅此而已。</p>
+<p>这里我并不是因为下载速度快或者因为其他引擎占用了 3 到 30GB 的大空间而提出这点，而是为了说明 Godot 团队对性能的关注程度。 Godot 打开只需要一眨眼的功夫，我那用了 4 年的旧笔记本打开或者加载时间甚至都没超过 5 秒钟。我所等待过的最长时间大约是 1 分钟，那是发生在点击一个按钮发布到安卓手平台的 Debug 版本之间的时间开销。</p>
+<p>当然，最重要的是：它能反应出你的游戏的性能。当我发现 <a href="https://github.com/godotengine/godot/issues/4181#issuecomment-203516916" target="_blank" rel="noopener">Godot 引擎本身就是一个 Godot 开发的游戏</a>的时候，我被深深地震惊了！</p>
+<p><strong>友好的版本控制</strong></p>
+<p>你是否曾经遇到过在使用 Unity 或者 Unreal 的时候发生了场景或者预制体或者其他的对象文件在仓库的版本冲突问题？如果有的话，难么你应该知道这是多么痛苦的一件事了，特别是在大型团队里。</p>
+<p>在 Godot 中任何对象都是以文本文档的形式保存，对于合并冲突来说是绝对是一种非常友好而且可读性强的文件格式。因为我们能非常轻松地区别开多个场景中的多个对象（关于这个之后会谈论更多），使得每一个团队成员都能够专注于自己的工作。</p>
+<p><strong>动画系统</strong></p>
+<p>Godot 的动画系统是我见过的最强大而又简单易用的一个系统，我曾经使用过的所有动画工具具有的功能设置它都包含了。你可以对某个对象的<strong>任意属性</strong>进行动画设置，甚至包括函数的调用。除此之外，它还包含了一个非常简易的动画创建工具。</p>
+<p>动手比解释更能体会它的工作原理，我推荐你访问 <a href="https://twitter.com/NathanGDquest" target="_blank" rel="noopener">GDQuest</a> 和 <a href="https://twitter.com/uheartbeast" target="_blank" rel="noopener">Heartbeast</a> 的视频，两位大牛利用他们的业余时间讲授创建游戏相关经验的视频，大部分是免费的。他们俩各自做了一个关于 Godot 的动画系统的介绍视频：</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/d9t3CdMks7M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<p style="text-align: center;font-size: 90%; font-style: italic;">动画工具介绍</p>
+
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ee1HcECuhME" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<p style="text-align: center;font-size: 90%; font-style: italic;">使用剪切动画技巧打造一个蝙蝠动画</p>
+
+
+<p><strong>真实2D vs 假2D</strong></p>
+<p>经常会遇到 <a href="https://medium.com/@rockmilkgames/starting-up-our-indie-games-business-5d08705f8cb2" target="_blank" rel="noopener">Rock Milk 的哲学理论</a>问题。为了弄清楚这个东西，我们创建了一个小而简单的游戏，尝试突破未开发的那些区域和一些创新机制。由于我们是两个家庭的普通人，经常一天只能抽出个把小时来开发我们的游戏，所以我们只专注于 2D 游戏开发。</p>
+<p>Godot 的 2D 引擎可圈可点，它不是假的 2D ，就像在 3D 空间把 Z 轴<em>平放</em>一样的假 2D 。对于 Godot 来说这意味着什么呢？</p>
+<ul>
+<li>像素作为坐标和单位使用，包括物理引擎中的使用</li>
+<li>更加高效、更加易用地 API ，无需在第三个轴上处理逻辑或者数学问题</li>
+<li>某些其他引擎上的典型解决方案在这里都变得没必要（例如：把 1 个像素设为一个单元，完美像素渲染， Z 轴分层和相机缩放问题等）</li>
+</ul>
+<p>换句话说，我们能很好的控制每个游戏物体的尺寸、位置、速度和碰撞，包括皮肤（ HUD ），这经常是需要进行一个完整的 PITA 设置。（不过我们还是蛮喜欢 Unity 的新 GUI 系统的说）</p>
+<p><strong>GDScript 脚本和 API</strong></p>
+<p>GDScript 是 Godot 中代码处理的默认编程语言，能和引擎的相关特性非常吻合的结合在一起。</p>
+<p>通常只需要编写一点点代码就能做出一大堆动作效果，这是由于它那丰富的 <a href="http://docs.godotengine.org/en/stable/classes/index.html" target="_blank" rel="noopener">API</a> 。我曾以为每个对象都需要从头开始创建，但是 Godot 已经帮我们做好了，包括每一个操作和我所需要的自定义功能。</p>
+<p>另外，我觉得 GDScript 是让新用户拒而远之的最主要原因。我重点列举以下我所听见的抱怨中的几条：</p>
+<blockquote>
+<p>我是不是必须要学习一门只能在 Godot 中使用的编程语言？</p>
+</blockquote>
+<p>是的，朋友，但是这并不会多花费你多于两天的时间。这门语言非常简单，就像 Python 的兄弟版。</p>
+<p>最糟糕的情况是：至少你也将会学会另一门编程语言，而且学习新的语言能有助于你进行和别人不一样的思考方式（那是更好的方式）。</p>
+<blockquote>
+<p>我讨厌编程语言</p>
+</blockquote>
+<p>好吧，没有理由一定要尝试，我也没有什么可抱怨的。但是，如果你愿意的话，你可以完全使用 C++ 模块来编写代码然后轻松地导出为 GDScript 脚本。</p>
+<p>或许，你可能更希望<a href="https://en.wikipedia.org/wiki/Waiting_for_Godot" target="_blank" rel="noopener">等待 Godot 3.0 版本的发布</a>（其实它就在 Godot 的社区……开个玩笑），因为 3.0 版将会支持 <a href="https://github.com/neikeq/GodotSharp" target="_blank" rel="noopener">C#</a> 以及 <a href="https://godotengine.org/article/dlscript-here" target="_blank" rel="noopener">GDNative</a> 脚本，也就是说到时候你可以使用 <a href="https://github.com/touilleMan/godot-python" target="_blank" rel="noopener">Python</a> ， <a href="https://github.com/ShadowApex/godot-go" target="_blank" rel="noopener">Go</a> ， <a href="https://github.com/GodotNativeTools/godot-d" target="_blank" rel="noopener">D</a> ， <a href="https://github.com/GodotNativeTools/godot-rust" target="_blank" rel="noopener">Rust</a> 甚至 <a href="https://github.com/pragmagic/godot-nim" target="_blank" rel="noopener">Nim</a> （或者任意其他你想绑定的编程语言）等语言编写代码。</p>
+<blockquote>
+<p>那么它的性能怎样呢？游戏代码如何？额</p>
+</blockquote>
+<p>一般对于你所能想到的 95% 的游戏我相信性能都足够满足了。如果你还是持有怀疑态度，那么像我刚才提到的，你完全可以使用 C++ 模块编写然后获得 C++ 的性能。</p>
+<p>如果在你的游戏里，某个部分算法有着极高的性能需求，那么你可以在此部分上单独使用 C++ 进行编程，在其他部分继续采用 GDScript 脚本。</p>
+<p>你可以阅读更多 Shin-Nil 的关于<a href="http://shinnil.blogspot.com.br/2016/05/is-gdscript-really-slow.html" target="_blank" rel="noopener">性能测试</a>之类的文章。</p>
+<blockquote>
+<p>我的编程工具和软件并支持 GDScript 脚本</p>
+</blockquote>
+<p>Godot 有一个集成的代码编辑器，而且除了基本的脚本编写之外它还具有漂亮的智能代码提示功能（也就是说代码自动完成功能），以及强大的 debug 功能，另外包括运行时编辑功能，你可以看看 <a href="https://twitter.com/reduzio?lang=en" target="_blank" rel="noopener">Juan Linietsky</a> （ 也叫 Reduzio ）的视频，他是 Godot 的主要开发者，视频地址在此：</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/50Vw4e6JPOI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+<p>到目前为止，对于外部代码编辑器，完全支持的只有 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a> ，使用的是 <a href="https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools" target="_blank" rel="noopener">Godot 工具</a>，由 <a href="https://twitter.com/Geequlim" target="_blank" rel="noopener">Geequlim</a> 开发，但是其他软件包括 <a href="https://packagecontrol.io/packages/GDScript%20%28Godot%20Engine%29" target="_blank" rel="noopener">Sublime Text</a> ， <a href="https://atom.io/packages/search?utf8=%E2%9C%93&q=keyword:godot" target="_blank" rel="noopener">Atom</a> 以及 <a href="https://github.com/haimat/GDScript-gedit" target="_blank" rel="noopener">GEdit</a> 都能支持语法高亮功能。</p>
+<p>我的建议是：在批评之前先尝试使用 GDScript 脚本吧。如果你在一周之后还是不能顺利上手，效率也不高，那我赔你一颗糖吧。哈哈。（？）</p>
+<p>到这里还是不相信？那看一看 Juan 关于创造 GDScript 脚本的理由吧，或许它能让你改变主意：</p>
+<p><a href="https://www.redditmedia.com/r/gamedev/comments/36u80q/godot_engine_11_out/crhjrw6/?embed=true&context=0&depth=1&showedits=false&created=null&uuid=null&showmore=false" target="_blank" rel="noopener">https://www.redditmedia.com/r/gamedev/comments/36u80q/godot_engine_11_out/crhjrw6/?embed=true&amp;context=0&amp;depth=1&amp;showedits=false&amp;created=null&amp;uuid=null&amp;showmore=false</a></p>
+<p><strong>节点和场景系统</strong></p>
+<p>节点是游戏中能够进行属性编辑的一个基本对象。它可以使一个 2D 精灵，一个 3D 模型，一些 GUI 控件元素或者仅声音的播放功能。 Godot 包含了大量节点可供使用和扩展，因此你可以完全创建属于你自己的节点类型。场景是由一组节点有层次的组织在一起构建而成，如同一棵大树。</p>
+<p>这也是我们最喜欢的特性，关于节点这个图做出了最好的解释：</p>
+<p><img src="godot_why_node_and_scene.jpeg" alt="抱歉，对于这门语言（我撒了个谎）"></p>
+<p>Godot 中一切都是场景。每一个场景都能包含其他场景和节点。你可以轻松地提取子节点作为一个场景，提高它的复用性， <a href="https://twitter.com/fracteed" target="_blank" rel="noopener">fracteed</a> 先生在管道上就聪明地利用了这个特性：</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Sceneception = a scene within a scene within a scene. Nested scenes are perfect for items such as pipes <a href="https://twitter.com/hashtag/GodotEngine?src=hash&amp;ref_src=twsrc%5Etfw" target="_blank" rel="noopener">#GodotEngine</a> <a href="https://twitter.com/hashtag/gamedev?src=hash&amp;ref_src=twsrc%5Etfw" target="_blank" rel="noopener">#gamedev</a> <a href="https://twitter.com/hashtag/indiedev?src=hash&amp;ref_src=twsrc%5Etfw" target="_blank" rel="noopener">#indiedev</a> <a href="https://twitter.com/hashtag/b3d?src=hash&amp;ref_src=twsrc%5Etfw" target="_blank" rel="noopener">#b3d</a> <a href="https://t.co/KkxC2kAUcK" target="_blank" rel="noopener">pic.twitter.com/KkxC2kAUcK</a></p>&mdash; fracteed (@fracteed) <a href="https://twitter.com/fracteed/status/904253046347010048?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">September 3, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>为了让你更好的理解，我这里拿 Unity 来作对比：</p>
+<ul>
+<li>在 Unity 中一个<em>游戏物体</em>的行为是通过添加多个组件实现的。每一个组件都是一个脚本，所以一个对象可以有很多个脚本；（噢）</li>
+<li>在 Godot 中，每个节点只能拥有一个脚本，当然它本身已经拥有了一些基本的功能。你可以在场景中定义一个<em>游戏物体</em>，它由多个节点和其他的场景组成。这也就意味着默认情况下你可以使用预制体嵌套（ prefabs ）。下面这个例子来自 Godot 的官方文档，表示的是一个 Player <em>游戏物体</em>：</li>
+</ul>
+<p><img src="godot_why_node_tree.png" alt="godot_why_node_tree.png"></p>
+<p>如果你想要阅读更多相关的内容，你可以读一下官方文档页面的：<a href="http://docs.godotengine.org/en/stable/learning/editor/unity_to_godot.html#the-scene-system" target="_blank" rel="noopener">从 Unity 到 Godot &gt; 场景系统</a></p>
+<h3 id="小缺陷，但是解决方案已经在进行中"><a href="#小缺陷，但是解决方案已经在进行中" class="headerlink" title="小缺陷，但是解决方案已经在进行中"></a>小缺陷，但是解决方案已经在进行中</h3><p>在 <a href="https://play.google.com/store/apps/details?id=co.rockmilk.reakt&hl=en" target="_blank" rel="noopener">Reakt</a> 的开发过程中，我们使用 Godot 2.1.3 版本，发现了一些小的 Bug 和一些怪异的地方：</p>
+<ul>
+<li>我有一台 13 寸的 Macbook Pro Retina 。鉴于我所使用的 Godot 软件工具，有些 GUI 面板显得非常紧凑，一些按钮出现在了其他的 GUI 元素的上层，但是没有任何东西可以阻止继续使用它们</li>
+<li>当关闭动画工具的时候，它会把当前的编辑节点的默认状态设置为最后我所使用过的状态，我们不得不多次进行重置节点到原始的配置状态。最新的解决方案是，我们在关闭动画工具之前会先创建了一个<em>默认状态</em>并选中它。</li>
+</ul>
+<p>除了这点，我们的开发瓶颈在于整合手机平台第三方库，主要有：分析工具、广告中间网络以及崩溃报告。在 Godot 中创建原生模块非常繁琐：你不得不下载引擎源码，在指定的文件夹中创建并包含原生模块，编译 Godot 引擎，接着编译测试版和发布版。如果没问题的话，这些操作会生成一个可以在你的游戏中使用的手机平台模板，如果有问题，那么你不得不使用 USB 接头继续连接到你的手机上重新 debug 测试你的代码模块。啊哈……</p>
+<p>所有程序设置好之后你就可以使用它了，重新生成所有模块还是非常快的。在我们的第一个游戏上我们仅仅使用了 <a href="https://twitter.com/frogsquaregames" target="_blank" rel="noopener">Frog-Square</a> 创建的 <a href="https://github.com/FrogSquare/GodotFireBase" target="_blank" rel="noopener">Godot-Firebase</a> 模块（感谢帮助和支持！）。</p>
+<p>我们想实现我们自己的中间网络层（鉴于 Firebase 只含有 AdMob ），但是投入-产出比暂时还是不值得我们这么去做，因为我之前已经提到过， Reakt 仅仅是一个实验项目，而且 GDNative 已经在 Godot 3 引擎中开始使用了，它也修复了一个我们遇到的一个问题，将来我们可以直接使用它，而不需要像我之前提到的那样从头到尾进行一次手动的编译过程。</p>
+<h3 id="OK-，-Godot-3-0-即将到来……"><a href="#OK-，-Godot-3-0-即将到来……" class="headerlink" title="OK ， Godot 3.0 即将到来……"></a>OK ， Godot 3.0 即将到来……</h3><p>当然，目前还没有任何借口不去尝试一下它的！你可以使用它做些小 Demo ，这有助于你理解我所说的东西。</p>
+<p>另外，看下这个视频，了解一下 3.0 版本中正在开发的所有新特性：</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XptlVErsL-o" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+<p>如果需要的话你可以下载一个 <a href="https://downloads.tuxfamily.org/godotengine/3.0/alpha1/" target="_blank" rel="noopener">Alpha 版本</a> 玩玩。还有，关注下这个引擎的<a href="https://github.com/godotengine/roadmap/blob/master/ROADMAP.md" target="_blank" rel="noopener">开发路线</a>，这真是游戏开发者的福音啊！</p>
+<p>除此之外， Godot 来到了它的第一个里程碑，它已经有了<a href="https://www.patreon.com/godotengine" target="_blank" rel="noopener">赞助商</a>，这使得 Juan 可以全职全身心地投入到引擎的开发中来。</p>
+<p>我真心希望我能劝服你加入到这个激情的社区，帮助提升 Godot 引擎的成长速度。我是否已经打动你了呢？如果是的话，那么开始学习吧：</p>
+<ul>
+<li><a href="http://docs.godotengine.org/en/stable/" target="_blank" rel="noopener">Godot 官方文档</a></li>
+<li>GDQuest 发布的 <a href="https://www.youtube.com/playlist?list=PLhqJJNjsQ7KEr_YlibZ3SBuzfw9xwGduK" target="_blank" rel="noopener">30 天 30 个教程</a> 以及 <a href="https://gumroad.com/l/godot-tutorial-make-professional-2d-games" target="_blank" rel="noopener">使用 Godot 制作专业 2D 游戏课程</a> （这个课程在 Kickstarter 已经筹到 32512 欧元！）</li>
+<li><a href="https://www.youtube.com/channel/UCNaPQ5uLX5iIEHUCLmfAgKg" target="_blank" rel="noopener">小孩能编程</a>以及 <a href="https://www.youtube.com/channel/UChv-gaPlKNROf6iMDhxIpUA" target="_blank" rel="noopener">Angega 工作室油管频道</a></li>
+</ul>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eHtIcbrii2Y" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+<p><a href="https://medium.com/@rockmilkgames" target="_blank" rel="noopener">Rock Milk</a> 的目标是成为 Godot 提到的第一个推荐者，就像 <a href="http://stg.p1x.in/" target="_blank" rel="noopener">P1X</a> （<a href="http://tof.p1x.in/" target="_blank" rel="noopener">自由坦克的创造者</a>）和 <a href="https://okamgames.com/" target="_blank" rel="noopener">Okam</a> （ Godot 出生的地方，以及<a href="http://store.steampowered.com/app/330420/The_Interactive_Adventures_of_Dog_Mendona__Pizzaboy/" target="_blank" rel="noopener">小狗 Mendonça 和 Pizzaboy 的互动历险记®</a> 的创造者）。我真心希望在我们的旅程中能够遇到你，有任何疑问欢迎随时和我们来交流吧！</p>
+<p><a href="https://twitter.com/diegomac" target="_blank" rel="noopener">Diego Machado</a> ，一位万事通牛人：<a href="https://medium.com/@rockmilkgames" target="_blank" rel="noopener">@Rock Milk</a></p>
+<h2 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h2><p>太多的视频地址和链接，本文已经发布到微信公众号，如果需要查看相关链接和视频，请点击下方的<strong>阅读原文</strong>并开启翻墙模式吧。 :sunglasses:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/blog/images/wexin_2.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a> <a href="/tags/翻译/" class="button small">翻译</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/08/27/translation-of-motionlayout-collapsing-toolbar-part-2/" class="alignleft prev" title="【翻译】MotionLayout实现折叠工具栏（Part 2）"><i class="fa fa-angle-double-left"></i>&nbsp;【翻译】MotionLayout实现折叠工具栏（Part 2）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/08/15/introduction-of-godot-3-part-0-my-view/" class="alignright next" title="Godot3游戏引擎入门之零零：简单的想法">Godot3游戏引擎入门之零零：简单的想法&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

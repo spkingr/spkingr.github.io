@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【翻译】MotionLayout实现折叠工具栏（Part 2）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>【翻译】MotionLayout实现折叠工具栏（Part 2） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">【翻译】MotionLayout实现折叠工具栏（Part 2）</h1>
+    <div class="meta">
+        <span>2018-08-27</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Android/">Android</a> <a href="/tags/翻译/">翻译</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="motionlayout_part2.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本篇是续集，第一篇翻译直达链接：<a href="http://liuqingwen.me/blog/2018/08/13/translation-of-motionlayout-collapsing-toolbar-part-1/">【翻译】MotionLayout实现折叠工具栏（Part 1）</a></p>
+<blockquote>
+<p>本文特点：没有 Kotlin/Java 代码，讲解部分全为 XML 代码，阅读时间短，获取技能： <em>MotionLayout</em> 的入门和使用！发布时间： 8 月 17 号 ，作者： Mark Allison ，原文链接： <a href="https://blog.stylingandroid.com/motionlayout-collapsing-toolbar-part-2/" target="_blank" rel="noopener">https://blog.stylingandroid.com/motionlayout-collapsing-toolbar-part-2/</a></p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>谷歌 IO 2018 发布了 ConstraintLayout 2.0 版本，其中最重要的部分就是 MotionLayout 了，这玩意就是一个全新的、超牛的布局动画工具！ <a href="https://twitter.com/camaelon" target="_blank" rel="noopener">Nicolas Roard</a> 哥们早已发布了<a href="https://medium.com/google-developers/introduction-to-motionlayout-part-i-29208674b10d" target="_blank" rel="noopener">一个关于 MotionLayout 的完美详情介绍</a>，我强烈推荐大家去阅读一下，从中理解 MotionLayout 组件的基础架构。本系列教程中，我会讲解如何使用 MotionLayout 来创建一个我们已经非常熟悉的动画行为：一个折叠工具栏动画（ a Collapsing Toolbar ）。</p>
+<p>通过上一篇文章我们了解了基本的折叠工具栏动画行为，使用的是 <em>MotionLayout</em> ，第一次尝试的效果与在 <em>CoordinatorLayout</em> 中使用 <em>CollapsingToolbarLayout</em> 的效果非常接近。不过有一个细微的小动画在 <em>MotionLayout</em> 中没有实现出来。移动和缩放动画在文字上表现确实已经非常接近，但是背景图片的渐变在最边缘上却没有完全相同。让我们先看下 <em>CoordinatorLayout</em> 版本的实现效果，注意图片在工具栏几乎快要完全折叠之前是不会开始渐变到主色彩动画的：</p>
+<p><img src="motionlayout_part2_traditional.gif" alt="motionlayout_part2_traditional.gif"></p>
+<p>现在我们看看 <em>MotionLayout</em> 的实现，我们会发现图片渐变在整个过渡动画中是统一稳定的。也就是说：随着工具栏折叠动画的开始，图片便立刻发生渐变，一直持续到工具栏完全到达折叠状态：</p>
+<p><img src="motionlayout_part2_motion_basic.gif" alt="motionlayout_part2_motion_basic.gif"></p>
+<p>这个问题实际上很容易解决，这要感谢 <em>MotionLayout</em> 的另一个非常重要的特性：关键帧。我们已经讨论过 <em>MotionLayout</em> 是如何在 <em>ConstraintSets</em> 中所定义的固定布局之间进行过渡动画了。而关键帧允许我们在两个固定布局之间定义一个中间点，并对此点的属性值进行操作控制。</p>
+<p>我们之前在 <em>ImageView</em> 控件上定义的关于 <em>imageAlpha</em> 属性的过渡动画，设定的是从展开位置的值 255 到折叠位置的值 0 之间进行，同时 <em>MotionLayout</em> 在动画过程中会进行插值运算。因此我们得到的是一个非常平滑的过渡动画，从工具栏开始发生折叠一直到工具栏完全达到折合状态为止。这也很好的解释了我们所看到的在 <em>MotionLayout</em> 中对动画行为的实现。</p>
+<p>利用关键帧特性我们甚至可以做到修改相关的行为动画，使得这些行为动画时间在整个过渡动画中往后延迟。为了实现这个目标，我们首先需要在展开状态 <em>ConstraintSet</em> 的定义中删除自定义属性 <em>imageAlpha</em> 字段：</p>
+<figure class="highlight xml"><figcaption><span>res/xml/collapsing_toolbar.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ConstraintSet</span> <span class="attr">android:id</span>=<span class="string">"@+id/expanded"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Constraint</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@id/toolbar_image"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"200dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>同时也需要在折叠状态 <em>ConstraintSet</em> 的定义中进行同样的操作：</p>
+<figure class="highlight xml"><figcaption><span>res/xml/collapsing_toolbar.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ConstraintSet</span> <span class="attr">android:id</span>=<span class="string">"@+id/collapsed"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Constraint</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@id/toolbar_image"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"?attr/actionBarSize"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样同时把透明度的渐变动画一起删除了，不过接下来我们会使用一个 <em>KeyFrameSet</em> 来代替它，这个关键帧设置 <em>KeyFrameSet</em> 字段是作为过渡元素的一个子元素：</p>
+<figure class="highlight xml"><figcaption><span>res/xml/collapsing_toolbar.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">MotionScene</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">Transition</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:constraintSetEnd</span>=<span class="string">"@id/collapsed"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:constraintSetStart</span>=<span class="string">"@id/expanded"</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="tag">&lt;<span class="name">OnSwipe</span></span></span><br><span class="line"><span class="tag">      <span class="attr">app:dragDirection</span>=<span class="string">"dragUp"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">app:touchAnchorId</span>=<span class="string">"@id/recyclerview"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">app:touchAnchorSide</span>=<span class="string">"top"</span> /&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="tag">&lt;<span class="name">KeyFrameSet</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">KeyAttribute</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:framePosition</span>=<span class="string">"60"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:target</span>=<span class="string">"@id/toolbar_image"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">CustomAttribute</span></span></span><br><span class="line"><span class="tag">          <span class="attr">app:attributeName</span>=<span class="string">"imageAlpha"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">app:customIntegerValue</span>=<span class="string">"255"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">KeyAttribute</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">KeyAttribute</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:framePosition</span>=<span class="string">"90"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:target</span>=<span class="string">"@id/toolbar_image"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">CustomAttribute</span></span></span><br><span class="line"><span class="tag">          <span class="attr">app:attributeName</span>=<span class="string">"imageAlpha"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">app:customIntegerValue</span>=<span class="string">"0"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">KeyAttribute</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">KeyFrameSet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Transition</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">MotionScene</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里 <em>KeyFrameSet</em> 包含了两个 <em>KeyAttribute</em> 字段，每一个字段分别定义了指定位置下的一个状态，第一个位于第 60 帧，也就是说整个过渡动画过程中的 60% 的位置，而第二个在 90 的位置，同样的道理，这意味着位于过渡动画的 90% 的位置。这两个字段通过设置 ID 分别指定作用目标控件对象（在这里两个字段都是指定的 <code>@id/toolbar_image</code> ）。每一个字段还定义了一个 <em>CustomAttribute</em> 元素，它的意思和我们之前在开头、结尾状态中定义的意思是一样的。</p>
+<p>目前来说，发生的情况是：图片的透明度在过渡动画还没有达到 60% 之前是不会发生变化的（也就是至少超过一半的折叠状态下不发生变化），接下来会慢慢开始淡出，直到工具栏达到 90% 折叠时完全透明。</p>
+<p><img src="motionlayout_part2_motion_offset_fade.gif" alt="motionlayout_part2_motion_offset_fade.gif"></p>
+<p>现在已经更加接近我们所见到的 <em>CoordinatorLayout</em> 所实现的标准动画了。不过仍然并非完全一样，但是至少我们能看到，通过这种方式我们可以取得对动画过渡的更好的控制权，如果使用 <em>CoordinatorLayout</em> 来进行这样的调整那会非常的麻烦。</p>
+<p>事实上关键帧是非常非常强大的， <a href="https://medium.com/google-developers/defining-motion-paths-in-motionlayout-6095b874d37" target="_blank" rel="noopener">Nicolas Roard 已经对此作了一个深入介绍</a>。我们在此不会重复 Nicolas Roard 所介绍的那样，相反我们来尝试一些其他的方式并投入使用。</p>
+<p>首先我们并不局限于目前仅使用两个关键帧的限制，事实上我们可以创建更多精细动画。甚至使用关键帧我们都能够创建出自定义的渐进曲线来（对于安卓开发者来说也就是所谓的插值）。举个例子，假设我们设置 <em>imageAlpha</em> 的开始和结束值分别是 255 和 0 ，然后在 25% 的位置添加一个关键帧，设置值为 205 ，在 75% 的位置设置另一个关键帧值为 50 。结果会给我们实现一个和加速-减速插值器一样的效果。</p>
+<p>更牛逼的是，我们可以在动画进行时对动画进行动态更改。标题文字的移动和缩放在整个过渡动画中是同时进行的，但是通过添加一个单独关键帧后我们可以做到在不更改 <em>ConstraintSets</em> 代码的前提下，也不用改变缩放速度就能让标题文本更快地到达动画最终位置：</p>
+<figure class="highlight xml"><figcaption><span>res/xml/collapsing_toolbar.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">MotionScene</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">Transition</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:constraintSetEnd</span>=<span class="string">"@id/collapsed"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:constraintSetStart</span>=<span class="string">"@id/expanded"</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="tag">&lt;<span class="name">OnSwipe</span></span></span><br><span class="line"><span class="tag">      <span class="attr">app:dragDirection</span>=<span class="string">"dragUp"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">app:touchAnchorId</span>=<span class="string">"@id/recyclerview"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">app:touchAnchorSide</span>=<span class="string">"top"</span> /&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="tag">&lt;<span class="name">KeyFrameSet</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">KeyAttribute</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:framePosition</span>=<span class="string">"60"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:target</span>=<span class="string">"@id/toolbar_image"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">CustomAttribute</span></span></span><br><span class="line"><span class="tag">          <span class="attr">app:attributeName</span>=<span class="string">"imageAlpha"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">app:customIntegerValue</span>=<span class="string">"255"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">KeyAttribute</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">KeyAttribute</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:framePosition</span>=<span class="string">"90"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:target</span>=<span class="string">"@id/toolbar_image"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">CustomAttribute</span></span></span><br><span class="line"><span class="tag">          <span class="attr">app:attributeName</span>=<span class="string">"imageAlpha"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">app:customIntegerValue</span>=<span class="string">"0"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">KeyAttribute</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">KeyPosition</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:type</span>=<span class="string">"pathRelative"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:framePosition</span>=<span class="string">"50"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:target</span>=<span class="string">"@id/title"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:percentX</span>=<span class="string">"0.9"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">KeyFrameSet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以上代码能实现在 50% 的过渡动画进程中完成 90% 的移动效果。最终标题文本会走在工具栏折叠动画之前，接着在折叠完全结束的时候直接回落到正确的位置上：</p>
+<p><img src="motionlayout_part2_motion_key_position.gif" alt="motionlayout_part2_motion_key_position.gif"></p>
+<p>虽然这只是弃用 <em>CoordinatorLayout</em> 过渡动画的一个开始，但是恰恰通过这个例子告诉了我们，如何使用关键帧来帮助我们动态地进行过渡动画修改，实现在同样的过渡中产生不同的动画效果。</p>
+<p>最后值得一提的是：有时候它还能帮我们实现过渡动画的可视化，我们可以通过开启布局中的 <em>showPaths</em> 属性来实现：</p>
+<figure class="highlight xml"><figcaption><span>res/layout/activity_main.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">androidx.constraintlayout.motion.widget.MotionLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">app:layoutDescription</span>=<span class="string">"@xml/collapsing_toolbar"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">tools:showPaths</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">app:showPaths</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">androidx.constraintlayout.motion.widget.MotionLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>tools:showPaths=&quot;true&quot;</code> 设置如果在 Android Studio 编辑器里配合使用会更爽（这个功能应该会出现在 Android Studio 3.4 的 alpha 版本中）。但是在目前来说，添加 <code>tools:showPaths=&quot;true&quot;</code> 这段代码能够让 <em>MotionLayout</em> 计算并显示这三个被过渡动画所影响的视图控件的轨迹路线：标题文本控件（顶部，中心左侧），工具栏的海滩小排屋图片（顶部中心），以及列表 <em>RecyclerView</em> 控件（中心位置）：</p>
+<p><img src="motionlayout_part2_motion_show_paths.gif" alt="motionlayout_part2_motion_show_paths.gif"></p>
+<p>值得注意的是，我们在文本控件上添加的关键帧就是位于左边路径顶部下方的那一个红点。如果你仔细查看标题文本的移动，你会清楚的看到这一行轨迹始终穿行在字母 n 和 g 之间，并且它到达关键点位置要相对快些。这种显示路径的方式有助于我们理解刚才创建的关键帧是如何影响到过渡动画的特定部分的。你只需要记得在最终发布版本中要关闭这个功能——我建议定义一个布尔值资源，在布局中使用，然后你就可以在发布版本时总能设置它为 false 就可以了。</p>
+<p>好吧，这次就到这里。即使如此，我相信大多数人还是会认同 <em>MotionLayout</em> 不仅灵活、强大，而且还为设计用户交互控制的布局动画开辟了一个非常有趣的可能性哦。 :sunglasses:</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>本篇的源代码请移步<a href="https://github.com/StylingAndroid/CollapsingToolbar/tree/Part2" target="_blank" rel="noopener">这里</a>。</p>
+<p>© 2018 ， <a href="https://blog.stylingandroid.com/" target="_blank" rel="noopener">Mark Allison</a> 。保留所有版权。</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/blog/images/wexin_2.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Android/" class="button small">Android</a> <a href="/tags/翻译/" class="button small">翻译</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2018/08/31/translation-of-forget-rxjava-kotlin-coroutines-are-all-you-need-part-1-of-2/" class="alignleft prev" title="【翻译】忘了RxJava吧——你需要的是拥抱Kotlin协程（Part 1/2）"><i class="fa fa-angle-double-left"></i>&nbsp;【翻译】忘了RxJava吧——你需要的是拥抱Kotlin协程（Part 1/2）</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2018/08/24/introduction-of-godot-3-part-1-why-we-choose-godot-engine/" class="alignright next" title="Godot3游戏引擎入门之零一：【翻译】为什么要选择 Godot 引擎">Godot3游戏引擎入门之零一：【翻译】为什么要选择 Godot 引擎&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

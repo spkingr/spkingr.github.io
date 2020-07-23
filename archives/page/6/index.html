@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>page - Archives - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+<h1 class="title">Archives & Search</h1>
+<p></p>
+
+<!-- added for tipue search...................... -->
+<form id="search-form">
+    <div class="tipue_search_left"><img src="/tipuesearch/search.png" class="tipue_search_icon"></div>
+    <div class="tipue_search_right" style="width:80%;"><input  type="text" name="q" id="tipue_search_input" autocomplete="off" required placeholder="search" style="width:80%;" /></div>
+</form>
+
+<section class="archives">
+    
+    <ul class="archive-list">
+        
+            <li>
+    <a href="/2018/09/20/get-bundle-of-game-development-books-with-big-discount/">游戏开发者的福音——电子书打包福利价</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/05/11/bug-of-www-load-local-texture-in-unity3d/">记一次Unity3D中WWW加载本地图片很慢的BUG</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/04/16/gif-images-of-historic-sharing/">很有意思的一些 GIF 古典动画图片</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/08/11/continue-writing-blog-post-in-2018/">重新开始我的写作之旅</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/08/15/introduction-of-godot-3-part-0-my-view/">Godot3游戏引擎入门之零零：简单的想法</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/10/12/learning-notes-of-2d-roguelike-tutorial-in-unity3d/">【学习笔记】Unity3D官方游戏教程：2D Roguelike</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/05/05/learning-notes-of-swift-initialization/">【学习笔记】SWIFT中的构造函数</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/12/12/make-a-python-script-to-duplicate-blog-html-files-for-uploading-to-server/">解决Hexo博客批量上传的小问题：利用 Python 脚本提取 HTML 文件</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/04/13/markdown-for-writing-and-learn/">「Markdown」标记语言学习笔记</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/09/16/reading-notes-of-kotlin-in-action-part-1/">【读书笔记】《Kotlin in Action》学习笔记（上）</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/05/29/repaire-and-replace-mac-air-keyboard/">修理更换苹果AIR笔记本键盘</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/07/04/solve-several-problems-of-kotlin-plugin-in-intellij-idea/">IDEA上使用Kotlin插件出现的几个小问题</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/11/15/translation-of-textclassification-part-2/">【翻译】TextClassification介绍（二）</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/04/11/hexo-blog-creation-work-progress/">「Hexo On Win10」新手搭建博客过程</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/12/05/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-2/">Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（中）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/">Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（上）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/09/03/introduction-of-godot-3-part-1-the-editor/">Godot3游戏引擎入门之一：熟悉编辑器界面</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/12/06/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-3/">Godot3游戏引擎入门之十：介绍一些常用的节点并开发一个小游戏（下）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/">Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（上）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/12/25/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-2/">Godot3游戏引擎入门之十一：Godot中的粒子系统与射击游戏（下）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/09/18/introduction-of-godot-3-part-3-move-character-with-inputs/">Godot3游戏引擎入门之三：移动我们的主角</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/">Godot3游戏引擎入门之二：第一个简单的游戏场景</a>
+</li>
+
+        
+            <li>
+    <a href="/2019/01/26/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-2/">Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（下）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/09/25/introduction-of-godot-3-part-4-add-some-cute-animations-part-1/">Godot3游戏引擎入门之四：给主角添加动画（上）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/">Godot3游戏引擎入门之四：给主角添加动画（下）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/">Godot3游戏引擎入门之五：上下左右移动动画（下）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/">Godot3游戏引擎入门之五：上下左右移动动画（上）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">Godot3游戏引擎入门之六：制作TileMap瓦片地图</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/10/22/introduction-of-godot-3-part-7-add-collision-and-move-player-in-map/">Godot3游戏引擎入门之七：地图添加碰撞体制作封闭的游戏世界</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/06/25/leanrning-notes-of-survival-shooter-tutorial-in-unity3d/">【学习笔记】Unity3D官方游戏教程：Survival Shooter tutorial</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/08/03/learning-notes-of-tanks-tutorial-in-unity3d/">【学习笔记】Unity3D官方游戏教程：Tanks Tutorial</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/06/20/object-vs-companion-object-in-kotlin/">【学习笔记】区别Kotlin中的object和companion object关键字</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/10/03/reading-notes-of-kotlin-in-action-part-2/">【读书笔记】《Kotlin in Action》学习笔记（下）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/10/26/share-a-cute-hexo-blog-plugin-the-cloud-calendar/">分享一个精致实用的HEXO博客小插件：日历云</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/09/12/some-suggestions-on-buying-a-laptop-for-fresh-programmers/">给买笔记本的新手程序员学生的一点建议</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/06/11/solve-several-problems-of-gradle-in-android-studio-3-0-on-mac/">MAC上使用Android Studio 3.0的Gradle问题小解</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/05/16/share-several-extra-functionality-of-hexo-plugins/">分享几个实用的HEXO博客功能插件</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/06/14/talking-about-Java-concurrency-with-lock-or-unlock/">【转载】加锁还是不加锁，这是一个问题</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/05/31/the-4-ways-control-spline-movement-in-C4D/">C4D中四种基本的曲线运动控制方式</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/08/10/talk-about-the-importance-of-regexp-in-programming/">浅谈学习正则表达式的重要性</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/10/26/translation-of-diving-deep-into-kotlin-coroutines/">【翻译】深入 Kotlin 协程</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/08/31/translation-of-forget-rxjava-kotlin-coroutines-are-all-you-need-part-1-of-2/">【翻译】忘了RxJava吧——你需要的是拥抱Kotlin协程（Part 1/2）</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/04/29/translation-of-kotlin-11-is-also-for-android-developers/">【翻译】Kotlin 1.1 新版本同样适合安卓开发者</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/08/27/translation-of-motionlayout-collapsing-toolbar-part-2/">【翻译】MotionLayout实现折叠工具栏（Part 2）</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/09/30/translation-of-realm-objectbox-or-room-which-one-is-for-you/">【翻译】Realm ， ObjectBox ，还是 Room ，哪个适合你？</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/10/28/translation-of-textclassification-part-1/">【翻译】TextClassification介绍（一）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/11/20/translation-of-textclassification-part-3/">【翻译】TextClassification介绍（三）</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/07/31/understanding-coordinate-system-in-unity3d/">理解Unity3D中的四种坐标体系</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/05/23/why-you-learn-new-skills-so-later/">我为何早先于你学习并应用Kotlin</a>
+</li>
+
+        
+            <li>
+    <a href="/2020/07/22/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-1/">Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（上）</a>
+</li>
+
+        
+            <li>
+    <a href="/2020/07/23/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-2/">Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（下）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/">Godot3游戏引擎入门之十二：Godot碰撞理论以及KinematicBody2D的两个方法</a>
+</li>
+
+        
+            <li>
+    <a href="/2019/01/17/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-1/">Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（上）</a>
+</li>
+
+        
+            <li>
+    <a href="/2019/07/20/introduction-of-godot-3-part-14-make-a-game-with-rigidbody2d-node-and-the-fsm-introduction/">Godot3游戏引擎入门之十四：RigidBody2D刚体节点的应用以及简单的FSM状态机介绍</a>
+</li>
+
+        
+            <li>
+    <a href="/2019/07/31/introduction-of-godot-3-part-15-several-usage-examples-of-rigidbody2d-node-in-games/">Godot3游戏引擎入门之十五：RigidBody2D刚体节点的几种应用场景及示例</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/11/02/introduction-of-godot-3-part-8-add-collectable-elements-and-sub-scenes/">Godot3游戏引擎入门之八：添加可收集元素和子场景</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/11/09/introduction-of-godot-3-part-9-add-audio-effects-and-ui-elements/">Godot3游戏引擎入门之九：创建UI界面并添加背景音乐</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/08/13/translation-of-motionlayout-collapsing-toolbar-part-1/">【翻译】MotionLayout实现折叠工具栏（Part 1）</a>
+</li>
+
+        
+            <li>
+    <a href="/2018/08/24/introduction-of-godot-3-part-1-why-we-choose-godot-engine/">Godot3游戏引擎入门之零一：【翻译】为什么要选择 Godot 引擎</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/08/14/translation-of-30-bite-sized-pro-tips-to-become-a-better-android-developer/">【翻译】30多个短小而又专业的最佳安卓开发者建议</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/06/30/translation-of-clean-code-with-kotlin/">【翻译】Kotlin致简代码之路</a>
+</li>
+
+        
+            <li>
+    <a href="/2019/07/21/translation-of-state-in-game-programming-patterns/">【翻译】游戏设计模式之状态机</a>
+</li>
+
+        
+            <li>
+    <a href="/2017/06/03/what-do-17-GDEs-for-Android-think-about-Kotlin/">【翻译】17位谷歌专家称号大牛如何看待Kotlin</a>
+</li>
+
+        
+    </ul>
+</section><!-- end main -->
+
+<!-- added for tipue search...................... -->
+<div id="tipue_search_content"></div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

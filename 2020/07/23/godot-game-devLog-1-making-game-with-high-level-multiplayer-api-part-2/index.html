@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="Godot, 开源游戏引擎, 多人游戏开发, 游戏教程, multiplayer, network, server, client, master, puppet,刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（下）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（下） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（下）</h1>
+    <div class="meta">
+        <span>2020-07-23</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>继续接着上篇： <a href="http://liuqingwen.me/blog/2020/07/22/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-1/">Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（上）</a> ，本篇主要讲解游戏 Demo 的代码分析与开发总结。</p>
+<blockquote>
+<p>主要内容： 局域网多人游戏开发代码简析与开发小结<br>阅读时间： 12 分钟<br>永久链接： <a href="http://liuqingwen.me/blog/2020/07/23/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-2/">http://liuqingwen.me/blog/2020/07/23/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-2/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>示例源码我已经上传到 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github</a> ，另外可以在这里体验游戏： <a href="https://gotm.io/spkingr/bomberman" target="_blank" rel="noopener">https://gotm.io/spkingr/bomberman</a> ，创建服务器后可以邀请好友一起开启炸弹之旅。</p>
+<p><img src="demo12.jpg" alt="Demo12"></p>
+<h3 id="部分游戏代码分析"><a href="#部分游戏代码分析" class="headerlink" title="部分游戏代码分析"></a>部分游戏代码分析</h3><p>首先，最重要的核心部分是处理游戏中局域网连接的代码，这是一个单例 Singleton 也叫 AutoLoad ，代码不需要使用在节点上，相当于一个一直存在的单例脚本，我创建了一个名为 <code>GameState.gd</code> 的脚本，然后在项目设置里添加、启用即可：</p>
+<p><img src="godot_dev1_autoload.jpg" alt="Godot AutoLoad"></p>
+<p><strong>一、 GameState 代码</strong></p>
+<p>我们来看代码：</p>
+<figure class="highlight python"><figcaption><span>GameState.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">extends Node</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义信号</span></span><br><span class="line">signal player_list_update(players, colors)</span><br><span class="line">signal player_color_update(id, color)</span><br><span class="line">signal player_ready_status_update(id, isReady)</span><br><span class="line">signal player_disconnected(id)</span><br><span class="line">signal connection_succeeded()</span><br><span class="line">signal game_ended(why)</span><br><span class="line">signal game_ready(isReady)</span><br><span class="line">signal game_loaded()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义端口，最大连接数量，需要加载的游戏场景，还有玩家可选颜色</span></span><br><span class="line">const PORT := <span class="number">34567</span></span><br><span class="line">const MAX_PLAYERS := <span class="number">4</span></span><br><span class="line">const GAME_SCENE := <span class="string">'res://World/Game.tscn'</span></span><br><span class="line">const COLORS := [Color(<span class="string">'#B0BEC5'</span>), Color(<span class="string">'#8D6E63'</span>), Color(<span class="string">'#FFAB91'</span>), ...] <span class="comment"># 省略</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 基本属性：联网id，名字，颜色，其他玩家的相关信息等</span></span><br><span class="line">var myId := <span class="number">-1</span></span><br><span class="line">var myName := <span class="string">''</span></span><br><span class="line">var myColor := Color.white</span><br><span class="line">var otherPlayerNames := &#123;&#125;   <span class="comment"># id-name</span></span><br><span class="line">var otherPlayerColors := &#123;&#125;  <span class="comment"># id-color</span></span><br><span class="line">var isGameStarted := false</span><br><span class="line"></span><br><span class="line"><span class="comment"># 已经准备好的玩家和当前可用颜色，只在主场景中使用（实际是服务器）</span></span><br><span class="line">master var readyPlayers := []</span><br><span class="line">master var availableColors := []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里5个信号都是Godot High-level multiplayer API自带信号</span></span><br><span class="line">func _ready() -&gt; void:</span><br><span class="line">    self.get_tree().connect(<span class="string">'network_peer_connected'</span>, self, <span class="string">'_onNewPlayerConnected'</span>)</span><br><span class="line">    self.get_tree().connect(<span class="string">'network_peer_disconnected'</span>, self, <span class="string">'_onPlayerDisconnected'</span>)</span><br><span class="line">    self.get_tree().connect(<span class="string">'server_disconnected'</span>, self, <span class="string">'_onServerDisconnected'</span>)</span><br><span class="line">    self.get_tree().connect(<span class="string">'connected_to_server'</span>, self, <span class="string">'_onConnectionSuccess'</span>)</span><br><span class="line">    self.get_tree().connect(<span class="string">'connection_failed'</span>, self, <span class="string">'_onConnectionFail'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>有几个注意点，代码是通用的，所以客户端的代码也是一样的，每个人不仅仅要记录自己的信息，还要记录其他玩家的相关信息，这就是 <code>otherPlayerNames/otherPlayerColors</code> 属性的必要性了。另外 <code>_ready()</code> 方法中的 5 个 Godot 自带的信号都是处理网络连接相关的，可以参考官方文档的介绍： <a href="https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html" target="_blank" rel="noopener">管理连接 Managing connections</a> ，我们分布来看这些信号触发的调用地点和作用：</p>
+<figure class="highlight python"><figcaption><span>GameState.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 每当新客户端链接，所有其他id都会调用该方法</span></span><br><span class="line"><span class="comment"># 不论当前节点是服务端还是客户端</span></span><br><span class="line">func _onNewPlayerConnected(id : int) -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> isGameStarted:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 通过rpc_id将自己的信息发送给对方</span></span><br><span class="line">    self.rpc_id(id, <span class="string">'_addMyNameToList'</span>, myName, myColor)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 仅服务端处理游戏准备事件、分配颜色</span></span><br><span class="line">    <span class="keyword">if</span> self.get_tree().is_network_server():</span><br><span class="line">        self.emit_signal(<span class="string">'game_ready'</span>, false)</span><br><span class="line"></span><br><span class="line">        var color := _getRandomColor()</span><br><span class="line">        self.rpc(<span class="string">'_updateColor'</span>, id, color)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每当新客户端断开链接，所有其他id都会调用该方法</span></span><br><span class="line"><span class="comment"># 如果游戏在进行中则发出player_disconnected的信号</span></span><br><span class="line"><span class="comment"># 否则只要移除该id信息即可</span></span><br><span class="line">func _onPlayerDisconnected(id : int) -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> isGameStarted:</span><br><span class="line">        self.emit_signal(<span class="string">'player_disconnected'</span>, id)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        _removeDisconnectedPlayer(id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 客服端链接成功，仅客户端调用</span></span><br><span class="line"><span class="comment"># 表明客户端进入了游戏大厅，可以准备游戏了</span></span><br><span class="line">func _onConnectionSuccess() -&gt; void:</span><br><span class="line">    self.emit_signal(<span class="string">'connection_succeeded'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务器断开，仅客户端调用</span></span><br><span class="line"><span class="comment"># 一般是退出游戏，清空网络连接相关信息</span></span><br><span class="line">func _onServerDisconnected() -&gt; void:</span><br><span class="line">    self.emit_signal(<span class="string">'game_ended'</span>, <span class="string">'Server disconnected.'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 客服端链接失败，仅客户端调用</span></span><br><span class="line">func _onConnectionFail() -&gt; void:</span><br><span class="line">    self.emit_signal(<span class="string">'game_ended'</span>, <span class="string">'Connection failed.'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 远程方法，添加自身的信息到其他玩家场景中</span></span><br><span class="line"><span class="comment"># 注意，这个方法实际是在其他端运行的，或者说你通过该方法接收到了来自其他玩家的信息</span></span><br><span class="line">remote func _addMyNameToList(playerName : String, playerColor : Color) -&gt; void:</span><br><span class="line">    var id = self.get_tree().get_rpc_sender_id()</span><br><span class="line">    otherPlayerNames[id] = playerName</span><br><span class="line">    <span class="keyword">if</span> ! otherPlayerColors.has(id):</span><br><span class="line">        otherPlayerColors[id] = playerColor</span><br><span class="line">    self.emit_signal(<span class="string">'player_list_update'</span>, otherPlayerNames, otherPlayerColors)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新颜色，颜色随机，由服务器决定</span></span><br><span class="line"><span class="comment"># remotesync表明该方法在每个玩家中都会运行，有服务器统一发起调用</span></span><br><span class="line">remotesync func _updateColor(id : int, color : Color) -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> id == myId:</span><br><span class="line">        myColor = color</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        otherPlayerColors[id] = color</span><br><span class="line"></span><br><span class="line">    self.emit_signal(<span class="string">'player_color_update'</span>, id, color)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 省略部分代码……</span></span><br></pre></td></tr></table></figure>
+
+<p>这里比较重要的是 <code>network_peer_connected</code> 信号连接后的发放 <code>_addMyNameToList</code> 方法的运行。<strong>注意：虽然此方法也将自身颜色发送到其他玩家场景代码中，但是这里颜色很可能还没有被服务器赋值，是默认颜色，所以我们依然需要再定义一个更新颜色的信号，以保证每个玩家收到其他玩家的颜色是正常的。</strong></p>
+<p>在连接之前我们需要创建服务器或者连接到服务器：</p>
+<figure class="highlight python"><figcaption><span>GameState.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建服务器</span></span><br><span class="line">func hostGame(playerName: String) -&gt; bool:</span><br><span class="line">    myName = playerName</span><br><span class="line">    otherPlayerNames.clear()</span><br><span class="line">    otherPlayerColors.clear()</span><br><span class="line">    availableColors = COLORS.duplicate()</span><br><span class="line">    readyPlayers.clear()</span><br><span class="line">    </span><br><span class="line">    var host := NetworkedMultiplayerENet.new()</span><br><span class="line">    var error := host.create_server(PORT, MAX_PLAYERS)</span><br><span class="line">    <span class="keyword">if</span> error != OK:</span><br><span class="line">        <span class="keyword">return</span> false</span><br><span class="line">    </span><br><span class="line">    self.get_tree().network_peer = host</span><br><span class="line">    self.get_tree().refuse_new_network_connections = false</span><br><span class="line">    </span><br><span class="line">    myId = self.get_tree().get_network_unique_id() <span class="comment"># id = 1 is the server</span></span><br><span class="line">    myColor = _getRandomColor()</span><br><span class="line">    <span class="keyword">return</span> true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建客户端，加入游戏</span></span><br><span class="line">func joinGame(address: String, playerName: String) -&gt; bool:</span><br><span class="line">    myName = playerName</span><br><span class="line">    otherPlayerNames.clear()</span><br><span class="line">    otherPlayerColors.clear()</span><br><span class="line">    readyPlayers.clear()</span><br><span class="line">    </span><br><span class="line">    var host := NetworkedMultiplayerENet.new()</span><br><span class="line">    var error := host.create_client(address, PORT)</span><br><span class="line">    <span class="keyword">if</span> error != OK:</span><br><span class="line">        <span class="keyword">return</span> false</span><br><span class="line">    </span><br><span class="line">    self.get_tree().network_peer = host</span><br><span class="line">    </span><br><span class="line">    myId = self.get_tree().get_network_unique_id()</span><br><span class="line">    <span class="keyword">return</span> true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func resetNetwork() -&gt; void:</span><br><span class="line">    isGameStarted = false</span><br><span class="line">    otherPlayerNames.clear()</span><br><span class="line">    otherPlayerColors.clear()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">yield</span>(self.get_tree(), <span class="string">'idle_frame'</span>)</span><br><span class="line">    self.get_tree().network_peer = null</span><br></pre></td></tr></table></figure>
+
+<p>这部分代码非常简单，官网有介绍，接下来是准备开始游戏部分，这一部分可以用“一波三折”表示：</p>
+<figure class="highlight python"><figcaption><span>GameState.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 客户端调用，准备状态</span></span><br><span class="line">func readyGame(isReady : bool) -&gt; void:</span><br><span class="line">    self.rpc(<span class="string">'_readyGame'</span>, isReady)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 玩家是否处于准备状态</span></span><br><span class="line">remote func _readyGame(isReady : bool) -&gt; void:</span><br><span class="line">    <span class="comment"># 这部分代码所有玩家都会收到，更新相应的玩家准备状态</span></span><br><span class="line">    var id := self.get_tree().get_rpc_sender_id()</span><br><span class="line">    self.emit_signal(<span class="string">'player_ready_status_update'</span>, id, isReady)</span><br><span class="line">    <span class="comment"># 这部分代码仅服务器端处理，可以根据玩家是否【全部】准备好来决定是否可以开启游戏</span></span><br><span class="line">    <span class="keyword">if</span> self.get_tree().is_network_server():</span><br><span class="line">        <span class="keyword">if</span> isReady:</span><br><span class="line">            <span class="keyword">assert</span>(! id <span class="keyword">in</span> readyPlayers, <span class="string">'Player %s is already in ready players!'</span> % id)</span><br><span class="line">            readyPlayers.append(id)</span><br><span class="line">            self.emit_signal(<span class="string">'game_ready'</span>, readyPlayers.size() == otherPlayerNames.size())</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            readyPlayers.erase(id)</span><br><span class="line">            self.emit_signal(<span class="string">'game_ready'</span>, false)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务器端调用，开始游戏</span></span><br><span class="line">func startGame() -&gt; void:</span><br><span class="line">    self.get_tree().refuse_new_network_connections = true</span><br><span class="line">    readyPlayers.clear()</span><br><span class="line">    self.rpc(<span class="string">'_prestartGame'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始游戏第一步：实例化游戏场景，并且暂停，通知服务器等待其他玩家</span></span><br><span class="line">remotesync func _prestartGame() -&gt; void:</span><br><span class="line">    isGameStarted = true</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 实例化游戏战场，并暂停等待</span></span><br><span class="line">    var game : Node2D = load(GAME_SCENE).instance()</span><br><span class="line">    game.name = <span class="string">'Game'</span></span><br><span class="line">    game.set_network_master(<span class="number">1</span>)</span><br><span class="line">    self.get_parent().add_child(game)</span><br><span class="line">    self.get_tree().paused = true</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> self.get_tree().is_network_server():</span><br><span class="line">        _postStartGame(myId)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 1代表服务器id，向服务器发送可以开始的消息</span></span><br><span class="line">        self.rpc_id(<span class="number">1</span>, <span class="string">'_postStartGame'</span>, myId)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始游戏第二步：等待所有玩家全部加载、实例化游戏场景</span></span><br><span class="line"><span class="comment"># 由上面的调用我们知道，这个方法一定只会运行在服务器端</span></span><br><span class="line">remote func _postStartGame(id : int) -&gt; void:</span><br><span class="line">    readyPlayers.append(id)</span><br><span class="line">    <span class="comment"># 确保所有玩家都已经准备好，包括自己</span></span><br><span class="line">    <span class="keyword">if</span> readyPlayers.size() == otherPlayerNames.size() + <span class="number">1</span>:</span><br><span class="line">        self.rpc(<span class="string">'_startGame'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始游戏第三步：全部进入游戏，开始</span></span><br><span class="line"><span class="comment"># remotesync表示所有玩家均会运行该方法，开启游戏</span></span><br><span class="line">remotesync func _startGame() -&gt; void:</span><br><span class="line">    readyPlayers.clear()</span><br><span class="line">    self.emit_signal(<span class="string">'game_loaded'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>关键代码搞定，如果大家有疑问可以多参考一下代码注释。</p>
+<p><strong>二、 Game.gd 主游戏场景代码</strong></p>
+<p>游戏主场景中处理关于玩家信息、死亡、消息、敌人生成等，但是这些都比较简单，我相信有兴趣的朋友可以去看看，并且能看懂，关键部分在于添加玩家代码：</p>
+<figure class="highlight python"><figcaption><span>Player.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">func _ready() -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> GameConfig.isSoundOn:</span><br><span class="line">        _audioPlayer.play()</span><br><span class="line">    </span><br><span class="line">    _resultPopup.showPopup(<span class="string">'Waiting for other players...'</span>, <span class="string">'Waiting'</span>, true, _resultPopup.BUTTON_BACK_BIT + _resultPopup.BUTTON_STAY_BIT)</span><br><span class="line">    </span><br><span class="line">    GameState.connect(<span class="string">'game_loaded'</span>, self, <span class="string">'_onGameLoaded'</span>)</span><br><span class="line">    GameState.connect(<span class="string">'game_ended'</span>, self, <span class="string">'_onGameEnded'</span>)</span><br><span class="line">    GameState.connect(<span class="string">'player_disconnected'</span>, self, <span class="string">'_onPlayerQuit'</span>)</span><br><span class="line">    </span><br><span class="line">    _setDifficulties()</span><br><span class="line">    _addPlayers()</span><br><span class="line">    </span><br><span class="line">    GameConfig.sendMessage(GameConfig.MessageType.System, GameState.myId, <span class="string">'enters the game!'</span>)</span><br><span class="line">    GameConfig.rpc(<span class="string">'sendMessage'</span>, GameConfig.MessageType.System, GameState.myId, <span class="string">'enters the game!'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加玩家，一个master其他都是puppet</span></span><br><span class="line"><span class="comment"># 只有主人节点添加相关事件</span></span><br><span class="line"><span class="comment"># 设置玩家的起始位置，由玩家的id大小决定</span></span><br><span class="line">func _addPlayers() -&gt; void:</span><br><span class="line">    var positions := [GameState.myId] + GameState.otherPlayerNames.keys()</span><br><span class="line">    positions.sort()</span><br><span class="line"></span><br><span class="line">    var player := PlayerNode.instance()</span><br><span class="line">    player.connect(<span class="string">'lay_bomb'</span>, self, <span class="string">'_on_Player_lay_bomb'</span>)</span><br><span class="line">    player.connect(<span class="string">'dead'</span>, self, <span class="string">'_on_Player_dead'</span>)</span><br><span class="line">    player.connect(<span class="string">'damaged'</span>, self, <span class="string">'_on_Player_damaged'</span>)</span><br><span class="line">    player.connect(<span class="string">'collect_item'</span>, self, <span class="string">'_on_Player_collect_item'</span>)</span><br><span class="line">    player.name = str(GameState.myId)</span><br><span class="line">    player.playerId = GameState.myId</span><br><span class="line">    player.playerName = GameState.myName</span><br><span class="line">    player.playerColor = GameState.myColor</span><br><span class="line">    player.global_position = _playerPositionNodes[positions.find(GameState.myId)].position</span><br><span class="line">    player.set_network_master(GameState.myId)</span><br><span class="line">    _playersContainer.add_child(player)</span><br><span class="line">    </span><br><span class="line">    _allPlayers.append(GameState.myId)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> id <span class="keyword">in</span> GameState.otherPlayerNames:</span><br><span class="line">        player = PlayerNode.instance()</span><br><span class="line">        player.name = str(id)</span><br><span class="line">        player.playerId = id</span><br><span class="line">        player.playerName = str(GameState.otherPlayerNames[id])</span><br><span class="line">        player.playerColor = GameState.otherPlayerColors[id]</span><br><span class="line">        player.global_position = _playerPositionNodes[positions.find(id)].position</span><br><span class="line">        player.set_network_master(id)</span><br><span class="line">        _playersContainer.add_child(player)</span><br><span class="line">        </span><br><span class="line">        _allPlayers.append(id)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> _playerPositionNodes:</span><br><span class="line">        node.queue_free()</span><br></pre></td></tr></table></figure>
+
+<p>可以看到这里 <code>player.set_network_master(id)</code> 每个玩家都设置了相对应的 Master ID ，并且名字也是他们的 ID 转化的字符串，由 ID 表示任何场景中该玩家是否为 Master 还是 Puppet 。</p>
+<p>注意，<strong>当前场景中只有 Master 身份的玩家才有信号处理功能</strong>，其他 Puppet 玩家节点只是“木偶”而已，不需要处理事件，“主人会全权处理”。</p>
+<p><strong>三、 Player.gd 玩家代码</strong></p>
+<p>相信到这里很多东西大家都能拨云见日了，玩家中的代码也不复杂，摘几个点稍微说下就可以了：</p>
+<figure class="highlight python"><figcaption><span>Player.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">func _unhandled_input(event: InputEvent) -&gt; void:</span><br><span class="line">    <span class="comment"># 这部分代码不论对主人节点还是奴隶节点都有效</span></span><br><span class="line">    <span class="comment"># 显示所有玩家的名字</span></span><br><span class="line">    <span class="keyword">if</span> event.is_action_pressed(<span class="string">'show_name'</span>):</span><br><span class="line">        _labelName.show()</span><br><span class="line">    <span class="keyword">elif</span> event.is_action_released(<span class="string">'show_name'</span>):</span><br><span class="line">        _labelName.hide()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> ! self.is_network_master():</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 这里的代码则只能在主人节点中运行：放置炸弹</span></span><br><span class="line">    <span class="keyword">if</span> _isStuning || _isDead:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> event.is_action_pressed(<span class="string">'lay_bomb'</span>):</span><br><span class="line">        _layBomb()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func _physics_process(delta):</span><br><span class="line">    <span class="comment"># 只能运行于主人节点中</span></span><br><span class="line">    <span class="keyword">if</span> ! self.is_network_master():</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> _isStuning || _isDead:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    self.move_and_slide(_velocity)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 更新其他场景中的奴隶节点位置，这里使用rpc_unreliable允许丢包</span></span><br><span class="line">    self.rpc_unreliable(<span class="string">'_updatePosition'</span>, self.position)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 只能运行在主人节点上，然后内部由主节点发送必要的消息到奴隶节点</span></span><br><span class="line">master func bomb(byKiller : int, damage : int) -&gt; void:</span><br><span class="line">    damage(damage, Vector2.ZERO, byKiller)</span><br><span class="line"></span><br><span class="line">master func damage(amount : float, direction : Vector2 = Vector2.ZERO, byId : int = -1) -&gt; void:</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">master func collect(itemIndex : int) -&gt; void:</span><br><span class="line">    <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+
+<p>基本上， <code>_process</code> 或者 <code>_physics_process</code> 等持续运行的方法尽量保证只有主人节点运行，然后由主人节点更新奴隶节点必要的属性即可，比如：朝向、当前动画、位置等。因为这些会因机器性能而异，如果各自为政，那么很可能会导致不同步，这也是很多人会在网上问：如何在服务器端和客户端保持碰撞同步？非常频繁的问题。</p>
+<p>其他一些场景，我会在最后总结说明，我相信大家开发过程中肯定会有收获总结，调试过程你就会很清楚，哪些方法需要远程调用，哪些只能在主人节点或者服务器端运行了。</p>
+<p><strong>四、 其他示例代码</strong></p>
+<p>首先是怪物代码 <code>Enemy.gd</code> ，这个方法 <code>_process</code> 完全是为 puppet 服务的，我直接在这个方法中更新了怪物的几乎所有信息：位置、图形、动画。</p>
+<figure class="highlight python"><figcaption><span>Enemy.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">`func _process(delta: float) -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> self.get_tree().network_peer == null || ! self.is_network_master():</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> _isDead || _isPaused:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    self.rpc_unreliable(<span class="string">'_puppetSet'</span>, self.position, _sprite.flip_h, _animationPlayer.current_animation)</span><br></pre></td></tr></table></figure>
+<p>如何踢人实际很简单，只有服务器可以，让服务发送消息让被踢的 id 退出游戏即可：</p>
+<figure class="highlight python"><figcaption><span>LobbyUI.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func _onPlayerBeKickedOut(id : int) -&gt; void:</span><br><span class="line">    self.rpc_id(id, <span class="string">'_kickedOut'</span>)</span><br><span class="line"></span><br><span class="line">remote func _kickedOut() -&gt; void:</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    self.get_tree().network_peer = null</span><br></pre></td></tr></table></figure>
+
+<p>其他的包括炸弹爆炸、发送消息、显示结果、掉落物品等处理我相信大家都有自己的实现方式，这里就不啰嗦了，也可以参考我的源代码吧。</p>
+<h3 id="游戏开发小结"><a href="#游戏开发小结" class="headerlink" title="游戏开发小结"></a>游戏开发小结</h3><p>开发过程中，我填了不少坑，我再谈谈：</p>
+<p><strong>1. 名字必须相同</strong></p>
+<p>在开发过程中，在电脑上测试时，我发现偶尔会遇到炸弹、爆炸效果在客户端或者“奴隶”端不会消失，就像这样的 Bug ：</p>
+<p><img src="godot_dev1_bug_of_delete.jpg" alt="Bug of deletion"></p>
+<p>这个在电脑上还好，到了网络端就非常频繁地触发这种 BUG 了。我刚开始自以为是不同步造成方法调用失败，但是回头想想方法一定会调用，只要连接在一起，所以不是这个原因，后面看到这个错误消息我就恍然大悟：</p>
+<p><code>E 0:00:11.206   _process_get_node: Failed to get cached path from RPC: Game/Enemies/Enemy123456.</code></p>
+<p>说明一个问题： Master 和 Puppet 名字对不上！所以解决方案很简单，对于生成的物品，统一<strong>唯一</strong>的名字即可，比如生成的物品、炸弹、怪物等，举例游戏中生成的怪物：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成敌人</span></span><br><span class="line">func _spawnEnemy() -&gt; void:</span><br><span class="line">    <span class="comment"># ......</span></span><br><span class="line">    <span class="comment"># 定义一个整数字段，没生成一个敌人加1，保证每个敌人名字【唯一】</span></span><br><span class="line">    _enemyNameIndex += <span class="number">1</span></span><br><span class="line">    var pos := _tileMap.map_to_world(tile) + _tileMap.cell_size / <span class="number">2</span></span><br><span class="line">    var name := <span class="string">'Enemy'</span> + str(_enemyNameIndex)</span><br><span class="line">    <span class="comment"># 将名字作为数据发送到其他客户端，保证名字【一致】</span></span><br><span class="line">    self.rpc(<span class="string">'_addEnemy'</span>, pos, name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 远程添加敌人</span></span><br><span class="line">remotesync func _addEnemy(pos : Vector2, name : String) -&gt; void:</span><br><span class="line">    var enemy = enemyScene.instance()</span><br><span class="line">    enemy.name = name</span><br><span class="line">    enemy.set_network_master(<span class="number">1</span>)</span><br><span class="line">    enemy.global_position = pos</span><br><span class="line">    _enemiesContainer.add_child(enemy)</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 不要传递复杂数据</strong></p>
+<p>这个问题也困惑了我一会，在主场景生成一个物品，然后将这个物品信息发送到其他 puppet 场景，结果其他场景得到的是空数据！会不会是因为传递了复杂数据类型？我改了一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">self.rpc(<span class="string">'_addItem'</span>, GameState.myId, item)</span><br><span class="line"></span><br><span class="line">remotesync func _addItem(id : int, item : GameConfig.ItemData) -&gt; void:</span><br><span class="line">    var power : Node = load(item.data).instance()</span><br><span class="line">    power.set_network_master(id)</span><br><span class="line">    self.add_child(power)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改后的代码：</span></span><br><span class="line">self.rpc(<span class="string">'_addItem'</span>, GameState.myId, item.data)</span><br><span class="line"></span><br><span class="line">remotesync func _addItem(id : int, data : String) -&gt; void:</span><br><span class="line">    var power : Node = load(data).instance()</span><br><span class="line">    power.set_network_master(id)</span><br><span class="line">    self.add_child(power)</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，之前传递的是 <code>ItemData</code> 类型复杂数据，后面我改成 <code>String</code> 同样可以实现相同的功能，避免了这个问题。</p>
+<p><strong>3. 确保处于连接状态</strong></p>
+<p>有个小问题，虽然不会影响游戏运行，但是我觉得还是有必要解决：</p>
+<p><code>E 0:00:01.821   get_network_unique_id: No network peer is assigned. Unable to get unique network ID.</code></p>
+<p>主要原因是网络断开，但是依然调用了这句代码： <code>self.is_network_master()</code> ，不过这个错误不影响游戏，我还是改了一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func _physics_process(delta: float) -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> self.get_tree().network_peer == null || ! self.get_tree().is_network_server():</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="comment"># ......</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>4. 确保必要数据同步</strong></p>
+<p>我们知道服务端和客户端共享一套代码，那么有些数据可以由服务器发送，但是有些复杂稳定的数据没必要占用网络，比如地图资源，那么我们在初始化的时候就可以共享：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func _ready() -&gt; void:</span><br><span class="line">    <span class="comment"># 这里会运行在服务器端和客户端，保证_brokenTiles同步</span></span><br><span class="line">    _navigation = self.get_parent()</span><br><span class="line">    <span class="keyword">for</span> tile <span class="keyword">in</span> self.get_used_cells():</span><br><span class="line">        <span class="keyword">if</span> self.get_cellv(tile) == GameConfig.GRASS_TILE_ID:</span><br><span class="line">            _brokenTiles.append(tile)</span><br></pre></td></tr></table></figure>
+
+<p>这样避免发送数据，或者避免出现问题。</p>
+<p><strong>5. 其他小问题</strong></p>
+<p>即使对方设置了 get_tree().refuse_new_network_connections = false 客户端还是能加入，但是看不到任何 id 信息。无伤大雅吧。</p>
+<p>我觉得这是 Godot 的一个 BUG 。</p>
+<h3 id="游戏开发资源"><a href="#游戏开发资源" class="headerlink" title="游戏开发资源"></a>游戏开发资源</h3><p>推荐一个平台， Gotm.io 支持 Godot 游戏，而且局域网多人游戏可以在这个平台上创建房间，实现基本的网络多人游戏，还是蛮好的。</p>
+<p>这个平台免费，可以给你做一些数据统计，比如人数、收入等，当然，你必须得英文比较好，毕竟上面的人几乎都是国外的开发者或者国外的玩家。</p>
+<p><em>广告时间：</em></p>
+<p><img src="ad.jpg" alt="ad"></p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>小结一下。。。。。</p>
+<ul>
+<li>puppet 大部分场合等同于 remote ，因为你的调用都是在 master 中调用</li>
+<li>几乎全部的事件————都应该确定只运行于 master 中，比如某个物品 3 秒后 queue_free ，万一卡住了，超过 3 秒没回收？所以这个方法可以在 server/master 中调用保证同步</li>
+<li>所有添加物品几乎都是 rpc ，同理删除物品也是 rpc ，比如 queue_free ，比如地图的更改</li>
+<li>master/puppet 相比 remote 的一个用法是： master A 触发了或者调用了 puppet B 的方法，这时候可以使用 master/puppet 关键字更好</li>
+</ul>
+<p>方法的调用分三类：</p>
+<ol>
+<li>_ready _process _input 等系统调用，注意 is_network_master</li>
+<li>事件，使用编辑器连接起来的事件，注意 is_network_master</li>
+<li>公开方法和属性，这些方法或者属性注意使用 master/puppet</li>
+</ol>
+<p>本篇的 Demo 以及相关代码已经上传到 Github ，地址： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a> ， 后续继续更新，<strong>原创不易</strong>，希望大家喜欢！ :smile:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/blog/images/wexin_1.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+      
+      
+        <a href="/2020/07/22/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-1/" class="alignright next" title="Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（上）">Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（上）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

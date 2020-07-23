@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="Godot, 开源游戏引擎, 2D游戏开发, 游戏教程, 玩家跳跃代码, platform game, 2D平台游戏,刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（下）"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（下） - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（下）</h1>
+    <div class="meta">
+        <span>2019-01-26</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本文为<a href="http://liuqingwen.me/blog/2019/01/17/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-1/">上一篇文章</a>的续篇，在上一节中我们一起讨论了 Godot 中平台游戏<strong>玩家跳跃功能</strong>的实现方法，并使用到了本次小游戏中，那么本节内容主要是分享这个平台小游戏的基本结构和制作过程。游戏运行效果如下：</p>
+<p><img src="result_1.gif" alt="效果图"></p>
+<p>游戏中的图片资源主要来源于 <a href="https://opengameart.org" target="_blank" rel="noopener">OpenGameArt.org</a> 网站： <a href="https://opengameart.org/content/a-platformer-in-the-forest" target="_blank" rel="noopener">https://opengameart.org/content/a-platformer-in-the-forest</a> ，游戏中的部分音乐资源也是在该网站中找到的，其他部分图片和音乐是我七零八凑拼起来的，为了顺利完成一个小游戏，找资源也花费了我不少时间，在这里建议大家有时间可以学习一些基础的美术知识吧。</p>
+<p>本次两篇文章所详细讲述的内容包括以下部分：</p>
+<ol>
+<li>重力加速度知识和简单的跳跃实现方法（上）</li>
+<li>二次跳跃的实现（上）</li>
+<li>精确高度的跳跃实现（上）</li>
+<li>游戏场景结构与主要代码</li>
+<li>三种敌人的行为和实现</li>
+<li>其他的一些效果介绍</li>
+<li>问题和总结</li>
+</ol>
+<blockquote>
+<p>主要内容：平台游戏的制作解析<br>阅读时间： 10 分钟<br>永久链接： <a href="http://liuqingwen.me/blog/2019/01/26/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-2/">http://liuqingwen.me/blog/2019/01/26/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-2/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
+<li>平台游戏中的玩家场景</li>
+<li>游戏中的三种敌人实现</li>
+<li>游戏中的其他部分简述</li>
+<li>问题与总结</li>
+</ol>
+<p>在<a href="http://liuqingwen.me/blog/2019/01/17/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-1/">上一篇文中</a>我们花了大篇幅探讨平台游戏的最核心部分：玩家跳跃功能的实现，接下来所要讨论的游戏中其他场景相对来说就非常简单了，特别是在结合本系列文章之前的两个小游戏的基础上，我觉得对于新手而言也不会有很大的难度，而游戏中的相关设计，额外小功能的实现，游戏场景的丰富程度等等这些还是需要自己好好打磨的。正因为如此，这些可以扩展、发挥的部分也就留给大家去思考实现啦，我仅仅是希望做到抛砖引玉的作用吧！</p>
+<h3 id="玩家场景"><a href="#玩家场景" class="headerlink" title="玩家场景"></a>玩家场景</h3><p><em>玩家还是那个玩家，节点还是那些节点*。嗯，相比之前的游戏，玩家场景的结构变化不大，当然也有不同之处，玩家场景中最重要的变化是多了一个非常重要的节点： *Camera2D</em> 摄像机节点。这个节点其实非常好理解，特别是在 3D 游戏中更加常用，而且很多游戏中会同时拥有多个摄像机。</p>
+<p><img src="godot_13_camera_node.png" alt="godot_13_camera_node.png"></p>
+<p><em>Camera2D</em> 节点的一些基本参数很好理解，这里例举几个重要的参数说明如下：</p>
+<ul>
+<li><code>Current</code> 设置为当前摄像头，<strong>这个参数非常重要</strong>，不勾选摄像头将不起作用</li>
+<li><code>Zoom</code> 摄像机镜头的缩放变焦，值越小范围越小，图片的显示也就越大</li>
+<li><code>Limit</code> 摄像机的最大活动范围，摄像头移动后的位置不会超出该限制</li>
+<li><code>Smoothing/Speed</code> 开启摄像头跟随<strong>平滑</strong>移动，可以设置移动的速度</li>
+<li><code>Drag Margin</code> 摄像头不跟随移动的尺寸范围，超出该范围摄像头开始跟随运动</li>
+<li><code>Editor</code> 显示摄像机相关范围图形界面，不会在游戏中显示，用于调试</li>
+</ul>
+<p>在属性面板中，你会发现 <code>Limit</code> 下的默认值设置的有点荒谬，当然这在一般的游戏中并没有什么问题，你也可以手动设置合理的值，把摄像头的最大活动范围固定在游戏的主场景范围内，另外 <code>Editor</code> 菜单中的几个调试工具建议都开启查看，参考上图，其中<em>黄色<em>区域表示摄像机活动范围，</em>紫色*表示屏幕尺寸或者视窗 *Viewport</em> 的大小，<em>蓝色</em>表示玩家在此范围内摄像机不会发生移动，超出范围摄像机跟随移动。</p>
+<p>除此之外，我在摄像机节点下添加了一个<strong>带脚本</strong>的空节点，脚本代码简单地实现了摄像头抖动效果，实现原理非常简单，有兴趣的朋友可以下载源码看看。整个玩家的场景结构如下图：</p>
+<p><img src="godot_13_player_node.png" alt="godot_13_player_node.png"></p>
+<p>UI 场景结构图也展示在上面了，场景的根节点是一个 <em>CanvasLayer</em> 节点，它的特点是能够忽略节点的渲染排序，直接显示在所有层的<strong>最上层</strong>，它的子节点又包含 3 个 <em>TextureRect</em> 节点，用于显示玩家的血量。</p>
+<blockquote>
+<p>在这里我建议：如果你的 UI 场景比较简单，完全可以把 UI 场景直接添加到玩家场景中作为一个直接子节点，更加方便简洁！ :smiley:</p>
+</blockquote>
+<h3 id="敌人场景"><a href="#敌人场景" class="headerlink" title="敌人场景"></a>敌人场景</h3><p>这个平台游戏中，除了我们的主角——玩家子场景稍显复杂外，其他稍微复杂的节点就是<em>敌人场景</em>了，我在游戏中制作了 3 种行为各异的敌人：光头（ NakedEnemy ）、军人（ SoldierEnemy ）以及蛇（ SnakeEnemy ）。</p>
+<p><img src="godot_13_enemy_nodes.png" alt="godot_13_enemy_nodes.png"></p>
+<p>从场景的结构可以看出来，其中两个敌人的场景根节点使用的是 <em>KinematicBody2D</em> 节点，而怪物蛇使用的则是 <em>Area2D</em> 节点，它们具有的共同行为是：左右反复巡逻。而不同的行为特点有这么几个：</p>
+<ul>
+<li>怪物蛇只巡逻，没有主动攻击的能力，场景实现代码也是最简单的</li>
+<li>光头在巡逻过程中如果与玩家发生碰撞会立刻进行攻击，之后继续巡逻</li>
+<li>军人无主动攻击的能力，但会在巡逻时会往前方发射多颗子弹</li>
+</ul>
+<p>怪物蛇 SnakeEnemy 场景的实现代码最简单，代码如下：</p>
+<figure class="highlight python"><figcaption><span>SnakeEnemy.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">extends Area2D</span><br><span class="line"></span><br><span class="line">const UNIT = <span class="number">16</span></span><br><span class="line"></span><br><span class="line">export(float) var patrolRange = <span class="number">1</span> * UNIT</span><br><span class="line"></span><br><span class="line">onready var _sprite = $Sprite</span><br><span class="line">onready var _animator = $AnimationPlayer</span><br><span class="line"></span><br><span class="line">var _walkSpeed: float = <span class="number">2</span> * UNIT / <span class="number">2.0</span></span><br><span class="line">var _startPosition: float = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func _ready():</span><br><span class="line">    <span class="comment"># 设置开始位置，注意为全局位置</span></span><br><span class="line">    _startPosition = self.global_position.x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func _process(delta):</span><br><span class="line">    self.position.x += _walkSpeed * delta</span><br><span class="line">    <span class="keyword">if</span> self.global_position.x &gt;= _startPosition + patrolRange || self.global_position.x &lt;= _startPosition - patrolRange:</span><br><span class="line">        _walkSpeed = - _walkSpeed</span><br><span class="line">        _sprite.flip_h = ! _sprite.flip_h</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 发生碰撞时，检测是否为玩家</span></span><br><span class="line">func _on_SnakeEnemy_body_entered(body):</span><br><span class="line">    <span class="keyword">if</span> body.is_in_group(<span class="string">'player'</span>) &amp;&amp; body.has_method(<span class="string">'attacked'</span>):</span><br><span class="line">        body.attacked()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func die():</span><br><span class="line">    self.set_process(false)</span><br><span class="line">    _animator.current_animation = <span class="string">'die'</span></span><br></pre></td></tr></table></figure>
+
+<p>从代码中可以看出来，怪物蛇在游戏中是不会检测与地面之间发生的碰撞的，所以在游戏关卡中，添加蛇场景的时候，必须把它的位置手动放置在地面上，否则会出现“蛇在空中移动”的现象。 :joy:</p>
+<p>接着是光头敌人 NakedEnemy 场景的实现代码：</p>
+<figure class="highlight python"><figcaption><span>NakedEnemy.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">extends KinematicBody2D</span><br><span class="line"></span><br><span class="line"><span class="comment"># 省略部分代码……</span></span><br><span class="line"></span><br><span class="line">export(float) var patrolRange = <span class="number">3</span> * UNIT <span class="comment"># 巡逻范围</span></span><br><span class="line"></span><br><span class="line">var _walkSpeed: float = <span class="number">3</span> * UNIT / <span class="number">2.0</span>   <span class="comment"># 移动速度</span></span><br><span class="line">var _gravity: float = <span class="number">100</span>                <span class="comment"># 重力加速度</span></span><br><span class="line">var _isStandingStill: bool = false       <span class="comment"># 站立不动</span></span><br><span class="line"></span><br><span class="line">var _startPosition: float = <span class="number">0.0</span>          <span class="comment"># 巡逻开始位置</span></span><br><span class="line">var _moveDirection: int = <span class="number">1</span>              <span class="comment"># 移动方向</span></span><br><span class="line">var velocity: Vector2 = Vector2()        <span class="comment"># 速度</span></span><br><span class="line">var _target = null                       <span class="comment"># 攻击目标：玩家</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func _physics_process(delta):</span><br><span class="line">    <span class="comment"># 站着不动或者攻击对象不为空时，站立</span></span><br><span class="line">    <span class="keyword">if</span> _isStandingStill || _target != null:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    velocity.y += _gravity</span><br><span class="line">    velocity.x = _walkSpeed * _moveDirection</span><br><span class="line">    velocity = self.move_and_slide(velocity, FLOOR_NORMAL)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 循环判断碰撞体是否有玩家（**这里不能检测到玩家在背后的情形**）</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(self.get_slide_count()):</span><br><span class="line">        var collision = self.get_slide_collision(index)</span><br><span class="line">        <span class="keyword">if</span> collision.collider.is_in_group(<span class="string">'player'</span>):</span><br><span class="line">            _target = collision.collider</span><br><span class="line">            _attack()</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    _animator.current_animation = _animations.walk</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> self.is_on_wall():</span><br><span class="line">        _moveDirection = - _moveDirection</span><br><span class="line">        _sprite.flip_h = _moveDirection != <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> self.global_position.x &gt;= _startPosition + patrolRange:</span><br><span class="line">        _standStill(<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">elif</span> self.global_position.x &lt;= _startPosition - patrolRange:</span><br><span class="line">        _standStill(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 攻击</span></span><br><span class="line">func _attack():</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'isDead'</span> <span class="keyword">in</span> _target &amp;&amp; _target.isDead:</span><br><span class="line">        _target == null</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> _target.has_method(<span class="string">'attacked'</span>):</span><br><span class="line">        _target.attacked()</span><br><span class="line">    _animator.current_animation = _animations.attack</span><br><span class="line">    <span class="keyword">yield</span>(_animator, <span class="string">'animation_finished'</span>)</span><br><span class="line">    _target = null</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 站立，nextDirection 表示站立时间过后转身</span></span><br><span class="line">func _standStill(nextDirection: int):</span><br><span class="line">    _isStandingStill = true</span><br><span class="line">    _moveDirection = nextDirection</span><br><span class="line">    _animator.current_animation = _animations.idle</span><br><span class="line">    _timer.start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 站立时间超时</span></span><br><span class="line">func _on_StandStillTimer_timeout():</span><br><span class="line">    _isStandingStill = false</span><br><span class="line">    _sprite.flip_h = _moveDirection != <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 省略部分代码……</span></span><br></pre></td></tr></table></figure>
+
+<p>这里根节点使用 <em>KinematicBody2D</em> 的好处是可以调用 <code>move_and_slide</code> 方法移动敌人，在代码中我给敌人添加了重力加速度，所以放置敌人的时候可以放在空中不需要贴着地面，但是这里的重力加速度值是手动设置的，并没有按照<a href="http://liuqingwen.me/blog/2019/01/17/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-1/">上一篇文章</a>中讲的那样进行计算，也是为了方便简洁，够用就可以。</p>
+<p>军人场景 SoldierEnemy 的代码与 NakedEnemy 的代码非常相似，这里我就不贴出来了，有兴趣的朋友可以到我的 Github 仓库下载源码查看。</p>
+<p>游戏中其他场景包括：攻击效果子场景、敌人子弹、梯子、宝箱（恢复生命值）、木盒子（门）等这里不作一一介绍，结构和代码都很简单，在本系列之前的文章中都陆陆续续讨论过。</p>
+<h3 id="问题总结"><a href="#问题总结" class="headerlink" title="问题总结"></a>问题总结</h3><p>总结一下这个游戏的开发过程。其实做任何一个游戏，不论游戏开发有多复杂，它的结构设计都是很重要的。比如设计这么一个简单的平台游戏，你需要考虑玩家所应有的一些功能、敌人的行为和种类、关卡地图的设计、游戏中互动元素的添加、甚至一些简单的剧情等等。设计完成接下来就是考虑如何使用游戏引擎来完成制作了。</p>
+<p>本次小游戏的结构设计可以参考下图：</p>
+<p><img src="godot_star_hunter_scenes.png" alt="godot_star_hunter_scenes.png"></p>
+<p>这张图片场景名称并不相同，它是另一个游戏的场景结构，图片来源于 <a href="https://thingsmatic.com" target="_blank" rel="noopener">Thingsmatic</a> 的一篇博客文章： <a href="https://thingsmatic.com/2018/02/17/making-a-2d-platform-game-with-godot-3-0/" target="_blank" rel="noopener">Making a 2D platform game with Godot 3.0</a> ，尽管场景名字不同，但是总体结构是相似的，大家可以参考参考。</p>
+<p>再来说说本次 Demo 中的一个非常重要的问题或者 BUG ：玩家在敌人（ <em>KinematicBody2D</em> ）身后挨着走也不会受到攻击！也就是说，玩家可以<strong>从背后推着敌人走</strong>而敌人<strong>并不能检测到与玩家之间的碰撞</strong>，从而玩家可以安然无恙地“躲过一劫”！</p>
+<p><img src="kinematicbody2d_collision_test.gif" alt="kinematicbody2d_collision_test.gif"></p>
+<p>如何解决这个问题呢？至少有三种最直接的方式：</p>
+<ol>
+<li>添加 Area2D 子节点用于检测碰撞</li>
+<li>使用 Raycast 射线节点检测碰撞</li>
+<li>使用 <code>Physics2DDirectSpaceState.intersect_ray()</code> 方法检测碰撞</li>
+</ol>
+<p>为了让游戏更加简单易懂，我并没有在游戏中解决这个 BUG ，不过我会在后续文章中讨论这个问题，以及游戏中常用的 FSM 有限状态机制我想也会谈到，有兴趣的朋友可以自己先探索。 :smiley:</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>小游戏算是完成了，但是还有太多不足之处，大家可以充分发挥自己的聪明才智，把你心目中的游戏打造的更加好玩、更加有特色，这里我能想到的一些可以在 Godot 中为游戏增光添彩的功能有：</p>
+<ul>
+<li>添加单边碰撞体作为地面</li>
+<li>玩家移动时的灰尘特效</li>
+<li>给玩家添加无敌状态</li>
+<li>添加空中移动平台</li>
+<li>给敌人添加 AI</li>
+<li>更多交互元素、更好的关卡设计等</li>
+</ul>
+<p>本篇的 Demo 以及相关代码已经上传到 Github ，地址： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a> ， 这应该是春节前的最后一篇文章，<strong>原创不易</strong>，希望大家喜欢，我们 2019 新年见！ :smile:</p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="https://github.com/spkingr/test-git/raw/master/images/weixin/weixin_it_258.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2019/07/20/introduction-of-godot-3-part-14-make-a-game-with-rigidbody2d-node-and-the-fsm-introduction/" class="alignleft prev" title="Godot3游戏引擎入门之十四：RigidBody2D刚体节点的应用以及简单的FSM状态机介绍"><i class="fa fa-angle-double-left"></i>&nbsp;Godot3游戏引擎入门之十四：RigidBody2D刚体节点的应用以及简单的FSM状态机介绍</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2019/01/17/introduction-of-godot-3-part-13-the-player-jump-implementation-and-make-a-platform-game-part-1/" class="alignright next" title="Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（上）">Godot3游戏引擎入门之十三：实现玩家的跳跃功能并完成一个平台小游戏（上）&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="C4D中四种基本的曲线运动控制方式"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>C4D中四种基本的曲线运动控制方式 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">C4D中四种基本的曲线运动控制方式</h1>
+    <div class="meta">
+        <span>2017-05-31</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/C4D/">C4D</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="spline_in_action.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近刚开始学习 Cinema 4D 这款强大的建模软件的运动相关知识，暂时学习的东西不多，看的时候也能当场理解掌握，但是发现回过头来学过的东西早已经抛之脑后了，看来学习方法还是不对，必须学习之后要做总结吧，特别是一些很容易混淆的概念和方法，不总结真的是云里雾里啊。 :cold_sweat:</p>
+<p>今天总结一下最近学习的 C4D 中几种最基本的控制曲线运动的方法，为什么要说曲线控制呢？我们知道，骨骼是不能直接绑定在曲线上的，骨骼只对 Mesh 多边形物体绑定有效，所以控制曲线的运动需要一些特殊的方法实现，目前我知道的有以下 4 种方式，仅供总结参考：</p>
+<ul>
+<li>曲线追踪的方式</li>
+<li>XPRESSO控制曲线</li>
+<li>IKSpline的骨骼控制</li>
+<li>IK骨骼结合XPRESSO控制</li>
+</ul>
+<p>下面一一作简单介绍，只介绍他们的大概实现原理，具体的比较和优缺点暂时只能从表面现象观察吧，在实际应用中还需要更多的学习和探索。</p>
+<h2 id="二、四种基本方式"><a href="#二、四种基本方式" class="headerlink" title="二、四种基本方式"></a>二、四种基本方式</h2><p><strong>1. 曲线追踪的方式</strong></p>
+<p>这是最简单也很有效的方法，甚至连曲线 Spline 都不用建立。</p>
+<p>如图建立 5 个空物体（ Null ），设置好空物体的显示，用来控制曲线的操纵杆。然后在运动图形菜单中添加曲线追踪器。</p>
+<p><img src="c4d-line-controller-tracer-2.jpg" alt="曲线追踪的方式"></p>
+<p>在曲线追踪器中设置追踪对象为 5 个空物体，设置追踪模式： <code>Connect All Objects</code> ，设置曲线类型为： <code>Akima</code> ，这样保证曲线比较平滑。</p>
+<p><img src="c4d-line-controller-tracer-1.jpg" alt="曲线追踪的方式"></p>
+<p>添加 Sweep 扫描这样能更加直白地看到曲线的运动形态，接着就可以用空物体代表的控制杆来操控曲线了。是不是很方便？ :smile:</p>
+<p><img src="c4d-line-controller-tracer-3a.jpg" alt="曲线追踪的方式"></p>
+<p><strong>2. XPRESSO控制曲线</strong></p>
+<p>Cinema 4D 中的 XPRESSO 标签功能很强大，才刚刚接触就被它的易用性震撼到了，真的恨强，对于不喜欢编程的朋友来说确实是一剂良方。用 XPRESSO 控制曲线的思路也很简单： Spline 由点控制，点又由操控点通过 XPRESSO 控制，达到最终操控点控制曲线的目的。</p>
+<p>和上面第一种方法类似，建立 5 个空白对象作为操控点，然后还需要建立一个 4 分段（ Segment ）的 Spline （添加 Sweep 扫描这样更加清晰直白），如下图：</p>
+<p><img src="c4d-line-controller-xpresso-1.jpg" alt="XPRESSO控制曲线"></p>
+<p>记住，和上面方法一样，为了让曲线更加平滑过渡，需要设置曲线的形态： Akima ，设置点插值方式为： Uniform ，数量多一点：</p>
+<p><img src="c4d-line-controller-xpresso-2.jpg" alt="XPRESSO控制曲线"></p>
+<p>添加 XPRESSO 标签，设置他们之间的连接，这里需要用到层级（ Hierarchy ），层级能够迭代输出某一层或者某一序列的物体，通过层级把 5 个控制点分别输出并控制 Spline 上的对应点的 Global Position ，那样曲线上的点的位置就会跟随相对应的控制点了：</p>
+<p><img src="c4d-line-controller-xpresso-3a.jpg" alt="XPRESSO控制曲线"></p>
+<p>关于 XPRESSO 大家可以参考官方文档，也可以看我推荐的<a href="http://digitalman.blog.163.com/" target="_blank" rel="noopener">数字人博客</a>的相关文章，我这里对层级（ Hierarchy ）的参数设置是采用的绝对路劲（ Absolute Reference ）和开始路劲向下（ D ）、迭代路劲往后（ N ），具体参数定义我在文章之后参考资料中会写到，具体设置如下：</p>
+<p><img src="c4d-line-controller-xpresso-4.jpg" alt="XPRESSO控制曲线"></p>
+<p>这样 XPRESSO 就起作用了， Spline 上的每个点都受到相应控制点的控制而跟随运动：</p>
+<p><img src="c4d-line-controller-xpresso-5a.jpg" alt="XPRESSO控制曲线"></p>
+<p><strong>3. IKSpline的骨骼控制</strong></p>
+<p>除了以上方法后，还有就是大家很容易想到的是通过<strong>骨骼绑定</strong>控制曲线运动的方法，骨骼运动系统非常强大，但是，<strong>骨骼并不能直接绑定曲线</strong>，他只能绑定 MESH 多边形物体，那么如果利用骨骼的话可以怎么做呢？——答案是 IKSpline 骨骼标签。</p>
+<p>如下图建立 Spline 曲线并设置相应参数，在工具栏中选 <code>Spline to Joints</code> 命令转化曲线为关节，转化后在根关节添加 IKSpline 标签。</p>
+<p><img src="c4d-line-controller-ikspline-1.jpg" alt="IKSpline的骨骼控制"><br><img src="c4d-line-controller-ikspline-3.jpg" alt="IKSpline的骨骼控制"></p>
+<p>设置 IKSpline 参数，把曲线和末关节分别拖入对应参数位置，同时，我们并不能直接通过控制骨骼来控制曲线，那样会很不方便，包括移动旋转等，我们需要创建操纵杆来达到控制骨骼关节和曲线的目的，所以我们需要添加手柄（ Handles ），并创建其形态（ Add -&gt; Create ），依次创建出现 5 个操纵杆：</p>
+<p><img src="c4d-line-controller-ikspline-2.jpg" alt="IKSpline的骨骼控制"></p>
+<p>这样我们就达到目的了，通过操纵杆控制 IKSpline 骨骼然后间接达到控制曲线的目的：</p>
+<p><img src="c4d-line-controller-ikspline-5a.jpg" alt="IKSpline的骨骼控制"></p>
+<p><strong>4. IK骨骼结合XPRESSO控制</strong></p>
+<p>上面的方法中使用了 IKSpline 关节控制曲线的方式，除此之外，我们其实还可以利用关节运动加上 XPRESSO 控制功能也能同样达到控制曲线的目的。</p>
+<p>思路大致是这样的：<strong>我们通过创建骨骼关节并利用 XPRESSO 把相应关节绑定到曲线的对应点上，再利用 IK 标签控制骨骼运动从而实现间接控制曲线运动的目的。</strong> IK 标签是骨骼绑定中最常用的角色命令，它和 IKSpline 不同，利用 IK 标签可以绑定到多边形上来创建达到更加复杂的形体运动。</p>
+<p>同上一步骤，创建曲线，分段，设置参数，转化成关节，因为我们需要添加 XPRESSO 标签，最好是再创建一个空物体作为所有关节的根物体（ Root ），在根物体上添加 XPresso 标签，同时给关节添加 IK 标签，设置 IK 尾关节和添加目标手柄：</p>
+<p><img src="c4d-line-controller-ik-xpresso-1a.jpg" alt="IK骨骼结合XPRESSO控制"></p>
+<p>同上面的第二种 XPresso 方法一样，设置其节点和参数如下：</p>
+<p><img src="c4d-line-controller-ik-xpresso-3a.jpg" alt="IK骨骼结合XPRESSO控制"><br><img src="c4d-line-controller-ik-xpresso-4.jpg" alt="IK骨骼结合XPRESSO控制"></p>
+<p>是不是动起来了？而且和骨骼绑定是相一致的。 :blush:</p>
+<p><img src="c4d-line-controller-ik-xpresso-5a.jpg" alt="IK骨骼结合XPRESSO控制"></p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>控制曲线的用途还是有很多的，毕竟建模后很多管子之类的物体都是用曲线方式生成更方便，当然直接用模型也可以，如果用曲线的话，那么就可以用以上方法结合其他的途径达到各种运动控制的目的了。上面的几种方法中，其实只有骨骼关节控制才能够达到一个控制点的位移影响所有点的位置的效果，其他方法只能控制曲线上当前点的位置和状态，如果觉得抽象，你完全可以尝试一下。 :stuck_out_tongue_winking_eye:</p>
+<p>简单的回顾总结一下自己刚刚学习的一点新知识， C4D 才开始学习，还有很多东西都是未知的，学海无涯啊，在学习的海洋里畅游的时候，还是不能忘记回头看看自己曾经游过的地方遇到了些什么精彩或者惊险的玩意，不然很容易忘记接下来该怎么前行了，所谓学而不思则罔，思而不学则殆！</p>
+<p>最后，强烈推荐参考<strong>数字人老师的学习空间</strong>相关博客文章，下面参考资料里有链接，他的文章内容讲的非常详细到位而且也有很多应用实例讲解，详细你会仔细品读的。 :smiley:</p>
+<blockquote>
+<p>参考资料：<br>数字人的学习空间： <a href="http://digitalman.blog.163.com/" target="_blank" rel="noopener">http://digitalman.blog.163.com/</a><br>C4D R17 帮助文档： <a href="http://c4d.cn/help/r17/US/html/1000.html" target="_blank" rel="noopener">http://c4d.cn/help/r17/US/html/1000.html</a><br>XPRESSO路劲设置参数解释： </p>
+</blockquote>
+<ul>
+<li>U: [up one hierarchical level] U 代表向上一层，往上寻找</li>
+<li>D: [down one hierarchical level] D 代表向下一层，往下寻找</li>
+<li>P: [previous object on current hierarchical level] P 在当前层的前一个物体对象</li>
+<li>N: [next object on current hierarchical level] N 是当前层的下一个物体对象</li>
+<li>F: [first object on hierarchical level] F 是的第一个对象</li>
+<li>L: [las object on hierarchical level] L 是最后一个对象</li>
+</ul>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/C4D/" class="button small">C4D</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+        <a href="/2017/06/03/what-do-17-GDEs-for-Android-think-about-Kotlin/" class="alignleft prev" title="【翻译】17位谷歌专家称号大牛如何看待Kotlin"><i class="fa fa-angle-double-left"></i>&nbsp;【翻译】17位谷歌专家称号大牛如何看待Kotlin</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
+      
+      
+        <a href="/2017/05/29/repaire-and-replace-mac-air-keyboard/" class="alignright next" title="修理更换苹果AIR笔记本键盘">修理更换苹果AIR笔记本键盘&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>
