@@ -246,20 +246,20 @@
 <!-- Content -->
 <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p><strong>说明：我目前使用的 <a href="https://downloads.tuxfamily.org/godotengine/3.1/alpha1/" target="_blank" rel="noopener">Godot 3.1 预览版</a>，所以会与 Godot 3 的版本有一些区别，界面影响不大，如果要使用我上传的 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github Demo 代码</a>，记得去官网<a href="https://downloads.tuxfamily.org/godotengine/3.1/alpha1/" target="_blank" rel="noopener">下载 3.1 预览版</a>（或者等之后正版发布）然后就可以正常打开运行 Demo 了。</strong></p>
 <blockquote>
-<p>主要内容： Godot 2D 小游戏入门之使用键盘控制移动<br>阅读时间： 4-5 分钟<br>永久链接：<a href="http://liuqingwen.me/blog/2018/09/18/introduction-of-godot-3-part-3-move-character-with-inputs/">http://liuqingwen.me/blog/2018/09/18/introduction-of-godot-3-part-3-move-character-with-inputs/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+<p>主要内容： Godot 2D 小游戏入门之使用键盘控制移动<br>阅读时间： 4-5 分钟<br>永久链接：<a href="http://liuqingwen.me/2018/09/18/introduction-of-godot-3-part-3-move-character-with-inputs/">http://liuqingwen.me/2018/09/18/introduction-of-godot-3-part-3-move-character-with-inputs/</a><br>系列主页： <a href="http://liuqingwen.me/introduction-of-godot-series/">http://liuqingwen.me/introduction-of-godot-series/</a>  </p>
 </blockquote>
 <h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
 <li>了解图片材质在 Godot 中的导入功能</li>
 <li>创建简单的场景，调整节点渲染次序，给节点添加脚本</li>
 <li>简单的 GDScript 脚本功能介绍和使用</li>
 </ol>
-<h3 id="创建场景"><a href="#创建场景" class="headerlink" title="创建场景"></a>创建场景</h3><p>首先是创建我们的游戏主场景，相比<a href="http://liuqingwen.me/blog/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/">上一节</a>，这个场景会更加简单，首先场景尺寸我在项目设置中设成了 600x600 ，添加一个 <em>Node2D</em> 节点作为根节点，并改名为 Game ，然后添加两个子节点，一个是我们的主角 <em>Sprite</em> 节点，命名为 <em>Knight</em> ，再添加一个 <em>Sprite</em> 节点作为游戏中的地面，单击，命名为 <em>Ground</em> ，接着修改相应的图片材质属性。这里的操作有几点需要注意：</p>
+<h3 id="创建场景"><a href="#创建场景" class="headerlink" title="创建场景"></a>创建场景</h3><p>首先是创建我们的游戏主场景，相比<a href="http://liuqingwen.me/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/">上一节</a>，这个场景会更加简单，首先场景尺寸我在项目设置中设成了 600x600 ，添加一个 <em>Node2D</em> 节点作为根节点，并改名为 Game ，然后添加两个子节点，一个是我们的主角 <em>Sprite</em> 节点，命名为 <em>Knight</em> ，再添加一个 <em>Sprite</em> 节点作为游戏中的地面，单击，命名为 <em>Ground</em> ，接着修改相应的图片材质属性。这里的操作有几点需要注意：</p>
 <p><strong>1. 图片的导入</strong></p>
 <p>如果你滚动鼠标滚轮，放大我们的视窗，你会发现我们的主角：骑士的图片放大后有点模糊，这里我希望能像有些像素游戏一样能够清晰地显示图片各个像素（ 2D 游戏中一般叫完美像素： <em>Pixel Perfect</em> ），那样即使图片很小，像素化后依然显得更加逼真，如何在 Godot 中实现呢？非常简单， Godot 已经为我们预制好了，选中图片，在属性面板上方导入设置中进行相应的设置即可，非常简单，记得设置好之后一定要点击 <em>Reimport</em> 重新导入:</p>
 <p><img src="godot_3_reimport_image.jpg" alt="godot_3_reimport_image.jpg"></p>
 <p>经过像素设置，我们的主角图像放大后像素更加清晰，是不是感觉更加 2D 了？熟悉 Unity 的同学知道，其 2D 场景是伪 3D 场景打造所以并没有 <em>Pixel Perfect</em> 功能。想深入了解 Godot 中更多关于图片压缩模式的知识，可以参考官方的压缩文档： <a href="http://docs.godotengine.org/en/3.0/getting_started/workflow/assets/importing_images.html#compression" target="_blank" rel="noopener">Importing Images - Compression</a></p>
 <p><strong>2. 重铺图片导入</strong></p>
-<p>接着是地面的图片设置，还是使用<a href="http://liuqingwen.me/blog/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/">上一节</a>中的图片，之前我已经提到了如何设置普通图片材质的平铺属性，不过，之前的设置在重新打开后会丢失，如果保存平铺设置？我们需要在图片导入的时候进行相关的设置，保存并重新导入即可，相关设置如下图：</p>
+<p>接着是地面的图片设置，还是使用<a href="http://liuqingwen.me/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/">上一节</a>中的图片，之前我已经提到了如何设置普通图片材质的平铺属性，不过，之前的设置在重新打开后会丢失，如果保存平铺设置？我们需要在图片导入的时候进行相关的设置，保存并重新导入即可，相关设置如下图：</p>
 <p><img src="godot_3_texture_region.jpg" alt="godot_3_texture_region.jpg"></p>
 <p>大致的步骤就是：先选中图片，启用 <em>Repeat</em> 功能，最后点击 <em>Reimport</em> 重新导入图片材质，接着选中地面 <em>Ground</em> 节点，开启图片的 Region 区域设置，设置高度和图片原高度相等，为 256 ，宽度设置为你想要的宽度，比如我设置的是 800 （或者更高）。最后你会发现我们的地面图片在宽度方向上会沿着 X 轴方向自动平铺， OK ，完美解决！</p>
 <p><strong>3. 节点渲染顺序</strong></p>

@@ -304,16 +304,16 @@
 <li><strong>比较</strong></li>
 </ul>
 <p>到目前为止，所有的类库都做到了差不多相同的事情，有些需要，有些则不需要 SQL 语句。然而，我们更感兴趣的是它们的区别。如下图，我通过 3 种不同的方式分别测试了它们的性能，测试过程使用的是这个开源的性能测试<a href="https://github.com/objectbox/objectbox-performance" target="_blank" rel="noopener">应用程序</a>。</p>
-<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_1.jpeg" alt="realm_objectbox_room_comparison" style="float: left; padding: 10px; " />
-<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_2.jpeg" alt="realm_objectbox_room_comparison" style="float: left; padding: 10px; " />
-<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_3.jpeg" alt="realm_objectbox_room_comparison" style="float: left; padding: 10px; " />
-<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_4.jpeg" alt="realm_objectbox_room_comparison" style="float: left; padding: 10px; " />
-<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_5.jpeg" alt="realm_objectbox_room_comparison" />
+<img src="http://liuqingwen.me/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_1.jpeg" alt="realm_objectbox_room_comparison" style="float: left; padding: 10px; " />
+<img src="http://liuqingwen.me/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_2.jpeg" alt="realm_objectbox_room_comparison" style="float: left; padding: 10px; " />
+<img src="http://liuqingwen.me/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_3.jpeg" alt="realm_objectbox_room_comparison" style="float: left; padding: 10px; " />
+<img src="http://liuqingwen.me/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_4.jpeg" alt="realm_objectbox_room_comparison" style="float: left; padding: 10px; " />
+<img src="http://liuqingwen.me/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_5.jpeg" alt="realm_objectbox_room_comparison" />
 
 <p style="text-align: center;font-size: 80%;">测试 100k/10k 个元素的性能，以毫秒为单位</p>
 
 <p>非常漂亮而又很有意思的结果，你觉得呢？从这个测试中可以很清晰地看到，大多数情况下 ObjectBox 都能碾压所有其他竞争对手。并且，当然随着元素的数量级的增加，差距变得越来越大！对于一个新成员来说，表现得还行。<em>可以说非常好。</em></p>
-<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_6.jpeg" alt="realm_objectbox_room_comparison" style="float: left; margin-right: 20px; " />
+<img src="http://liuqingwen.me/images/imgloader.gif" data-echo="realm_objectbox_room_comparison_6.jpeg" alt="realm_objectbox_room_comparison" style="float: left; margin-right: 20px; " />
 
 <p>查询同样看上去是 ObjectBox 的一个强项。测试中采用了字符串和索引，结果不言自明。</p>
 <p>那么 apk 的大小又如何呢？这几个类库对我们项目的整体速度影响又有几何？好吧，我们可以使用最新发布的 apk 分析工具来精确地查看一下每一个类库其影响程度如何。</p>

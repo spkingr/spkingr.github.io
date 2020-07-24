@@ -255,9 +255,9 @@
 <li>Windows 操作系统 64 位版本文件，我这里已经单独列出来： <a href="https://downloads.tuxfamily.org/godotengine/3.1/alpha2/Godot_v3.1-alpha2_win64.exe.zip" target="_blank" rel="noopener">https://downloads.tuxfamily.org/godotengine/3.1/alpha2/Godot_v3.1-alpha2_win64.exe.zip</a></li>
 <li>Godot Engine 官方关于最新预览版的相关介绍： <a href="https://godotengine.org/article/dev-snapshot-godot-3-1-alpha-2" target="_blank" rel="noopener">https://godotengine.org/article/dev-snapshot-godot-3-1-alpha-2</a></li>
 </ul>
-<p>工欲善其事必先利其器，好了，继续我们的 Godot 入门系列。依然基于上一篇文章，本篇我会给大家熟悉的“金币收集者骑士”小 <em>Demo</em> 划上一个句号，几个简单必要的任务是：添加常见的 UI 界面；然后再加一点料——游戏的音乐效果。再浏览之前，请务必参考上一篇文章： <a href="http://liuqingwen.me/blog/2018/11/02/introduction-of-godot-3-part-8-add-collectable-elements-and-sub-scenes/">Godot3 游戏引擎入门之八：添加可收集元素和子场景</a>。</p>
+<p>工欲善其事必先利其器，好了，继续我们的 Godot 入门系列。依然基于上一篇文章，本篇我会给大家熟悉的“金币收集者骑士”小 <em>Demo</em> 划上一个句号，几个简单必要的任务是：添加常见的 UI 界面；然后再加一点料——游戏的音乐效果。再浏览之前，请务必参考上一篇文章： <a href="http://liuqingwen.me/2018/11/02/introduction-of-godot-3-part-8-add-collectable-elements-and-sub-scenes/">Godot3 游戏引擎入门之八：添加可收集元素和子场景</a>。</p>
 <blockquote>
-<p>主要内容： 创建 UI 界面以及添加一些音效<br>阅读时间： 8-10 分钟<br>永久链接：<a href="http://liuqingwen.me/blog/2018/11/09/introduction-of-godot-3-part-9-add-audio-effects-and-ui-elements/">http://liuqingwen.me/blog/2018/11/09/introduction-of-godot-3-part-9-add-audio-effects-and-ui-elements/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+<p>主要内容： 创建 UI 界面以及添加一些音效<br>阅读时间： 8-10 分钟<br>永久链接：<a href="http://liuqingwen.me/2018/11/09/introduction-of-godot-3-part-9-add-audio-effects-and-ui-elements/">http://liuqingwen.me/2018/11/09/introduction-of-godot-3-part-9-add-audio-effects-and-ui-elements/</a><br>系列主页： <a href="http://liuqingwen.me/introduction-of-godot-series/">http://liuqingwen.me/introduction-of-godot-series/</a>  </p>
 </blockquote>
 <h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
 <li>给游戏添加 UI 控件</li>
@@ -265,7 +265,7 @@
 <li>添加一些背景音乐和其他效果</li>
 </ol>
 <h3 id="Godot中的分组"><a href="#Godot中的分组" class="headerlink" title="Godot中的分组"></a>Godot中的分组</h3><p>在添加 UI 控件显示<strong>金币收集数量</strong>之前，我们需要思考三个小问题，这三个问题解决好了界面就非常简单了，接下来我们一个一个解决。第一个问题就是：如何判断游戏场景中的金币已经被收集？</p>
-<p>这个问题其实很好解决，在<a href="http://liuqingwen.me/blog/2018/11/02/introduction-of-godot-3-part-8-add-collectable-elements-and-sub-scenes/">上一篇文章</a>中我们已经在 <em>AnimationPlayer</em> 制作消失动画并结合代码实现的过程中已经解决了：使用 <em>Signal</em> 信号！金币在被采集的时刻，也就是玩家 <em>Player</em> 和金币 <em>Coin</em> （ <em>Area2D</em> ）发生碰撞的那一刻，节点会发出 <code>body_entered</code> 的信号，我们通过连接这个信号做出处理并切换了金币的消失动画，同样的道理，我们可以利用这个信号在游戏主场景中加以利用，在信号订阅函数中进行计数处理，但与之前不同的是：</p>
+<p>这个问题其实很好解决，在<a href="http://liuqingwen.me/2018/11/02/introduction-of-godot-3-part-8-add-collectable-elements-and-sub-scenes/">上一篇文章</a>中我们已经在 <em>AnimationPlayer</em> 制作消失动画并结合代码实现的过程中已经解决了：使用 <em>Signal</em> 信号！金币在被采集的时刻，也就是玩家 <em>Player</em> 和金币 <em>Coin</em> （ <em>Area2D</em> ）发生碰撞的那一刻，节点会发出 <code>body_entered</code> 的信号，我们通过连接这个信号做出处理并切换了金币的消失动画，同样的道理，我们可以利用这个信号在游戏主场景中加以利用，在信号订阅函数中进行计数处理，但与之前不同的是：</p>
 <ul>
 <li>信号处理场景不同：一个在金币子场景，一个在 Game 游戏主场景</li>
 <li>信号处理数量不同：子场景中只有一个 Area2D 节点，主场景有很多个金币实例</li>

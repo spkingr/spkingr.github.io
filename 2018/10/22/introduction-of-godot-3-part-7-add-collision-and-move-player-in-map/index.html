@@ -245,30 +245,30 @@
 
 <!-- Content -->
 <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>在前面的文章中，我分别介绍了如何上下左右移动玩家，以及使用瓦片集制作丰富的游戏地图，现在，是时候结合在一起，制作一个简单的游戏世界了，这个游戏世界既有丰富的场景元素，也有合理的碰撞检测，玩家可以在封闭的世界里自由移动。</p>
-<p><a href="http://liuqingwen.me/blog/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/">Godot3游戏引擎入门之五：上下左右移动动画（下）</a><br><a href="http://liuqingwen.me/blog/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">Godot3游戏引擎入门之六：制作TileMap瓦片地图</a></p>
+<p><a href="http://liuqingwen.me/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/">Godot3游戏引擎入门之五：上下左右移动动画（下）</a><br><a href="http://liuqingwen.me/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">Godot3游戏引擎入门之六：制作TileMap瓦片地图</a></p>
 <p>上面的第一篇文章中，其实我们已经实现了一个简单的封闭世界，我们是这样实现碰撞检测的：给场景中的墙壁添加静态碰撞体，给玩家节点添加 <em>RigidBody2D</em> 刚体属性，我们在代码中设置玩家的线速度，而大部分物理属性由 Godot 引擎帮我们实现了。在第二篇文章中，我们又通过学习 <em>TileSet</em> 和 <em>TileMap</em> 可以在游戏中制作出复杂的场景，但问题是：地图上还缺少碰撞体，无法和玩家进行交互。</p>
 <p>所以，这篇文章要解决上面两个小问题：第一，使用 <em>KinematicBody2D</em> 节点作为玩家对象，这样我们能自由控制物理反馈，实现相关的游戏功能；第二，我们需要给地图添加更多的真实的碰撞体，比如墙壁、障碍物等。这也是我们游戏开发的正常流程。</p>
 <blockquote>
-<p>主要内容： 给 TileMap 地图添加碰撞体并测试<br>阅读时间： 4-6 分钟<br>永久链接：<a href="http://liuqingwen.me/blog/2018/10/22/introduction-of-godot-3-part-7-add-collision-and-move-player-in-map/">http://liuqingwen.me/blog/2018/10/22/introduction-of-godot-3-part-7-add-collision-and-move-player-in-map/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+<p>主要内容： 给 TileMap 地图添加碰撞体并测试<br>阅读时间： 4-6 分钟<br>永久链接：<a href="http://liuqingwen.me/2018/10/22/introduction-of-godot-3-part-7-add-collision-and-move-player-in-map/">http://liuqingwen.me/2018/10/22/introduction-of-godot-3-part-7-add-collision-and-move-player-in-map/</a><br>系列主页： <a href="http://liuqingwen.me/introduction-of-godot-series/">http://liuqingwen.me/introduction-of-godot-series/</a>  </p>
 </blockquote>
 <h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
 <li>给地图中的瓦片添加碰撞体</li>
 <li>玩家添加碰撞体，在地图中移动测试</li>
 <li>学习几个实用的脚本函数</li>
 </ol>
-<h3 id="添加碰撞体"><a href="#添加碰撞体" class="headerlink" title="添加碰撞体"></a>添加碰撞体</h3><p>在<a href="http://liuqingwen.me/blog/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">上篇文章</a>的基础上，我们需要给每一个瓦片添加上碰撞体，这个操作很简单，直接添加具有碰撞体功能的节点即可。在 Godot 3.1 新版本中，设置步骤稍微繁琐，但是效果更加直观，效率也会更高。两种方式我们都了解一下，具体操作方式可以根据你的 Godot 版本而定。</p>
+<h3 id="添加碰撞体"><a href="#添加碰撞体" class="headerlink" title="添加碰撞体"></a>添加碰撞体</h3><p>在<a href="http://liuqingwen.me/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">上篇文章</a>的基础上，我们需要给每一个瓦片添加上碰撞体，这个操作很简单，直接添加具有碰撞体功能的节点即可。在 Godot 3.1 新版本中，设置步骤稍微繁琐，但是效果更加直观，效率也会更高。两种方式我们都了解一下，具体操作方式可以根据你的 Godot 版本而定。</p>
 <p><strong>3.0 版本</strong></p>
 <p>首先打开我们之前保存过的用于创建 <em>TileSet</em> 资源的游戏场景文件（ <code>Tileset_Sprites.tscn</code> 和 <code>Tileset_SpriteSheet.tscn</code> ），然后直接给每一个节点添加碰撞体。场景中的 <em>Sprite</em> 节点最终都会转化为 <em>Tile</em> 瓦片，要给每个瓦片添加碰撞体，只需要在每个 <em>Sprite</em> 节点下添加一个 <em>StaticBody2D</em> 静态碰撞体作为子节点，然后给静态碰撞体添加 <em>CollisionShape2D</em> 节点并设置碰撞体形状即可。</p>
 <p><img src="godot_7_add_collision_node.jpg" alt="godot_7_add_collision_node.jpg"></p>
 <p>这些都在前面的文章里已经详细介绍过了，不过要特别注意的是：给所有 <em>Sprite</em> 节点都添加了碰撞体后，必须<strong>重新保存</strong>以覆盖之前的 <em>TileSet</em> 资源，才能把碰撞体更新到地图中，否则设置了碰撞体也不会有效果。文章后面我会介绍 Godot 中强大的 <em>Debug</em> 功能对碰撞体进行可视化测试，避免意外情况。</p>
 <p><strong>3.1 版本</strong></p>
-<p>Godot 3.1 新版本关于 <em>TileMap</em> 的一些新特性<a href="http://liuqingwen.me/blog/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">上一篇文章</a>已经介绍过了，基本流程类似：<em>划分 Region 区域 -&gt; 标记 Bitmask 掩码 -&gt; 添加 Collision 碰撞体区域</em>。新版本不需要添加任何子节点，直接在相应的瓦片上绘制碰撞体形状即可。如下图，相关参数<a href="http://liuqingwen.me/blog/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">上一篇文章</a>已经介绍过了：</p>
+<p>Godot 3.1 新版本关于 <em>TileMap</em> 的一些新特性<a href="http://liuqingwen.me/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">上一篇文章</a>已经介绍过了，基本流程类似：<em>划分 Region 区域 -&gt; 标记 Bitmask 掩码 -&gt; 添加 Collision 碰撞体区域</em>。新版本不需要添加任何子节点，直接在相应的瓦片上绘制碰撞体形状即可。如下图，相关参数<a href="http://liuqingwen.me/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">上一篇文章</a>已经介绍过了：</p>
 <p><img src="godot_7_tilemap_collision.jpg" alt="godot_7_tilemap_collision.jpg"></p>
 <blockquote>
 <p>注：黄色代表已绘制的碰撞体，蓝色代表正在绘制的碰撞体。<br>操作提示：如果不方便设置自动吸附的参数，那么在绘制碰撞体形状的时候会出现很难精确点位的问题，这个时候我们可以取消吸附，选择粗略绘制完的碰撞体，点击 <em>Points</em> 属性值，对每一个点进行手动修改调整即可。</p>
 </blockquote>
 <p>一般我们给墙壁和不可穿越物体设置碰撞体即可。设置完每一个瓦片集的碰撞体形状后，地图上就会出现相应的<strong>静态</strong>碰撞体了，新版本操作起来非常简单快捷！</p>
-<h3 id="添加主角"><a href="#添加主角" class="headerlink" title="添加主角"></a>添加主角</h3><p>游戏世界里怎么能缺少玩家呢？老生常谈的话题，前面的文章已经多次介绍如何制作完整的 <em>Player</em> 玩家节点了，这里我们的地图是支持 <em>Player</em> 上下左右移动的，实现起来也不难，具体请参考上一篇文章的详细介绍：<a href="http://liuqingwen.me/blog/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/">Godot3 游戏引擎入门之五：上下左右移动动画（下）</a>。本次我们的主角 <em>Player</em> 主要有两种状态：静止（ <code>idle</code> ）和跑动（ <code>run</code> ），注意设置动画的总时长和开启循环播放。另外，由于原图稍大，不能直接放在地图中，我对玩家 <em>Sprite</em> 节点进行了缩放。</p>
+<h3 id="添加主角"><a href="#添加主角" class="headerlink" title="添加主角"></a>添加主角</h3><p>游戏世界里怎么能缺少玩家呢？老生常谈的话题，前面的文章已经多次介绍如何制作完整的 <em>Player</em> 玩家节点了，这里我们的地图是支持 <em>Player</em> 上下左右移动的，实现起来也不难，具体请参考上一篇文章的详细介绍：<a href="http://liuqingwen.me/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/">Godot3 游戏引擎入门之五：上下左右移动动画（下）</a>。本次我们的主角 <em>Player</em> 主要有两种状态：静止（ <code>idle</code> ）和跑动（ <code>run</code> ），注意设置动画的总时长和开启循环播放。另外，由于原图稍大，不能直接放在地图中，我对玩家 <em>Sprite</em> 节点进行了缩放。</p>
 <p><img src="knight.png" alt="knight.png"></p>
 <p><strong>说明：和前面几篇文章不同的是，这里我使用了游戏中常用于制作玩家根节点的 KinematicBody2D 图形学节点作为 Player 对象的根节点，并添加一个 CollisionShape2D 节点作为碰撞体。</strong>这样做既能让 <em>Player</em> 参与物理响应，又能在代码中操作其移动。</p>
 <p><img src="godot_7_collision_shape_size.jpg" alt="godot_7_collision_shape_size.jpg"></p>

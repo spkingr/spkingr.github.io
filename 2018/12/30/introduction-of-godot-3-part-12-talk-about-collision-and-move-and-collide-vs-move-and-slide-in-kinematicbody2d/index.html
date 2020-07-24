@@ -246,21 +246,21 @@
 <!-- Content -->
 <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>这篇文章是为后续小游戏的开发做理论铺垫的。嗯，我们前面已经陆陆续续讨论了很多 Godot 中的一些基础元素、基本功能，最后也顺理成章地完成了两个小 Demo ：</p>
 <ul>
-<li><a href="http://liuqingwen.me/blog/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/">金币收集小游戏</a></li>
-<li><a href="http://liuqingwen.me/blog/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/">太空射击小游戏</a></li>
+<li><a href="http://liuqingwen.me/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/">金币收集小游戏</a></li>
+<li><a href="http://liuqingwen.me/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/">太空射击小游戏</a></li>
 </ul>
 <p>这两个游戏实际上并没有很大的区别，都是简单地进行上下左右移动并完成一些特定功能，所以我打算接下来做一个更常见，更流行的 2D 游戏： 2D Platformer Game ，即所谓的平台游戏！在开启这个游戏之前，我们先一起来讨论平台游戏中涉及到的最重要的一些游戏理论知识： <strong>2D 碰撞检测理论</strong>。</p>
-<p>这些理论涉及到了我们之前讨论过的 <em>Area2D</em> 节点以及 <em>KinematicBody2D/RigidBody2D/KinematicBody2D</em> 节点，以及相关碰撞图层和碰撞图层掩码知识。另外，本文还会详细讲述 KinematicBody2D 在游戏中常用的两个重要方法： <code>move_and_collide()</code> 以及 <code>move_and_slide()</code> 的区别和联系。本文内容参考了 <a href="http://kidscancode.org/" target="_blank" rel="noopener">KidsCanCode</a> 的一篇文章： <a href="http://kidscancode.org/blog/2018/02/godot3_kinematic2d/" target="_blank" rel="noopener">Godot 3.0: Using KinematicBody2D</a> ，然后结合我自己的一些探索实践完成。 :smiley:</p>
+<p>这些理论涉及到了我们之前讨论过的 <em>Area2D</em> 节点以及 <em>KinematicBody2D/RigidBody2D/KinematicBody2D</em> 节点，以及相关碰撞图层和碰撞图层掩码知识。另外，本文还会详细讲述 KinematicBody2D 在游戏中常用的两个重要方法： <code>move_and_collide()</code> 以及 <code>move_and_slide()</code> 的区别和联系。本文内容参考了 <a href="http://kidscancode.org/" target="_blank" rel="noopener">KidsCanCode</a> 的一篇文章： <a href="http://kidscancode.org/2018/02/godot3_kinematic2d/" target="_blank" rel="noopener">Godot 3.0: Using KinematicBody2D</a> ，然后结合我自己的一些探索实践完成。 :smiley:</p>
 <p><img src="kidscancode_godot_k2d_platf_sample.gif" alt="Godot 3.0: Using KinematicBody2D"></p>
 <blockquote>
-<p>主要内容：碰撞理论以及正确使用 KinematicBody2D 节点<br>阅读时间： 15 分钟<br>永久链接： <a href="http://liuqingwen.me/blog/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/">http://liuqingwen.me/blog/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+<p>主要内容：碰撞理论以及正确使用 KinematicBody2D 节点<br>阅读时间： 15 分钟<br>永久链接： <a href="http://liuqingwen.me/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/">http://liuqingwen.me/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/</a><br>系列主页： <a href="http://liuqingwen.me/introduction-of-godot-series/">http://liuqingwen.me/introduction-of-godot-series/</a>  </p>
 </blockquote>
 <h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
 <li>四个节点回顾： KinematicBody2D/RigidBody2D/StaticBody2D/Area2D</li>
 <li>碰撞图层和碰撞图层掩码： Collision Layers/Collision Masks</li>
 <li>两个重要方法的区别和联系： move_and_collide/move_and_slide</li>
 </ol>
-<h3 id="三个物理节点"><a href="#三个物理节点" class="headerlink" title="三个物理节点"></a>三个物理节点</h3><p>在 Godot 中有三个常用的 2D 节点，它们具有碰撞检测与反馈的功能，这三个节点的基础区别在我之前的文章中已经讨论过：<a href="http://liuqingwen.me/blog/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/">Godot3游戏引擎入门之五：上下左右移动动画（下）</a>，搬用之前的表格，他们之间的关系和应用场景大致如下：</p>
+<h3 id="三个物理节点"><a href="#三个物理节点" class="headerlink" title="三个物理节点"></a>三个物理节点</h3><p>在 Godot 中有三个常用的 2D 节点，它们具有碰撞检测与反馈的功能，这三个节点的基础区别在我之前的文章中已经讨论过：<a href="http://liuqingwen.me/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/">Godot3游戏引擎入门之五：上下左右移动动画（下）</a>，搬用之前的表格，他们之间的关系和应用场景大致如下：</p>
 <table>
 <thead>
 <tr>
@@ -296,7 +296,7 @@
 <li>KinematicBody2D 几乎所有的前后左右移动、跳跃的平台游戏玩家或者敌人</li>
 <li>Area2D 常见于游戏中的可收集元素或者标记，比如金币、楼梯、关口或者特殊区域等</li>
 </ul>
-<p>这几个节点我们在前面的文章中都遇见过，也有不少例子，它们的使用方法大家应该都会了。这里，关于刚体 <em>RigidBody2D</em> 我暂时不会介绍很多，大家可以参考这篇文章： <a href="http://kidscancode.org/blog/2017/12/godot3_kyn_rigidbody1/" target="_blank" rel="noopener">Godot 3.0: Rigid Bodies</a> ，介绍的内容比较全面。</p>
+<p>这几个节点我们在前面的文章中都遇见过，也有不少例子，它们的使用方法大家应该都会了。这里，关于刚体 <em>RigidBody2D</em> 我暂时不会介绍很多，大家可以参考这篇文章： <a href="http://kidscancode.org/2017/12/godot3_kyn_rigidbody1/" target="_blank" rel="noopener">Godot 3.0: Rigid Bodies</a> ，介绍的内容比较全面。</p>
 <blockquote>
 <p>重要说明： Godot 3.1 版本中对于 <em>StaticBody2D</em> 以及 <em>RigidBody2D</em> 的摩擦力属性（ <code>friction</code> ）和弹性属性（ <code>bounce</code> ）的设置没有出现在属性面板中，而需要在新增的 <em>Physic Material Override</em> 属性下新建一个 <em>PhysicMaterial</em> 间接进行设置即可，实质上区别影响并不大。</p>
 </blockquote>
@@ -447,7 +447,7 @@
 </ol>
 <p>本篇的 Demo 以及相关代码已经上传到 Github ，地址： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a> ， 2018 年最后一篇文章，<strong>原创不易</strong>，希望大家喜欢，我们 2019 年见！ :smile:</p>
 <blockquote>
-<p>参考文档：<br>官方 API 文档： <a href="http://docs.godotengine.org/en/3.0/classes/class_kinematicbody2d.html?highlight=kinematicbody2d" target="_blank" rel="noopener">http://docs.godotengine.org/en/3.0/classes/class_kinematicbody2d.html?highlight=kinematicbody2d</a><br>Godot 3.0: Using KinematicBody2D ： <a href="http://kidscancode.org/blog/2018/02/godot3_kinematic2d/" target="_blank" rel="noopener">http://kidscancode.org/blog/2018/02/godot3_kinematic2d/</a><br>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="https://github.com/spkingr/test-git/raw/master/images/weixin/weixin_it_258.jpg" alt="IT自学不成才"></p>
+<p>参考文档：<br>官方 API 文档： <a href="http://docs.godotengine.org/en/3.0/classes/class_kinematicbody2d.html?highlight=kinematicbody2d" target="_blank" rel="noopener">http://docs.godotengine.org/en/3.0/classes/class_kinematicbody2d.html?highlight=kinematicbody2d</a><br>Godot 3.0: Using KinematicBody2D ： <a href="http://kidscancode.org/2018/02/godot3_kinematic2d/" target="_blank" rel="noopener">http://kidscancode.org/2018/02/godot3_kinematic2d/</a><br>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="https://github.com/spkingr/test-git/raw/master/images/weixin/weixin_it_258.jpg" alt="IT自学不成才"></p>
 </blockquote>
 
 

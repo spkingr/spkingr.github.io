@@ -251,7 +251,7 @@
 <h3 id="重述：什么是致简代码？"><a href="#重述：什么是致简代码？" class="headerlink" title="重述：什么是致简代码？"></a>重述：什么是致简代码？</h3><p>在我们开始之前，弄清楚什么是致简代码很重要。首先，致简代码是一种<strong>很容易理解</strong>的代码。代码必须直观且易读。我们可以通过让自己的代码更加简洁、简短、简单并富有表现力来达到这个目的。我们在处理<em>最少形式主义和语法噪点</em>的时候也会遇到致简代码。</p>
 <p><img src="wordle-clean-code.svg" alt="wordle-clean-code.svg"></p>
 <h3 id="致简代码和-Kotlin"><a href="#致简代码和-Kotlin" class="headerlink" title="致简代码和 Kotlin"></a>致简代码和 Kotlin</h3><p>让我们考虑几个出自 Robert C. Martin 的著名书籍《 Clean Code 》里的建议和规则。我们将会发掘 Kotlin 在哪里可以帮我们写出致简代码而在哪里又不能。让我们从使用 Kotlin 能够明显提升的地方开始。之后，我将会聊一些限制和缺陷相关内容。</p>
-<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="clean-code-book-cover-150.jpg" alt="clean-code-book-cover" style="float: right; " />
+<img src="http://liuqingwen.me/images/imgloader.gif" data-echo="clean-code-book-cover-150.jpg" alt="clean-code-book-cover" style="float: right; " />
 
 <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="函数应该小巧"><a href="#函数应该小巧" class="headerlink" title="函数应该小巧"></a>函数应该小巧</h4><blockquote>
 <p>“规则 1 ：函数应该小巧！<br>规则 2 ：函数要比那样还小！”<br>“ Clean Code ” —— Robert C. Martin ，页码 34</p>
@@ -433,7 +433,7 @@
 <p>特别是函数扩展功能能让我们的代码既富有表现力又更加整洁。但是要谨慎使用操作符重载。它虽然能够写出简洁的代码但是也能够导致写出很差的代码。只在操作符非常直观的前提下使用它（就像 <code>+</code> 用在数字、字符串和日期上）。而其他的场所，优先使用带有清晰描述和意图的名字所表示的函数方法。</p>
 <h4 id="流行的-Java-习惯和内建模式"><a href="#流行的-Java-习惯和内建模式" class="headerlink" title="流行的 Java 习惯和内建模式"></a>流行的 Java 习惯和内建模式</h4><p>在 Java 中有很多惯用方式和模式都需要一大堆的模板代码。比方说，在 Java 中实现单列模式，观察者模式或者代理模式，代码都很冗余。大部分情况这只会暴露出 Java 语言的缺陷。辛运的是，这些惯用方法和模式都很好的集成在 Kotlin 中了。详细信息可以参考我博客里关于 <a href="https://blog.philipphauer.de/idiomatic-kotlin-best-practices/" target="_blank" rel="noopener">Kotlin 习惯用法</a>的文章。</p>
 <h3 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h3><h4 id="良好的设计有益于致简代码"><a href="#良好的设计有益于致简代码" class="headerlink" title="良好的设计有益于致简代码"></a>良好的设计有益于致简代码</h4><p>到目前为止，我们只考虑到了 Kotlin 中的函数和错误处理功能。除了这些，我还能发现 Kotlin 在对象和数据结构（通过数据类）以及并行性（ Kotlin 1.1 中的协程 ）上的改进。但是 Martin 的书籍覆盖了更多的主题：</p>
-<img src="http://liuqingwen.me/blog/images/imgloader.gif" data-echo="clean-code-book-cover-150.jpg" alt="clean-code-book-cover" style="float: right; " />
+<img src="http://liuqingwen.me/images/imgloader.gif" data-echo="clean-code-book-cover-150.jpg" alt="clean-code-book-cover" style="float: right; " />
 
 <ul>
 <li>有含义的名称</li>

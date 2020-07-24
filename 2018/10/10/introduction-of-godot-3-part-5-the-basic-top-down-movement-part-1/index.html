@@ -247,7 +247,7 @@
 <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>前面的几篇文章陆陆续续开始介绍 2D 游戏中对玩家的一些基本操作流程了，不过功能实现非常有限，接下来我想完完整整的打造一个小 Demo ：在封闭的游戏场景里控制玩家自由移动，从而达到一些简单的目标。那么， first thing first ，从解决<em>上下左右</em>移动功能实现开始！</p>
 <p>上下左右移动也叫 <em>Top-down</em> 移动动画，这篇文章我会通过 Godot 中的节点以及相关的代码来实现玩家主角的基本移动控制。之后，再改造一下游戏场景，让我们的主角自由行走在有限的世界里。一如往常，老司机带路，如果你是编程新手，那么，前方高能请系好安全带啦！当然，前面的文章也讨论过了， GDScript 脚步非常简单，不熟悉的话可以浏览一下本系列之前的文章。</p>
 <blockquote>
-<p>主要内容： Godot 2D 中玩家的上下左右移动及碰撞实现<br>阅读时间： 5 分钟<br>永久链接：<a href="http://liuqingwen.me/blog/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/">http://liuqingwen.me/blog/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+<p>主要内容： Godot 2D 中玩家的上下左右移动及碰撞实现<br>阅读时间： 5 分钟<br>永久链接：<a href="http://liuqingwen.me/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/">http://liuqingwen.me/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/</a><br>系列主页： <a href="http://liuqingwen.me/introduction-of-godot-series/">http://liuqingwen.me/introduction-of-godot-series/</a>  </p>
 </blockquote>
 <h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
 <li>使用 AnimationPlayer 节点工具创建状态动画</li>
@@ -255,10 +255,10 @@
 <li>简单的摄像机使用和地图碰撞检测实现</li>
 <li>通过代码实现 RigidBody2D 刚体节点的运动</li>
 </ol>
-<h3 id="创建动画"><a href="#创建动画" class="headerlink" title="创建动画"></a>创建动画</h3><p>相信看了<a href="http://liuqingwen.me/blog/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/">上篇文章</a>的朋友应该对 <em>AnimationPlayer</em> 这个功能强大的动画工具有了一定的了解。之前只是利用它最基础的功能实现了一个简单的天鹅飞舞动画，接来下我们要使用 <em>AnimationPlayer</em> 节点实现稍微复杂的动画制作——玩家的各种状态动画实现。</p>
+<h3 id="创建动画"><a href="#创建动画" class="headerlink" title="创建动画"></a>创建动画</h3><p>相信看了<a href="http://liuqingwen.me/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/">上篇文章</a>的朋友应该对 <em>AnimationPlayer</em> 这个功能强大的动画工具有了一定的了解。之前只是利用它最基础的功能实现了一个简单的天鹅飞舞动画，接来下我们要使用 <em>AnimationPlayer</em> 节点实现稍微复杂的动画制作——玩家的各种状态动画实现。</p>
 <p>我们先创建一个场景，根节点改名为 <em>Game</em> ，添加两个子节点： <em>Sprite</em> （命名为 <em>Player</em> ）和 <em>AnimationPlayer</em> 节点。 <em>Player</em> 节点的图片材质是一张 4x5 的 SpriteSheet 精灵图集，四行分别代表下、左、右、上移动动画：</p>
 <p><img src="player_sprite_sheet.png" alt="player_sprite_sheet.png"></p>
-<p>和上篇文章制作天鹅动画操作一样，分别制作四个移动动画，这四个动画都设置为循环播放，动画时长和步进大家可以自己尝试进行设置不同的时间，直到自己满意为止吧，我的就随便设置了： 时长 0.8 ，步进 0.2 ，具体设置参考上一篇文章：<a href="http://liuqingwen.me/blog/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/">Godot3游戏引擎入门之四：给主角添加动画（下）</a>。接下来才是重点：我们制作一个游戏启动时刻玩家入场动画。其实这个游戏大可不必这样做，完全是为了演示 <em>AnimationPlayer</em> 的强大功能，并增加一些喜感吧，当然也有一定借鉴意义，哈哈。</p>
+<p>和上篇文章制作天鹅动画操作一样，分别制作四个移动动画，这四个动画都设置为循环播放，动画时长和步进大家可以自己尝试进行设置不同的时间，直到自己满意为止吧，我的就随便设置了： 时长 0.8 ，步进 0.2 ，具体设置参考上一篇文章：<a href="http://liuqingwen.me/2018/09/27/introduction-of-godot-3-part-4-add-some-cute-animations-part-2/">Godot3游戏引擎入门之四：给主角添加动画（下）</a>。接下来才是重点：我们制作一个游戏启动时刻玩家入场动画。其实这个游戏大可不必这样做，完全是为了演示 <em>AnimationPlayer</em> 的强大功能，并增加一些喜感吧，当然也有一定借鉴意义，哈哈。</p>
 <p>玩家 <em>Player</em> 入场动画的基本思路是这样的：主角从场景中央稍微偏上的位置快速移动到屏幕中央（ <code>position</code> ），同时尺寸由小逐渐放大到正常缩放（ <code>scale</code> ），并伴随透明度从<em>完全透明</em>到<em>完全不透明</em>（ <code>modulate/a</code> ），动画最后再加上一段玩家闪现的动画进行强调（ <code>visible</code> ）。哈哈，颇有主角粉墨登场的戏份啊！欢呼吧，骚年~ :sunglasses:</p>
 <p>思路有了，关键在于使用 <em>AnimationPlayer</em> 来进行创建了。之前的动画制作都是一个轨道解决一个动画，但是这个动画不同了，需要一个动画实现多个属性的控制，这里就需要多个轨道了，每个属性分别创建一个轨道，然后对属性设置关键帧进行动画控制，这里需要注意的第一点是： Godot 3.1 alpha 版本中对<strong>位置和缩放</strong>属性不能直接使用<strong>钥匙🗝️</strong>按钮创建相应的轨道和关键帧，会重复创建轨道，这应该是一个 Bug ，不过不要紧，我们使用普通的做法，手动创建 <code>Property Track</code> 属性轨道，选择 <em>Player</em> 节点的相应属性，之后可以正常使用<strong>钥匙🗝️</strong>按钮创建关键帧，部分操作如下图：</p>
 <p><img src="godot_5_property_track.jpg" alt="godot_5_property_track.jpg"></p>

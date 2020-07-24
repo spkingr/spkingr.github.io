@@ -266,7 +266,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line">&lt;p markdown="1" style="</span><br><span class="line">    color: red; </span><br><span class="line">    font-weight: bold; "</span><br><span class="line">&gt;PS: （2017-05-15更新）更新的内容如下......&lt;/p&gt;</span><br><span class="line">&#123;% endraw %&#125;</span><br></pre></td></tr></table></figure>
 
 <p>尽情的在 <code>style=&quot;&quot;</code> 中添加你想要的样式吧。 :grin:</p>
-<h3 id="2-添加博客-RSS-订阅功能"><a href="#2-添加博客-RSS-订阅功能" class="headerlink" title="2. 添加博客 RSS 订阅功能"></a>2. 添加博客 RSS 订阅功能</h3><p>虽然这个功能有点鸡肋，但是如果你是一位优秀的博主，日志文章被大量客户访问阅读，那么你必定需要 RSS 订阅模块，为那些有需求的客户提供日志订阅的功能。我的博客 RSS 订阅就是一个 XML 文件的链接，这个 <a href="http://liuqingwen.me/blog/atom.xml">XML 文件</a>需要由插件自动生成，这个插件是： <code>hexo-generator-feed</code> ，在 GitHub 上有相关应用说明：<a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="noopener">hexojs/hexo-generator-feed</a> 。直接安装这个 Hexo 插件：</p>
+<h3 id="2-添加博客-RSS-订阅功能"><a href="#2-添加博客-RSS-订阅功能" class="headerlink" title="2. 添加博客 RSS 订阅功能"></a>2. 添加博客 RSS 订阅功能</h3><p>虽然这个功能有点鸡肋，但是如果你是一位优秀的博主，日志文章被大量客户访问阅读，那么你必定需要 RSS 订阅模块，为那些有需求的客户提供日志订阅的功能。我的博客 RSS 订阅就是一个 XML 文件的链接，这个 <a href="http://liuqingwen.me/atom.xml">XML 文件</a>需要由插件自动生成，这个插件是： <code>hexo-generator-feed</code> ，在 GitHub 上有相关应用说明：<a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="noopener">hexojs/hexo-generator-feed</a> 。直接安装这个 Hexo 插件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>
 
 <p>安装好之后，每次 <code>hexo g</code> 命令或者启动服务都会自动生成 <code>atom.xml</code> 文件（你也可以设置成 <code>rss2.xml</code> 文件，具体设置参考官网吧），然后把 RSS 订阅的地址链接到这个文件即可！ So easy! :laughing:</p>
@@ -313,7 +313,7 @@
 
 <p>如果你和我的一样设置，记得在 <code>source/_post/search</code> 文件夹下的 <code>index.md</code> 中的 <code>Front-matter</code> 添加 <code>addSearch: true</code> 参数。好了，就这样OK了，希望你能理解吧。 :blush:</p>
 <h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>越到后面确实有点小复杂，我也是折腾了不少时间啊，主要是对于前端我几乎完全门外汉，没办法，只能自己琢磨了。不求花哨，但求够用。 :grin:</p>
-<p>最后，在这里还是需要提醒一下，如果博客配置文件 <code>_config.yml</code> 中指定博客地址有根目录的话，比如我的博客根目录是 <code>root: /blog/</code> ，那么有很多地方需要加上 <code>config.root</code> 才能正确显示相关的链接（也包括资源的引用，你可以看到我的代码中不少包含了 <code>config.root</code> ），我设置了根目录，所以直接使用 Tipue 搜索引擎的时候搜索出来的文章显示的链接少了 <code>/blog</code> ，那样都是错误的地址，这时候就要手动更改一下 <code>hexo-generator-tipue-search-json</code> 这个插件的源码使它在生成的 JSON 数据的链接里加入 <code>/blog</code> ，修改按以下步骤：</p>
+<p>最后，在这里还是需要提醒一下，如果博客配置文件 <code>_config.yml</code> 中指定博客地址有根目录的话，比如我的博客根目录是 <code>root: /</code> ，那么有很多地方需要加上 <code>config.root</code> 才能正确显示相关的链接（也包括资源的引用，你可以看到我的代码中不少包含了 <code>config.root</code> ），我设置了根目录，所以直接使用 Tipue 搜索引擎的时候搜索出来的文章显示的链接少了 <code>/blog</code> ，那样都是错误的地址，这时候就要手动更改一下 <code>hexo-generator-tipue-search-json</code> 这个插件的源码使它在生成的 JSON 数据的链接里加入 <code>/blog</code> ，修改按以下步骤：</p>
 <ol>
 <li>找到博客根目录下 <code>node_modules/hexo-generator-tipue-search-json/index.js</code> 文件</li>
 <li>打开并找到这行代码： <code>case &#39;url&#39;: return actualPost[item] = post[&#39;path&#39;];</code></li>

@@ -244,10 +244,10 @@
 <div id="tipue_search_content" style="display: none"></div>
 
 <!-- Content -->
-<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本篇是上一节文章：<a href="http://liuqingwen.me/blog/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/">Godot3游戏引擎入门之五：上下左右移动动画（上）</a>的继续。上一篇使用动画和代码实现了玩家的上下左右移动功能，接下来我们解决一个问题：给游戏添加碰撞体，让玩家在有限的地图中移动。</p>
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>本篇是上一节文章：<a href="http://liuqingwen.me/2018/10/10/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-1/">Godot3游戏引擎入门之五：上下左右移动动画（上）</a>的继续。上一篇使用动画和代码实现了玩家的上下左右移动功能，接下来我们解决一个问题：给游戏添加碰撞体，让玩家在有限的地图中移动。</p>
 <p><strong>注意：我目前使用的是 <a href="https://downloads.tuxfamily.org/godotengine/3.1/alpha1/" target="_blank" rel="noopener">Godot 3.1 预览版</a>，与 Godot 3.0 正式版有一些区别，不过界面上影响不大，如果要使用我所上传的 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github Demo 代码</a>，记得去官网<a href="https://downloads.tuxfamily.org/godotengine/3.1/alpha1/" target="_blank" rel="noopener">下载 3.1 预览版</a>然后就可以正常打开运行 Demo 了。 Good luck!</strong></p>
 <blockquote>
-<p>主要内容： Godot 2D 中玩家的上下左右移动及碰撞实现<br>阅读时间： 4-5 分钟<br>永久链接：<a href="http://liuqingwen.me/blog/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/">http://liuqingwen.me/blog/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/blog/introduction-of-godot-series/</a>  </p>
+<p>主要内容： Godot 2D 中玩家的上下左右移动及碰撞实现<br>阅读时间： 4-5 分钟<br>永久链接：<a href="http://liuqingwen.me/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/">http://liuqingwen.me/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/</a><br>系列主页： <a href="http://liuqingwen.me/introduction-of-godot-series/">http://liuqingwen.me/introduction-of-godot-series/</a>  </p>
 </blockquote>
 <h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h3><ol>
 <li>使用 AnimationPlayer 节点工具创建状态动画（上）</li>
@@ -259,7 +259,7 @@
 <p><img src="godot_5_result2.gif" alt="godot_5_result2.gif"></p>
 <p>接下来利用物理引擎相关知识解决玩家移动范围限制的问题。</p>
 <h3 id="添加碰撞体"><a href="#添加碰撞体" class="headerlink" title="添加碰撞体"></a>添加碰撞体</h3><p>首先要做的是给墙壁添加上碰撞体，限制场景运动区域范围。由于墙壁是静止不动的物体，所以我们给它添加一个 <em>StaticBody2D</em> 静态碰撞体节点。你可以直接在 <em>Sprite</em> 节点下添加一个静态碰撞体，并设置好碰撞体大小；也可以把 <em>Sprite</em> 作为 <em>StaticBody2D</em> 的子节点，这也是推荐的流程。但是在没有特殊用途下（比如不需要添加代码等），你可以随便安排， Godot 中的节点是非常灵活的。</p>
-<p>这里为了正确设置碰撞体的形状，我把之前单一的墙壁背景拆分为了四面独立的墙，然后分别设置碰撞体形状。接着要在玩家节点上添加碰撞体，这里我们需要谨慎操作：<strong>第一是注意节点的类型，和墙壁不同，玩家是可以移动的，且拥有物理属性，所以不能使用静态碰撞体；第二是节点的父子关系的顺序问题，我们因为要移动碰撞体，而不是 Sprite 精灵图片节点，所以 Sprite 应该作为碰撞体节点的子节点，且不能弄反！</strong>详细解说在我的入门文章第二篇中有详述： <a href="http://liuqingwen.me/blog/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/">Godot3 游戏引擎入门之二：第一个简单的游戏场景</a>。</p>
+<p>这里为了正确设置碰撞体的形状，我把之前单一的墙壁背景拆分为了四面独立的墙，然后分别设置碰撞体形状。接着要在玩家节点上添加碰撞体，这里我们需要谨慎操作：<strong>第一是注意节点的类型，和墙壁不同，玩家是可以移动的，且拥有物理属性，所以不能使用静态碰撞体；第二是节点的父子关系的顺序问题，我们因为要移动碰撞体，而不是 Sprite 精灵图片节点，所以 Sprite 应该作为碰撞体节点的子节点，且不能弄反！</strong>详细解说在我的入门文章第二篇中有详述： <a href="http://liuqingwen.me/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/">Godot3 游戏引擎入门之二：第一个简单的游戏场景</a>。</p>
 <p>和大名鼎鼎的 <a href="https://box2d.org/" target="_blank" rel="noopener">Box2D</a> 开源物理引擎类似， Godot 中也有三种常用的物理碰撞体： <em>StaticBody2D | RigidBody2D | KinematicBody2D</em> ，同属于 <em>PhysicsBody2D</em> 类型下，它们之间的异同点大致如下；</p>
 <table>
 <thead>
