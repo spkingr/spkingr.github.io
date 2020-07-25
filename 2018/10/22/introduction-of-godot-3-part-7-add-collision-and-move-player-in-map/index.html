@@ -259,19 +259,19 @@
 <h3 id="添加碰撞体"><a href="#添加碰撞体" class="headerlink" title="添加碰撞体"></a>添加碰撞体</h3><p>在<a href="http://liuqingwen.me/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">上篇文章</a>的基础上，我们需要给每一个瓦片添加上碰撞体，这个操作很简单，直接添加具有碰撞体功能的节点即可。在 Godot 3.1 新版本中，设置步骤稍微繁琐，但是效果更加直观，效率也会更高。两种方式我们都了解一下，具体操作方式可以根据你的 Godot 版本而定。</p>
 <p><strong>3.0 版本</strong></p>
 <p>首先打开我们之前保存过的用于创建 <em>TileSet</em> 资源的游戏场景文件（ <code>Tileset_Sprites.tscn</code> 和 <code>Tileset_SpriteSheet.tscn</code> ），然后直接给每一个节点添加碰撞体。场景中的 <em>Sprite</em> 节点最终都会转化为 <em>Tile</em> 瓦片，要给每个瓦片添加碰撞体，只需要在每个 <em>Sprite</em> 节点下添加一个 <em>StaticBody2D</em> 静态碰撞体作为子节点，然后给静态碰撞体添加 <em>CollisionShape2D</em> 节点并设置碰撞体形状即可。</p>
-<p><img src="godot_7_add_collision_node.jpg" alt="godot_7_add_collision_node.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_7_add_collision_node.jpg" alt="godot_7_add_collision_node.jpg"></p>
 <p>这些都在前面的文章里已经详细介绍过了，不过要特别注意的是：给所有 <em>Sprite</em> 节点都添加了碰撞体后，必须<strong>重新保存</strong>以覆盖之前的 <em>TileSet</em> 资源，才能把碰撞体更新到地图中，否则设置了碰撞体也不会有效果。文章后面我会介绍 Godot 中强大的 <em>Debug</em> 功能对碰撞体进行可视化测试，避免意外情况。</p>
 <p><strong>3.1 版本</strong></p>
 <p>Godot 3.1 新版本关于 <em>TileMap</em> 的一些新特性<a href="http://liuqingwen.me/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">上一篇文章</a>已经介绍过了，基本流程类似：<em>划分 Region 区域 -&gt; 标记 Bitmask 掩码 -&gt; 添加 Collision 碰撞体区域</em>。新版本不需要添加任何子节点，直接在相应的瓦片上绘制碰撞体形状即可。如下图，相关参数<a href="http://liuqingwen.me/2018/10/19/introduction-of-godot-3-part-6-make-tile-map-in-godot/">上一篇文章</a>已经介绍过了：</p>
-<p><img src="godot_7_tilemap_collision.jpg" alt="godot_7_tilemap_collision.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_7_tilemap_collision.jpg" alt="godot_7_tilemap_collision.jpg"></p>
 <blockquote>
 <p>注：黄色代表已绘制的碰撞体，蓝色代表正在绘制的碰撞体。<br>操作提示：如果不方便设置自动吸附的参数，那么在绘制碰撞体形状的时候会出现很难精确点位的问题，这个时候我们可以取消吸附，选择粗略绘制完的碰撞体，点击 <em>Points</em> 属性值，对每一个点进行手动修改调整即可。</p>
 </blockquote>
 <p>一般我们给墙壁和不可穿越物体设置碰撞体即可。设置完每一个瓦片集的碰撞体形状后，地图上就会出现相应的<strong>静态</strong>碰撞体了，新版本操作起来非常简单快捷！</p>
 <h3 id="添加主角"><a href="#添加主角" class="headerlink" title="添加主角"></a>添加主角</h3><p>游戏世界里怎么能缺少玩家呢？老生常谈的话题，前面的文章已经多次介绍如何制作完整的 <em>Player</em> 玩家节点了，这里我们的地图是支持 <em>Player</em> 上下左右移动的，实现起来也不难，具体请参考上一篇文章的详细介绍：<a href="http://liuqingwen.me/2018/10/11/introduction-of-godot-3-part-5-the-basic-top-down-movement-part-2/">Godot3 游戏引擎入门之五：上下左右移动动画（下）</a>。本次我们的主角 <em>Player</em> 主要有两种状态：静止（ <code>idle</code> ）和跑动（ <code>run</code> ），注意设置动画的总时长和开启循环播放。另外，由于原图稍大，不能直接放在地图中，我对玩家 <em>Sprite</em> 节点进行了缩放。</p>
-<p><img src="knight.png" alt="knight.png"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="knight.png" alt="knight.png"></p>
 <p><strong>说明：和前面几篇文章不同的是，这里我使用了游戏中常用于制作玩家根节点的 KinematicBody2D 图形学节点作为 Player 对象的根节点，并添加一个 CollisionShape2D 节点作为碰撞体。</strong>这样做既能让 <em>Player</em> 参与物理响应，又能在代码中操作其移动。</p>
-<p><img src="godot_7_collision_shape_size.jpg" alt="godot_7_collision_shape_size.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_7_collision_shape_size.jpg" alt="godot_7_collision_shape_size.jpg"></p>
 <p>另外有三个需要注意的地方：</p>
 <ul>
 <li>第一个是碰撞体形状中的 <code>Extends</code> 属性值表示半宽和半高，这和 <a href="https://box2d.org/" target="_blank" rel="noopener">Box2D</a> 物理引擎一样</li>
@@ -279,35 +279,34 @@
 <li>第三个，也是非常重要的一点：<strong>不要缩放碰撞体形状</strong>，即：不要设置 <code>scale</code> 属性</li>
 </ul>
 <p>第三点同样是为了防止产生意外碰撞情形，不过这点貌似在 Godot 3.1 版本中已经修正了：在绘制碰撞体图形时不能直接拖拽鼠标进行缩放碰撞体了：</p>
-<p><img src="godot_7_handle_of_collision_shape.jpg" alt="godot_7_handle_of_collision_shape.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_7_handle_of_collision_shape.jpg" alt="godot_7_handle_of_collision_shape.jpg"></p>
 <p>准备工作已经完成，接下来就是最关键的部分：脚本代码了。</p>
 <h3 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h3><p>给游戏场景的根节点 <em>Game</em> 添加一个 GDScript 脚本，参考前面学习到的知识， 代码量并不多，新的方法已经做了注释，全部的代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">extends Node2D</span><br><span class="line"></span><br><span class="line"><span class="comment"># export使变量能在属性窗口中显示和设置值</span></span><br><span class="line">export(float) var speed = <span class="number">1</span></span><br><span class="line">onready var player = $Player</span><br><span class="line">onready var sprite = $Player/Sprite</span><br><span class="line">onready var animationPlayer = $Player/AnimationPlayer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在这里不使用_process(delta)方法处理物理引擎，</span></span><br><span class="line"><span class="comment"># 而应该使用_physics_process(delta)方法进行处理</span></span><br><span class="line">func _physics_process(delta):</span><br><span class="line">	var velocity = Vector2()</span><br><span class="line">	var isMoving = false</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> Input.is_action_pressed(<span class="string">'ui_left'</span>):</span><br><span class="line">		velocity.x += <span class="number">-1</span></span><br><span class="line">		sprite.flip_h = true</span><br><span class="line">		isMoving = true</span><br><span class="line">	<span class="keyword">if</span> Input.is_action_pressed(<span class="string">'ui_right'</span>):</span><br><span class="line">		velocity.x += <span class="number">1</span></span><br><span class="line">		sprite.flip_h = false</span><br><span class="line">		isMoving = true</span><br><span class="line">	<span class="keyword">if</span> Input.is_action_pressed(<span class="string">'ui_up'</span>):</span><br><span class="line">		velocity.y += <span class="number">-1</span></span><br><span class="line">		isMoving = true</span><br><span class="line">	<span class="keyword">if</span> Input.is_action_pressed(<span class="string">'ui_down'</span>):</span><br><span class="line">		velocity.y += <span class="number">1</span></span><br><span class="line">		isMoving = true</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">if</span> velocity.length() &gt; <span class="number">0</span>:</span><br><span class="line">		velocity = velocity.normalized() * speed</span><br><span class="line">		<span class="comment"># 关键代码：移动并测试碰撞体，参数为玩家的移动速度</span></span><br><span class="line">		player.move_and_collide(velocity)</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> isMoving <span class="keyword">and</span> animationPlayer.current_animation != <span class="string">'run'</span>:</span><br><span class="line">		animationPlayer.current_animation = <span class="string">'run'</span></span><br><span class="line">	<span class="keyword">elif</span> ! isMoving <span class="keyword">and</span> animationPlayer.current_animation != <span class="string">'idle'</span>:</span><br><span class="line">		animationPlayer.current_animation = <span class="string">'idle'</span></span><br></pre></td></tr></table></figure>
-
 <p>新的关键词和脚本函数介绍；</p>
 <ol>
 <li><code>export</code> 关键字修饰的变量能在编辑器的属性窗口中显示并设置值，类似 Unity 中的 <code>public/[Serialized]</code> 关键词</li>
 <li><code>flip_h</code> 布尔值表示图片是否<strong>水平翻转</strong>，产生向左或者向右的效果，相比使用 <code>scale</code> 缩放属性更加方便简洁</li>
 <li><code>move_and_collide(Vector2)</code> 这是本文 Demo 代码的精髓部分，传递一个<strong>速度矢量</strong>参数，游戏引擎将移动并处理物理碰撞，简洁又强大</li>
 </ol>
-<p><img src="godot_7_export_variable.jpg" alt="godot_7_export_variable.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_7_export_variable.jpg" alt="godot_7_export_variable.jpg"></p>
 <h3 id="效果调试"><a href="#效果调试" class="headerlink" title="效果调试"></a>效果调试</h3><p>全部完成了，按 <em>F5</em> 运行游戏，测试我们的最终成果吧。感觉如何？反正我还是有点激动的，“尽情”探索一个“未知世界”吧：有围墙，有障碍物，有墙壁，各种地形等，如果在跑动过程发现有任何问题，别慌，你还可以对地图的所有碰撞体进行 Debug 调试！这也是 Godot 的强大功能之一，在 Debug 菜单下勾选 <em>Visible Collision Shapes</em> 选项即可开启！</p>
-<p><img src="godot_7_debug_collision.jpg" alt="godot_7_debug_collision.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_7_debug_collision.jpg" alt="godot_7_debug_collision.jpg"></p>
 <p>开启碰撞调试后运行游戏的效果：</p>
-<p><img src="result_1.gif" alt="result_1.gif"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="result_1.gif" alt="result_1.gif"></p>
 <p>注意图中的蓝色形状体就是地图碰撞体，是不是和预期一样？调试的时候，我稍微放大了 <em>Player</em> 节点图片，测试的时候看得清楚些，如果你之前有多余的地图，那么场景中可能有多余的不可见的碰撞体存在，这样会影响游戏运行，避免的方法可以直接删除之前的 <em>TileMap</em> 测试地图，也可以在瓦片地图属性下对碰撞图层进行设置，取消碰撞图层和碰撞掩码即可，关于碰撞图层和掩码设置我在后面再讲，操作如下图：</p>
-<p><img src="godot_7_set_collision_layer.jpg" alt="godot_7_set_collision_layer.jpg"></p>
-<p>确认场景没有问题后，关闭调试，运行游戏，享受一下自己的成果吧！ :smiley:</p>
-<p><img src="result_2.gif" alt="result_2.gif"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_7_set_collision_layer.jpg" alt="godot_7_set_collision_layer.jpg"></p>
+<p>确认场景没有问题后，关闭调试，运行游戏，享受一下自己的成果吧！ <img class="github-emoji"  title="smiley" alt="smiley" src="http://liuqingwen.me/images/emoji/smiley.png" height="20" width="20" /></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="result_2.gif" alt="result_2.gif"></p>
 <h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>本篇文章可以算是之前文章的一个结合，是不是感觉越来越简单了？开始动手实现自己的小游戏吧，骚年！不吹逼了，总结下本篇的知识点：</p>
 <ol>
 <li>Tile 瓦片碰撞体设置</li>
 <li>Debug 调试地图、玩家的碰撞体运行状态</li>
 <li>几个有用的 GDScript 脚本代码技巧</li>
 </ol>
-<p>我想，接下来给大家介绍一些游戏开发中常用的、实用的技巧，以及帮助大家提高效率，在强大开源的 Godot 游戏引擎中以正确的姿势开发 2D 小游戏！“静候佳音”吧，哈哈。嗯，还是那句话，<strong>原创不易</strong>，希望大家喜欢！ :smile:</p>
+<p>我想，接下来给大家介绍一些游戏开发中常用的、实用的技巧，以及帮助大家提高效率，在强大开源的 Godot 游戏引擎中以正确的姿势开发 2D 小游戏！“静候佳音”吧，哈哈。嗯，还是那句话，<strong>原创不易</strong>，希望大家喜欢！ <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
 <blockquote>
-<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzg3MjAwMjI4Mg==&mid=100000071&idx=1&sn=440b2050b4c7495c64f66c41b028c406&send_time=1536712211" alt="IT自学不成才"></p>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&amp;size=102&amp;__biz=Mzg3MjAwMjI4Mg==&amp;mid=100000071&amp;idx=1&amp;sn=440b2050b4c7495c64f66c41b028c406&amp;send_time=1536712211" alt="IT自学不成才"></p>
 </blockquote>
 
 

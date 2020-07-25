@@ -261,10 +261,8 @@
 <p>比如你有个 <code>RecyclerViewadapter</code> 类会接收一个事件监听。众所周知， <code>RecyclerView</code> 和 <code>ListView</code> 一样没有标准的处理单项视图点击事件的方式，所以我们必须动手自己写。</p>
 <p>假设我们有个事件监听需要访问这个视图，我们的适配器类就像下面这样：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span></span>(<span class="keyword">val</span> items: List&lt;Item&gt;, <span class="keyword">val</span> listener: (View) -&gt; <span class="built_in">Unit</span>) : RecyclerView.Adapter&lt;MyAdapter.ViewHolder&gt;() &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>同时你的 <code>ViewHolder</code> 可能也需要接收这个监听事件，把它赋值给这个视图的点击事件监听者：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span></span>(itemView: View) : RecyclerView.ViewHolder(itemView) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">bind</span><span class="params">(item: <span class="type">Item</span>, listener: (<span class="type">View</span>) -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">        itemView.setOnClickListener(listener)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>这种情况并不复杂，如你所见，在上下文之外，我们需要多次重复定义这个 lambda 表达式导致代码可读性降低。</p>
 <p>但是，我们可以使用类型别名来表示一个点击事件监听者： <code>typealias ClickListener = (View) -&gt; Unit</code><br>这样我们就能在任意需要这个事件监听的地方使用它，像这样： <code>class MyAdapter(val items: List&lt;Item&gt;, val listener: ClickListener)</code> 或者 <code>fun bind(item: Item, listener: ClickListener) { ... }</code></p>
 <ul>
@@ -273,19 +271,15 @@
 <p>数据类非常有用，因为它避免了大量的重复模板工作。但是他们在某些功能上的缺乏使得在有些场所并不能派上用场。</p>
 <p>Kotlin 1.1 中引入的一个新特性就是继承性：数据类也可以继承自其他类。这就允许数据类成为封装类的一部分：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">UiOp</span> </span>&#123;</span><br><span class="line">    <span class="keyword">object</span> Show : UiOp()</span><br><span class="line">    <span class="keyword">object</span> Hide : UiOp()</span><br><span class="line">    <span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Translate</span></span>(<span class="keyword">val</span> axis: Axis, <span class="keyword">val</span> amount: <span class="built_in">Int</span>): UiOp()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>现在，<strong>封装类可以在父类之外定义了</strong>，就像这样：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">UiOp</span></span></span><br><span class="line"><span class="keyword">object</span> Show : UiOp()</span><br><span class="line"><span class="keyword">object</span> Hide : UiOp()</span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Translate</span></span>(<span class="keyword">val</span> axis: Axis, <span class="keyword">val</span> amount: <span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><h3 id="lambda-表达式的解构体"><a href="#lambda-表达式的解构体" class="headerlink" title="lambda 表达式的解构体"></a>lambda 表达式的解构体</h3></li>
 </ul>
 <p>数据类在最初始的版本中就能够使用解构体，那是多亏了自动生成的 <code>componentX()</code> 方法。你可以把数据类的内容用这样的方式同时赋值给多个变量：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Item</span></span>(<span class="keyword">val</span> text: String, <span class="keyword">val</span> url: String)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">val</span> (text, url) = item</span><br></pre></td></tr></table></figure>
-
 <p>但是之前，这个非常有用而强大的特性却不能在 lambda 表达式中使用。现在这种方式被改变了，你可以像这样做：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">bind</span><span class="params">(item: <span class="type">Item</span>)</span></span> = item.let &#123; (text, url) -&gt;</span><br><span class="line">    textView.text = text</span><br><span class="line">    imageView.loadUrl(url)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>这确实对于双元素或者字典中键值对设置非常有用，打个比方。</p>
 <ul>
 <li><h3 id="局部属性代理"><a href="#局部属性代理" class="headerlink" title="局部属性代理"></a>局部属性代理</h3></li>
@@ -295,7 +289,6 @@
 <p>懒加载对于局部变量也是很有用的，但是 Kotlin 却没有这样的特性。</p>
 <p>现在，我们可以这样使用局部属性代理：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testLocalDelegation</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> database <span class="keyword">by</span> lazy &#123; createDatabase() &#125;</span><br><span class="line">    <span class="keyword">val</span> cache <span class="keyword">by</span> lazy &#123; createMemoryCache() &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (mustUseDatabase()) &#123;</span><br><span class="line">        database.use &#123; ... &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        cache.use &#123; ... &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>尽管这个例子完全可以不使用懒加载来做，但是这有助于我们理解相关概念。</p>
 <p>有一些相当耗资源的操作我们可能会执行也可能不会。通过使用懒加载，我们可以延迟资源的实例化直到我们必须使用它。</p>
 <p>当第一次运行的时候，大括号里的代码就会被执行，同时也会缓存起来供之后使用。</p>
@@ -306,14 +299,11 @@
 <p>这是因为在 Kotlin 1.0 版本中我们没有一种有效的方式来抛弃那些不需要使用的参数。</p>
 <p>举个例子，在文章的前面我解释了如何使用代理更新一个 RecyclerView 的适配器，后面的代码是这样的：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items: List&lt;Content&gt; <span class="keyword">by</span> Delegates.observable(emptyList()) &#123;</span><br><span class="line">    prop, old, new -&gt;</span><br><span class="line">    autoNotify(old, new) &#123; o, n -&gt; o.id == n.id &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>这个 prop 参数并没有用上，但是却必须要有它的定义。现在，你可以采用下划线来避免这种情况：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items: List&lt;Content&gt; <span class="keyword">by</span> Delegates.observable(emptyList()) &#123;</span><br><span class="line">    _, old, new -&gt;</span><br><span class="line">    autoNotify(old, new) &#123; o, n -&gt; o.id == n.id &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>不过还有一种最糟糕的情况就是所有的参数你都不会使用。如果你的 lambda 表达式中有多个参数，尽管你不会使用但是你必须全部写出来。</p>
 <p>现在，我们可以这样忽略他们：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items: List&lt;Item&gt; <span class="keyword">by</span> Delegates.observable(emptyList()) &#123;</span><br><span class="line">    _, _, _ -&gt;</span><br><span class="line">    notifyDataSetChanged()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>这不仅使得我们减少了变量的定义，还能让代码更具有可读性。现在，你不需要去判断哪些参数用了哪些没用。这真是一清二楚！</p>
 <ul>
 <li><h3 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h3></li>
@@ -342,7 +332,6 @@
 <p>第一个就是：你现在可以启用 Jack 编译器了，通过这样的设置： <code>jackOptions { true }</code> 。尽管谷歌已经宣布放弃 Jack 工具链，但是如果你还在 Java 8 中使用它，那么在 Android Studio 2.4 版本的的最终发布前，这会对你很有用。</p>
 <p>另外一个，将会<strong>有一个新的潮流就是使用 <code>@JvmOverloads</code> 来实现自定义视图组件的构造函数</strong>，这从文字意义上来说就是可以用一句话来实现自定义视图的构造函数（不过确实是很长的一句话），通过一个构造函数和默认的参数值：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomView</span> <span class="meta">@JvmOverloads</span> <span class="keyword">constructor</span></span>(</span><br><span class="line">        context: Context, attrs: AttributeSet? = <span class="literal">null</span>, defStyleAttr: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">) : View(context, attrs, defStyleAttr) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3></li>
 </ul>

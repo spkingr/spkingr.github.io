@@ -256,7 +256,7 @@
 <li>通过代码实现 RigidBody2D 刚体节点的运动（下）</li>
 </ol>
 <h3 id="场景和代码"><a href="#场景和代码" class="headerlink" title="场景和代码"></a>场景和代码</h3><p>基本场景的制作已经在上篇中详细解说过了，另外我们还在场景中增加了一个 <em>Camera2D</em> 摄像机节点，让场景的视窗时刻聚焦在玩家周围，但是玩家依然可以“鲤鱼跃龙门”，对场景中的墙壁视而不见，豪迈奔放！游戏运行结果如下：</p>
-<p><img src="godot_5_result2.gif" alt="godot_5_result2.gif"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_5_result2.gif" alt="godot_5_result2.gif"></p>
 <p>接下来利用物理引擎相关知识解决玩家移动范围限制的问题。</p>
 <h3 id="添加碰撞体"><a href="#添加碰撞体" class="headerlink" title="添加碰撞体"></a>添加碰撞体</h3><p>首先要做的是给墙壁添加上碰撞体，限制场景运动区域范围。由于墙壁是静止不动的物体，所以我们给它添加一个 <em>StaticBody2D</em> 静态碰撞体节点。你可以直接在 <em>Sprite</em> 节点下添加一个静态碰撞体，并设置好碰撞体大小；也可以把 <em>Sprite</em> 作为 <em>StaticBody2D</em> 的子节点，这也是推荐的流程。但是在没有特殊用途下（比如不需要添加代码等），你可以随便安排， Godot 中的节点是非常灵活的。</p>
 <p>这里为了正确设置碰撞体的形状，我把之前单一的墙壁背景拆分为了四面独立的墙，然后分别设置碰撞体形状。接着要在玩家节点上添加碰撞体，这里我们需要谨慎操作：<strong>第一是注意节点的类型，和墙壁不同，玩家是可以移动的，且拥有物理属性，所以不能使用静态碰撞体；第二是节点的父子关系的顺序问题，我们因为要移动碰撞体，而不是 Sprite 精灵图片节点，所以 Sprite 应该作为碰撞体节点的子节点，且不能弄反！</strong>详细解说在我的入门文章第二篇中有详述： <a href="http://liuqingwen.me/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/">Godot3 游戏引擎入门之二：第一个简单的游戏场景</a>。</p>
@@ -264,42 +264,43 @@
 <table>
 <thead>
 <tr>
-<th align="center">节点名</th>
-<th align="center">StaticBody2D</th>
-<th align="center">RigidBody2D</th>
-<th align="center">KinematicBody2D</th>
+<th style="text-align:center">节点名</th>
+<th style="text-align:center">StaticBody2D</th>
+<th style="text-align:center">RigidBody2D</th>
+<th style="text-align:center">KinematicBody2D</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">节点名称</td>
-<td align="center">静态碰撞节点（ 2D ）</td>
-<td align="center">刚体节点（ 2D ）</td>
-<td align="center">运动学节点（ 2D ）</td>
+<tbody>
+<tr>
+<td style="text-align:center">节点名称</td>
+<td style="text-align:center">静态碰撞节点（ 2D ）</td>
+<td style="text-align:center">刚体节点（ 2D ）</td>
+<td style="text-align:center">运动学节点（ 2D ）</td>
 </tr>
 <tr>
-<td align="center">基本特性</td>
-<td align="center">自动碰撞检测，位置固定不变</td>
-<td align="center">自动碰撞检测，产生碰撞响应：有线速度、角速度等</td>
-<td align="center">参与碰撞检测，无自动响应，完全由代码控制移动</td>
+<td style="text-align:center">基本特性</td>
+<td style="text-align:center">自动碰撞检测，位置固定不变</td>
+<td style="text-align:center">自动碰撞检测，产生碰撞响应：有线速度、角速度等</td>
+<td style="text-align:center">参与碰撞检测，无自动响应，完全由代码控制移动</td>
 </tr>
 <tr>
-<td align="center">使用场景</td>
-<td align="center">一般用于固定的墙壁、地面等</td>
-<td align="center">一般用于受外界影响而产生运动的物体，比如球体、陨石等</td>
-<td align="center">主要用于由代码控制的带物理属性的玩家</td>
+<td style="text-align:center">使用场景</td>
+<td style="text-align:center">一般用于固定的墙壁、地面等</td>
+<td style="text-align:center">一般用于受外界影响而产生运动的物体，比如球体、陨石等</td>
+<td style="text-align:center">主要用于由代码控制的带物理属性的玩家</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>了解了这三种节点后，得出的结论是不是应该给我们的主角添加一个 <em>KinematicBody2D</em> 运行学节点呢？嗯……然而并不是，如果使用 <em>KinematicBody2D</em> 节点，我们需要自己手动控制物理反馈，虽然绝大多数的游戏应该这样，但是这不是本篇文章的做法，尽量不要动代码是我的出发点，以后再介绍 <em>KinematicBody2D</em> 节点，现在我们暂时使用简单一点的 <em>RigidBody2D</em> 刚体节点进行尝试。（是不是听上去有点不符合直觉？其实在有些游戏中，比如太空飞船射击游戏，就可以使用 <em>RigidBody2D</em> 作为玩家节点进行开发。）</p>
 <p>理论到此为止，给我们的游戏场景添加一个 <em>RigidBody2D</em> 刚体节点，改名为 <em>Player</em> ，然后把之前的玩家 <em>Player</em> （ <em>Sprite</em> ）节点拖到 <em>RigidBody2D</em> 节点下作为其子节点，同时 <em>AnimationPlayer</em> 节点也要作为刚体节点的子节点，保持和 <em>Player</em> 节点平级的关系，最后添加一个 <em>CollisionShape2D</em> 节点用于设置碰撞体的形状。</p>
-<p><img src="godot_5_rigidbody2d.jpg" alt="godot_5_rigidbody2d.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_5_rigidbody2d.jpg" alt="godot_5_rigidbody2d.jpg"></p>
 <p>最终场景中的节点如上图，唯一要设置的是把 <em>RigidBody2D</em> 的重力影响属性 <em>Gravity Scale</em> 设置为 0 ，即完全摆脱重力的影响，不这么设置的话，你会发现玩家会“情不自禁”地做自由落体运动。另外，值得注意的是，我在改名的过程中，原来的 <em>Player</em> 节点自动更名为 <em>Player1</em> ，然后动画全部失效，解决办法很简单，在动画面板里把轨道的名字改过来即可，如下图：</p>
-<p><img src="godot_5_change_node.jpg" alt="godot_5_change_node.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_5_change_node.jpg" alt="godot_5_change_node.jpg"></p>
 <h3 id="最终代码"><a href="#最终代码" class="headerlink" title="最终代码"></a>最终代码</h3><p>场景一切就绪，接下来的任务就是修改代码了！因为我们的节点关系产生了变化，还有节点的行为也变了（ <em>Sprite</em> -&gt; <em>RigidBody2D</em> ），所以对于新手朋友我要特别提醒的是：<strong>玩家已经转变成 RigidBody2D 刚体节点了，刚体节点是会自动产生物理响应的，所以我们不能像刚才那样直接使用代码操作玩家的位置，相反，我们应该通过设置刚体的线速度、角速度来实现对刚体运动的控制！</strong></p>
 <p>具体修改我都在代码中做了注释，代码量不大，相信大家都能看懂吧。这里全部的代码我就不贴出来了，修改部分如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">onready var animationPlayer = $Player/AnimationPlayer <span class="comment"># 修改后</span></span><br><span class="line">onready var camera = $Camera2D</span><br><span class="line"></span><br><span class="line">player.linear_velocity = velocity <span class="comment"># 添加部分，设置线速度，速度为0时有用</span></span><br><span class="line">player.angular_velocity = <span class="number">0</span> <span class="comment"># 添加部分，设置角速度，防止player打转</span></span><br><span class="line"><span class="comment"># 速度不为0，移动玩家位置，同时更新摄像机</span></span><br><span class="line"><span class="keyword">if</span> velocity.length() &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="comment"># 注意这里normalize速度矢量</span></span><br><span class="line">    <span class="comment"># player.position += velocity.normalized() * speed * delta # 删除</span></span><br><span class="line">    player.linear_velocity = velocity.normalized() * speed <span class="comment"># 添加，更新速度</span></span><br><span class="line">    <span class="comment"># 更新摄像机，玩家始终在视窗内活动</span></span><br><span class="line">    updateCameraPosition()</span><br><span class="line">    <span class="comment"># 省略代码……</span></span><br></pre></td></tr></table></figure>
-
 <p>终于完工，按 <em>F5</em> 运行游戏，看看我们的杰作吧：</p>
-<p><img src="godot_5_result3.gif" alt="godot_5_result3.gif"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_5_result3.gif" alt="godot_5_result3.gif"></p>
 <h2 id="三、小结（下）"><a href="#三、小结（下）" class="headerlink" title="三、小结（下）"></a>三、小结（下）</h2><p>相对来说，这篇的知识点还是非常简单的，当然对于编程初学者来说，代码还是一个需要克服的地方。在接下来的文章里，我会针对 2D 游戏中的地图创建做几篇文章，也就是 <em>TileMap</em> 节点的功能介绍和使用，打造一个游戏该有的丰富世界！</p>
 <p>最后，本篇上下节结束后，我要提醒新手朋友们几个注意点：</p>
 <ol>
@@ -307,9 +308,9 @@
 <li>我们对物理碰撞的处理不应该放在 <code>_process(delta)</code> 方法中，而应该放在 <code>_physics_process(delta)</code> 方法中，后续再讲</li>
 <li>地图太简单了，这也是这篇要埋下的伏笔，下篇介绍，“等着瞧”，哈哈</li>
 </ol>
-<p><strong>原创实属不易</strong>，希望大家喜欢！ :smile:</p>
+<p><strong>原创实属不易</strong>，希望大家喜欢！ <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
 <blockquote>
-<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzg3MjAwMjI4Mg==&mid=100000071&idx=1&sn=440b2050b4c7495c64f66c41b028c406&send_time=1536712211" alt="IT自学不成才"></p>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&amp;size=102&amp;__biz=Mzg3MjAwMjI4Mg==&amp;mid=100000071&amp;idx=1&amp;sn=440b2050b4c7495c64f66c41b028c406&amp;send_time=1536712211" alt="IT自学不成才"></p>
 </blockquote>
 
 

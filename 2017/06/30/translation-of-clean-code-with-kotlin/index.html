@@ -245,24 +245,21 @@
 
 <!-- Content -->
 <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>挺适合新手的一篇建议性博文。原文链接：<a href="https://blog.philipphauer.de/clean-code-kotlin/" target="_blank" rel="noopener">Clean Code with Kotlin</a></p>
-<p>因本人水平有限，翻译不好之处还请多包涵，文章中 “ Clean Code ” 我喜欢翻译成“致简代码”，但是这个名字的书一般是被翻译成“整洁代码”，建议英文水平可以的朋友尽量看原版更可口。 :grin:</p>
+<p>因本人水平有限，翻译不好之处还请多包涵，文章中 “ Clean Code ” 我喜欢翻译成“致简代码”，但是这个名字的书一般是被翻译成“整洁代码”，建议英文水平可以的朋友尽量看原版更可口。 <img class="github-emoji"  title="grin" alt="grin" src="http://liuqingwen.me/images/emoji/grin.png" height="20" width="20" /></p>
 <h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><h3 id="Kotlin致简代码之道"><a href="#Kotlin致简代码之道" class="headerlink" title="Kotlin致简代码之道"></a>Kotlin致简代码之道</h3><p>利用 Koltin 我们可以写出易懂、简短、安全而又富有表现力的代码。就像是致简代码，不是吗？在这篇文章里，我会通过讲解一些关于简洁代码方面的建议和原则，来求证 Kotlin 是否有助于达成这样的目的。另外，我也会指出一些我们应该谨慎注意的限制之处。在文章的最后，我会最终讨论 Kotlin 是走向 “一个黑暗之路还是光明之路”。</p>
 <h3 id="会议讲话"><a href="#会议讲话" class="headerlink" title="会议讲话"></a>会议讲话</h3><p>这篇文章内容基于我在慕尼黑的 Clean Code Days 会议上的演讲主题： Kotlin 致简代码之路（德语），于 2017 年 6 月份。</p>
 <h3 id="重述：什么是致简代码？"><a href="#重述：什么是致简代码？" class="headerlink" title="重述：什么是致简代码？"></a>重述：什么是致简代码？</h3><p>在我们开始之前，弄清楚什么是致简代码很重要。首先，致简代码是一种<strong>很容易理解</strong>的代码。代码必须直观且易读。我们可以通过让自己的代码更加简洁、简短、简单并富有表现力来达到这个目的。我们在处理<em>最少形式主义和语法噪点</em>的时候也会遇到致简代码。</p>
-<p><img src="wordle-clean-code.svg" alt="wordle-clean-code.svg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="wordle-clean-code.svg" alt="wordle-clean-code.svg"></p>
 <h3 id="致简代码和-Kotlin"><a href="#致简代码和-Kotlin" class="headerlink" title="致简代码和 Kotlin"></a>致简代码和 Kotlin</h3><p>让我们考虑几个出自 Robert C. Martin 的著名书籍《 Clean Code 》里的建议和规则。我们将会发掘 Kotlin 在哪里可以帮我们写出致简代码而在哪里又不能。让我们从使用 Kotlin 能够明显提升的地方开始。之后，我将会聊一些限制和缺陷相关内容。</p>
-<img src="http://liuqingwen.me/images/imgloader.gif" data-echo="clean-code-book-cover-150.jpg" alt="clean-code-book-cover" style="float: right; " />
-
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="clean-code-book-cover-150.jpg" alt="clean-code-book-cover" style="float: right; " /></p>
 <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="函数应该小巧"><a href="#函数应该小巧" class="headerlink" title="函数应该小巧"></a>函数应该小巧</h4><blockquote>
 <p>“规则 1 ：函数应该小巧！<br>规则 2 ：函数要比那样还小！”<br>“ Clean Code ” —— Robert C. Martin ，页码 34</p>
 </blockquote>
 <p>根据致简代码定义，函数应该很小并且职责单一。我们应该分解子程序并给他们取一个可描述性的名称。这样的话，我们的代码就会变得像一个故事。而且，我们应该从主要逻辑中辨别出细节。 Kotlin 可以帮我们做到这点吗？不行，因为这些规则是无关于语言的。这仍然取决于开发者自己来创建小的函数。</p>
 <p>然而，使用 Java 有时候很难写出小而富有表达力的函数。让我来举个例子。假设我们需要把 HTTP 响应的有效信息映射成一个对象并且能正确的处理各种错误分类。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Product <span class="title">parseProduct</span><span class="params">(Response response)</span></span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (response == <span class="keyword">null</span>)&#123;</span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> ClientException(<span class="string">"Response is null"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">int</span> code = response.code();</span><br><span class="line">   <span class="keyword">if</span> (code == <span class="number">200</span> || code == <span class="number">201</span>)&#123;</span><br><span class="line">       <span class="keyword">return</span> mapToDTO(response.body());</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">if</span> (code &gt;= <span class="number">400</span> &amp;&amp; code &lt;= <span class="number">499</span>)&#123;</span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> ClientException(<span class="string">"Sent an invalid request"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">if</span> (code &gt;= <span class="number">500</span> &amp;&amp; code &lt;= <span class="number">599</span>)&#123;</span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> ClientException(<span class="string">"Server error"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">throw</span> <span class="keyword">new</span> ClientException(<span class="string">"Error. Code "</span> + code);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>事实上这段代码并没有做很多事情。它只是处理一些错误分类（ <code>null</code> 空指针响应和错误的 HTTP 状态码 ）。它甚至没有做实际的映射机制。尽管如此，这些代码很冗繁并且包含有语法噪点。作为比较，看一下在 Kotlin 中同样功能实现的代码。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Kotlin</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">parseProduct</span><span class="params">(response: <span class="type">Response</span>?)</span></span> = <span class="keyword">when</span> (response?.code())&#123;</span><br><span class="line">   <span class="literal">null</span> -&gt; <span class="keyword">throw</span> ClientException(<span class="string">"Response is null"</span>)</span><br><span class="line">   <span class="number">200</span>, <span class="number">201</span> -&gt; mapToDTO(response.body())</span><br><span class="line">   <span class="keyword">in</span> <span class="number">400</span>..<span class="number">499</span> -&gt; <span class="keyword">throw</span> ClientException(<span class="string">"Sent an invalid request"</span>)</span><br><span class="line">   <span class="keyword">in</span> <span class="number">500</span>..<span class="number">599</span> -&gt; <span class="keyword">throw</span> ClientException(<span class="string">"Server error"</span>)</span><br><span class="line">   <span class="keyword">else</span> -&gt; <span class="keyword">throw</span> ClientException(<span class="string">"Error. Code <span class="subst">$&#123;response.code()&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>我假设你并不知道这个例子里所包含的每个 Kotlin 的特性，但是这段代码确很容易看懂。这才是最神奇的地方！不需要了解每一个特性就能看懂代码，意味着这些代码非常符合直觉。那就是所谓的致简代码！使用 Kotlin ，我们可以用更少的代码（ 15 行对比 6 行）最少的形式主义前提下达到业务逻辑的实现。</p>
 <p>我们可以在这里发掘 Kotlin 很多很酷的特性，这些细节我会在后面提到，但是我想告诉你的是 <code>when</code> 表达式。 Kotlin 中的 <code>when</code> 表达式就像 Java 中的 <code>switch</code> 语句，但是它更加强大。它不仅简洁而且你还能在分支里做一系列检测的事情（ <code>null</code> ，多种值，范围，类型检测等）。</p>
 <p>通过介绍这个列子可以显示出 Kotlin 有助于减少语法噪点，并保持函数小且富有表达力。</p>
@@ -278,15 +275,12 @@
 <p>当然，值得注意的是， Kotlin 的函数功能并不能和 Haskel 甚至 Scala 相提并论。</p>
 <h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4><h5 id="流程控制结构作为表达式"><a href="#流程控制结构作为表达式" class="headerlink" title="流程控制结构作为表达式"></a>流程控制结构作为表达式</h5><p>在 Kotlin 中，<strong>流程控制结构体是表达式</strong>而不是语句。我们刚才已经看到 <code>when</code> 表达式实践了。其实 <code>if-else</code> 和 <code>try-catch</code> 在 Kotlin 中也同样是表达式。这真的很方便：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> json = <span class="string">"""&#123;"message": "HELLO"&#125;"""</span></span><br><span class="line"><span class="string">val message = try &#123;</span></span><br><span class="line"><span class="string">    JSONObject(json).getString("message")</span></span><br><span class="line"><span class="string">&#125; catch (ex: JSONException) &#123;</span></span><br><span class="line"><span class="string">    json</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
 <p>在 Java 里，我们必须另起一行在 <code>try</code> 之前定义 <code>message</code> 变量。更加好的是，这个变量是不能被修改的（ <code>final</code> ）。使用 Kotlin 的 <code>try</code> 表达式，我们在减少一行的同时还能让变量做到不可变（ <code>val</code> ）。在 Java 中的一个解决方案就是把 <code>try</code> 分解成子程序。尽管我们可以给这个子程序一个具有很好描述性的名称，但有时候还是有点过头了。</p>
 <h5 id="单函数表达式"><a href="#单函数表达式" class="headerlink" title="单函数表达式"></a>单函数表达式</h5><p>另外一个很贴心的特性是<strong>单函数表达式</strong>。如果一个函数仅包含一个表达式，我们可以省略大括号 <code>{}</code> 以及返回值类型。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getMessage</span><span class="params">(json: <span class="type">String</span>)</span></span>: String &#123;</span><br><span class="line">    <span class="keyword">val</span> message = <span class="keyword">try</span> &#123;</span><br><span class="line">        JSONObject(json).getString(<span class="string">"message"</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ex: JSONException) &#123;</span><br><span class="line">        json</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> message</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 变成这样：</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getMessage</span><span class="params">(json: <span class="type">String</span>)</span></span> = <span class="keyword">try</span> &#123;</span><br><span class="line">    JSONObject(json).getString(<span class="string">"message"</span>)</span><br><span class="line">&#125; <span class="keyword">catch</span> (ex: JSONException) &#123;</span><br><span class="line">    json</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>这个单表达式函数变得更加简洁：它的基本逻辑立马能展示出来，这得益于语法噪点的降低。就像我们所看到的， Kotlin 的表达式支持允许我们将一些控制结构与其他表达式一起，更加简洁高效地组合起来使用。</p>
 <h5 id="注意残缺"><a href="#注意残缺" class="headerlink" title="注意残缺"></a>注意残缺</h5><p>把所有东西压缩到单个表达式确实很有诱惑力。就因为你<em>能</em>这样做，并不意味着那一定就是个好方法。在这一点上，开发者保持整洁代码与易读性的规则是至关重要的。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 你没必要一行一行的阅读 :-) </span></span><br><span class="line"><span class="comment">// 不要这样:</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">map</span><span class="params">(dto: <span class="type">OrderDTO</span>, authData: <span class="type">RequestAuthData</span>)</span></span> = OrderEntity(</span><br><span class="line">    id = dto.id,</span><br><span class="line">    shopId = <span class="keyword">try</span> &#123;</span><br><span class="line">        extractItemIds(dto.orderItems[<span class="number">0</span>].element.href).shopId</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: BatchOrderProcessingException) &#123;</span><br><span class="line">        restExc(<span class="string">"Couldn't retrieve shop id from first order item: <span class="subst">$&#123;e.msg&#125;</span>"</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    batchState = BatchState.RECEIVED,</span><br><span class="line">    orderData = OrderDataEntity(</span><br><span class="line">        orderItems = dto.orderItems.map &#123; dto -&gt; mapToEntity(dto) &#125;,</span><br><span class="line">        shippingType = dto.shipping.shippingType.id,</span><br><span class="line">        address = mapToEntity(dto.shipping.address),</span><br><span class="line">        correlationOrderId = dto.correlation?.partner?.orderId,</span><br><span class="line">        externalInvoiceData = dto.externalInvoiceData?.let &#123; ExternalInvoiceDataEntity(</span><br><span class="line">                url = it.url,</span><br><span class="line">                total = it.total,</span><br><span class="line">                currencyId = it.currency.id</span><br><span class="line">        )&#125;</span><br><span class="line">    ),</span><br><span class="line">    partnerUserId = authData.sessionOwnerId ?: restExc(<span class="string">"No sessionId supplied"</span>, <span class="number">401</span>),</span><br><span class="line">    apiKey = authData.apiKey,</span><br><span class="line">    dateCreated = <span class="keyword">if</span> (dto.dateCreated != <span class="literal">null</span>) dto.dateCreated <span class="keyword">else</span> Instant.now(),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
 <p>如果使用有问题请选择临时变量和子程序。我们的目标不应该是使用表达式，而应该是创建更加易读的代码。有时候，这种<em>能够</em>达到一致的目的但并非必须。</p>
 <blockquote>
 <p>可读性打败把一切压缩到单行</p>
@@ -294,92 +288,79 @@
 <h5 id="不可变性"><a href="#不可变性" class="headerlink" title="不可变性"></a>不可变性</h5><p>在 Kotlin 中使用不可变性感觉非常自然且容易。实际上，这是 Kotlin 中一种<a href="https://blog.philipphauer.de/idiomatic-kotlin-best-practices/" target="_blank" rel="noopener">惯用</a>的写代码方式。在这个方面， Kotlin 鼓励使用不可变的变量、数据结构以及集合。因此，结果就是这会让你的代码更加健壮并且易于理解。</p>
 <h6 id="不可变引用"><a href="#不可变引用" class="headerlink" title="不可变引用"></a>不可变引用</h6><p>在 Kotlin 中，我们应该一直使用 <code>val</code> 关键字来定义一个变量。这会创建一个不可变变量。在 Java 中，我们不得不额外添加 <code>final</code> 这个关键字（再次出现语法噪点！）。如果你的变量必须是可以修改的，你可以使用 <code>var</code> 。但是请你在使用 <code>var</code> 之前三思。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> id = <span class="number">1</span></span><br><span class="line">id = <span class="number">2</span> <span class="comment">// 编译错误！</span></span><br><span class="line"><span class="keyword">var</span> id2 = <span class="number">1</span></span><br><span class="line">id2 = <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
 <h6 id="只读集合"><a href="#只读集合" class="headerlink" title="只读集合"></a>只读集合</h6><p>在 Kolint 中创建一个列表的惯用方式是使用 <code>listOf()</code> 方法。这会创建一个只读列表，因此你不能向它添加任何元素。注意 Kotlin 的集合并不是不可变的因为它是基于 Java 的可变性集合，这是迫于互操作性的原因。不过在实践中，大部分情况下这已经足够好了。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list = listOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">list.add(<span class="number">1</span>) <span class="comment">//编译错误。这个方法在 Kotlin 的只读列表接口中并不存在。</span></span><br></pre></td></tr></table></figure>
-
 <p>Kotlin 的集合 API 同样返回一个新的只读列表。原始的列表不会被改变。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> evenList = list.filter &#123; it % <span class="number">2</span> == <span class="number">0</span> &#125;</span><br></pre></td></tr></table></figure>
-
 <p>同样请注意这个简洁的 API 和 lambda 表达式。我们可以直接在这个列表上调用 <code>filter()</code> 方法（并不像 Java 8 中那样要求使用 <code>stream()</code> 方法）。并且 <code>filter()</code> 方法已经返回了一个新的列表（不需要再使用 <code>collect(Collectors.toList())</code> 方法）。最终，我们可以看到一个非常简洁的 lambda 表示方式：我们可以省略括号 <code>()</code> 在只有一个参数并且这个参数是一个 lambda 表达式的情况下。此外，如果仅有一个参数的话，我们可以省略 lambda 中参数的定义。这种情况下，我们可以用 <code>it</code> 代替这个参数。也只有在这种情况下， <code>it</code> 所表示引用的含义很明显。其他情形下，最好是用一个具有表达力的名字来显式声明这些参数吧。总的来说，集合 API 避免了形式主义和模板。</p>
 <h6 id="不可变数据类"><a href="#不可变数据类" class="headerlink" title="不可变数据类"></a>不可变数据类</h6><p>在 Kotlin 中使用 <code>data class</code> 能够非常容易地创建不可变数据类。实际上，这是 Kotlin 中一个杀手级特性。在 Java 中，我们需要大量的模板和形式来正确地创建一个不可变类：我们需要定义由 <code>final</code> 修饰的字段、属性和构造函数（把参数赋值给对应的字段），定义 <code>hashCode()</code> ， <code>equals()</code> ， <code>toString()</code> 同时把类标记为 <code>final</code> 。在 Kotlin 中，我们可以这样使用数据类：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">DesignData</span></span>(</span><br><span class="line">        <span class="keyword">val</span> id: <span class="built_in">Int</span>,</span><br><span class="line">        <span class="keyword">val</span> fileName: String,</span><br><span class="line">        <span class="keyword">val</span> uploaderId: <span class="built_in">Int</span>,</span><br><span class="line">        <span class="keyword">val</span> width: <span class="built_in">Int</span> = <span class="number">0</span>,</span><br><span class="line">        <span class="keyword">val</span> height: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
 <p>就是这么简单！这段代码由这些主要部分组成：类的名字和属性的定义，符合最少的形式主义原则。我们仅需要编写、阅读并维护最少量的代码！</p>
 <p>此外， Kotlin 支持默认参数（像这样 <code>val width: Int = 0</code> 这样）。这直接淘汰了那种使用冗长而又繁琐的构造函数链来模拟默认参数的古老方式。</p>
 <p>更加可喜可贺的是，它还能够在构造函数里直接使用。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> design = DesignData(id = <span class="number">1</span>, fileName = <span class="string">"cat.jpg"</span>, uploaderId = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
 <p>第一，我们不再需要毫无用处的 <code>new</code> 关键字了。第二， Kotlin 支持命名式参数，这明显提升了代码的可读性和健壮性。我们再也不会意外地混淆了具有相同类型的参数了。</p>
 <p>而且，我们还能够通过使用属性缩写访问的语法来访问这些属性值。没必要再调用一个 getter 方法。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> id = design.id</span><br><span class="line">design.id = <span class="number">2</span> <span class="comment">//编译错误。非可变属性。</span></span><br></pre></td></tr></table></figure>
-
 <p>这个 <code>copy()</code> 方法在函数编程中特别的实用。因为所有的数据结构都应保持不可变，所以我们需要这种方式来方便地创建一个对象的拷贝。而且， <code>copy()</code> 允许仅传递参数给那些需要改变的属性值。而其他的属性在复制过程中将会保持不变。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> design2 = design.copy(fileName = <span class="string">"dog.jpg"</span>)</span><br></pre></td></tr></table></figure>
-
 <h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>让我们分析一下，对应于致简代码建议条例中 Kotlin 在错误处理方面是否有利。</p>
 <table>
 <thead>
 <tr>
-<th align="center">致简代码建议条例</th>
-<th align="center">Kotlin 是否支持？</th>
+<th style="text-align:center">致简代码建议条例</th>
+<th style="text-align:center">Kotlin 是否支持？</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">错误处理和逻辑分离</td>
-<td align="center">否</td>
+<tbody>
+<tr>
+<td style="text-align:center">错误处理和逻辑分离</td>
+<td style="text-align:center">否</td>
 </tr>
 <tr>
-<td align="center">不要使用已检查异常</td>
-<td align="center">已检查异常不存在</td>
+<td style="text-align:center">不要使用已检查异常</td>
+<td style="text-align:center">已检查异常不存在</td>
 </tr>
 <tr>
-<td align="center">使用策略避免 <code>null</code> （异常、空集合、空物体、特殊场合对象）</td>
-<td align="center">否</td>
+<td style="text-align:center">使用策略避免 <code>null</code> （异常、空集合、空物体、特殊场合对象）</td>
+<td style="text-align:center">否</td>
 </tr>
 <tr>
-<td align="center">不要返回 <code>null</code> 。理由：</td>
-<td align="center">否</td>
+<td style="text-align:center">不要返回 <code>null</code> 。理由：</td>
+<td style="text-align:center">否</td>
 </tr>
 <tr>
-<td align="center">a) 分散的 <code>null</code> 检查代码</td>
-<td align="center">简洁的语法处理 <code>null</code></td>
+<td style="text-align:center">a) 分散的 <code>null</code> 检查代码</td>
+<td style="text-align:center">简洁的语法处理 <code>null</code></td>
 </tr>
 <tr>
-<td align="center">b) 很容易忘记 <code>null</code> 检查。空指针异常。</td>
-<td align="center">空类型。编译器强制处理。</td>
+<td style="text-align:center">b) 很容易忘记 <code>null</code> 检查。空指针异常。</td>
+<td style="text-align:center">空类型。编译器强制处理。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>如同我们所看到的，大部分建议都是和语言无关的。我只想指出最后的那三行。即使是 Kotlin ，避免返回 <code>null</code> 也是取决于开发者的。但是我们所面对的现实是： <code>null</code> 空值和  <code>NullPointerExceptions</code> 空异常还是一直在我们的代码中产生。这是个事实。因此我们必须处理好。辛运的是， Kotlin 有着强大的处理 <code>null</code> 空指针的能力。让我们一起来看看吧。</p>
 <h4 id="可空类型和非空类型"><a href="#可空类型和非空类型" class="headerlink" title="可空类型和非空类型"></a>可空类型和非空类型</h4><p>这个 <code>null</code> 空安全体系也是 Kotlin 的另一个杀手级特性。 Kotlin 扩展了 Java 类型体系。首先，编译器知道变量的类型（ <code>String</code> ， <code>Int</code> ， <code>Date</code> ）因此我们可以在某个对象上调用某个方法。并且 Kotlin 的类型体系能够做的更多。其次，我们可以将一个类型标记为可空类型（ 可以取值 <code>null</code> ）或者非可空类型（不能为 <code>null</code> ）。一个可空类型相对于它所对应的非空类型提供了不同的方法，这都是编译器能检测到的。</p>
-<p><img src="nullable-and-non-null-types.svg" alt="nullable-and-non-null-types.svg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="nullable-and-non-null-types.svg" alt="nullable-and-non-null-types.svg"></p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> value: String = <span class="string">"Clean Code"</span></span><br><span class="line"><span class="keyword">val</span> value: String = <span class="literal">null</span> <span class="comment">// 编译错误！不可以把 null 赋值给非空类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> nullableValue: String? = <span class="string">"Clean Code"</span></span><br><span class="line"><span class="keyword">val</span> nullableValue: String? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> value: String = nullableValue <span class="comment">// 编译错误！不可以把可空变量赋值给非空变量</span></span><br></pre></td></tr></table></figure>
-
 <p>要把一个可空变量值赋值给非空值变量我们必须做一个 <code>null</code> 检测：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> value: String = <span class="keyword">if</span> (nullableValue == <span class="literal">null</span>) <span class="string">"default"</span> <span class="keyword">else</span> nullableValue <span class="comment">// nullableValue 变量智能转换</span></span><br></pre></td></tr></table></figure>
-
 <p>这能够成功编译。编译器进行空检查后把 nullableValue 值转换成非空类型。这种自动转换叫做“智能转换”，在某些场合下直接淘汰了显示手动转换（再一次，更少的形式主义！）。另外我们可以把上面的那行代码变得更简短，通过使用 elvis 操作符 <code>?:</code> ：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> value: String = nullableValue ?: <span class="string">"default"</span></span><br></pre></td></tr></table></figure>
-
 <p>如果 elvis 操作符左边（ <code>nullableValue</code> ）不是 <code>null</code> 的话，整个表达式会将 <code>nullableValue</code> 的值赋值给变量（ <code>value</code> ）。如果左边是 <code>null</code> 那么右边的部分（“ default ”字符串）会被赋值。</p>
 <h4 id="空安全实践"><a href="#空安全实践" class="headerlink" title="空安全实践"></a>空安全实践</h4><p>让我们假定有一个嵌套域的层级结构：一个订单有一个客户属性，客户拥有一个地址，因此也就有了城市的信息。现在，我们想要深入这个层级获取相应城市信息。这是一个很常见的使用情形。然而，这个链条中每个元素都有可能是空值，因此都是可空类型。所以，下面的代码是不能通过编译的：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> city = order.customer.address.city <span class="comment">// 编译错误！订单、客户、地址都可以为空！</span></span><br></pre></td></tr></table></figure>
-
 <p>编译器不允许我们在 <code>order</code> 订单属性上直接访问 <code>customer</code> 属性，因为我们并没有处理 <code>order</code> 属性值为 <code>null</code> 的情况。编译器在编译阶段给我们指出了这个可能会发生的错误。这显著地减少了错误的发生从而提高了安全性能。</p>
 <p>那么我们该怎么做呢？有几个选择。选择 1 是使用非空断言申明符 <code>!!</code> 。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> city = order!!.customer!!.address!!.city <span class="comment">// 避免这种情况！</span></span><br></pre></td></tr></table></figure>
-
 <p>这能够满足编译器的要求。但是当这个链条里有一个元素是空值得时候，就会抛出一个 <code>NullPointerException</code> 的异常。还是让我们力求另一个更好的方式吧。</p>
 <p>选择 2 是 Java 风格的形式：使用几个 <code>if-null</code> 来作判断：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (order == <span class="literal">null</span> || order.customer == <span class="literal">null</span> || 	order.customer.address == <span class="literal">null</span>)&#123;</span><br><span class="line">    <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"Invalid Order"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> city = order.customer.address.city <span class="comment">// 智能转换</span></span><br></pre></td></tr></table></figure>
-
 <p>这能达到目的但是非常的繁琐。这很冗余又容易出错，因为我们很容易忘了某个变量的 <code>null</code> 检查。顺便说一下，在空检查之后编译器允许我们通过 <code>.</code> 符号来进行成员访问，这得益于编译器之前检测到的 <code>null</code> 空检查操作。</p>
 <p>选择 3 ：我们能够做得更好。这里就是安全访问操作符 <code>?.</code> 派上用场的时刻了。它只在目标对象非 <code>null</code> 的前提下才会派发调用。否则，整个表达式都为 <code>null</code> 。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> city = order?.customer?.address?.city</span><br></pre></td></tr></table></figure>
-
 <p>因此，只要链条里的任何一个元素是 <code>null</code> 那么 <code>city</code> 就会变成 <code>null</code> 。非常的方便。尽管如此，我们还想在 <code>null</code> 发生的情况下抛出一个异常。那么这个时候 elvis 操作符就非常有用了：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> city = order?.customer?.address?.city ?: <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"Invalid Order"</span>)</span><br></pre></td></tr></table></figure>
-
 <p>只要链条里任何一个元素是 <code>null</code> 那么都将会抛出一个异常。安全访问和 elvis 操作符强强组合是 Kotlin 中一个非常<a href="https://blog.philipphauer.de/idiomatic-kotlin-best-practices/" target="_blank" rel="noopener">强大的惯用组合方式</a>。它允许达到非常简洁地处理 <code>null</code> 空值目的。</p>
 <p>总之， Kotlin 中的空值处理体系使得我们的代码既安全而又少出错。这仅仅只需要添加一些语法结构就能实现的（比方说在类型后面的 <code>?</code> ）。对于我来说，这种安全类型方式非常好。这样的结果就是， Kotlin 为 <code>null</code> 空值处理提供了简洁而又富有表现力的方法。他们删除了一大堆语法噪点和形式主义，最终写出更易读的代码。</p>
 <h3 id="更少的形式主义"><a href="#更少的形式主义" class="headerlink" title="更少的形式主义"></a>更少的形式主义</h3><h4 id="减少语法噪点"><a href="#减少语法噪点" class="headerlink" title="减少语法噪点"></a>减少语法噪点</h4><p>相对于 Java ， Kotlin 降低了语法噪点并且更加富有表现力。</p>
@@ -394,47 +375,48 @@
 <table>
 <thead>
 <tr>
-<th align="center">常规语法</th>
-<th align="center">简洁语法</th>
-<th align="center">特性使用</th>
+<th style="text-align:center">常规语法</th>
+<th style="text-align:center">简洁语法</th>
+<th style="text-align:center">特性使用</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><code>StringUtil.capitalize(s)</code></td>
-<td align="center"><code>s.capitalize()</code></td>
-<td align="center">扩展函数</td>
+<tbody>
+<tr>
+<td style="text-align:center"><code>StringUtil.capitalize(s)</code></td>
+<td style="text-align:center"><code>s.capitalize()</code></td>
+<td style="text-align:center">扩展函数</td>
 </tr>
 <tr>
-<td align="center"><code>1.to(&quot;one&quot;)</code></td>
-<td align="center"><code>1 to &quot;one&quot;</code></td>
-<td align="center">中缀访问符</td>
+<td style="text-align:center"><code>1.to(&quot;one&quot;)</code></td>
+<td style="text-align:center"><code>1 to &quot;one&quot;</code></td>
+<td style="text-align:center">中缀访问符</td>
 </tr>
 <tr>
-<td align="center"><code>set.add(2)</code></td>
-<td align="center"><code>set += 2</code></td>
-<td align="center">操作符重载</td>
+<td style="text-align:center"><code>set.add(2)</code></td>
+<td style="text-align:center"><code>set += 2</code></td>
+<td style="text-align:center">操作符重载</td>
 </tr>
 <tr>
-<td align="center"><code>map.get(&quot;key&quot;)</code></td>
-<td align="center"><code>map[&quot;key&quot;]</code></td>
-<td align="center">get 方法转换</td>
+<td style="text-align:center"><code>map.get(&quot;key&quot;)</code></td>
+<td style="text-align:center"><code>map[&quot;key&quot;]</code></td>
+<td style="text-align:center">get 方法转换</td>
 </tr>
 <tr>
-<td align="center"><code>file.use({ f -&gt; f.read() })</code></td>
-<td align="center"><code>file.use { it.read() }</code></td>
-<td align="center">扩后外使用 Lambda</td>
+<td style="text-align:center"><code>file.use({ f -&gt; f.read() })</code></td>
+<td style="text-align:center"><code>file.use { it.read() }</code></td>
+<td style="text-align:center">扩后外使用 Lambda</td>
 </tr>
 <tr>
-<td align="center"><code>sb.append(&quot;yes&quot;) sb.append(&quot;no&quot;)</code></td>
-<td align="center"><code>with(sb) { append(&quot;yes&quot;) append(&quot;no&quot;) }</code></td>
-<td align="center">带接收器的 Lambda</td>
+<td style="text-align:center"><code>sb.append(&quot;yes&quot;) sb.append(&quot;no&quot;)</code></td>
+<td style="text-align:center"><code>with(sb) { append(&quot;yes&quot;) append(&quot;no&quot;) }</code></td>
+<td style="text-align:center">带接收器的 Lambda</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>特别是函数扩展功能能让我们的代码既富有表现力又更加整洁。但是要谨慎使用操作符重载。它虽然能够写出简洁的代码但是也能够导致写出很差的代码。只在操作符非常直观的前提下使用它（就像 <code>+</code> 用在数字、字符串和日期上）。而其他的场所，优先使用带有清晰描述和意图的名字所表示的函数方法。</p>
 <h4 id="流行的-Java-习惯和内建模式"><a href="#流行的-Java-习惯和内建模式" class="headerlink" title="流行的 Java 习惯和内建模式"></a>流行的 Java 习惯和内建模式</h4><p>在 Java 中有很多惯用方式和模式都需要一大堆的模板代码。比方说，在 Java 中实现单列模式，观察者模式或者代理模式，代码都很冗余。大部分情况这只会暴露出 Java 语言的缺陷。辛运的是，这些惯用方法和模式都很好的集成在 Kotlin 中了。详细信息可以参考我博客里关于 <a href="https://blog.philipphauer.de/idiomatic-kotlin-best-practices/" target="_blank" rel="noopener">Kotlin 习惯用法</a>的文章。</p>
 <h3 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h3><h4 id="良好的设计有益于致简代码"><a href="#良好的设计有益于致简代码" class="headerlink" title="良好的设计有益于致简代码"></a>良好的设计有益于致简代码</h4><p>到目前为止，我们只考虑到了 Kotlin 中的函数和错误处理功能。除了这些，我还能发现 Kotlin 在对象和数据结构（通过数据类）以及并行性（ Kotlin 1.1 中的协程 ）上的改进。但是 Martin 的书籍覆盖了更多的主题：</p>
-<img src="http://liuqingwen.me/images/imgloader.gif" data-echo="clean-code-book-cover-150.jpg" alt="clean-code-book-cover" style="float: right; " />
-
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="clean-code-book-cover-150.jpg" alt="clean-code-book-cover" style="float: right; " /></p>
 <ul>
 <li>有含义的名称</li>
 <li><strong>函数</strong></li>
@@ -449,7 +431,7 @@
 <li><strong>并行性</strong></li>
 </ul>
 <p>关于命名如何处理？命名应该具有代表意义。当然与所使用的语言是无关的。同样也适用于注释、格式、边界、类结构设计等等。如我们所见，好的软件设计对于写出致简代码是很重要的，这和使用的语言无关。想想关于适当的数据抽象、小巧的类型、迪米特法则、边界包装、单一职责原则、信息隐藏等等。使用语言只是达到致简代码的一个方面。为了突出这一点，我查阅了 Martin 的书 “整洁代码” 的第 17 章 “味道和启发” ，并分析了 Kotlin 是否能够有助于避免每个味道。</p>
-<p><img src="pie-chart-smells-and-heuristics.png" alt="pie-chart-smells-and-heuristics.png"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="pie-chart-smells-and-heuristics.png" alt="pie-chart-smells-and-heuristics.png"></p>
 <p style="text-align: center;font-size: 90%; font-style: italic;">在我看来‘整洁代码’一书中大部分的味道和启发都是与语言无关的</p>
 
 <p>在我看来，大部分的规则都是独立于语言的。它们中很多都考虑到了这个（面向对象）设计。因此是否符合这些规则还取决于开发者以及他对致简代码的认识。</p>
@@ -460,13 +442,10 @@
 </ul>
 <p>关于后面那一点让我来给你举几个例子。我们假定需要在一个映射中放一个可空的字符串，这个字符串要满足不为 <code>null</code> 且非空白的条件。听起来很简单，对吗？看一下下面的实现方式：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不要这样做</span></span><br><span class="line">value?.emptyToNull()?.let &#123; map.put(<span class="string">"bla"</span>, it) &#125; <span class="comment">// 额，“ it ” 是智能转换的。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要辅助方法：</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span>  String.<span class="title">emptyToNull</span><span class="params">()</span></span> = <span class="keyword">if</span> (<span class="keyword">this</span>.isEmpty()) <span class="literal">null</span> <span class="keyword">else</span> <span class="keyword">this</span></span><br></pre></td></tr></table></figure>
-
 <p>痴迷于单表达式以及智能转换（避免非空断言）会导致写出极其难读的代码。另一种实现方式：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不要这样做</span></span><br><span class="line"><span class="keyword">if</span> (value?.isNotEmpty() ?: <span class="literal">false</span>)&#123;</span><br><span class="line">    map.put(<span class="string">"key"</span>, value!!)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>更加糟糕了。特别是刚开始学习 Kotlin 的时候，很容易迷失在复杂的安全引用、 elvis 操作符以及表达式之中。在这种情况下，最好是想想那套陈旧且好用的“如果是空指针或空白”的陈述语句：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 拥抱它！</span></span><br><span class="line"><span class="keyword">if</span> (!value.isNullOrEmpty())&#123;</span><br><span class="line">    map.put(<span class="string">"key"</span>, value!!)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>是的，这里仅有一个非 <code>null</code> 的断言申明符 <code>!!</code> ，因为编译器在 <code>isNullorEmpty()</code> 中不能侦测到 <code>null</code> 的检查。但是这段代码非常具有可读性且简洁明了。</p>
 <blockquote>
 <p>可读性和简单性才是（仍然是）王道！</p>

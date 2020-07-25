@@ -250,8 +250,8 @@
 <li><a href="http://liuqingwen.me/2018/12/23/introduction-of-godot-3-part-11-introduce-the-particles-system-and-make-a-shooter-game-part-1/">太空射击小游戏</a></li>
 </ul>
 <p>这两个游戏实际上并没有很大的区别，都是简单地进行上下左右移动并完成一些特定功能，所以我打算接下来做一个更常见，更流行的 2D 游戏： 2D Platformer Game ，即所谓的平台游戏！在开启这个游戏之前，我们先一起来讨论平台游戏中涉及到的最重要的一些游戏理论知识： <strong>2D 碰撞检测理论</strong>。</p>
-<p>这些理论涉及到了我们之前讨论过的 <em>Area2D</em> 节点以及 <em>KinematicBody2D/RigidBody2D/KinematicBody2D</em> 节点，以及相关碰撞图层和碰撞图层掩码知识。另外，本文还会详细讲述 KinematicBody2D 在游戏中常用的两个重要方法： <code>move_and_collide()</code> 以及 <code>move_and_slide()</code> 的区别和联系。本文内容参考了 <a href="http://kidscancode.org/" target="_blank" rel="noopener">KidsCanCode</a> 的一篇文章： <a href="http://kidscancode.org/2018/02/godot3_kinematic2d/" target="_blank" rel="noopener">Godot 3.0: Using KinematicBody2D</a> ，然后结合我自己的一些探索实践完成。 :smiley:</p>
-<p><img src="kidscancode_godot_k2d_platf_sample.gif" alt="Godot 3.0: Using KinematicBody2D"></p>
+<p>这些理论涉及到了我们之前讨论过的 <em>Area2D</em> 节点以及 <em>KinematicBody2D/RigidBody2D/KinematicBody2D</em> 节点，以及相关碰撞图层和碰撞图层掩码知识。另外，本文还会详细讲述 KinematicBody2D 在游戏中常用的两个重要方法： <code>move_and_collide()</code> 以及 <code>move_and_slide()</code> 的区别和联系。本文内容参考了 <a href="http://kidscancode.org/" target="_blank" rel="noopener">KidsCanCode</a> 的一篇文章： <a href="http://kidscancode.org/2018/02/godot3_kinematic2d/" target="_blank" rel="noopener">Godot 3.0: Using KinematicBody2D</a> ，然后结合我自己的一些探索实践完成。 <img class="github-emoji"  title="smiley" alt="smiley" src="http://liuqingwen.me/images/emoji/smiley.png" height="20" width="20" /></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="kidscancode_godot_k2d_platf_sample.gif" alt="Godot 3.0: Using KinematicBody2D"></p>
 <blockquote>
 <p>主要内容：碰撞理论以及正确使用 KinematicBody2D 节点<br>阅读时间： 15 分钟<br>永久链接： <a href="http://liuqingwen.me/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/">http://liuqingwen.me/2018/12/30/introduction-of-godot-3-part-12-talk-about-collision-and-move-and-collide-vs-move-and-slide-in-kinematicbody2d/</a><br>系列主页： <a href="http://liuqingwen.me/introduction-of-godot-series/">http://liuqingwen.me/introduction-of-godot-series/</a>  </p>
 </blockquote>
@@ -264,31 +264,33 @@
 <table>
 <thead>
 <tr>
-<th align="center">节点名</th>
-<th align="center">StaticBody2D</th>
-<th align="center">RigidBody2D</th>
-<th align="center">KinematicBody2D</th>
+<th style="text-align:center">节点名</th>
+<th style="text-align:center">StaticBody2D</th>
+<th style="text-align:center">RigidBody2D</th>
+<th style="text-align:center">KinematicBody2D</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">节点名称</td>
-<td align="center">静态碰撞节点（ 2D ）</td>
-<td align="center">刚体节点（ 2D ）</td>
-<td align="center">运动学节点（ 2D ）</td>
+<tbody>
+<tr>
+<td style="text-align:center">节点名称</td>
+<td style="text-align:center">静态碰撞节点（ 2D ）</td>
+<td style="text-align:center">刚体节点（ 2D ）</td>
+<td style="text-align:center">运动学节点（ 2D ）</td>
 </tr>
 <tr>
-<td align="center">基本特性</td>
-<td align="center">自动碰撞检测，位置固定不变</td>
-<td align="center">自动碰撞检测，产生碰撞响应：有线速度、角速度等</td>
-<td align="center">参与碰撞检测，无自动响应，完全由代码控制移动</td>
+<td style="text-align:center">基本特性</td>
+<td style="text-align:center">自动碰撞检测，位置固定不变</td>
+<td style="text-align:center">自动碰撞检测，产生碰撞响应：有线速度、角速度等</td>
+<td style="text-align:center">参与碰撞检测，无自动响应，完全由代码控制移动</td>
 </tr>
 <tr>
-<td align="center">使用场景</td>
-<td align="center">一般用于固定的墙壁、地面等</td>
-<td align="center">一般用于受外界影响而产生运动的物体，比如球体、陨石等</td>
-<td align="center">主要用于由代码控制的带物理属性的玩家</td>
+<td style="text-align:center">使用场景</td>
+<td style="text-align:center">一般用于固定的墙壁、地面等</td>
+<td style="text-align:center">一般用于受外界影响而产生运动的物体，比如球体、陨石等</td>
+<td style="text-align:center">主要用于由代码控制的带物理属性的玩家</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>我们在 Godot 编辑器中按 <kbd>F4</kbd> 查找 API ，可以看到这三个节点都是直接继承于 <em>PhysicsBody2D</em> 的，说明它们都是物理节点，而 <em>PhysicsBody2D</em> 又继承于 <em>CollisionObject2D</em> 具有碰撞检测功能。另外， <em>CollisionObject2D</em> 节点还有另外一个子类，这个子类也是我们之前提过并在游戏中应用过的 <em>Area2D</em> 节点。关于这四个节点的应用我举几个常见例子：</p>
 <ul>
 <li>StaticBody2D 能应用于所有游戏，作为墙壁、地面、障碍物等固定物</li>
@@ -302,38 +304,40 @@
 </blockquote>
 <h3 id="碰撞形状和图层"><a href="#碰撞形状和图层" class="headerlink" title="碰撞形状和图层"></a>碰撞形状和图层</h3><p>所有的物理碰撞节点都需要<strong>至少一个碰撞形状</strong>才会有碰撞效果。这个碰撞形状你可以直接在属性面板中添加，也可以在编辑器中暂时“置空”，转而在代码中动态生成，这都是可以的。没有碰撞形状的碰撞节点不会参与游戏中的碰撞交互，碰撞形状主要分为： <em>CollisionShape2D</em> 和 <em>CollisionPolygon2D</em> 两种，应用非常简单，在场景中表现为蓝色区域，游戏运行后并不会显示，可以在 Debug 调试中打开显示效果，在之前的文章中已经详细讨论过。</p>
 <p>这里重点要提到的概念是<strong>碰撞图层</strong>以及<strong>碰撞图层掩码</strong>。在使用碰撞图层之前，你必须在 Godot 项目设置中对你所需要的图层进行添加并合理命名：</p>
-<p><img src="godot_12_projectsettings_of_layers.png" alt="godot_12_projectsettings_of_layers.png"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_12_projectsettings_of_layers.png" alt="godot_12_projectsettings_of_layers.png"></p>
 <p>如果你熟悉 iOS 游戏开发框架 <a href="https://developer.apple.com/spritekit/" target="_blank" rel="noopener">SpriteKit</a> 的话，那么这两个概念对你来说很简单，这里我们先列举一下它们的定义：</p>
 <ul>
 <li>Layer 即图层，在代码中为 <code>collision_layer</code> ，它表示物体所处的碰撞图层，一个物体一般处于一个图层中</li>
 <li>Mask 即掩码，在代码中为 <code>collision_mask</code> ，它表示当前物体所<strong>关心的其他</strong>的碰撞图层，可包含多个图层</li>
 </ul>
 <p>碰撞图层很好理解，类似 <em>PhotoShop/GIMP/Krita</em> 这些图片处理软件中的图层概念，用于把不同的内容分离开来，游戏中碰撞节点一般处于<strong>某一个</strong>特定的碰撞图层中。那么掩码又是啥意思呢？它实质代表的意义是这个物体需要与哪些图层进行碰撞检测，所以一个节点的掩码可以包含多个图层，如果对方所处的碰撞图层不在你的掩码范围内，那么就不会与之发生碰撞检测，有点拗口，举个例子你就能明白，给节点设置图层的方法以及各自所属的图层如下：</p>
-<p><img src="godot_12_set_layer_and_mask.png" alt="godot_12_set_layer_and_mask.png"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_12_set_layer_and_mask.png" alt="godot_12_set_layer_and_mask.png"></p>
 <table>
 <thead>
 <tr>
-<th align="center">游戏物体</th>
-<th align="left">碰撞图层</th>
-<th align="left">图层掩码</th>
+<th style="text-align:center">游戏物体</th>
+<th style="text-align:left">碰撞图层</th>
+<th style="text-align:left">图层掩码</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">玩家</td>
-<td align="left">1</td>
-<td align="left">2, 3</td>
+<tbody>
+<tr>
+<td style="text-align:center">玩家</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">2, 3</td>
 </tr>
 <tr>
-<td align="center">敌人</td>
-<td align="left">2</td>
-<td align="left">1 (or 0)</td>
+<td style="text-align:center">敌人</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">1 (or 0)</td>
 </tr>
 <tr>
-<td align="center">金币</td>
-<td align="left">3</td>
-<td align="left">1 (or 0)</td>
+<td style="text-align:center">金币</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">1 (or 0)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>在这种场景设置下，很显然，玩家掩码为 2(enemy) 和 3(coin) ，那么玩家会检测与敌人或者金币之间的碰撞，敌人和金币的掩码设置都是 1(player) ，所以它们分别也会检测与玩家之间发生的碰撞，但是敌人与金币、敌人与敌人、金币与金币、玩家与玩家之间则都不会互相发生任何碰撞检测！</p>
 <blockquote>
 <p>重点说明：图层和掩码都可以不勾选，也就是完全删除，如果这里敌人或者金币删除全部的掩码，即设置图层掩码为 0 ，那么是不是敌人就不能检测到与玩家之间的碰撞了呢？其实并不是！他们依然能互相检测到与对方的碰撞，这是因为玩家的掩码中包含了敌人，只要双方有一个设置了与对方可以发生碰撞检测的掩码，那么双方即可相互检测到与对方之间发生的碰撞！</p>
@@ -343,10 +347,10 @@
 <li>Monitoring 是否能主动检测其他碰撞体</li>
 <li>Monitorable 是否能被其他碰撞体检测到</li>
 </ul>
-<p><img src="godot_12_monitoring_and_monitorable.png" alt="godot_12_monitoring_and_monitorable.png"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_12_monitoring_and_monitorable.png" alt="godot_12_monitoring_and_monitorable.png"></p>
 <p><em>Area2D</em> 这两个属性一直是新手容易忽略的，弄清楚了这两个属性的概念，你就可以关闭敌人或者金币（使用 <em>Area2D</em> 节点）的 <code>monitoring</code> 属性，关闭后它们不会主动检测与其他碰撞节点的碰撞，同时，在我们的 Demo 中玩家还是可以检测到他们。另一方面，如果要让某个金币不被玩家检测到，就像海底捞月，看得见摸不着的效果，那么可以设置其 <code>monitorable</code> 为关闭即可！嗯，还是用实际 Demo 来体会一下效果吧：</p>
-<p><img src="godot_12_collision_response.gif" alt="godot_12_collision_response.gif"></p>
-<p>OK ，明白了图层和掩码对游戏的开发帮助非常大，你完全可以自己写一个 Demo 尝试一下，或者下载我的源码一探究竟吧，偷偷告诉你：这很重要！哈哈！ :sunglasses:</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_12_collision_response.gif" alt="godot_12_collision_response.gif"></p>
+<p>OK ，明白了图层和掩码对游戏的开发帮助非常大，你完全可以自己写一个 Demo 尝试一下，或者下载我的源码一探究竟吧，偷偷告诉你：这很重要！哈哈！ <img class="github-emoji"  title="sunglasses" alt="sunglasses" src="http://liuqingwen.me/images/emoji/sunglasses.png" height="20" width="20" /></p>
 <h3 id="两个重要的方法"><a href="#两个重要的方法" class="headerlink" title="两个重要的方法"></a>两个重要的方法</h3><p>接下来我们的重点是 <em>KinematicBody2D</em> 节点的两个常用方法，因为涉及到物理碰撞的大部分游戏中，玩家都是使用 <em>KinematicBody2D</em> 节点制作的，而它又有两个非常重要的碰撞处理方法，所以我们必须重点“针对”它们！</p>
 <p>首先，在正常的游戏场景中，对于 <em>KinematicBody2D</em> 几何学碰撞体节点的移动实现，我们主要有以下三种方式：</p>
 <ol>
@@ -358,82 +362,80 @@
 <h4 id="1-相关联系"><a href="#1-相关联系" class="headerlink" title="1. 相关联系"></a>1. 相关联系</h4><p><strong>第一个</strong>：很显然，他们<strong>必须</strong>都在 <code>_physics_process(delta)</code> 方法中调用，因为该方法的内部会对物理引擎进行相关处理，前面我们已经讨论过，最好不要在 <code>_process(delta)</code> 中使用这两个方法，避免出现异常情况，这也是新手容易犯的错误之一。</p>
 <p><strong>第二个</strong>：这两个方法在某场景中是完全可以互相取代的，只需要对碰撞行为作出对应的处理即可。举个例子，下面两个代码段的效果表现会完全相同：</p>
 <figure class="highlight python"><figcaption><span>move_and_collide</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var collision = move_and_collide(velocity * delta)</span><br><span class="line"><span class="keyword">if</span> collision:</span><br><span class="line">	velocity = velocity.slide(collision.normal)</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight python"><figcaption><span>move_and_slide</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">velocity = move_and_slide(velocity)</span><br></pre></td></tr></table></figure>
-
 <p>效果图如下：</p>
-<p><img src="kidscancode_godot_k2d_compare.gif" alt="Godot 3.0: Using KinematicBody2D"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="kidscancode_godot_k2d_compare.gif" alt="Godot 3.0: Using KinematicBody2D"></p>
 <h4 id="2-两者区别"><a href="#2-两者区别" class="headerlink" title="2. 两者区别"></a>2. 两者区别</h4><p><strong>第一个</strong>，从上面的代码中我们能很明显地看出来，在使用这两个方法时，需要传递 <em>KinematicBody2D</em> 物体的速度作为参数；而这个速度在 <code>move_and_collide()</code> 方法中<strong>需要乘以帧间隔</strong> <code>delta</code> ，但是在 <code>move_and_slide()</code> 方法中并<strong>不需要</strong>，这是因为此方法在内部已经帮我们自动处理好了，无需手动相乘。</p>
 <p><strong>第二个</strong>，根据上一条以及前面的代码，我们可以总结出在通用性方面，明显 <code>move_and_collide()</code> 更加<strong>通用</strong>，可以处理运动过程中任何碰撞情况，但是需要手动编码，处理起来也稍难；而 <code>move_and_slide()</code> 方法则更加<strong>特别</strong>，这对于新手朋友来说也会感觉相对简单。</p>
 <p><strong>第三个</strong>，使用方式不同，也就是说这两个方法的<strong>签名是完全不一样</strong>的：</p>
 <table>
 <thead>
 <tr>
-<th align="center">方法</th>
-<th align="left">move_and_collide</th>
-<th align="left">move_and_slide</th>
+<th style="text-align:center">方法</th>
+<th style="text-align:left">move_and_collide</th>
+<th style="text-align:left">move_and_slide</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">返回值类型</td>
-<td align="left">KinematicCollision2D ：包含碰撞相关信息</td>
-<td align="left">Vector2 ：移动碰撞后的实际速度</td>
+<tbody>
+<tr>
+<td style="text-align:center">返回值类型</td>
+<td style="text-align:left">KinematicCollision2D ：包含碰撞相关信息</td>
+<td style="text-align:left">Vector2 ：移动碰撞后的实际速度</td>
 </tr>
 <tr>
-<td align="center">参数1</td>
-<td align="left">rel_vec ：Vector2 类型，表示实际速度，记住需要乘以 delta</td>
-<td align="left">linear_velocity ：Vector2 类型，表示速度，不需要乘以 delta</td>
+<td style="text-align:center">参数1</td>
+<td style="text-align:left">rel_vec ：Vector2 类型，表示实际速度，记住需要乘以 delta</td>
+<td style="text-align:left">linear_velocity ：Vector2 类型，表示速度，不需要乘以 delta</td>
 </tr>
 <tr>
-<td align="center">参数2</td>
-<td align="left">✨ infinite_inertia ： 3.1 版本新增参数，默认为 true</td>
-<td align="left">floor_normal ： Vector2 类型，表示地面法线方向，默认值 (0, 0)</td>
+<td style="text-align:center">参数2</td>
+<td style="text-align:left">✨ infinite_inertia ： 3.1 版本新增参数，默认为 true</td>
+<td style="text-align:left">floor_normal ： Vector2 类型，表示地面法线方向，默认值 (0, 0)</td>
 </tr>
 <tr>
-<td align="center">参数3</td>
-<td align="left">✨ exclude_raycast_shapes ： 3.1 版本新增参数，默认为 true</td>
-<td align="left">slope_stop_min_velocity ：最小速度，斜坡上速度小于该值则停止滑动，默认 5</td>
+<td style="text-align:center">参数3</td>
+<td style="text-align:left">✨ exclude_raycast_shapes ： 3.1 版本新增参数，默认为 true</td>
+<td style="text-align:left">slope_stop_min_velocity ：最小速度，斜坡上速度小于该值则停止滑动，默认 5</td>
 </tr>
 <tr>
-<td align="center">参数4</td>
-<td align="left">✨ test_only ： 3.1 版本新增参数，默认为 false</td>
-<td align="left">max_bounces ：停止运动前最大碰撞次数 ，数值过低可能会直接终止运动，默认 4</td>
+<td style="text-align:center">参数4</td>
+<td style="text-align:left">✨ test_only ： 3.1 版本新增参数，默认为 false</td>
+<td style="text-align:left">max_bounces ：停止运动前最大碰撞次数 ，数值过低可能会直接终止运动，默认 4</td>
 </tr>
 <tr>
-<td align="center">参数5</td>
-<td align="left">-</td>
-<td align="left">floor_max_angle ：能移动的最大斜坡角度，弧度计，默认值 0.785398 即 45°</td>
+<td style="text-align:center">参数5</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">floor_max_angle ：能移动的最大斜坡角度，弧度计，默认值 0.785398 即 45°</td>
 </tr>
 <tr>
-<td align="center">参数6</td>
-<td align="left">-</td>
-<td align="left">✨ infinite_inertia ： 3.1 版本新增参数，默认为 true</td>
+<td style="text-align:center">参数6</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">✨ infinite_inertia ： 3.1 版本新增参数，默认为 true</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <blockquote>
 <p>说明：上面有一些标注了 ✨ 的参数是 Godot 3.1 版本中新增的参数，暂时没有详细的文档说明，等待正式版以及文档发布后会有详述，另外 3.1 版本新增了一个 <code>move_and_slide_with_snap()</code> 方法，值得关注。</p>
 </blockquote>
 <p>两个方法中，上面列举的一些参数都还是很好理解的，对于一般场合下，方法的默认参数都够用。其中，参数 <code>floor_max_angle</code> 表示最大斜坡角度，低于该角度的斜坡都被认为是“可滑行”的地面，另外参数 <code>floor_normal</code> 表示地面的法线，可以结合 <em>KinematicBody2D</em> 的几个方法： <code>is_on_floor()</code> （在地面上）， <code>is_on_wall()</code> （在墙壁上），以及 <code>is_on_ceiling()</code> （在天花板上）搭配使用。</p>
 <p><strong>第四个</strong>，通过上表可以看出来，如果我们需要检查玩家碰撞后的反馈信息，我们可以使用 <code>move_and_collide()</code> 方法的返回值即可，如果使用 <code>move_and_slide()</code> 能不能即使获取相关信息呢？当然也可以，稍微繁琐，我们可以使用 <code>KinematicCollision2D get_slide_collision(int slide_idx)</code> 方法以及 <code>int get_slide_count()</code> 正确处理即可，示例代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func _physics_process(delta):</span><br><span class="line">    var velocity = move_and_slide(velocity)</span><br><span class="line">    var count = get_slide_count()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(count):</span><br><span class="line">        var collision = get_slide_collision(i)</span><br><span class="line">        var collider = collision.collider</span><br><span class="line">        print(<span class="string">'collider '</span>, i + <span class="number">1</span>, <span class="string">': '</span>, collider.name)</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-应用实践"><a href="#3-应用实践" class="headerlink" title="3. 应用实践"></a>3. 应用实践</h4><p>这两个方法确实有点绕，别急，先搞清楚他俩的相似点以及不同点，然后我们就可以在不同场合中灵活使用了。 :grin:</p>
+<h4 id="3-应用实践"><a href="#3-应用实践" class="headerlink" title="3. 应用实践"></a>3. 应用实践</h4><p>这两个方法确实有点绕，别急，先搞清楚他俩的相似点以及不同点，然后我们就可以在不同场合中灵活使用了。 <img class="github-emoji"  title="grin" alt="grin" src="http://liuqingwen.me/images/emoji/grin.png" height="20" width="20" /></p>
 <p><strong>1. 最基本的移动</strong></p>
 <p>观察下图这个示例，使用 <code>move_and_collide()</code> 方法在没有遇到障碍物时一切正常，但是遇到墙壁后，如果玩家的速度方向与墙壁表面相交，就会出现卡住的奇怪现象。究其原因，这是因为我们虽然使用了碰撞移动方法，但是遇到碰撞后的反馈并没有手动处理，所以 <code>move_and_collide()</code> 这个方法在玩家遇到碰撞时只能停下而表现出“卡注”的现象。</p>
-<p><img src="godot_12_move_and_slide.gif" alt="godot_12_move_and_slide.gif"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_12_move_and_slide.gif" alt="godot_12_move_and_slide.gif"></p>
 <p>解决这个问题的方法很简单，把方法替换为 <code>move_and_slide()</code> 即可。该方法不仅能正确处理碰撞反馈，还能告诉你在发生碰撞后物体的实际运行速度，即方法的返回值，在本 Demo 中你可以通过打开 <em>use real velocity</em> 这个开关查看碰撞后物体运动的实时速度。</p>
 <p>那么，是不是所有的 <em>KinematicBody2D</em> 节点的移动都应该直接使用 <code>move_and_slide()</code> 方法呢？当然不是！一起来看第二个示例。</p>
 <p><strong>2. 碰撞反弹效果</strong></p>
 <p>考虑下这个场景，我们有一个用刚体（不反弹）做成的弹力球，这个球在碰撞到墙壁后能弹回去，但是墙壁是静态物体也没有弹性，这个时候如果使用 <code>move_and_slide()</code> 方法那么弹球遇到墙壁就会停止或者直接沿着墙壁下滑啦，如何处理呢？很显然，我们需要一点代码！</p>
 <p>这就是 <code>move_and_collide()</code> 方法的用武之地了，我们可以利用这个方法的返回值进行相关处理，返回值是一个 <code>KinematicCollision2D</code> 类型的碰撞结果，其中包含我们所需要的数据，比如碰撞体的表面方向，即碰撞体的法线方向（垂直方向），把弹力球的速度按法线方向将其<strong>反射</strong>，那么球就能顺利反弹了！</p>
 <p>代码可以<a href="#1-相关联系">参考上文</a>，图效果可以看下：</p>
-<p><img src="godot_12_collide.gif" alt="godot_12_collide.gif"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_12_collide.gif" alt="godot_12_collide.gif"></p>
 <p><strong>3. 2D 平台游戏</strong></p>
 <p>平台游戏应用非常广泛，常见的<em>跳跃类型</em>的游戏很多都是 Platform Game ：左右移动，上下跳跃。平台游戏场景中静态物体元素比较多，一般有地面，墙壁，还有斜坡等，那么玩家在这些平台上如何移动呢？其实核心代码非常简单，这不得不归功于 Godot 提供给我们的 <code>move_and_slide()</code> 方法的了！这种情况在 Unity 中就稍显麻烦了，你还得使用射线（ Raycast ）处理与墙壁、地面等的碰撞检测，而 Godot 中对于小游戏而言，一个方法就能解决所有问题，听起来是不是有点小激动？别急，先看代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func _physics_process(delta):</span><br><span class="line">    var collision = self.move_and_collide(velocity * delta)</span><br><span class="line">    <span class="keyword">if</span> collision:</span><br><span class="line">        velocity = velocity.bounce(collision.normal)</span><br><span class="line">        <span class="keyword">if</span> collision.collider.has_method(<span class="string">'hit'</span>):</span><br><span class="line">            collision.collider.hit()</span><br></pre></td></tr></table></figure>
-
 <p>当然， Godot 中也有<strong>射线节点</strong>，后面会提到，下面是一个普通的 <code>move_and_slide()</code> 方法的应用示例：</p>
-<p><img src="godot_12_platformer.gif" alt="godot_12_platformer.gif"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_12_platformer.gif" alt="godot_12_platformer.gif"></p>
 <h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>枯不枯燥？烦不繁琐？哈哈，啰嗦了一大堆， Godot 的强大和方便之处领悟到了吗？哈哈，如果还不能马上体会，你可以到我的 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github 仓库</a>下载源码，然后打开每一个场景，使用快捷键 <kbd>F6</kbd> <strong>单独运行场景</strong>查看效果；如果本文对你来说很简单，那么是不是迫不及待地想写一个<em>平台游戏</em>练练手啦？</p>
 <blockquote>
 <p>Just do it, man!</p>
@@ -445,9 +447,9 @@
 <li>KinematicBody2D 两个方法详述</li>
 <li>简单的应用场景分析</li>
 </ol>
-<p>本篇的 Demo 以及相关代码已经上传到 Github ，地址： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a> ， 2018 年最后一篇文章，<strong>原创不易</strong>，希望大家喜欢，我们 2019 年见！ :smile:</p>
+<p>本篇的 Demo 以及相关代码已经上传到 Github ，地址： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a> ， 2018 年最后一篇文章，<strong>原创不易</strong>，希望大家喜欢，我们 2019 年见！ <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
 <blockquote>
-<p>参考文档：<br>官方 API 文档： <a href="http://docs.godotengine.org/en/3.0/classes/class_kinematicbody2d.html?highlight=kinematicbody2d" target="_blank" rel="noopener">http://docs.godotengine.org/en/3.0/classes/class_kinematicbody2d.html?highlight=kinematicbody2d</a><br>Godot 3.0: Using KinematicBody2D ： <a href="http://kidscancode.org/2018/02/godot3_kinematic2d/" target="_blank" rel="noopener">http://kidscancode.org/2018/02/godot3_kinematic2d/</a><br>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="https://github.com/spkingr/test-git/raw/master/images/weixin/weixin_it_258.jpg" alt="IT自学不成才"></p>
+<p>参考文档：<br>官方 API 文档： <a href="http://docs.godotengine.org/en/3.0/classes/class_kinematicbody2d.html?highlight=kinematicbody2d" target="_blank" rel="noopener">http://docs.godotengine.org/en/3.0/classes/class_kinematicbody2d.html?highlight=kinematicbody2d</a><br>Godot 3.0: Using KinematicBody2D ： <a href="http://kidscancode.org/2018/02/godot3_kinematic2d/" target="_blank" rel="noopener">http://kidscancode.org/2018/02/godot3_kinematic2d/</a><br>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="https://github.com/spkingr/test-git/raw/master/images/weixin/weixin_it_258.jpg" alt="IT自学不成才"></p>
 </blockquote>
 
 

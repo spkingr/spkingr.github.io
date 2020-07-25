@@ -244,7 +244,7 @@
 <div id="tipue_search_content" style="display: none"></div>
 
 <!-- Content -->
-<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近工作时间安排地非常紧凑，除了周日一天，已经没有其他空闲时间了。不过到了 10 月份会慢慢恢复，目前我在抽出一点时间好好准备这个 <a href="http://liuqingwen.me/tags/Godot/">Godot 系列</a>，边写边学习边迎接 <a href="https://godotengine.org/" target="_blank" rel="noopener">Godot 3.1 版本</a>的到来，也算是一件高兴地事情，哈哈。 :sunglasses:</p>
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近工作时间安排地非常紧凑，除了周日一天，已经没有其他空闲时间了。不过到了 10 月份会慢慢恢复，目前我在抽出一点时间好好准备这个 <a href="http://liuqingwen.me/tags/Godot/">Godot 系列</a>，边写边学习边迎接 <a href="https://godotengine.org/" target="_blank" rel="noopener">Godot 3.1 版本</a>的到来，也算是一件高兴地事情，哈哈。 <img class="github-emoji"  title="sunglasses" alt="sunglasses" src="http://liuqingwen.me/images/emoji/sunglasses.png" height="20" width="20" /></p>
 <blockquote>
 <p>主要内容： Godot 2D 小游戏入门之场景和节点创建<br>阅读时间： 6-8 分钟<br>永久链接：<a href="http://liuqingwen.me/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/">http://liuqingwen.me/2018/09/11/introduction-of-godot-3-part-2-game-scene-and-node/</a><br>系列主页： <a href="http://liuqingwen.me/introduction-of-godot-series/">http://liuqingwen.me/introduction-of-godot-series/</a>  </p>
 </blockquote>
@@ -253,31 +253,31 @@
 <li>了解几个基本节点的相关功能： <code>Node2D/Sprite/RigidBody2D/CollisionShape2D/</code></li>
 <li>丰富我们的小游戏场景，学习静态物体和刚体碰撞以及 Debug 功能</li>
 </ol>
-<h3 id="创建场景"><a href="#创建场景" class="headerlink" title="创建场景"></a>创建场景</h3><p>我们的目标是在 Godot 中创建一个物理小世界，做个碰撞小测试。相关的图片资源和最终项目我会上传到 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github</a> ，算是第一个小 Demo 吧。 :smile:</p>
+<h3 id="创建场景"><a href="#创建场景" class="headerlink" title="创建场景"></a>创建场景</h3><p>我们的目标是在 Godot 中创建一个物理小世界，做个碰撞小测试。相关的图片资源和最终项目我会上传到 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github</a> ，算是第一个小 Demo 吧。 <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
 <p>第一步：首先是进行一个视窗设置，游戏最终窗口大小。<em>在菜单栏 -&gt; Project -&gt; Project Settings -&gt; General</em> 下，选择 <em>Display -&gt; Window -&gt; Size</em> 下设置宽度和高度，如果找不到设置选项可以点击搜索，我这里设置的是 <em>600 x 1000</em> ，根据自己的需求随意设定，另外我们还可以设置游戏的视口（ viewport ），这里暂时不设置，后续文章我再详谈。</p>
 <p>第二步：如果你现在急着运行的话， Godot 会提示你没有选择初始场景入口，所以我们先要在场景中创建一个主节点。在节点窗口添加一个根节点，你可以选择 <em>Node</em> ，也可以选择 <em>Node2D</em> ，甚至其他节点都没关系。还记得上一篇我介绍过的吗？ <em>Node</em> 是 2D 和 3D 节点的共同父节点，所以 2D 游戏场景中使用 <em>Node</em> 作为父节点没任何问题。我这里选择的是 <em>Node2D</em> ，接着单击命名为  <em>Game</em> ，保存场景为 <code>Game.tscn</code> ，然后按 <em>F5</em> 运行，选择刚保存的  <em>Game</em> 场景作为游戏启动入口，确定运行。</p>
 <p>第三步：在上一步完成后游戏运行我们知道啥都没有是因为场景中只有一个空的根节点。是时候添加一些游戏元素了，这就是 Godot 中丰富的节点体系。我们要做一个自由落体小 Demo 。简单描绘一下：有一个地面作为静态物体，做一个球体从空中自由落下，观察碰撞情形。非常非常简单，是不是？如何在 Godot 中实现呢？有两种方式，如下：</p>
 <p><strong>第一种方式：</strong></p>
 <p>在场景中添加一个 <em>Sprite</em> 作为圆球显示载体（把属性 <code>Texture</code> 设置为圆球图片），既然我们需要做自由落体，那么也就是需要一个刚体，所以我们给 <em>Sprite</em> 添加刚体属性，如果你学过 <a href="https://unity3d.com/" target="_blank" rel="noopener">Unity</a> 的话，那么你会很熟练地在对应的 <em>GameObject</em> 上添加一个 <em>Rigidbody2D Component</em> ，即所谓的刚体组件，然后设置刚体的质量、弹力、角速度等，在 Godot 中理论是一样的，但是实现却不一样，我们实现刚体特性是通过添加其他<strong>功能子节点</strong>来实现父节点的相关特性的。这里我们选中 <em>Sprite</em> 节点，按 <em>Ctrl+A</em> 快捷键添加一个 <em>RigidBody2D</em> 节点，接着出现一个警告小三角，点击它会有如下提示：</p>
-<p><img src="godot_2_node_warning_rigidbody2d.jpg" alt="godot_2_node_warning_rigidbody2d.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_2_node_warning_rigidbody2d.jpg" alt="godot_2_node_warning_rigidbody2d.jpg"></p>
 <p>意思很清楚，就是告诉你， <em>RigidBody2D</em> 刚体节点没有碰撞形状节点是不能进行正常物理交互的！解决这个问题很简单，给 <em>RigidBody2D</em> 添加一个 <em>CollisionShape2D</em> 的子节点就 OK 了，这时候你会发现另一个警告：</p>
-<p><img src="godot_2_node_warning_collisionshape2d.jpg" alt="godot_2_node_warning_collisionshape2d.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_2_node_warning_collisionshape2d.jpg" alt="godot_2_node_warning_collisionshape2d.jpg"></p>
 <p>同样的道理， <em>CollisionShape2D</em> 也需要一个实实在在的形状来进行碰撞交互，这个形状的创建非常简单，选择 <em>CollisionShape2D</em> ，在它的属性面板里的 <code>Shape</code> 属性下点击选择 <code>New CircleShape2D</code> 创建一个圆形碰撞体，场景中立刻出现一个蓝色的圆，这个圆就是用于物理交互的碰撞体，碰撞体形状默认大小很小，我们可以点击 <em>Shape</em> 里刚才创建的这个圆形碰撞体进入 <em>CircleShape2D</em> 的详细设置面板，然后设置半径 <code>Radius</code> 为 28 就差不多和圆形 <em>Sprite</em> 大小相当了。</p>
-<p><img src="godot_2_collisionshape2d_shape.jpg" alt="godot_2_collisionshape2d_shape.jpg"></p>
-<p>第一种方案算是完成了，运行游戏，结果出乎意料？圆球纹丝不动！什么原因呢？是不是没设置重力或者质量？哈哈，别急，卖个关子，看了第二种方案你就会理解了。 :sunglasses:</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_2_collisionshape2d_shape.jpg" alt="godot_2_collisionshape2d_shape.jpg"></p>
+<p>第一种方案算是完成了，运行游戏，结果出乎意料？圆球纹丝不动！什么原因呢？是不是没设置重力或者质量？哈哈，别急，卖个关子，看了第二种方案你就会理解了。 <img class="github-emoji"  title="sunglasses" alt="sunglasses" src="http://liuqingwen.me/images/emoji/sunglasses.png" height="20" width="20" /></p>
 <p><strong>第二种方式</strong></p>
 <p>Godot 中的节点非常强大，而且又不失灵活性！既然 <em>RigidBody2D</em> 表示的就是刚体，而 <em>Sprite</em> 仅仅只是作为一个图片显示的载体，那我们是不是可以把 <em>Sprite</em> 作为 <em>RigidBody2D</em> 的子节点而提供图片显示作用，而 <em>RigidBody2D</em> 作为父节点提供真实的物理交互功能呢？按此理论，我们开启第二种方式。</p>
 <p>在第一种方式的基础上，我相信大家对添加节点的操作应该比较熟悉了，直接 <em>Ctrl+A</em> 添加相关的节点，这里要注意的是： <em>RigidBody2D</em> 节点和刚才我们第一种方法中的 <em>Sprite</em> 节点都是场景  <em>Game</em> 根节点的直接子节点，平起平坐，添加的时候别弄错了。</p>
 <p>添加设置完节点后，为了区分两种不同的方式，我分别移动了他们的位置，你也可以直接在属性面板里设置两个父节点 <em>Sprite</em> 和 <em>RigidBody2D</em> 的 <code>Transform/Position</code> 位置的值，记住一定是<strong>父节点</strong>，别弄错了！结果如图：</p>
-<p><img src="godot_2_nodes_setting.jpg" alt="godot_2_nodes_setting.jpg"></p>
-<p>经过两种方案后，我想你应该已经知道第一种方案不可行的原因了吧！没错，正是由于 <em>Sprite</em> 并不会因为有一个 <em>RigidBody2D</em> 子节点而改变图片渲染位置，虽然子节点的位置受重力的影响会移动，而在第二个方案里， <em>Sprite</em> 作为 <em>RigidBody2D</em> 的子节点，父节点位置发生变化， <em>Sprite</em> 子节点相应跟随运动。如何证明？这里我们可以使用 Godot 强大又舒爽的 <strong>Debug</strong> 功能一探究竟：选择菜单栏的 Debug 菜单，勾选 <em>Visible Collision Shape</em> ，然后运行，效果一目了然！ :laughing:</p>
-<p><img src="godot_2_debug_collision_shape.jpg" alt="godot_2_debug_collision_shape.jpg"></p>
-<p><img src="godot_2_result1.gif" alt="godot_2_result1.gif"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_2_nodes_setting.jpg" alt="godot_2_nodes_setting.jpg"></p>
+<p>经过两种方案后，我想你应该已经知道第一种方案不可行的原因了吧！没错，正是由于 <em>Sprite</em> 并不会因为有一个 <em>RigidBody2D</em> 子节点而改变图片渲染位置，虽然子节点的位置受重力的影响会移动，而在第二个方案里， <em>Sprite</em> 作为 <em>RigidBody2D</em> 的子节点，父节点位置发生变化， <em>Sprite</em> 子节点相应跟随运动。如何证明？这里我们可以使用 Godot 强大又舒爽的 <strong>Debug</strong> 功能一探究竟：选择菜单栏的 Debug 菜单，勾选 <em>Visible Collision Shape</em> ，然后运行，效果一目了然！ <img class="github-emoji"  title="laughing" alt="laughing" src="http://liuqingwen.me/images/emoji/laughing.png" height="20" width="20" /></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_2_debug_collision_shape.jpg" alt="godot_2_debug_collision_shape.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_2_result1.gif" alt="godot_2_result1.gif"></p>
 <h3 id="丰富场景"><a href="#丰富场景" class="headerlink" title="丰富场景"></a>丰富场景</h3><p>这个 Demo 虽小，但是到此为止的话，那就有点无趣了，由于是自由落体运动，球体会永无禁止地运动下去！如何让它们落地呢？很简单，给我们的小游戏添加一个带碰撞体的地面就 OK 啦！</p>
 <p>这里要说明的是，地面（静态）和刚体都具有碰撞物理特性，但是他们关键点在于：地面的碰撞体是静态的！所以这里我们使用 <em>StaticBody2D</em> 作为父节点，然后添加一个 <em>Sprite</em> 图片作为显示渲染载体，制作一个简单的平铺地层。并没有什么难度，唯一要提醒的是怎么让我们的地面实现水平平铺（ Repeat-X ）以及使用 <em>SegmentShape2D</em> 作为静态碰撞体的交互形状，关于设置直接看图介绍吧：</p>
-<p><img src="godot_2_sprite_repeatx.jpg" alt="godot_2_sprite_repeatx.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_2_sprite_repeatx.jpg" alt="godot_2_sprite_repeatx.jpg"></p>
 <p>完成后，最终的效果如下：</p>
-<p><img src="godot_2_result2.gif" alt="godot_2_result2.gif"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_2_result2.gif" alt="godot_2_result2.gif"></p>
 <p>最后的最后，我在地面碰撞体背景中使用的是 <em>SegmentShape2D</em> 而非 LineShape2D ，原因可以引用官方文档的解释，并在此建议大家在单向直线碰撞体中优先使用 <em>SegmentShape2D</em> 吧：</p>
 <blockquote>
 <p><a href="http://docs.godotengine.org/en/3.0/classes/class_lineshape2d.html" target="_blank" rel="noopener">LineShape2D</a>: Line shape for 2D collisions. It works like a 2D plane and will not allow any body to go to the negative side. Not recommended for rigid bodies, and usually not recommended for static bodies either because it forces checks against it on every frame.<br><a href="http://docs.godotengine.org/en/3.0/classes/class_segmentshape2d.html" target="_blank" rel="noopener">SegmentShape2D</a>: Segment shape for 2D collisions. Consists of two points, a and b.</p>
@@ -290,11 +290,11 @@
 <li>材质背景平铺设置</li>
 <li>可视化 Debug 功能</li>
 </ol>
-<p>本篇没有使用任何代码，仅仅利用 Godot 丰富的节点系统就完成了这个小 Demo ，算是入门中的入门吧，在后续文章中我会详细说明使用 <a href="http://docs.godotengine.org/en/3.0/getting_started/scripting/gdscript/gdscript_basics.html" target="_blank" rel="noopener">GDScript</a> 代码来加强和丰富我们的游戏功能。嗯，估计新手朋友们早就想跃跃欲试了吧，你完全可以尝试给节点添加代码，实现一些基本的功能，其实 <em>GDScript</em> 非常简单，如 Python 兄弟般，嘿嘿。 :sunglasses:</p>
+<p>本篇没有使用任何代码，仅仅利用 Godot 丰富的节点系统就完成了这个小 Demo ，算是入门中的入门吧，在后续文章中我会详细说明使用 <a href="http://docs.godotengine.org/en/3.0/getting_started/scripting/gdscript/gdscript_basics.html" target="_blank" rel="noopener">GDScript</a> 代码来加强和丰富我们的游戏功能。嗯，估计新手朋友们早就想跃跃欲试了吧，你完全可以尝试给节点添加代码，实现一些基本的功能，其实 <em>GDScript</em> 非常简单，如 Python 兄弟般，嘿嘿。 <img class="github-emoji"  title="sunglasses" alt="sunglasses" src="http://liuqingwen.me/images/emoji/sunglasses.png" height="20" width="20" /></p>
 <h2 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h2><p>嗯，这次就这些，我本意是希望阅读我的文章的朋友们（特别是初学者）能有不错的收获，我也会尽量做到吧，当然，第一次做这种系列的文章，难题和问题在所难免，还请大家多多包涵，多多提出意见和建议，非常感谢！附上 Demo 的 Github 地址： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a> 。</p>
-<p>好吧，下次继续，还是那句话：<strong>原创不易</strong>啊，希望大家喜欢！ :smile:</p>
+<p>好吧，下次继续，还是那句话：<strong>原创不易</strong>啊，希望大家喜欢！ <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
 <blockquote>
-<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzg3MjAwMjI4Mg==&mid=100000071&idx=1&sn=440b2050b4c7495c64f66c41b028c406&send_time=1536712211" alt="IT自学不成才"></p>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&amp;size=102&amp;__biz=Mzg3MjAwMjI4Mg==&amp;mid=100000071&amp;idx=1&amp;sn=440b2050b4c7495c64f66c41b028c406&amp;send_time=1536712211" alt="IT自学不成才"></p>
 </blockquote>
 
 

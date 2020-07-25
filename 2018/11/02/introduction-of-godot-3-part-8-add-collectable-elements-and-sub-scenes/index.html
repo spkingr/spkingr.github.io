@@ -255,16 +255,16 @@
 <li>Godot 中的观察者模式实现：信号的使用</li>
 <li>创建和使用包含函数调用的复杂动画</li>
 </ol>
-<h3 id="创建玩家子场景"><a href="#创建玩家子场景" class="headerlink" title="创建玩家子场景"></a>创建玩家子场景</h3><p>为什么需要<strong>子场景</strong>呢？这其实有点类似程序中的<strong>面向对象思想</strong>，如果你有使用 Unity 开发游戏的经验，那么你对 Unity 中深入人心的 <a href="https://docs.unity3d.com/Manual/Prefabs.html" target="_blank" rel="noopener">Prefab</a> 预制体概念肯定非常熟悉；同样地在 Apple 中开发 <em>2D</em> 游戏，使用 <a href="https://developer.apple.com/spritekit/" target="_blank" rel="noopener">SpriteKit</a> 也会创建很多的子场景： <em>SKScene</em> ，然后在主游戏中加以重复利用。 Godot 中也有类似的概念，想象一下，当你需要在场景中制作很多个功能类似的物体，比如多个相同的敌人，每个场景中数量还不一定一样，如果每个场景中都去单独制作一个个的敌人对象，那就显得<em>非常地不优雅<em>了，万一设计不合理，全部都需要修改呢？这个时候，你就可以把它制作成一个*</em>预制件<strong>，使用预制件来克隆多个敌人，当你需要修改某个功能的时候，你只需要修改这个</strong>预制件**，那么所有的实例都能得到应用，方便高效，还能提高游戏性能。这就是 Godot 中所谓的 *Sub-Scene</em> 子场景概念了。</p>
+<h3 id="创建玩家子场景"><a href="#创建玩家子场景" class="headerlink" title="创建玩家子场景"></a>创建玩家子场景</h3><p>为什么需要<strong>子场景</strong>呢？这其实有点类似程序中的<strong>面向对象思想</strong>，如果你有使用 Unity 开发游戏的经验，那么你对 Unity 中深入人心的 <a href="https://docs.unity3d.com/Manual/Prefabs.html" target="_blank" rel="noopener">Prefab</a> 预制体概念肯定非常熟悉；同样地在 Apple 中开发 <em>2D</em> 游戏，使用 <a href="https://developer.apple.com/spritekit/" target="_blank" rel="noopener">SpriteKit</a> 也会创建很多的子场景： <em>SKScene</em> ，然后在主游戏中加以重复利用。 Godot 中也有类似的概念，想象一下，当你需要在场景中制作很多个功能类似的物体，比如多个相同的敌人，每个场景中数量还不一定一样，如果每个场景中都去单独制作一个个的敌人对象，那就显得<em>非常地不优雅</em>了，万一设计不合理，全部都需要修改呢？这个时候，你就可以把它制作成一个<strong>预制件</strong>，使用预制件来克隆多个敌人，当你需要修改某个功能的时候，你只需要修改这个<strong>预制件</strong>，那么所有的实例都能得到应用，方便高效，还能提高游戏性能。这就是 Godot 中所谓的 <em>Sub-Scene</em> 子场景概念了。</p>
 <p>说的很多，实际上做起来很简单。首先，我又得做下比较了： Godot 中的子场景可比 Unity 中的预制体功能强大多了！子场景可以嵌套，可以覆盖，甚至还能单独运行，非常方便。其次，我们要了解到，什么情况下需要子场景：第一，独立的节点可以制作成子场景，方便开发、调试、合作；第二，重复利用的元素可以制作成子场景。最后，我们来使用子场景来改进一下我们当前的游戏结构。</p>
-<p>在我们的游戏主场景中，玩家 <em>Player</em> 是一个<em>五脏俱全*的子节点，这里我们完全可以把它当做一个单独的场景进行开发利用，这样的好处在于可以单独修改 *Player</em> 节点，提高效率，而且当你有需求要在游戏的主场景中添加多个玩家的时候（这里不太可能，不过以后我们再谈多玩家局域网连线游戏），你会发现特别地方便！制作子场景一般有两种方式，这两种方式都非常简单，灵活采用。</p>
-<p>我们先讲第一种方式：把场景中已有的节点转化为子场景。在我们的游戏主场景中，选择 <em>Player</em> 玩家节点，右键弹出菜单中，选择 <em>Save Branch As Scene</em> 即把该节点转化为场景，然后选择合适的位置，保存即可！现在 <em>Player</em> 节点变成了一个<em>单独的子节点*了，右边的 🎬 电影小标志说明该节点为一个子场景，你可以通过点击这个标志进入 *Player</em> 子场景进行编辑，非常简便、贴心。</p>
-<p><img src="godot_8_subscene.jpg" alt="godot_8_subscene.jpg"></p>
+<p>在我们的游戏主场景中，玩家 <em>Player</em> 是一个<em>五脏俱全</em>的子节点，这里我们完全可以把它当做一个单独的场景进行开发利用，这样的好处在于可以单独修改 <em>Player</em> 节点，提高效率，而且当你有需求要在游戏的主场景中添加多个玩家的时候（这里不太可能，不过以后我们再谈多玩家局域网连线游戏），你会发现特别地方便！制作子场景一般有两种方式，这两种方式都非常简单，灵活采用。</p>
+<p>我们先讲第一种方式：把场景中已有的节点转化为子场景。在我们的游戏主场景中，选择 <em>Player</em> 玩家节点，右键弹出菜单中，选择 <em>Save Branch As Scene</em> 即把该节点转化为场景，然后选择合适的位置，保存即可！现在 <em>Player</em> 节点变成了一个<em>单独的子节点</em>了，右边的 🎬 电影小标志说明该节点为一个子场景，你可以通过点击这个标志进入 <em>Player</em> 子场景进行编辑，非常简便、贴心。</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_8_subscene.jpg" alt="godot_8_subscene.jpg"></p>
 <p>前面说过，子场景类似预制体，可以进行克隆创建出多个子场景的实例，接下来我们就通过制作金币子场景对此进行讨论。</p>
-<h3 id="制作金币场景"><a href="#制作金币场景" class="headerlink" title="制作金币场景"></a>制作金币场景</h3><p>我们创建一些<strong>金币</strong>来丰富游戏的场景，供玩家探索发现。先构思一下金币在游戏世界中的表现：有一个金币，它闪耀在世界的某个角落，如果有幸被玩家拾取，将会播放一段动画，然后消失于人间！嗯，是时候把我们的想象力转化为实际操作了：我们来创建一个单独的金币子场景，包含有两个动画，一个是闪耀，另一个是消失动画，还要有碰撞反馈，最好能自我消失！ :grin:</p>
+<h3 id="制作金币场景"><a href="#制作金币场景" class="headerlink" title="制作金币场景"></a>制作金币场景</h3><p>我们创建一些<strong>金币</strong>来丰富游戏的场景，供玩家探索发现。先构思一下金币在游戏世界中的表现：有一个金币，它闪耀在世界的某个角落，如果有幸被玩家拾取，将会播放一段动画，然后消失于人间！嗯，是时候把我们的想象力转化为实际操作了：我们来创建一个单独的金币子场景，包含有两个动画，一个是闪耀，另一个是消失动画，还要有碰撞反馈，最好能自我消失！ <img class="github-emoji"  title="grin" alt="grin" src="http://liuqingwen.me/images/emoji/grin.png" height="20" width="20" /></p>
 <p>这就是我要讲的第二种子场景制作方式，首先我们点击场景编辑器上方的 <em>+</em> 号按钮，创建一个单独的场景，选择什么节点作为金币场景根节点呢？这里我要介绍一个新的节点： <em>Area2D</em> 区域节点。为什么要使用 <em>Area2D</em> 节点而非普通的 <em>Node2D</em> 或者之前我们多次接触过的具有碰撞属性的 <em>StaticBody2D/KinematicBody2D</em> 节点呢？原因在此：我们只需要一个能检测碰撞，但不需要有任何物理反馈的节点。 <em>Area2D</em> 在此非常合适，它可以用来制作一个区域，检测玩家进出该区域，相比 <em>PhysicsBody2D</em> 下的物理碰撞属性节点，它没有质量、弹性等属性，所以性能更高，另外有了 <em>Area2D</em> 作为根节点，我们没必要使用 <em>Node2D</em> 节点了。</p>
 <p>选择 <em>Area2D</em> 作为根节点，改名为 <em>Coin</em> ，然后添加碰撞区域节点和图片、动画节点，调整相应设置，按 <em>Ctrl+S</em> 保存为 <code>Coin.tscn</code> 场景资源，场景结果如下图：</p>
-<p><img src="godot_8_new_scene.jpg" alt="godot_8_new_scene.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_8_new_scene.jpg" alt="godot_8_new_scene.jpg"></p>
 <p>接下来需要给金币制作动画，按照前面的分析，需要两个动画：一个是没有被收集时的闪耀状态，一个是被收集后立刻消失的动画。第一个动画 <code>rotate</code> 非常简单，对于第二个消失动画 <code>disappear</code> 则稍微复杂点，但是只要把动画思路弄清楚，然后分多个轨道单独进行设计，调整，做出好看的效果也就非常简单了，动画分多个轨道：</p>
 <ul>
 <li>碰撞体禁用属性：玩家收集金币后碰撞体不再有效，启用 <code>disabled</code> 属性</li>
@@ -273,15 +273,15 @@
 <li>缩放属性：再添加一个缩放动画，在位置变化过程中不断缩小，即 <code>scale</code> 的值</li>
 <li>最后一个，金币需要回到第一帧，防止以某个侧面图片进行消失，设置 <code>frame</code> 为 <code>0</code> 即可</li>
 </ul>
-<p><img src="godot_8_coin_animation.jpg" alt="godot_8_coin_animation.jpg"></p>
-<p>记得做动画过程中不断测试和调整播放时间。是不是感觉 Godot 中的 <em>AnimationPlayer</em> 简直是太强大了？嗯，甚至有点像 Adobe Animate （ Adobe Flash ）动画工具啦！最后，提醒一点：由于金币会在玩家碰撞后立刻进行消失动画，这个时候我们要保证玩家不会再和金币继续产生二次碰撞，所以一定要在消失动画的第一帧就禁用碰撞体，同时注意运行游戏之前<strong>别因误勾选而禁用了碰撞体</strong>，这点特别重要，如果不明白怎么回事，又发生了金币不能被正常收集，那么你可以参考我之前的文章，使用 Godot 的碰撞体调试功能测试一下吧！ :sunglasses:</p>
-<h3 id="连接信号"><a href="#连接信号" class="headerlink" title="连接信号"></a>连接信号</h3><p>我们的场景已经准备完毕，现在需要添加一些操作来实现游戏的运行逻辑了。首先我们要做的是：当金币检测到与玩家有碰撞响应后立刻播放消失动画，表明已被收集。这个碰撞相当于一个触发器，而这个触发器在 Godot 中就是以 <em>Signal</em> 信号的方式传播出去的，我们收到信号之后立刻更改动画就可以了。那么，问题来了，这里涉及到一个非常重要的概念： <em>Signal</em> 信号，这又是什么鬼？别急，且听我慢慢解释。 :smiley:</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_8_coin_animation.jpg" alt="godot_8_coin_animation.jpg"></p>
+<p>记得做动画过程中不断测试和调整播放时间。是不是感觉 Godot 中的 <em>AnimationPlayer</em> 简直是太强大了？嗯，甚至有点像 Adobe Animate （ Adobe Flash ）动画工具啦！最后，提醒一点：由于金币会在玩家碰撞后立刻进行消失动画，这个时候我们要保证玩家不会再和金币继续产生二次碰撞，所以一定要在消失动画的第一帧就禁用碰撞体，同时注意运行游戏之前<strong>别因误勾选而禁用了碰撞体</strong>，这点特别重要，如果不明白怎么回事，又发生了金币不能被正常收集，那么你可以参考我之前的文章，使用 Godot 的碰撞体调试功能测试一下吧！ <img class="github-emoji"  title="sunglasses" alt="sunglasses" src="http://liuqingwen.me/images/emoji/sunglasses.png" height="20" width="20" /></p>
+<h3 id="连接信号"><a href="#连接信号" class="headerlink" title="连接信号"></a>连接信号</h3><p>我们的场景已经准备完毕，现在需要添加一些操作来实现游戏的运行逻辑了。首先我们要做的是：当金币检测到与玩家有碰撞响应后立刻播放消失动画，表明已被收集。这个碰撞相当于一个触发器，而这个触发器在 Godot 中就是以 <em>Signal</em> 信号的方式传播出去的，我们收到信号之后立刻更改动画就可以了。那么，问题来了，这里涉及到一个非常重要的概念： <em>Signal</em> 信号，这又是什么鬼？别急，且听我慢慢解释。 <img class="github-emoji"  title="smiley" alt="smiley" src="http://liuqingwen.me/images/emoji/smiley.png" height="20" width="20" /></p>
 <p>编写过程序的朋友应该对程序设计模式中的<strong>观察者模式</strong>或多或少有所了解，观察者模式听上去很专业，高大上，实际上原理非常简单：有一个物体叫做事件源，也可叫<em>被观察者</em>，另外有一个物体叫订阅者，也叫<em>观察者</em>，或者<em>事件侦听者</em>，观察者订阅事件源的某个事件，当事件源发生了这个事件后，它并不需要知道谁订阅了它，只管把事件广播出去即可，然后那些订阅了这个事件的观察者们就能立刻侦听到这个事件，做出相应的处理，这就是所谓的<strong>观察者模式</strong>。</p>
 <p>举个例子，想象一下有这么几个主角：某指挥中心、某急救中心和某狙击手。他们之间的关系和事件，如下：</p>
 <ul>
 <li>狙击手作为<em>被观察者</em>，可随时发报</li>
 <li>指挥中心作为<em>观察者</em>，时刻等待<em>信号</em>到来</li>
-<li>急救中心同样<em>订阅<em>了狙击手的事件，作为</em>观察者</em></li>
+<li>急救中心同样<em>订阅</em>了狙击手的事件，作为<em>观察者</em></li>
 <li>狙击手发现敌人，<em>发出信号</em>：“大量敌人出现”</li>
 <li>指挥中心收到<em>信号</em>，做出反应，立即派遣救援</li>
 <li>急救中心并<em>没有订阅</em>这个事件，或者<em>订阅</em>了也不处理</li>
@@ -289,30 +289,28 @@
 <li>急救中心<em>订阅了该事件</em>，马上行动，开始救援</li>
 </ul>
 <p>这就是观察者模式，如果还不清楚的话，可以看下图：</p>
-<p><img src="signal.gif" alt="signal.gif"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="signal.gif" alt="signal.gif"></p>
 <p>理解了观察者模式，就理解了 Godot 中的信号，回到金币场景中，当 <em>Area2D</em> （ <em>Coin</em> ） 发生碰撞的时候，立刻发出“碰撞”信号，所有的“感兴趣的订阅者”收到这个信号后作出各自相应的处理，这个处理就是订阅者们的“某个函数”。在 Godot 中订阅事件或者信号叫 <em>Connect</em> 连接，信号发出后，连接了该信号的订阅者的相应函数会被调用，也就是成功处理了该事件，完成一个流程。如何使用 <em>Signal</em> 信号呢？原理简单，操作也不难：</p>
-<p><img src="godot_8_connect_signal.png" alt="godot_8_connect_signal.png"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_8_connect_signal.png" alt="godot_8_connect_signal.png"></p>
 <p>按上图中的操作步骤：先给 <em>Area2D</em>  （ <em>Coin</em> ）添加一个空脚本，然后点击发出信号的节点 <em>Area2D</em> （ <em>Coin</em> ），在 Node 面板的 Signals 下显示了 <em>Area2D</em> 节点的所有信号种类，这里我们选择 <code>body_entered(PhysicsBody2D body)</code> 也就是<strong>碰撞体进入</strong>信号，双击它或者单击右下方的 <em>Connect…</em> 按钮，在弹出框中选择接收该信号的订阅者（这里订阅者仍然是金币节点本身，自己处理自己发出的信号），设置处理信号的方法函数，注意 <em>Make Function</em> 默认开启，如果关闭了则需要在脚本中手动编写该函数！连接后我们打开脚本文件，可以看到 Godot 自动帮我们添加了一个方法，同时在 <em>Area2D</em> 的信号面板中也有了变化： <code>body_entered(PhysicsBody2D body)</code> 信号下有了新建方法的连接提示。啰嗦了点，图片能理解的朋友直接跳过吧！</p>
 <p>暂时丢下代码，我们转到主场景中添加我们制作好的金币子场景。在主场景中，点击 🔗 链接按钮，然后选择我们保存的金币场景资源 <code>Coin.tscn</code> 文件，即可实例化一个金币到主场景中，重复这个操作，多添加几个金币，放置到不同的位置，充分发挥你的想象吧！</p>
-<p><img src="godot_8_instance_subscene.jpg" alt="godot_8_instance_subscene.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_8_instance_subscene.jpg" alt="godot_8_instance_subscene.jpg"></p>
 <p>工作基本完成，第二种子场景制作方式也介绍了，信号的原理、使用、添加也了解清楚了，最后就是逻辑处理啦。</p>
 <h3 id="逻辑代码"><a href="#逻辑代码" class="headerlink" title="逻辑代码"></a>逻辑代码</h3><p>回到金币子场景，打开 GDScript 脚本，添加代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">extends Area2D</span><br><span class="line"></span><br><span class="line">func _on_Coin_body_entered(body):</span><br><span class="line">	$AnimationPlayer.current_animation = <span class="string">'disappear'</span></span><br><span class="line">	<span class="comment"># 打印文字到控制台，作为测试用</span></span><br><span class="line">	print(<span class="string">'Coin collected!'</span>)</span><br></pre></td></tr></table></figure>
-
 <p>代码再简单不过！当金币被玩家收集后，也就是发生碰撞的时刻，金币发出信号，在代码中处理信号让金币消失——运行消失动画。运行游戏，测试！</p>
 <p>貌似一切 OK ，实际上这里潜伏了一个大问题：硬币被收集后虽然表面上看不见，但实际上并没从场景中消失！如果你开启碰撞体调试就能清楚地看到这个问题的存在，这可能会引起一个运行 Bug ：如果金币一直存在，游戏占用内存越来越多不能及时释放，以至于可能发生内存溢出而导致游戏崩溃！如何处理呢？会不会添加很多逻辑？哈哈，完全没必要，只需再添加一个简单的信号函数就可以轻松搞定！</p>
 <p>我们已经在上一节做到了金币收集这个动作，接下来要处理的事情是：当金币的消失动画运行到最后一帧，要把它从游戏中真正的移除！这有涉及到信号的处理，当 <em>AnimationPlayer</em> 播放到<strong>最后一帧</strong>的时候也会发出一个信号： <code>animation_finished(String anim_name)</code> 动画结束事件，和 <em>Area2D</em> 的碰撞事件类似，选择 <em>AnimationPlayer</em> 节点下的相应信号，把这个信号连接到金币根节点 <em>Coin</em> 上，在方法处理中把该金币从游戏场景中移除！</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">extends Area2D</span><br><span class="line"></span><br><span class="line">func _on_Coin_body_entered(body):</span><br><span class="line">	$AnimationPlayer.current_animation = <span class="string">'disappear'</span></span><br><span class="line">	print(<span class="string">'Coin collected!'</span>)</span><br><span class="line"></span><br><span class="line">func _on_AnimationPlayer_animation_finished(anim_name):</span><br><span class="line">    <span class="keyword">if</span> anim_name == <span class="string">'disappear'</span>:</span><br><span class="line">		<span class="comment"># queue_free方法将出该节点</span></span><br><span class="line">		self.queue_free()</span><br></pre></td></tr></table></figure>
-
 <p>唯一要注意的地方在于代码中的一个判断条件： <code>if anim_name == &#39;disappear&#39;</code> ，这是因为其他动画播放结束的时候也会发出该信号，而我们只想在消失动画结束时候做相应处理。</p>
 <p>大功告成，运行查看效果！</p>
-<p><img src="result_1.gif" alt="result_1.gif"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="result_1.gif" alt="result_1.gif"></p>
 <h3 id="Bonus-函数动画"><a href="#Bonus-函数动画" class="headerlink" title="Bonus: 函数动画"></a>Bonus: 函数动画</h3><p>嗯，并没有结束，学无止境！我们再学习一个 Godot 中动画节点 <em>AnimationPlayer</em> 的新特性：函数调用关键帧！试想一下，如果我们可以在消失动画 <code>disappear</code> 的最后一帧自动调用金币根节点的 <code>queue_free()</code> 方法，那么不就可以实现场景中删除金币而无需连接信号、编写方法、处理逻辑了吗？ Godot 3.1 就是这么强大，如你所愿！</p>
 <p>首先，我们为了不重复处理同一个事件，我们需要取消动画播放结束的信号。只需要在已连接好的信号下方，点击 <code>Disconnect</code> 按钮取消关联即可。</p>
-<p><img src="godot_8_disconnect_signal.png" alt="godot_8_disconnect_signal.png"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_8_disconnect_signal.png" alt="godot_8_disconnect_signal.png"></p>
 <p>其次，需要稍微修改消失动画。在动画面板中，插入一个新的轨道： <em>Call Method Track</em> 即方法调用轨道，然后选择目标为 <em>Coin</em> 根节点；创建轨道后，在动画的最后插入一个新的关键帧，弹出 <em>Select Method</em> 方法选择框；搜索 <code>void queue_free()</code> 方法，在 <em>Node</em> 类下，点击确定，完成方法关键帧！大致步骤如下图：</p>
-<p><img src="godot_8_animation_with_function.png" alt="godot_8_animation_with_function.png"></p>
-<p>OK ，总算结束了，高高兴兴地去全世界收集金币吧，骚年！ :sunglasses:</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_8_animation_with_function.png" alt="godot_8_animation_with_function.png"></p>
+<p>OK ，总算结束了，高高兴兴地去全世界收集金币吧，骚年！ <img class="github-emoji"  title="sunglasses" alt="sunglasses" src="http://liuqingwen.me/images/emoji/sunglasses.png" height="20" width="20" /></p>
 <h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>本章文字偏多，内容并不多，主要介绍了 Godot 中的两个关键特性，希望大家能理解并应用到自己的小游戏中。本篇代码已经上传到 <a href="https://github.com/spkingr/Godot-Demos/tree/v0.3" target="_blank" rel="noopener">Github</a> ，最后总结一下本次学习到的知识点：</p>
 <ol>
 <li>创建子场景并实例化子场景</li>
@@ -320,15 +318,14 @@
 <li>学习使用 Godot 3.1 动画中的方法调用特性</li>
 <li>其他： Area2D 节点简介，碰撞处理，多轨道动画设计</li>
 </ol>
-<p>够啰嗦了，还是那句话，<strong>原创实属不易</strong>，希望大家喜欢！ :smile:</p>
+<p>够啰嗦了，还是那句话，<strong>原创实属不易</strong>，希望大家喜欢！ <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
 
 <p markdown="1" style="color: red; font-weight: bold; ">
-PS: 图片有一个单词写错 disappear -> disapear ，已经在源代码中更改，注意注意。 :smiley:
+PS: 图片有一个单词写错 disappear -> disapear ，已经在源代码中更改，注意注意。 <img class="github-emoji"  title="smiley" alt="smiley" src="http://liuqingwen.me/images/emoji/smiley.png" height="20" width="20" />
 </p>
 
-
 <blockquote>
-<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=Mzg3MjAwMjI4Mg==&mid=100000071&idx=1&sn=440b2050b4c7495c64f66c41b028c406&send_time=1536712211" alt="IT自学不成才"></p>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&amp;size=102&amp;__biz=Mzg3MjAwMjI4Mg==&amp;mid=100000071&amp;idx=1&amp;sn=440b2050b4c7495c64f66c41b028c406&amp;send_time=1536712211" alt="IT自学不成才"></p>
 </blockquote>
 
 

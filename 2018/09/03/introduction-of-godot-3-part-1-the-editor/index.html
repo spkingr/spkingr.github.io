@@ -255,100 +255,102 @@
 <li>分辨率设置：如果你和我一样使用的是 4K 高分显示屏幕，那么你在打开 Godot 编辑器后需要进一步设置，这个现在提出来，等会介绍编辑器的时候我有截图作具体介绍。</li>
 </ol>
 <p>另外，在官网你会发现一个名为： <em>MONO VERSION (C# SUPPORT)</em> 的下载链接，这个是支持使用 C# 语言来进行游戏编程的，我没怎么使用，看官方介绍，我的建议是没必要下载这个版本，一方面它需要 MONO 的支持，而且 C# 支持现在还不是特别稳定（够用级别吧），另一方面，我觉得 Godot 的脚本语言 <strong>GDScript</strong> 非常简单，比 Python 还简单没压力，后续文章我会专门介绍。</p>
-<p><img src="godot_1_files_folders.jpg" alt="godot_1_files_folders.jpg"></p>
-<p>OK ，双击 exe 文件，开始那愉快的 Godot 之旅吧，骚年！ :sunglasses:</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_files_folders.jpg" alt="godot_1_files_folders.jpg"></p>
+<p>OK ，双击 exe 文件，开始那愉快的 Godot 之旅吧，骚年！ <img class="github-emoji"  title="sunglasses" alt="sunglasses" src="http://liuqingwen.me/images/emoji/sunglasses.png" height="20" width="20" /></p>
 <h3 id="界面介绍"><a href="#界面介绍" class="headerlink" title="界面介绍"></a>界面介绍</h3><p><strong>首先是开场白</strong></p>
 <p>打开 Godot 第一眼是很普通的项目控制面板，这里可以设置编辑器的显示语言：</p>
-<p><img src="godot_1_startup_window.jpg" alt="godot_1_startup_window.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_startup_window.jpg" alt="godot_1_startup_window.jpg"></p>
 <p>选择创建一个游戏，或者打开已存在的游戏，也可以下载官方的 Demo ，双击进入编辑器主界面：</p>
-<p><img src="godot_1_editor_main.jpg" alt="godot_1_editor_main.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_editor_main.jpg" alt="godot_1_editor_main.jpg"></p>
 <p>Godot 的主界面很普通，用过 Unity 或者类似工具软件的朋友都不会感觉到陌生。 Godot 默认打开的是 3D 场景，可以通过上方的菜单进行切换，我推荐使用快捷键： <em>2D场景 -&gt; F1 ， 3D 场景 -&gt; F2 ， Script 脚本窗口 -&gt; F3 ， Help 搜索帮助 -&gt; F4</em> 。</p>
 <p><strong>开工前设置</strong></p>
 <p>如果你打开 Godot 窗口，发现字体很小，那很正常，因为我们没有设置过字体大小，可以在<em>编辑器 -&gt; 编辑器设置</em>菜单下进行设置：</p>
-<p><img src="godot_1_settings_editor.jpg" alt="godot_1_settings_editor.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_settings_editor.jpg" alt="godot_1_settings_editor.jpg"></p>
 <p>另外，如果是 4K 高分辨率屏幕，当你迫不及待地添加一个 Node 节点，然后保存，运行，选择刚才保存的场景，游戏开始，你会发现你的窗口不会出现在屏幕的正中央位置，而是右下方，看起来很不舒服，这是因为你没有开启 HIDPI 设置，别急，只需要在<em>项目 -&gt; 项目设置</em>里设置就可以了：</p>
-<p><img src="godot_1_settings_project.jpg" alt="godot_1_settings_project.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_settings_project.jpg" alt="godot_1_settings_project.jpg"></p>
 <p>勾选 HiDPI 然后运行你的游戏，就会显示在屏幕正中央了，如果不是 4K 高分屏这一步没必要。</p>
 <p><strong>节点和场景</strong></p>
-<p>在尝试运行游戏之前，你得创建一个<em>入场<em>场景，然后保存，接着设置为启动场景才能正常运行。添加节点非常简单，在节点窗口上方有个 *</em>+** 号，点击它，或者直接快捷键更方便： *CTRL + A</em> ，会弹出很多预制节点供您选择：</p>
-<p><img src="godot_1_node_1.jpg" alt="godot_1_node_1.jpg"></p>
+<p>在尝试运行游戏之前，你得创建一个<em>入场</em>场景，然后保存，接着设置为启动场景才能正常运行。添加节点非常简单，在节点窗口上方有个 <strong>+</strong> 号，点击它，或者直接快捷键更方便： <em>CTRL + A</em> ，会弹出很多预制节点供您选择：</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_node_1.jpg" alt="godot_1_node_1.jpg"></p>
 <p>注意， <em>Node</em> 是所有节点的父节点，你可以使用它来作为场景的根节点（ Root ），因为它既是 2D 节点的父节点，又是 3D 节点的父节点，所以你甚至可以使用 <em>Node</em> 来混合 2D 和 3D 游戏节点！当然，我更建议直接使用相对应的节点： <em>Node2D</em> 表示所有 2D 节点的父节点， <em>Spatial</em> 为所有 3D 节点父节点，而 <em>Control</em> 为所有控件的父节点。</p>
 <p>除此之外，你会发现，他们都有一套自己的颜色，比如 2D 节点图标是淡蓝色， 3D 节点是粉红色，控件则为绿色，还有一个，深入一点你就会发现，很多 2D 节点名字都对应一个 3D 节点，下面列举几个：</p>
 <table>
 <thead>
 <tr>
-<th align="center">3D 节点</th>
-<th align="center">2D 节点</th>
-<th align="center">节点名</th>
+<th style="text-align:center">3D 节点</th>
+<th style="text-align:center">2D 节点</th>
+<th style="text-align:center">节点名</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">Camera</td>
-<td align="center">Camera2D</td>
-<td align="center">相机</td>
+<tbody>
+<tr>
+<td style="text-align:center">Camera</td>
+<td style="text-align:center">Camera2D</td>
+<td style="text-align:center">相机</td>
 </tr>
 <tr>
-<td align="center">Light</td>
-<td align="center">Light2D</td>
-<td align="center">灯光</td>
+<td style="text-align:center">Light</td>
+<td style="text-align:center">Light2D</td>
+<td style="text-align:center">灯光</td>
 </tr>
 <tr>
-<td align="center">Particles</td>
-<td align="center">Particles2D</td>
-<td align="center">粒子</td>
+<td style="text-align:center">Particles</td>
+<td style="text-align:center">Particles2D</td>
+<td style="text-align:center">粒子</td>
 </tr>
 <tr>
-<td align="center">Area</td>
-<td align="center">Area2D</td>
-<td align="center">碰撞区域</td>
+<td style="text-align:center">Area</td>
+<td style="text-align:center">Area2D</td>
+<td style="text-align:center">碰撞区域</td>
 </tr>
 <tr>
-<td align="center">KinematicBody</td>
-<td align="center">KinematicBody2D</td>
-<td align="center">物理学物体</td>
+<td style="text-align:center">KinematicBody</td>
+<td style="text-align:center">KinematicBody2D</td>
+<td style="text-align:center">物理学物体</td>
 </tr>
 <tr>
-<td align="center">StaticBody</td>
-<td align="center">StaticBody</td>
-<td align="center">静态物体</td>
+<td style="text-align:center">StaticBody</td>
+<td style="text-align:center">StaticBody</td>
+<td style="text-align:center">静态物体</td>
 </tr>
 <tr>
-<td align="center">RigidBody</td>
-<td align="center">RigidBody2D</td>
-<td align="center">刚体</td>
+<td style="text-align:center">RigidBody</td>
+<td style="text-align:center">RigidBody2D</td>
+<td style="text-align:center">刚体</td>
 </tr>
 <tr>
-<td align="center">CollisionShape</td>
-<td align="center">CollisionShape2D</td>
-<td align="center">碰撞体形状</td>
+<td style="text-align:center">CollisionShape</td>
+<td style="text-align:center">CollisionShape2D</td>
+<td style="text-align:center">碰撞体形状</td>
 </tr>
 <tr>
-<td align="center">Path</td>
-<td align="center">Path2D</td>
-<td align="center">路径</td>
+<td style="text-align:center">Path</td>
+<td style="text-align:center">Path2D</td>
+<td style="text-align:center">路径</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>如上图，你还可以直接通过搜索，更加方便的添加你所需要的节点。在 Godot 中一切基于节点，甚至 <em>Timer</em> 都是一个节点，所以它必须添加到节点树中才能正常使用，这些后续会提到。</p>
 <p><strong>属性面板和子菜单</strong></p>
 <p>我添加了一个 <em>Node2D</em> 作为场景的根节点，单击命名为 <code>Game</code> ，然后在 <code>Game</code> 根节点下添加一个子节点，可以直接 <em>CTRL + A</em> 来添加，这里我是直接把资源窗口中的 Logo 图片直接拖拽到了场景中，选择 <em>Sprite</em> 创建一个精灵：</p>
-<p><img src="godot_1_add_sprite.jpg" alt="godot_1_add_sprite.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_add_sprite.jpg" alt="godot_1_add_sprite.jpg"></p>
 <p>这个时候，右边场景中就会自动创建一个 <em>Sprite</em> 节点，选中这个节点，右下角就是这个节点对应的属性面板，你会发现， <em>Sprite</em> 的 <code>Texture</code> 属性已经自动设置为刚才拖拽的那张 logo 图片了。同时，你会发现在场景的下方多了一个菜单项： <em>Texture Region</em> 材质区域的编辑区，这就是对应该节点的底部栏操作面板，在后续的文章中，介绍动画的时候会经常用到这里的编辑区和菜单。</p>
-<p><img src="godot_1_bottom_part.jpg" alt="godot_1_bottom_part.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_bottom_part.jpg" alt="godot_1_bottom_part.jpg"></p>
 <p>如图，注意场景上方，额外有些子菜单可以进行操作，这些子菜单非常重要，后续对很多节点都会使用到，我这里列举几个类型节点对应的子菜单，如图：</p>
-<p><img src="godot_1_sub_menu_1.jpg" alt="godot_1_sub_menu_1.jpg"></p>
-<p><img src="godot_1_sub_menu_3.jpg" alt="godot_1_sub_menu_3.jpg"></p>
-<p><img src="godot_1_sub_menu_2.jpg" alt="godot_1_sub_menu_2.jpg"></p>
-<p>软件界面大概就这些了，常用的功能都应该差不多介绍到位了吧。 :smile:</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_sub_menu_1.jpg" alt="godot_1_sub_menu_1.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_sub_menu_3.jpg" alt="godot_1_sub_menu_3.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_sub_menu_2.jpg" alt="godot_1_sub_menu_2.jpg"></p>
+<p>软件界面大概就这些了，常用的功能都应该差不多介绍到位了吧。 <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
 <h3 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h3><p>在本系列的第一篇文章中，我说过如果你曾经是 Adobe Flash 的开发者，那么你对 Godot 中<strong>一个节点绑定一个脚本</strong>的约定会感觉非常熟悉。选择一个节点，在上方的右上角，一个带 <strong>+</strong> 号的书本按钮，点击便可以给相应节点添加脚本：</p>
-<p><img src="godot_1_add_script.jpg" alt="godot_1_add_script.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_add_script.jpg" alt="godot_1_add_script.jpg"></p>
 <p>注意：在打开的脚本编辑器里，也有对应的<strong>脚本菜单</strong>。另外， Godot 非常贴心的一点是，你随时可以按 F4 呼出帮助，然后搜索你想要了解的 API ，查看相关属性和方法，这对新手来说，简单不要太爽啊！</p>
-<p><img src="godot_1_sub_menu_4.jpg" alt="godot_1_sub_menu_4.jpg"></p>
-<p><img src="godot_1_search_api_1.jpg" alt="godot_1_search_api_1.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_sub_menu_4.jpg" alt="godot_1_sub_menu_4.jpg"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_1_search_api_1.jpg" alt="godot_1_search_api_1.jpg"></p>
 <p>关于脚本语言编程和使用，这个是一个很长的话题了，暂且到此吧，不过我觉得只要有点编程基础的朋友在 GDScript 脚本上是很容易上手的。后续我必须出个专门的文章，专门介绍一下 GDScript 脚本吧。</p>
-<h2 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h2><p>这次就说到这里，大家感觉这个<strong>游戏</strong>怎样？“什么？什么游戏？”哈哈，偷偷告诉你， Godot 编辑器本身也是由 Godot 引擎打造的一个游戏： <a href="https://github.com/godotengine/godot/issues/4181#issuecomment-203516916" target="_blank" rel="noopener">Godot’s Engine is a Godot Game itself!</a> ，惊不惊喜，意不意外？ :sunglasses:</p>
-<p>本章完结，下次继续，<strong>原创不易</strong>啊，希望大家喜欢！ :smile:</p>
+<h2 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h2><p>这次就说到这里，大家感觉这个<strong>游戏</strong>怎样？“什么？什么游戏？”哈哈，偷偷告诉你， Godot 编辑器本身也是由 Godot 引擎打造的一个游戏： <a href="https://github.com/godotengine/godot/issues/4181#issuecomment-203516916" target="_blank" rel="noopener">Godot’s Engine is a Godot Game itself!</a> ，惊不惊喜，意不意外？ <img class="github-emoji"  title="sunglasses" alt="sunglasses" src="http://liuqingwen.me/images/emoji/sunglasses.png" height="20" width="20" /></p>
+<p>本章完结，下次继续，<strong>原创不易</strong>啊，希望大家喜欢！ <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
 <blockquote>
-<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/images/wexin_2.jpg" alt="IT自学不成才"></p>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="http://liuqingwen.me/images/wexin_2.jpg" alt="IT自学不成才"></p>
 </blockquote>
 
 

@@ -245,7 +245,7 @@
 
 <!-- Content -->
 <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>第一个<a href="http://liuqingwen.me/2018/11/30/introduction-of-godot-3-part-10-introduce-some-node-types-and-make-a-new-game-part-1/">收集金币的小游戏</a>结束了，洋洋洒洒写了三篇文章，分别介绍了相关节点、场景以及所有的代码，作为新手能够独立使用 Godot 完成自己的第一个游戏也算是正式入门了！接下来，我们开启第二个完整的小游戏介绍：太空射击小游戏！同样很简单，但是有更多的发挥空间，当然，我只介绍最简单的游戏实现，更多的关卡设计、游戏思路和游戏元素则留给大家去摸索开发吧。</p>
-<p><img src="result_1.gif" alt="太空射击游戏效果图"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="result_1.gif" alt="太空射击游戏效果图"></p>
 <p>我选择这个游戏的灵感来自于我刚开始学习 Unity 游戏开发时，在官方视频教程中看到的一个游戏： <a href="https://unity3d.com/learn/tutorials/s/space-shooter-tutorial" target="_blank" rel="noopener">Space Shooter tutorial</a> ，你会发现我在游戏里使用的素材都是来自这个游戏。除此之外，我推荐大家去下载另一个使用 Godot 引擎制作的太空射击类小游戏： <a href="https://github.com/PacktPublishing/Godot-Game-Engine-Projects" target="_blank" rel="noopener">Space Rocks</a> ，这个游戏的玩法截然不同，它的原理也更加值得新手去学习，代码中有许多的关于<strong>刚体模型物理碰撞的处理</strong>。</p>
 <p>本节分为上下两篇文章，源码我已经完整地上传到 <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">Github 仓库</a>，欢迎大家克隆并提交 issue ，在开始之前我得申明一下：</p>
 <ol>
@@ -262,141 +262,145 @@
 <li>本射击游戏场景介绍和代码（下篇）</li>
 </ol>
 <h3 id="粒子系统介绍"><a href="#粒子系统介绍" class="headerlink" title="粒子系统介绍"></a>粒子系统介绍</h3><p>中大型游戏中，几乎没有哪个游戏不使用粒子特效的。掌握粒子系统对游戏开发极其重要，合理地使用粒子特效对游戏效果绝对是锦上添花、如虎添翼，常见的粒子特效有：烟花、灰尘、火焰、爆炸、光环、雪花、雨滴、溅射等等等等。比如下面的这张非常熟悉的效果图，使用的就是粒子特效：</p>
-<p><img src="particles_effect.gif" alt="游戏中粒子效果"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="particles_effect.gif" alt="游戏中粒子效果"></p>
 <p>想要实现很酷的粒子特效是需要一定的学习和经验积累的，这里推荐大家去油管（ <a href="https://www.youtube.com/" target="_blank" rel="noopener">youtube</a> ）上订阅一个名叫 Duc Vu 的泰国人的频道，专做特效视频教程，虽然他大部分教程里使用的是 Unity 粒子，但是思想理论和部分设置都是大体相同的，直达连接： <a href="https://www.youtube.com/channel/UC5ZauAWNyh931gRJUqB1QPw" target="_blank" rel="noopener">https://www.youtube.com/channel/UC5ZauAWNyh931gRJUqB1QPw</a></p>
-<p><img src="game_fx_by_DucVu.jpg" alt="game_fx_by_DucVu.jpg"></p>
-<p>在本射击游戏中，我在四个地方使用了粒子特效，不过这都是一些非常简单的效果，设置起来也很轻松，简单的参数调整即可，接下来我们一起来讨论下这些重要的参数吧！ :smiley:</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="game_fx_by_DucVu.jpg" alt="game_fx_by_DucVu.jpg"></p>
+<p>在本射击游戏中，我在四个地方使用了粒子特效，不过这都是一些非常简单的效果，设置起来也很轻松，简单的参数调整即可，接下来我们一起来讨论下这些重要的参数吧！ <img class="github-emoji"  title="smiley" alt="smiley" src="http://liuqingwen.me/images/emoji/smiley.png" height="20" width="20" /></p>
 <h3 id="粒子系统参数"><a href="#粒子系统参数" class="headerlink" title="粒子系统参数"></a>粒子系统参数</h3><p>粒子节点 <em>Particles2D</em> 是 Godot 中所有节点里参数最多的一个，这也是为什么同一个材质，打造出的粒子特效千变万化的原因之一。如果想要实现自己心中的效果，我们需要多尝试、多调试、多实践，当然，有几个参数是对结果影响最直接的，请听我一一道来。</p>
 <p>首先是粒子节点中最基本的一些参数，大部分参数看名字就知道其意义，如下表格：</p>
 <table>
 <thead>
 <tr>
-<th align="left">参数</th>
-<th align="left">解释</th>
-<th align="left">说明</th>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">解释</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">Emitting</td>
-<td align="left">是否发射粒子</td>
-<td align="left">如果 One Shot 勾选， Emitting 将会被取消勾选</td>
+<tbody>
+<tr>
+<td style="text-align:left">Emitting</td>
+<td style="text-align:left">是否发射粒子</td>
+<td style="text-align:left">如果 One Shot 勾选， Emitting 将会被取消勾选</td>
 </tr>
 <tr>
-<td align="left">Amount    ⭐⭐</td>
-<td align="left">发射粒子的总数量</td>
-<td align="left">粒子消亡将重新产生新粒子，配合 Lifetime 生命周期参数</td>
+<td style="text-align:left">Amount    ⭐⭐</td>
+<td style="text-align:left">发射粒子的总数量</td>
+<td style="text-align:left">粒子消亡将重新产生新粒子，配合 Lifetime 生命周期参数</td>
 </tr>
 <tr>
-<td align="left">Lifetime  ⭐⭐</td>
-<td align="left">粒子的生命周期</td>
-<td align="left">通过计算，每隔 Lifetime/Amount 的时间产生一颗新粒子</td>
+<td style="text-align:left">Lifetime  ⭐⭐</td>
+<td style="text-align:left">粒子的生命周期</td>
+<td style="text-align:left">通过计算，每隔 Lifetime/Amount 的时间产生一颗新粒子</td>
 </tr>
 <tr>
-<td align="left">One Shot</td>
-<td align="left">只发射一次</td>
-<td align="left">非常适用于爆炸等特效，在代码中控制发射</td>
+<td style="text-align:left">One Shot</td>
+<td style="text-align:left">只发射一次</td>
+<td style="text-align:left">非常适用于爆炸等特效，在代码中控制发射</td>
 </tr>
 <tr>
-<td align="left">Preprocess</td>
-<td align="left">预热，提前发射粒子</td>
-<td align="left">比如游戏中的下雪场景，也叫 Pre-warm</td>
+<td style="text-align:left">Preprocess</td>
+<td style="text-align:left">预热，提前发射粒子</td>
+<td style="text-align:left">比如游戏中的下雪场景，也叫 Pre-warm</td>
 </tr>
 <tr>
-<td align="left">Speed Scale</td>
-<td align="left">速度缩放系数</td>
-<td align="left">整体效果，影响粒子材质中的 Velocity 速度参数</td>
+<td style="text-align:left">Speed Scale</td>
+<td style="text-align:left">速度缩放系数</td>
+<td style="text-align:left">整体效果，影响粒子材质中的 Velocity 速度参数</td>
 </tr>
 <tr>
-<td align="left">Explosiveness</td>
-<td align="left">爆炸系数</td>
-<td align="left">粒子从中间往四周扩散，爆炸特效必备</td>
+<td style="text-align:left">Explosiveness</td>
+<td style="text-align:left">爆炸系数</td>
+<td style="text-align:left">粒子从中间往四周扩散，爆炸特效必备</td>
 </tr>
 <tr>
-<td align="left">Randomness</td>
-<td align="left">随机系数</td>
-<td align="left">粒子产生的随机性，取值 1 为完全随机</td>
+<td style="text-align:left">Randomness</td>
+<td style="text-align:left">随机系数</td>
+<td style="text-align:left">粒子产生的随机性，取值 1 为完全随机</td>
 </tr>
 <tr>
-<td align="left">Local Coords ⭐</td>
-<td align="left">是否为本地坐标</td>
-<td align="left">位于 Drawing 子菜单，粒子运动在本地坐标还是世界坐标</td>
+<td style="text-align:left">Local Coords ⭐</td>
+<td style="text-align:left">是否为本地坐标</td>
+<td style="text-align:left">位于 Drawing 子菜单，粒子运动在本地坐标还是世界坐标</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>这些是 <em>Particles2D</em> 节点的主要参数，控制粒子的一些整体效果，当然，仅仅依靠这些参数是不行的，当我们在使用粒子节点的时候，必须要给粒子节点添加一个 <em>Material</em> 材质，否则你不会看到有任何效果发生，在 <em>Process Material</em> 菜单下，材质分为两种： <em>ShaderMaterial</em> 和 <em>ParticlesMaterial</em> 。</p>
-<p><img src="godot_11_particles2d_node.png" alt="godot_11_particles2d_node.png"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_11_particles2d_node.png" alt="godot_11_particles2d_node.png"></p>
 <p>这里我们选择给粒子节点创建一个新的 <em>ParticlesMaterial</em> 粒子材质，在粒子材质中又有更丰富的参数配置，通过调节这些参数达到我们想要的效果，主要参数如下表：</p>
 <table>
 <thead>
 <tr>
-<th align="left">参数</th>
-<th align="left">解释</th>
-<th align="left">说明</th>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">解释</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">Emission Shape</td>
-<td align="left">发射体的形状</td>
-<td align="left">有点、球体、方体、多点等形状</td>
+<tbody>
+<tr>
+<td style="text-align:left">Emission Shape</td>
+<td style="text-align:left">发射体的形状</td>
+<td style="text-align:left">有点、球体、方体、多点等形状</td>
 </tr>
 <tr>
-<td align="left">Spread           ⭐</td>
-<td align="left">粒子产生的范围</td>
-<td align="left">最大值为 180 度乘以 2 倍，即全范围发射： -180°~180°</td>
+<td style="text-align:left">Spread           ⭐</td>
+<td style="text-align:left">粒子产生的范围</td>
+<td style="text-align:left">最大值为 180 度乘以 2 倍，即全范围发射： -180°~180°</td>
 </tr>
 <tr>
-<td align="left">Gravity</td>
-<td align="left">重力加速度</td>
-<td align="left">设置为 0 粒子将不受重力控制</td>
+<td style="text-align:left">Gravity</td>
+<td style="text-align:left">重力加速度</td>
+<td style="text-align:left">设置为 0 粒子将不受重力控制</td>
 </tr>
 <tr>
-<td align="left">Initial Velocity ⭐</td>
-<td align="left">粒子发射初始速度</td>
-<td align="left">与生命周期 Lifetime 参数结合产生特效</td>
+<td style="text-align:left">Initial Velocity ⭐</td>
+<td style="text-align:left">粒子发射初始速度</td>
+<td style="text-align:left">与生命周期 Lifetime 参数结合产生特效</td>
 </tr>
 <tr>
-<td align="left">Angular Velocity</td>
-<td align="left">粒子的角速度</td>
-<td align="left">类似 Initial Velocity</td>
+<td style="text-align:left">Angular Velocity</td>
+<td style="text-align:left">粒子的角速度</td>
+<td style="text-align:left">类似 Initial Velocity</td>
 </tr>
 <tr>
-<td align="left">Linear Accel</td>
-<td align="left">粒子的加速度</td>
-<td align="left">与 Initial Velocity 参数配合</td>
+<td style="text-align:left">Linear Accel</td>
+<td style="text-align:left">粒子的加速度</td>
+<td style="text-align:left">与 Initial Velocity 参数配合</td>
 </tr>
 <tr>
-<td align="left">Radial Accel</td>
-<td align="left">粒子旋转加速度</td>
-<td align="left">与 Angular Velocity 参数配合</td>
+<td style="text-align:left">Radial Accel</td>
+<td style="text-align:left">粒子旋转加速度</td>
+<td style="text-align:left">与 Angular Velocity 参数配合</td>
 </tr>
 <tr>
-<td align="left">Damping</td>
-<td align="left">阻尼系数</td>
-<td align="left">类似遇到逆风、摩擦阻力的效果</td>
+<td style="text-align:left">Damping</td>
+<td style="text-align:left">阻尼系数</td>
+<td style="text-align:left">类似遇到逆风、摩擦阻力的效果</td>
 </tr>
 <tr>
-<td align="left">Angle</td>
-<td align="left">粒子角度</td>
-<td align="left">粒子的旋转角度，非发射方向</td>
+<td style="text-align:left">Angle</td>
+<td style="text-align:left">粒子角度</td>
+<td style="text-align:left">粒子的旋转角度，非发射方向</td>
 </tr>
 <tr>
-<td align="left">Scale            ⭐</td>
-<td align="left">粒子缩放尺寸</td>
-<td align="left">可以设置随机，随时间变化而调整粒子的缩</td>
+<td style="text-align:left">Scale            ⭐</td>
+<td style="text-align:left">粒子缩放尺寸</td>
+<td style="text-align:left">可以设置随机，随时间变化而调整粒子的缩</td>
 </tr>
 <tr>
-<td align="left">Color            ⭐</td>
-<td align="left">粒子的颜色</td>
-<td align="left">可以设置渐变颜色，粒子颜色随时间而变化</td>
+<td style="text-align:left">Color            ⭐</td>
+<td style="text-align:left">粒子的颜色</td>
+<td style="text-align:left">可以设置渐变颜色，粒子颜色随时间而变化</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>粒子材质的这些参数非常好理解，其中比较重要的参数我已经标记了，大家可以自己尝试不同参数值对效果的影响。</p>
-<p><img src="godot_11_particles_material.png" alt="godot_11_particles_material.png"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_11_particles_material.png" alt="godot_11_particles_material.png"></p>
 <p>一般来说，我们在使用粒子系统制作理想效果的时候，还会经常遇到随机参数以及曲线设置。粒子系统中很多参数设置都有曲线功能，比如 <em>Scale</em> 缩放参数，我们可以给它设置一个 <em>Scale Curve</em> 曲线，在曲线上通过添加、删除、移动锚固点来调整曲线的样式，最终粒子的大小缩放也就会随时间顺应曲线而变化。</p>
-<p>如果你熟悉 Unity 粒子，你会发现 Unity 粒子的曲线功能调整更加方便，这里顺便赞一下 <a href="https://blogs.unity3d.com/2018/12/13/introducing-unity-2018-3/" target="_blank" rel="noopener">Unity 2018.3</a> 新版本的一些新功能、新特性、新改进，互相学习很重要嘛。 :grin:</p>
+<p>如果你熟悉 Unity 粒子，你会发现 Unity 粒子的曲线功能调整更加方便，这里顺便赞一下 <a href="https://blogs.unity3d.com/2018/12/13/introducing-unity-2018-3/" target="_blank" rel="noopener">Unity 2018.3</a> 新版本的一些新功能、新特性、新改进，互相学习很重要嘛。 <img class="github-emoji"  title="grin" alt="grin" src="http://liuqingwen.me/images/emoji/grin.png" height="20" width="20" /></p>
 <p>除此之外，真正的特效一般都会使用到各种各样的图片作为粒子材质纹理， Godot 中粒子节点还支持使用 <em>SpriteSheet</em> 精灵图集、动画材质、地图材质等，位于 <em>Textures</em> 纹理菜单下，本游戏并没有使用到，大家可以去研究研究。</p>
 <h3 id="简单粒子效果"><a href="#简单粒子效果" class="headerlink" title="简单粒子效果"></a>简单粒子效果</h3><p>我在射击游戏中实现的粒子特效都极其简单，也没有使用任何其他的图片作为粒子的材质纹理：</p>
-<p><img src="godot_11_particles_all.gif" alt="粒子效果一览"></p>
-<p>注意这三个效果中的爆炸效果需要 <em>Explosiveness</em> 参数的配合，相信大家都能做出以上简单的粒子特效。总之，对于粒子特效的应用就是对粒子属性的熟悉度，我给新手朋友们的建议是：<em>尽量使用最少的参数配置出近视的效果</em>，当效果接近理想目标后，再进行其他参数的调整。还有提醒大家的是： Godot 中的 <strong>2D 粒子完全可以使用在 3D 游戏中！</strong>骚年们，充分发挥自己的创意，尽情打造酷炫的效果吧！ :sunglasses:</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_11_particles_all.gif" alt="粒子效果一览"></p>
+<p>注意这三个效果中的爆炸效果需要 <em>Explosiveness</em> 参数的配合，相信大家都能做出以上简单的粒子特效。总之，对于粒子特效的应用就是对粒子属性的熟悉度，我给新手朋友们的建议是：<em>尽量使用最少的参数配置出近视的效果</em>，当效果接近理想目标后，再进行其他参数的调整。还有提醒大家的是： Godot 中的 <strong>2D 粒子完全可以使用在 3D 游戏中！</strong>骚年们，充分发挥自己的创意，尽情打造酷炫的效果吧！ <img class="github-emoji"  title="sunglasses" alt="sunglasses" src="http://liuqingwen.me/images/emoji/sunglasses.png" height="20" width="20" /></p>
 <h3 id="其他几个节点"><a href="#其他几个节点" class="headerlink" title="其他几个节点"></a>其他几个节点</h3><p>游戏中除了 <em>Particles2D</em> 节点，我还使用了其他三个新的节点： <em>VisibilityNotifier2D/ParallaxBackground/TextureButton</em> ，这里我也简单地说明一下：</p>
 <ul>
 <li>VisibilityNotifier2D 用于控制节点进出视窗、屏幕通知，比如用于物体飞出屏幕就删除等</li>
@@ -404,7 +408,7 @@
 <li>ParallaxBackground 节点配合 ParallaxLayer 实现滚动特效，主要属性参数为 Scroll 和 Scale 等</li>
 </ul>
 <p>说明：游戏中我就是使用 <em>ParallaxBackground</em> 节点实现的无限太空背景滚动效果，它需要一个或者多个子节点 <em>ParallaxLayer</em> 的配合，其原理就是通过各个 <em>ParallaxLayer</em> 层不同的滚动速度来实现背景远近的视觉效应，效果类似如下平台游戏：</p>
-<p><img src="godot_11_parallaxbackground_effect.gif" alt="滚动背景效果"></p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_11_parallaxbackground_effect.gif" alt="滚动背景效果"></p>
 <h2 id="三、总结（上）"><a href="#三、总结（上）" class="headerlink" title="三、总结（上）"></a>三、总结（上）</h2><p>好了，上篇就介绍这些内容吧，下篇主要内容是代码的重点解析。总结一下本篇主要知识点：</p>
 <ol>
 <li>Godot 中自带粒子系统的相关参数说明</li>
