@@ -250,7 +250,7 @@
 <blockquote>
 <p>主要内容： AI 寻路新方法探索<br>阅读时间： 6 分钟<br>永久链接： <a href="http://liuqingwen.me/blog/2020/08/01/godot-game-devLog-2-introduce-a-new-AI-path-finding-method/">http://liuqingwen.me/2020/08/01/godot-game-devLog-2-introduce-a-new-AI-path-finding-method/</a><br>系列主页： <a href="http://liuqingwen.me/blog/introduction-of-godot-series/">http://liuqingwen.me/introduction-of-godot-series/</a>  </p>
 </blockquote>
-<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>说道 AI 寻路不得不说 Unity 中的 NavMeshAgent 了，真的很实用，也很强大。在 Godot 中，虽然也有 Navigation 节点的实现，不过功能实在有限，当然这会在 4.0 的版本中有所改善，这是后话，现在我们不谈 3D ，我们从简单的 2D 入手。 <img class="github-emoji"  title="smiley" alt="smiley" src="http://liuqingwen.me/images/emoji/smiley.png" height="20" width="20" /></p>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>说到 AI 寻路不得不说 Unity 中的 NavMeshAgent 了，真的很实用，也很强大。在 Godot 中，虽然也有 Navigation 节点的实现，不过功能实在有限，当然这会在 4.0 的版本中有所改善，这是后话，现在我们不谈 3D ，我们从简单的 2D 入手。 <img class="github-emoji"  title="smiley" alt="smiley" src="http://liuqingwen.me/images/emoji/smiley.png" height="20" width="20" /></p>
 <p>Godot 中的 AI 寻路方案大概有以下几种：</p>
 <ol>
 <li>使用内置的 AStar 类，对于自动生成的网格地图非常有用，结合多线程效率也高</li>
@@ -315,8 +315,11 @@
 <p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_dev2_inherited_and_editable_scene.gif" alt="Inherited Scene and Editable Children"></p>
 <p>AI 寻路相关资源（油管上的）我打算上传到云盘中，在后续文章中分享给大家。之后我还会发文解析如何将 Unity 中的 <a href="https://learn.unity.com/tutorial/5c515373edbc2a001fd5c79d" target="_blank" rel="noopener">Pluggable AI With Scriptable Objects</a> 系列转到 Godot 中，大家拭目以待吧。</p>
 <p>本篇的 Demo 以及相关代码已经上传到 Github ，地址： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a> ， 后续继续更新，<strong>原创不易</strong>，希望大家喜欢！ <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
+
+<p markdown="1" style="color: red; font-weight: bold; ">PS: Demo 中画出来的射线状态（红色代表碰撞，其他颜色则表示无碰撞）有点问题，我还在研究中……</p>
+
 <blockquote>
-<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="http://liuqingwen.me/blog/images/wexin_1.jpg" alt="IT自学不成才"></p>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号：<br><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="http://liuqingwen.me/images/wexin_1.jpg" alt="IT自学不成才"></p>
 </blockquote>
 
 
@@ -335,6 +338,10 @@
 
     <div class="prev_next clearfix">
       
+        <a href="/2020/08/17/godot-game-devLog-3-talk-about-resource/" class="alignleft prev" title="Godot游戏开发实践之三：容易被忽视的Resource"><i class="fa fa-angle-double-left"></i>&nbsp;Godot游戏开发实践之三：容易被忽视的Resource</a>
+      
+      
+        &nbsp;<i class="fa fa-exchange separator"></i>&nbsp;
       
       
         <a href="/2020/07/23/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-2/" class="alignright next" title="Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（下）">Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（下）&nbsp;<i class="fa fa-angle-double-right"></i></a>

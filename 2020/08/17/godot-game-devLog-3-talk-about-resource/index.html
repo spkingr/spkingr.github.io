@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="Godot, 开源游戏引擎, 2D游戏开发, 游戏教程, Resource, ScriptableObject,刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot游戏开发实践之三：容易被忽视的Resource"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot游戏开发实践之三：容易被忽视的Resource - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot游戏开发实践之三：容易被忽视的Resource</h1>
+    <div class="meta">
+        <span>2020-08-17</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>首先，特大喜讯，奔走相告， Godot 爱好者们又有新的窝了——我们国人自建的 Godot 论坛： <a href="https://godoter.top/" target="_blank" rel="noopener">Godot中文社区</a> 已经正式开放，这里有一手的开发资源，最新的科技动向，开发上有啥问题可以随时发帖，欢迎大家随时到论坛来讨论、交流和学习游戏开发的最新技术。 <img class="github-emoji"  title="grin" alt="grin" src="http://liuqingwen.me/images/emoji/grin.png" height="20" width="20" /></p>
+<p>那么，回过头来，今天要探讨的话题是 Godot 中极容易被新手忽视的 Resource 资源类。开发过 Unity 游戏的同学们知道一个叫 ScriptableObject 的很有用的类，它可以用于数据的包装，在不少场合中应该是非常有用的，那么在 Godot 中有没有这个类似的特性呢？嗯，也有，这就是我们今天要谈到的 Resource 资源类型。</p>
+<p>官网也有对 <a href="https://docs.godotengine.org/en/3.2/getting_started/step_by_step/resources.html" target="_blank" rel="noopener">Resources</a> 的相关介绍，我们知道场景是不能拖拽的，也是固定不变的，如果要用场景来保存一些普通数据，肯定不太合理，这时候我们可以使用 Resource 资源类。相比 Node 其优点也很明显，使用非常灵活，同样可以编写脚本，可以定义属性和方法，创建资源文件方便，直接拖拽应用即可。 “OK, FINE!” 这些我都会谈到，更重要的是，我今天会利用 Resource 提出一个全新的、灵活的、“强力”解耦的 EventBus 全局事件模式。感兴趣吗？那我们继续。</p>
+<blockquote>
+<p>主要内容： Resource 的相关用法简介<br>阅读时间： 8 分钟<br>永久链接： <a href="http://liuqingwen.me/2019/08/17/godot-game-devLog-3-talk-about-resource/">http://liuqingwen.me/2020/08/17/godot-game-devLog-3-talk-about-resource/</a><br>系列主页： <a href="http://liuqingwen.me/introduction-of-godot-series/">http://liuqingwen.me/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>Resource 并不神秘，但是很容易被忽视。其实我们平时创建的场景、节点中就包含了各种不同类型的资源文件，官网中的一张图展示了某些节点 Node 和资源 Resource 的关系：</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="nodes_resources.png" alt="Nodes and Resources"></p>
+<p>相信上图中的名称都不陌生，游戏场景开发过程中可能会使用上多种资源类型，常见的就有：图片资源、碰撞图形、各种材质、 UI 主题、音频流、渐变、曲线等等，甚至我们常用的 AnimationPlayer 节点中创建的动画，以及 GDScript 脚本、着色器代码也都是资源。</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_dev3_common_resource_types.jpg" alt="常用资源类型"></p>
+<p>资源的创建和使用也非常简单，不过，目前在 Godot 3 版本中也存在一些局限性，接下来我们详细聊聊。</p>
+<h3 id="Resource-的创建与使用"><a href="#Resource-的创建与使用" class="headerlink" title="Resource 的创建与使用"></a>Resource 的创建与使用</h3><p>创建 Resource 资源的方式就有多种，平常都是在 Node 节点的属性面板中直接创建，比如 New 一个玩家的碰撞体图形的形状，或是动画播放器中的各种动画，粒子系统新建的材质等等，这些资源有一个特点：我们开箱即用，很少保存。</p>
+<p>资源文件也可以单独创建，假设我们需要创建一个需要在很多地方使用的资源，比如通用的主题资源、字体资源、瓦片地图 TileSet 资源等等，那么我们可以单独创建相应类型的资源文件，保存起来，在不同场景中轻松实现重复利用。在属性面板或者节点属性中都可以新建资源文件：</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_dev3_create_resource_file.jpg" alt="创建并保存资源文件"></p>
+<p>新建资源文件后记得保存，保存的文件后缀名一般是 <code>.tres</code> 也有 <code>.res</code> 文件类型的，区别在于以文本格式保存还是二进制文件格式保存：</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_dev3_save_resource.jpg" alt="保存资源为文件"></p>
+<p>保存好的资源文件我们可以随时修改其相关属性值，双击资源文件即可，另外，也可以创建多个副本，比如字体资源复制（ duplicate ）一份，然后修改字体大小属性，使用在不同的地方。</p>
+<p>资源的使用方式就简单了，可以直接拖拽到对应属性中，也可以在属性下拉列表中点击 Load 加载。系统自带的资源比较齐全，当然我们也可以自定义资源类型。资源从本质上来说仍然是一种脚本文件，创建自定义资源首先需要创建一个继承自 <code>Resource</code> 类的脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 继承自 Resource 说明这是一个资源脚本</span></span><br><span class="line">extends Resource</span><br><span class="line">class_name CustomResource, <span class="string">'res://CustomResource/custom_icon.svg'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 资源也可以定义普通的属性</span></span><br><span class="line">export var variable1 := <span class="string">''</span></span><br><span class="line">export var variable2 := <span class="number">0</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 资源也可以定义一些方法</span></span><br><span class="line">func printInfo() -&gt; void:</span><br><span class="line">    <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+<p>在上面新建的代码中我们声明了资源的类名（ <code>CustomResource</code> ）以及资源的图标（ <code>res://CustomResource/custom_icon.svg</code> ）。创建好之后，可以在新建资源列表中发现相对应的自定义资源类型，这一系列过程可以参考下图：</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_dev3_create_and_use_resource.jpg" alt="创建自定义资源以及资源实例"></p>
+<p>是不是非常简单？赶紧动手创建一个压压惊。 <img class="github-emoji"  title="joy" alt="joy" src="http://liuqingwen.me/images/emoji/joy.png" height="20" width="20" /></p>
+<h3 id="Resource-相关问题与局限"><a href="#Resource-相关问题与局限" class="headerlink" title="Resource 相关问题与局限"></a>Resource 相关问题与局限</h3><p>资源的创建和使用确实简单，不过 Godot 3 中对于自定义资源还是有点小坑，这里提出来，希望对新手朋友们有用。</p>
+<p><strong>1. 不能使用自定义 Resource 为变量类型</strong></p>
+<p>我们创建自定义资源时，可以给资源定义个类名 <code>class_name CustomResource</code> ，但是在代码中确不能定义该类型的资源变量：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var resource1 : Resource <span class="comment"># 没问题</span></span><br><span class="line">var resource2 : CustomResource <span class="comment"># 不支持！</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码运行会报错：</p>
+<blockquote>
+<p>built-in:4 - Parse Error: Invalid export type. Only built-in and native resource types can be exported.</p>
+</blockquote>
+<p>避免这个问题的方法就是使用父类型 <code>Resource</code> 作为变量的类型，不过这样会导致在 <code>export</code> 属性中可以赋予任意类型的资源文件，非常不方便、不人道。当然你可以在代码中进行判断：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> resource &amp;&amp; resource <span class="keyword">is</span> CustomResource:</span><br><span class="line">    <span class="comment"># 代码...</span></span><br></pre></td></tr></table></figure>
+<p>不过，好消息是这个问题会在 Godot 4.0 中得到解决。</p>
+<p><strong>2. 使用 Resouce 要注意资源是引用类型</strong></p>
+<p>如果一个资源文件被多个节点使用，这个时候你只要改变了某个节点下该资源的任意一个属性，结果都会导致其他节点下该资源跟随发生变化！</p>
+<p>举个例子，游戏资源中有一个 <code>font_resource.res</code> 字体资源文件，当你改变了资源属性中字体的大小后，其他所有使用了该资源的 UI 界面字体都会发生改变。这也是为什么新手们经常会遇到这种情况：<em>创建一个节点，添加碰撞体，新建一个碰撞体图形，设置好之后复制该节点并重命名，修改新碰撞节点的图片和碰撞体图形，莫名发现之前节点的碰撞体图形也发生了改变</em>，其实就是这个原因。 <img class="github-emoji"  title="grin" alt="grin" src="http://liuqingwen.me/images/emoji/grin.png" height="20" width="20" /></p>
+<p>所以，在 Godot 中一个小小的变量值改变都需要重新创建一个资源，这也不算什么大问题，我们可以右键资源文件 <em>Duplicate</em> 复制一个，或者使用 <em>Make Unique</em> 方式使指定资源唯一化。</p>
+<p><strong>3. 使用 Resouce 要注意避免循环引用</strong></p>
+<p>如果你的项目中创建了不少自定义资源文件，自定义资源代码中又引用了其他类型的资源，那么有可能会出现这种错误；</p>
+<blockquote>
+<p>“scene/resources/resource_format_text.cpp:1387 - Circular reference to resource being saved found: ‘res://src/…/???.tres’ will be null next time it’s loaded.”</p>
+</blockquote>
+<p>其实循环引用问题（ <em>Circular reference</em> ）在普通 GD 代码中也会出现，而出现在自定义资源中则会变得难以发觉。解决这个问题的方法就是不要在编辑器中直接给资源赋值，转而在运行时判断然后动态加载 Resource ，示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">export var resource : Resource       <span class="comment"># 自定义资源</span></span><br><span class="line">export var resourceFilePath : String <span class="comment"># 资源路径</span></span><br><span class="line"></span><br><span class="line">func method() -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> resource == null:</span><br><span class="line">        <span class="comment"># 运行时加载资源文件</span></span><br><span class="line">        resource = load(resourceFilePath)</span><br><span class="line">    <span class="comment"># 代码...</span></span><br></pre></td></tr></table></figure>
+<p>这种情况应该比较少见，暂时不做深入讨论，后面的文章遇到了再详述，当然，我们翘首以待的 4.0 版本会解决这个问题。</p>
+<p><strong>4. 其他的小问题</strong></p>
+<p>如果修改资源脚本中的图标或者类名后，其他引用了这个 Resource 的代码就会报错，类似 <em>Resource 类已经损坏，加载不完整</em>之类。重新启动项目就可以了。</p>
+<p>有时候还会遇到这种小 BUG ：</p>
+<blockquote>
+<p>core/script_language.cpp:244 - Condition “!global_classes.has(p_class)” is true. Returned: String()</p>
+</blockquote>
+<p>有点莫名，也不容易重现，我估计是修改了 Resource 脚本类名引起的，反正重启项目就没事了。 <img class="github-emoji"  title="joy" alt="joy" src="http://liuqingwen.me/images/emoji/joy.png" height="20" width="20" /></p>
+<p>这些小问题说明目前 Godot 的资源类型还不够完善， Waiting for Godot 4.0 药到病除，哈哈！</p>
+<h3 id="创建-Resource-相当于-DataContainer"><a href="#创建-Resource-相当于-DataContainer" class="headerlink" title="创建 Resource 相当于 DataContainer"></a>创建 Resource 相当于 DataContainer</h3><p>创建自定义 Resource 的一个经典用途就是当做数据容器。创建一个个资源文件就相当于创建了一个个数据容器，这些数据容器一般没有其他功能，只是独立保存一些应用数据，不论是修改还是使用都非常方便且灵活。</p>
+<p>举个具有实际应用场景的例子，在一个 Player 或者 AI 脚本中，如果存在着大量数据属性，而这些数据属性一般不会发生改变，或者只是一些配置参数，那么我们完全可以将其抽离出来作为一个单独的数据类——这也是《重构-改善既有代码的设计》一书中提倡的重构方式之一。</p>
+<figure class="highlight python"><figcaption><span>Player.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 玩家类</span></span><br><span class="line"></span><br><span class="line">export var name := <span class="string">'player'</span></span><br><span class="line">export var moveSpeed := <span class="number">200</span></span><br><span class="line">export var rotateSpeed := <span class="number">5</span></span><br><span class="line"><span class="comment"># 其他一些属性...</span></span><br></pre></td></tr></table></figure>
+<p>在 Godot 中这个所谓的单独数据类可以使用内部类进行包装：</p>
+<figure class="highlight python"><figcaption><span>Player.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 玩家类</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内部类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Data</span>:</span></span><br><span class="line">    var name := <span class="string">'player'</span></span><br><span class="line">    var moveSpeed := <span class="number">200</span></span><br><span class="line">    var rotateSpeed := <span class="number">5</span></span><br><span class="line">    func _init():</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>内部类虽然可以封装数据，但是在脚本范围之外使用则非常蹩脚，也不方便在编辑器中进行编辑，这时候我们可以使用自定义资源类解决这个痛点：</p>
+<figure class="highlight python"><figcaption><span>DataResource.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">extends Resource</span><br><span class="line"></span><br><span class="line">export var name := <span class="string">'player'</span></span><br><span class="line">export var moveSpeed := <span class="number">200</span></span><br><span class="line">export var rotateSpeed := <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>然后创建单个或者多个资源文件，在编辑器的属性面板中修改对应的属性值，在其他代码中使用起来非常方便：</p>
+<figure class="highlight python"><figcaption><span>Player.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export var dataResource : Resource = null</span><br><span class="line"></span><br><span class="line">fun _ready() -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> dataResource != null:</span><br><span class="line">        print(dataResource.name, dataResource.moveSpeed, dataResource.rotateSpeed)</span><br></pre></td></tr></table></figure>
+<p>作为数据容器和 ScriptableObject 有点类似，接下来我们看 Resource 的另一个非常有用的场景。</p>
+<h3 id="用-Resource-创建全局事件的-EventBus"><a href="#用-Resource-创建全局事件的-EventBus" class="headerlink" title="用 Resource 创建全局事件的 EventBus"></a>用 Resource 创建全局事件的 EventBus</h3><p>可以说这是本文的重点，目前我还没有看到有任何人在项目中使用过这种方式，且听我慢慢道来~~~</p>
+<p>首先，关于 Godot 中的 <code>signal</code> 信号以及观察者模式相信大家都已经驾轻就熟了，一般在游戏开发中我们都会准守 <code>signal up, call down</code> 的准则，即<strong>往上层发送信号，往下层直接调用</strong>。当游戏变得越来越复杂的时候，信号可能已经充满了整个项目，比如某个多人游戏中信息面板需要接收并显示多种不同类型的信号：玩家按下回车键发送的文字信息、玩家某个战场获得胜利发出的信号、某个玩家退出游戏发出的信号、官方服务器推送的信息等等，因为这些信息发生在不同的场景，处理起来并不简单，我能想到的解决方式有这么几种：</p>
+<ol>
+<li>使用 <code>get_node(&#39;../root/node_path&#39;)</code> 方式，不推荐并表示强烈谴责，这会造成强耦合，扩展、维护和重构极其困难</li>
+<li>使用 <em>Global AutoLoad</em> ，也就是 Singleton 单例模式，有效解决耦合，但是维护相当困难，牵一发而动全身，调试困难</li>
+<li>使用 Resource 创建相应的事件资源，强力解耦，使用起来非常方便，调试也非常简单，易扩展和维护</li>
+</ol>
+<p>关于第二种方式是大家推荐的模式，我在之前的示例中就使用过：（<a href="http://liuqingwen.me/2020/07/22/godot-game-devLog-1-making-game-with-high-level-multiplayer-api-part-1/">Godot游戏开发实践之一：使用High Level Multiplayer API制作多人游戏（上）</a>）， <a href="https://www.gdquest.com/docs/" target="_blank" rel="noopener">GDQuest</a> 的文档中也介绍了这种模式： <a href="https://www.gdquest.com/docs/guidelines/best-practices/godot-gdscript/event-bus/" target="_blank" rel="noopener">https://www.gdquest.com/docs/guidelines/best-practices/godot-gdscript/event-bus/</a> ，示例代码如下：</p>
+<figure class="highlight python"><figcaption><span>GameConfig.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这是一个 AutoLoad 单例</span></span><br><span class="line">extends Node</span><br><span class="line"><span class="comment"># 可以定义多个通用信号</span></span><br><span class="line">signal new_message(content)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 其他代码...</span></span><br></pre></td></tr></table></figure>
+<p>其他场景中使用也非常简单：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 场景 1 中发送信号：</span></span><br><span class="line">GameConfig.emit_signal(<span class="string">'new_message'</span>, <span class="string">'......'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 场景 2 中接收处理信号：</span></span><br><span class="line">GameConfig.connect(<span class="string">'new_message'</span>, self, <span class="string">'_on_NewMessage_arrive'</span>)</span><br></pre></td></tr></table></figure>
+<p>但是这种方式有一个很大的缺陷：全局引用导致重构困难。因为单例相当于<strong>全局模式</strong>，任何地方都可以引用，重构时一旦改动单例中某个方法或者属性都有可能引起其他地方因为引用失效而导致运行奔溃，寻找这些引用并不容易，这也为什么 <a href="https://www.gdquest.com/docs/" target="_blank" rel="noopener">GDQuest</a> 推荐的 EventBus 模式是单独创建的只有信号没有其他代码的脚本文件。</p>
+<p>废话一堆，一起来看看利用 Resource 创建的事件模式吧！首先创建一个事件资源：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义资源</span></span><br><span class="line">extends Resource</span><br><span class="line">class_name EventResource, <span class="string">'res://EventResource/event_icon.svg'</span></span><br><span class="line"><span class="comment"># 自定义信号</span></span><br><span class="line">signal custom_event(type, message)</span><br><span class="line"><span class="comment"># 可以定义一些属性</span></span><br><span class="line">export var type := <span class="string">'defaultEvent'</span></span><br><span class="line"><span class="comment"># 自定义方法用于发送信号的包装，也可以直接发送信号</span></span><br><span class="line">func emitSignal(object) -&gt; void:</span><br><span class="line">    self.emit_signal(<span class="string">'custom_event'</span>, type, object)</span><br></pre></td></tr></table></figure>
+<p>接下来，我们可以创建一些事件资源文件，比如 <code>message_event.tres</code> <code>trigger_event.tres</code> ，不同的文件可以更改、配置不同的参数，然后在其他脚本中使用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export var messageEvent : Resource = null</span><br><span class="line">export var triggerEvent : Resource = null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以使用事件资源侦听事件</span></span><br><span class="line">func someMethod1() -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> triggerEvent &amp;&amp; triggerEvent <span class="keyword">is</span> EventResource:</span><br><span class="line">        triggerEvent.connect(<span class="string">'custom_event'</span>, self, <span class="string">'_onTriggerEventHandler'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可以使用事件资源发送事件</span></span><br><span class="line">func someMethod2() -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> messageEvent &amp;&amp; messageEvent <span class="keyword">is</span> EventResource:</span><br><span class="line">            messageEvent.emitSignal(info)</span><br></pre></td></tr></table></figure>
+<p>因为这些事件都是资源类型，在节点属性中可以直接拖拽使用，而且可有可无，均不影响整个项目的运行，在本示例中玩家的属性配置如下图：</p>
+<p><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_dev3_player_settings.jpg" alt="玩家相关设置"></p>
+<p>可以看到 <em>Player1</em> 只接收 <code>message_event</code> 事件， <em>Player3</em> 只派发 <code>trigger_event</code> 事件，而 <em>Player2</em> 则无任何配置，可谓一目了然。</p>
+<p>总结一下使用 Resource 创建事件的一些优点：</p>
+<ol>
+<li>强力解耦！不依赖其他文件或者脚本、节点，很容易进行重构</li>
+<li>便于调试，代码中只要注意 <code>null</code> 引用即可，删除或者添加相关事件都非常友好</li>
+<li>便于测试，修改事件相关属性值非常方便，一改全改</li>
+<li>可以考虑在大型项目中应用</li>
+</ol>
+<p>并没有十全十美的万能解决方案，当然也是有缺点的，比如一堆的只是改变了某一个变量值的 <code>.res</code> 文件等。重要的是，目前还没有实际项目支持这个事件模式，有待大家的开发和探索啊。 <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>好了，这篇就聊了一个简单的 Resource 话题，希望能给新手朋友们带来一点点帮助，给高手朋友们开拓一点点亮光，那这篇文章也就值了。</p>
+<p>记住我们 Godot 爱好者的新家： <a href="https://godoter.top/" target="_blank" rel="noopener">Godot中文社区</a> ，欢迎常回家看看！</p>
+<p>本篇的 Demo 以及相关代码已经上传到 Github ，地址： <a href="https://github.com/spkingr/Godot-Demos" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Demos</a> ， 后续继续更新，<strong>原创不易</strong>，希望大家喜欢！ <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号（第一时间更新+游戏开发资源+相关资讯）：<img src="http://liuqingwen.me/images/imgloader.gif" data-echo="http://liuqingwen.me/images/wexin_1.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+      
+      
+        <a href="/2020/08/01/godot-game-devLog-2-introduce-a-new-AI-path-finding-method/" class="alignright next" title="Godot游戏开发实践之二：AI之寻路新方式">Godot游戏开发实践之二：AI之寻路新方式&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>
