@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Favicon-->
+    <!-- Changed by me, before:href="favicon/favicon.ico", after:href="http://liuqingwen.me/favicon/favicon.ico"  -->
+    <!-- Sample: <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    
+        <script>
+            //added by my blog of "liuqingwen.me"
+            var url = "anhognda.com";
+            var host = window.location.host;
+            if(host == url || host == "www." + url) {
+                document.location.href = "http://" + host;
+            }
+        </script>
+    
+
+    <!-- MathJax supported added by me -->
+    
+
+    <!-- Keywords, added by me -->
+    
+        <meta name="keywords" content="Godot, 开源游戏引擎, 2D游戏开发, 游戏教程, ScriptableObject, AI, Unity教程搬运,刘庆文, 博客, Godot, 游戏开发, 文章教程, Java, Python, Kotlin, Android, iOS, Swift, 安卓开发, 学习">
+    
+
+    <!--Description-->
+    
+        <meta name="description" content="This is a simple blog use Hexo, called Liuqingwen&#39;s last blog, all about of interesting things of Kotlin, Web, Swift, Game, 3D and life.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Liuqingwen">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Godot游戏开发实践之四：搬运Unity的Pluggable AI教程"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="A Vegetables Bird&#39;s Blog"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content=""/>
+    
+
+    <!-- Title -->
+    
+    <title>Godot游戏开发实践之四：搬运Unity的Pluggable AI教程 - A Vegetables Bird&#39;s Blog</title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/sass/main.css">
+
+
+    <!-- Custom CSS added by me -->
+    
+<link rel="stylesheet" href="/css/custom.css">
+
+    <!-- Calendar CSS added by me -->
+    
+<link rel="stylesheet" href="/css/calendar.css">
+
+
+    <!--[if lt IE 8]>
+        
+<script src="/js/ie/html5shiv.js"></script>
+
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+        
+<link rel="stylesheet" href="/sass/ie8.css">
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+        
+<link rel="stylesheet" href="/sass/ie9.css">
+
+    <![endif]-->
+
+    <!-- Gallery 
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" /> -->
+    <link href="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97319413-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <!-- Header -->
+<header id="header">
+    <!-- outer added by me, 2018-12-17, liuqingwen.me -->
+    <div class="outer">
+        <div>
+            <ul>
+                
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;HOME</a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"><i class="fa fa-archive fa-fw"></i>&nbsp;ARCHIVES</a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"><i class="fa fa-tags fa-fw"></i>&nbsp;TAGS</a>
+                    </li>
+                
+                    <li>
+                        <a href="/about"><i class="fa fa-user fa-fw"></i>&nbsp;ABOUT</a>
+                    </li>
+                
+                <li class="search">
+                    <a href="/tags">
+                        <span class="fa-stack"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-search fa-stack-1x"></i>&nbsp;
+                        </span>SEARCH</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="inner">
+
+        <!-- Logo -->
+        <!-- Changes: config.root variable added -->
+        <a href="/" class="logo">
+            <span class="symbol"><img src="/images/logo.png" alt="Logo" /></span>
+            <span class="title">A Vegetables Bird's Blog</span>
+        </a>
+
+        <!-- Added the search icon -->
+        <a href="/tags" class="logo" style="float: right; ">
+            <span class="symbol"><i class="fa fa-search"></i></span>
+            <!-- <img src="/tipuesearch/search.png" alt="Search" /> -->
+        </a>
+
+        <!-- Nav -->
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <h2>Menu</h2>
+    <ul>
+        
+            <li>
+                <a href="/">Home</a>
+            </li>
+        
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+        
+            <li>
+                <a href="/tags">Tags</a>
+            </li>
+        
+            <li>
+                <a href="/about">About</a>
+            </li>
+        
+        <li style="color: #4cce18;">
+            <!-- <a href="/tags">
+                <span><img src="/tipuesearch/search.png" alt="Search" style="width: 2em; height: 2em; vertical-align: middle;" />Search</span>
+            </a> -->
+            <a href="/tags"><i class="fa fa-search"></i>&nbsp;Search Blog Content</a>
+        </li>
+    </ul>
+
+    <!--Added by me, for calendar widget-->
+    <div id="widget-calender-liuqingwen">
+        <div class="widget tag">
+    <h3 class="title">calendar</h3>
+    <div id="calendar"></div>
+</div>
+    </div>
+</nav>
+
+
+        <div id="main">
+            <div class="inner">
+
+                <!-- Main Content -->
+                
+
+    
+    <h1 class="title">Godot游戏开发实践之四：搬运Unity的Pluggable AI教程</h1>
+    <div class="meta">
+        <span>2020-09-08</span>
+        <span>  by Liuqingwen </span>
+        
+            <span> | Tags: <a href="/tags/Godot/">Godot</a></span>
+        
+        <span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Hits</span>
+        <!-- author added by me -->
+    </div>
+
+
+    <!-- lazy-img-loading added by me -->
+    
+        <span class="image main"><img src="http://liuqingwen.me/images/imgloader.gif" data-echo="godot_cover.jpg" alt="" /></span>
+    
+
+
+<!-- Gallery -->
+
+
+<!-- Added by me..................for tipue search plugin -->
+<div id="tipue_search_content" style="display: none"></div>
+
+<!-- Content -->
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>在之前的几篇文章里我简单地介绍了 AI 寻路方式以及 Resource 的相关应用，那其实都是为这篇文章做铺垫的，本篇的内容是基于油管上一个比较老的 Unity AI 系列教程： <a href="https://www.youtube.com/playlist?list=PLX2vGYjWbI0ROSj_B0_eir_VkHrEkd4pi" target="_blank" rel="noopener">Unity tutorial: Pluggable AI With Scriptable Objects</a> ，教程详细介绍了 Unity 中如何实现可插拨式 AI 的功能，在我的一番苦苦研究下，硬生生地把它给搬运到了 Godot 中，搬运过程可谓是费了九牛二虎之力，这其中一部分原因是由于自己对 Godot API 的熟练程度不够，另一方面则是 Godot 本身的一些缺陷，这些我都会在本文中提出来。</p>
+<p>![Unity tutorial: Pluggable AI With Scriptable Objects](Pluggable AI With Scriptable Objects.jpg)</p>
+<p>因为 Unity 中的 ScriptObject 在 Godot 中相当于 <a href="https://docs.godotengine.org/en/3.2/getting_started/step_by_step/resources.html" target="_blank" rel="noopener">Resource</a> ，如果不是很熟悉，推荐大家阅读我的上一篇文章： <a href="http://liuqingwen.me/2020/08/17/godot-game-devLog-3-talk-about-resource/">Godot游戏开发实践之三：容易被忽视的Resource</a> 。另外，搬用并等于照抄，本 Demo 实现的部分 AI 功能使用的是我自己的方式，这也在我之前的文章里有详细介绍： <a href="http://liuqingwen.me/2020/08/01/godot-game-devLog-2-introduce-a-new-AI-path-finding-method/">Godot游戏开发实践之二：AI之寻路新方式</a>。</p>
+<p><strong>说明</strong>：我不会很详细的讲述如何实现某些特定功能，所以推荐大家观看原 Unity 视频，如果上油管不方便，也请放心，视频教程我已经搬运到我的网盘，分享链接请关注我的公众号，回复 <strong>AI教程</strong> 即可（友情提示：套路……），哈哈。</p>
+<blockquote>
+<p>主要内容： 无<br>阅读时间： 12 分钟<br>永久链接： <a href="http://liuqingwen.me/2020/09/08/godot-game-devLog-4-translate-pluggable-AI-tutorial-from-unity-to-godot/">http://liuqingwen.me/2020/09/08/godot-game-devLog-4-translate-pluggable-AI-tutorial-from-unity-to-godot/</a><br>系列主页： <a href="http://liuqingwen.me/introduction-of-godot-series/">http://liuqingwen.me/introduction-of-godot-series/</a>  </p>
+</blockquote>
+<h2 id="二、正文"><a href="#二、正文" class="headerlink" title="二、正文"></a>二、正文</h2><p>除了参考原视频教程，也可以克隆本 Demo 的源码，我已经上传到 <a href="https://github.com/spkingr/Godot-Pluggable-AI" target="_blank" rel="noopener">Github</a> ，供有兴趣的同学参考。</p>
+<p><img src="godot_dev4_godot_pluggable_ai.jpg" alt="Godot Pluggable AI"></p>
+<h3 id="什么是可插拨AI"><a href="#什么是可插拨AI" class="headerlink" title="什么是可插拨AI"></a>什么是可插拨AI</h3><p>所谓<em>可插拨</em>其实和安装插件、热插拨等概念类似，就是可以随意添加或者删除某个功能，通过直接拖拽就能组成复杂的 AI 体系而无须手动重复编写代码，在 Unity 中使用的是 ScriptableObject 而 Godot 中即 Resource ：</p>
+<p><img src="godot_dev4_pluggable.gif" alt="拖拽赋值"></p>
+<p>其实在编辑器方面， Unity 使用起来比 Godot 舒服多了。 <img class="github-emoji"  title="joy" alt="joy" src="http://liuqingwen.me/images/emoji/joy.png" height="20" width="20" /></p>
+<h3 id="先说Godot的问题"><a href="#先说Godot的问题" class="headerlink" title="先说Godot的问题"></a>先说Godot的问题</h3><p>搬运这个 AI 教程的时候，我反反复复、仔仔细细研究了很多次，在按步照搬的过程中出现了一个非常奇怪且头疼的问题：游戏无症状、无征兆地<strong>闪退</strong>！</p>
+<p>代码看上去没问题，按下 <kbd>F5</kbd> 运行游戏，窗口还没显示就马上停止运行，连错误提示都没有。曾经因为这个错误我一度想着放弃算了，但是转念一想， <em>Godot 开发者岂能低头？！</em> 所以我继续尝试，寻找错误原因，探索可行的解决方案，从至少能正常运行开始一步一步添加相关功能，最终发现了闪退的罪魁祸首： <strong>Circular reference to resource</strong> 即<strong>循环引用</strong>报错，这在我之前的文章中已经聊过，也有朋友遇到过类似的问题，错误信息大概是：</p>
+<blockquote>
+<p>“scene/resources/resource_format_text.cpp:1387 - Circular reference to resource being saved found: ‘res://src/Resources/States/???.tres’ will be null next time it’s loaded.”</p>
+</blockquote>
+<p>哪来的循环引用呢？熟悉游戏结构你就会感觉到这是很显然的：在我的游戏中有很多 Resource 资源类，比如 <code>Action/Decision/State/Transitions</code> 等，而这些资源相互之间或多或少发生了一些引用，就像 <code>PatrolChaser</code> 中引用了 <code>ChaseChaser</code> ，反过来 <code>ChaseChaser</code> 又引用 <code>PatrolChaser</code> 从而造成循环引用链，甚至还有更加复杂的、难以发觉的、千丝万缕的引用关系蕴含其中：</p>
+<blockquote>
+<p>Alert Scanner -&gt; Patrol Scanner -&gt; Chase Scanner -&gt; Alert Scanner -&gt; Chase Scanner -&gt; Alert Scanner -&gt; …</p>
+</blockquote>
+<p>在编程语言里这些引用再正常不过，但是 Godot 3 还不能正常处理循环引用，这会在 4.0 中进行修复，我可不想等到明年春天了，最终解决方式是放弃部分插拨功能，对一些参数不采用<strong>推拽赋值</strong>的方式，取而代之的是在运行时判断对应资源是否为 <code>null</code> 再决定动态加载进行赋值，这就造成了需要额外的一个变量用来指向对应 Resource 文件的路径：</p>
+<p><img src="godot_dev4_empty_resource_with_path.jpg" alt="使用路径动态赋值"></p>
+<p>主要代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># trueState 和 falseState 可以为 null</span></span><br><span class="line"><span class="comment"># 如果为 null 则使用对应的文件路径进行动态加载</span></span><br><span class="line">func _checkTransitions(controller : StateController) -&gt; void:</span><br><span class="line">    <span class="keyword">for</span> transition <span class="keyword">in</span> transitions:</span><br><span class="line">    var decisionSucceeded : bool = transition.decision.decide(controller)</span><br><span class="line">    <span class="keyword">if</span> decisionSucceeded:</span><br><span class="line">        var trueState = transition.trueState</span><br><span class="line">        <span class="keyword">if</span> trueState == null:  <span class="comment"># 如果置空则动态加载一次</span></span><br><span class="line">            trueState = load(transition.trueStateResource)</span><br><span class="line">            transition.trueState = trueState</span><br><span class="line">        controller.transitionToState(trueState)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        var falseState = transition.falseState</span><br><span class="line">        <span class="keyword">if</span> falseState == null:  <span class="comment"># 如果置空则动态加载一次</span></span><br><span class="line">            falseState = load(transition.falseStateResource)</span><br><span class="line">            transition.falseState = falseState</span><br><span class="line">        controller.transitionToState(falseState)</span><br></pre></td></tr></table></figure>
+
+<p>除此之外，还有一个不忍直视的问题是在编辑器中显示资源值的视图，一旦涉及多个参数、多种类型、多个级别的资源混合在一起，那么他们之间的层级关系在属性面板中变得极其难以辨别，感同身受一下这张慢动图所带来的崩溃心情吧：</p>
+<p><img src="godot_dev4_assignment.gif" alt="复杂的变量关系属性图"></p>
+<p>嗯，此刻的我心中万马奔腾，无限次奔溃闪退并自动重启中……</p>
+<h3 id="AI结构分析"><a href="#AI结构分析" class="headerlink" title="AI结构分析"></a>AI结构分析</h3><p>如果你看完了整个视频教程，你会发现这个 AI 系统的几个重要部件：</p>
+<ul>
+<li>Action 表示动作，比如巡逻、射击等动作的控制实现</li>
+<li>Decision 表示策略行为的决定，即状态之间进行切换的依据</li>
+<li>State 表示状态，一个状态即一种 AI 行为，不同状态之间根据决定进行切换</li>
+<li>Transition 包装了两个状态（正反状态），以及状态发生转换的决定</li>
+</ul>
+<p>他们之间的关系图，以及主要的行为类：</p>
+<p><img src="godot_dev4_relationship_of_states.jpg" alt="AI关系图"></p>
+<p>Action 父类代码：</p>
+<figure class="highlight python"><figcaption><span>AbstractAction.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">extends Resource</span><br><span class="line">class_name AbstractAction, <span class="string">'res://assets/icons/action-icon.svg'</span></span><br><span class="line"></span><br><span class="line">export var debugDrawColor := Color.black <span class="comment"># 颜色显示，Debug用</span></span><br><span class="line">export var resourceName := <span class="string">'Action'</span>      <span class="comment"># 名字，Debug用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 动作的行为方法，每帧都会调用</span></span><br><span class="line">func act(controller : StateController) -&gt; void:</span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>Decision 父类代码：</p>
+<figure class="highlight python"><figcaption><span>AbstractDecision.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">extends Resource</span><br><span class="line">class_name AbstractDecision, <span class="string">'res://assets/icons/decision-icon.svg'</span></span><br><span class="line"></span><br><span class="line">export var debugDrawColor := Color.white <span class="comment"># 颜色显示，Debug用</span></span><br><span class="line">export var resourceName := <span class="string">'Decision'</span>    <span class="comment"># 名字，Debug用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 决定的方法，包装在 Transition 中，每帧都会调用</span></span><br><span class="line"><span class="comment"># 返回结果决定了切换到的状态</span></span><br><span class="line">func decide(controller : StateController) -&gt; bool:</span><br><span class="line">  <span class="keyword">return</span> false</span><br></pre></td></tr></table></figure>
+
+<p>State 状态类代码：</p>
+<figure class="highlight python"><figcaption><span>State.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">extends Resource</span><br><span class="line">class_name State, <span class="string">'res://assets/icons/state-icon.svg'</span></span><br><span class="line"></span><br><span class="line">export(Array, Resource) var actions = []       <span class="comment"># 当前状态下所有动作集合</span></span><br><span class="line">export(Array, Resource) var transitions = []   <span class="comment"># 所有的状态转换机制集合</span></span><br><span class="line">export var debugStateColor := Color.green      <span class="comment"># 颜色显示，Debug用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每帧执行状态更新</span></span><br><span class="line">func updateState(controller : StateController) -&gt; void:</span><br><span class="line">  _doActions(controller)</span><br><span class="line">  _checkTransitions(controller)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 循环执行所有动作</span></span><br><span class="line">func _doActions(controller : StateController) -&gt; void:</span><br><span class="line">  <span class="keyword">for</span> action <span class="keyword">in</span> actions:</span><br><span class="line">    action.act(controller)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查每一个转换机制，是否可以进行状态转换</span></span><br><span class="line">func _checkTransitions(controller : StateController) -&gt; void:</span><br><span class="line">  <span class="comment"># 代码参考上文</span></span><br><span class="line">  <span class="comment"># 省略……</span></span><br></pre></td></tr></table></figure>
+
+<p>控制器 Controller 和过渡机制 Transition 的代码就不贴了，控制器中代码都是一些基本状态和控制操作的实现。这里我把视频中介绍的所有 AI 类型例举如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Chase Chaser: &#123;</span><br><span class="line">  Actions: [ChaseAction, AttackAction],</span><br><span class="line">  Transitions: &#123;Decision: ActiveStateDecision, TrueState: Remain State, FalseState: Patrol Chaser&#125;</span><br><span class="line">&#125;</span><br><span class="line">Patrol Chaser: &#123;</span><br><span class="line">  Actions: [PatrolAction],</span><br><span class="line">  Transitions: &#123;Decision: LookDecision, TrueState: Chase Chaser, FalseState: Remain State&#125;</span><br><span class="line">&#125;</span><br><span class="line">Chase Scanner: &#123;</span><br><span class="line">  Actions: [ChaseAction, AttackAction],</span><br><span class="line">  Transitions: &#123;Decision: LookDecision, TrueState: Remain State, FalseState: Alert Scanner&#125;</span><br><span class="line">&#125;</span><br><span class="line">Patrol Scanner: &#123;</span><br><span class="line">  Actions: [PatrolAction],</span><br><span class="line">  Transitions: &#123;Decision: LookDecision, TrueState: Chase Scanner, FalseState: Remain State&#125;</span><br><span class="line">&#125;</span><br><span class="line">Alert Scanner: &#123;</span><br><span class="line">  Actions: [],</span><br><span class="line">  Transitions: [&#123;Decision: ScanDecision, TrueState: Patrol Scanner, FalseState: Remain State&#125;, &#123;Decision: LookDecision, TrueState: Chase Scanner, FalseState: Remain State&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然，这个 AI 系统绝不局限于此，你完全可以组合出更多 AI 状态，也可以添加你心目中所要实现的其他动作、决定、过渡和状态类，丰富这个强大的 AI 系统。</p>
+<h2 id="其他小功能简介"><a href="#其他小功能简介" class="headerlink" title="其他小功能简介"></a>其他小功能简介</h2><p>最后，游戏中使用的一些小技巧我也在本篇中简单介绍一下，包括：炸弹的范围伤害、相机自动跟踪、子弹高度模拟等。</p>
+<h3 id="炸弹范围伤害"><a href="#炸弹范围伤害" class="headerlink" title="炸弹范围伤害"></a>炸弹范围伤害</h3><p><img src="godot_dev4_damage_in_distance.gif" alt="炸弹范围伤害"></p>
+<p>从图中可以看出，我使用了指数级的衰减函数，也就是说距离炸弹爆炸中心越远，伤害衰减的越厉害，个人认为要符合现实一些，当然你完全可以使用简单的线性函数，伤害和距离成反比，这取决于你自己以及游戏机制的设计：</p>
+<figure class="highlight python"><figcaption><span>MissileExplosion.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 伤害最大范围</span></span><br><span class="line">onready var damageRange : float = $CollisionShape2D.shape.radius</span><br><span class="line"></span><br><span class="line">func _on_Explosion_body_entered(body: Node) -&gt; void:</span><br><span class="line">    <span class="keyword">if</span> body.has_method(<span class="string">'damaged'</span>):</span><br><span class="line">      var vector : Vector2 = body.global_position - self.global_position</span><br><span class="line">      <span class="comment"># 指数系数</span></span><br><span class="line">      var ratio : float = <span class="number">1.0</span> - pow(vector.length() / damageRange, <span class="number">0.6</span>)</span><br><span class="line">      <span class="comment"># 伤害和冲击力</span></span><br><span class="line">      var damage := ceil(maxDamage * ratio)</span><br><span class="line">      var force : Vector2 = maxForce * ratio * vector.normalized()</span><br><span class="line">      body.damaged(damage, force)</span><br></pre></td></tr></table></figure>
+
+<h3 id="相机自动跟踪"><a href="#相机自动跟踪" class="headerlink" title="相机自动跟踪"></a>相机自动跟踪</h3><p>在本示例中我使用了相机自动跟踪的效果。</p>
+<p>因为类似于多人游戏，使用相机进行跟踪是有必要的，这样可以保证所有的坦克、玩家都在当前视野中。实现起来不难，根据当前玩家数量以及玩家的位置计算最大边距以及中心点，然后移动并设置相机的缩放即可：</p>
+<figure class="highlight python"><figcaption><span>Camera.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 窗口大小</span></span><br><span class="line">onready var _windowSize := self.get_viewport_rect().size</span><br><span class="line"><span class="comment"># 跟踪的目标</span></span><br><span class="line">var targets := []</span><br><span class="line"></span><br><span class="line">func _process(delta: float) -&gt; void:</span><br><span class="line">  <span class="keyword">if</span> targets.size() &lt;= <span class="number">1</span>:</span><br><span class="line">    _camera.zoom = lerp(_camera.zoom, Vector2.ONE, <span class="number">2.0</span> * delta)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  </span><br><span class="line">  var minPos := _windowSize  <span class="comment"># 最小位置点</span></span><br><span class="line">  var maxPos := Vector2.ZERO <span class="comment"># 最大位置点</span></span><br><span class="line">  <span class="keyword">for</span> target <span class="keyword">in</span> targets:</span><br><span class="line">    <span class="keyword">if</span> ! is_instance_valid(target):</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">if</span> target.global_position.x &lt; minPos.x:</span><br><span class="line">      minPos.x = target.global_position.x</span><br><span class="line">    <span class="keyword">if</span> target.global_position.x &gt; maxPos.x:</span><br><span class="line">      maxPos.x = target.global_position.x</span><br><span class="line">    <span class="keyword">if</span> target.global_position.y &lt; minPos.y:</span><br><span class="line">      minPos.y = target.global_position.y</span><br><span class="line">    <span class="keyword">if</span> target.global_position.y &gt; maxPos.y:</span><br><span class="line">      maxPos.y = target.global_position.y</span><br><span class="line">  <span class="comment"># 移动到中心点</span></span><br><span class="line">  self.global_position = lerp(self.global_position, (maxPos + minPos) / <span class="number">2</span>, <span class="number">2.0</span> * delta)</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 计算缩放比例，相对于游戏主窗口</span></span><br><span class="line">  var zoom = <span class="number">2.0</span> * max((maxPos.x - minPos.x) / _windowSize.x, (maxPos.y - minPos.y) / _windowSize.y)</span><br><span class="line">  zoom = clamp(zoom, <span class="number">0.5</span>, <span class="number">1.0</span>)</span><br><span class="line">  _camera.zoom = lerp(_camera.zoom, Vector2.ONE * zoom, <span class="number">2.0</span> * delta)</span><br></pre></td></tr></table></figure>
+
+<h3 id="子弹高度模拟"><a href="#子弹高度模拟" class="headerlink" title="子弹高度模拟"></a>子弹高度模拟</h3><p>原 Unity 视频中的 Tank 是一个 3D 游戏，所以子弹也就有射程（落地）和高度之分，如果在 2D 场景中不设置高度，炸弹只要碰上其他炸弹或者静态物体都会直接爆炸，那么游戏中的发射力（射程）也就毫无意义了，所以我使用代码简单地实现了子弹高度的模拟。</p>
+<p><img src="godot_dev4_missile_height.jpg" alt="子弹高度模拟"></p>
+<p>思路大概是这样的：给子弹添加一个阴影，阴影大小和透明度随子弹高度发生变化，飞行中的子弹在垂直方向上偏移一定位置表示高度，最后把碰撞体设置在阴影上。这里的变化都使用了线性比例，实现方式也相对简单，从上图也可以看出来：</p>
+<figure class="highlight python"><figcaption><span>Missile.gd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">export var missileBodyMaxOffset := <span class="number">60.0</span>            <span class="comment"># 最高时子弹视觉偏移</span></span><br><span class="line">export(float, <span class="number">1.0</span>, <span class="number">10.0</span>) var shadowMaxScale := <span class="number">1.5</span> <span class="comment"># 阴影最大缩放，即子弹离地最低点</span></span><br><span class="line">export(float, <span class="number">0.0</span>, <span class="number">1.0</span>) var shadowMinScale := <span class="number">0.5</span>  <span class="comment"># 阴影最小缩放，即子弹离地最高点</span></span><br><span class="line">export(float, <span class="number">0.0</span>, <span class="number">1.0</span>) var shadowMinAlpha := <span class="number">0.25</span> <span class="comment"># 阴影最小透明度，最高点</span></span><br><span class="line">export(float, <span class="number">1.0</span>, <span class="number">2.0</span>) var shadowMaxAlpha := <span class="number">2.5</span>  <span class="comment"># 阴影最大透明度，最低点</span></span><br><span class="line"></span><br><span class="line">func init(force : float, maxSpeed : int, resistance : int, dir : Vector2) -&gt; void:</span><br><span class="line">  _direction = dir</span><br><span class="line">  _fullSpeed = maxSpeed</span><br><span class="line">  _moveResistance = resistance <span class="comment"># 阻力，即重力加速度</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 计算能达到的最大高度</span></span><br><span class="line">  _maxFlyHeight = <span class="number">0.5</span> * maxSpeed * maxSpeed / resistance</span><br><span class="line">  <span class="comment"># 计算线性关系系数a和b：y=ax+b</span></span><br><span class="line">  _paramScaleA = (shadowMinScale - shadowMaxScale) / _maxFlyHeight</span><br><span class="line">  _paramScaleB = shadowMaxScale</span><br><span class="line">  _paramAlphaA = (shadowMaxAlpha - shadowMinAlpha) / (shadowMinScale - shadowMaxScale)</span><br><span class="line">  _paramAlphaB = shadowMaxAlpha - shadowMinScale * _paramAlphaA</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 保证炸弹总是往上方偏移，不然看起来奇怪</span></span><br><span class="line">  var angle = fmod(dir.angle(), <span class="number">2</span> * PI)</span><br><span class="line">  <span class="keyword">if</span> angle &gt; PI * <span class="number">0.5</span> || angle &lt; - PI * <span class="number">0.5</span>:</span><br><span class="line">    missileBodyMaxOffset = -missileBodyMaxOffset</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 水平和垂直初始速度一样，模拟45度发射导弹</span></span><br><span class="line">  _velocityX = force * maxSpeed</span><br><span class="line">  _velocityY = force * maxSpeed</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算水平和垂直位移</span></span><br><span class="line">func _physics_process(delta: float) -&gt; void:</span><br><span class="line">  self.position += _direction * _velocityX * delta</span><br><span class="line">  _velocityY -= _moveResistance * delta</span><br><span class="line">  currentHeight += _velocityY * delta</span><br><span class="line">  _adjustHeight(currentHeight)</span><br><span class="line">  <span class="keyword">if</span> currentHeight &lt;= <span class="number">0.0</span>:</span><br><span class="line">    explode()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据高度调整阴影大小、透明度、子弹垂直偏移</span></span><br><span class="line">func _adjustHeight(height : float) -&gt; void:</span><br><span class="line">  _body.position.y = - height / _maxFlyHeight * missileBodyMaxOffset</span><br><span class="line">  var shadowScale = _paramScaleA * height + _paramScaleB</span><br><span class="line">  _shadow.scale = Vector2.ONE * shadowScale</span><br><span class="line">  var shadowAlpha = _paramAlphaA * shadowScale + _paramAlphaB</span><br><span class="line">  _shadow.modulate.a = shadowAlpha</span><br></pre></td></tr></table></figure>
+
+<p>嗯，我就想弱弱问一句：现实生活中物体越高其阴影是越大还是越小呢？……</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>这种 AI 系统具有比较强的扩展性和易用性，有点复杂问题简单模块化的思维，用起来应该会相当爽，当然我也没有具体项目案例，另外也有一些不足之，个人经验主要概括为这两点：</p>
+<ol>
+<li>Pluggable AI 确实比较强大，使用非常方便，因为是可插拨，即使配置复杂的 AI 都只要轻轻<em>一拖一拽一松手</em>就完成了</li>
+<li>但是这种方式也有令人不爽的地方，比如耦合还是比较厉害的，代码中需要访问、修改很多玩家相关数据，依然需要一番精心的设计</li>
+</ol>
+<p>好在 Unity 中具有更加成熟的碰撞检测相关 API ，比如 SphereCast 还有 Navigator 都是极好用的 AI 辅助工具， Godot 中就只能手动实现了。 <img class="github-emoji"  title="joy" alt="joy" src="http://liuqingwen.me/images/emoji/joy.png" height="20" width="20" /></p>
+
+<video src="./Pluggable AI With Scriptable Objects in Godot.mp4" controls="controls" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"><img src="./godot_dev4_godot_pluggable_ai.jpg" alt="Pluggable AI With Scriptable Objects in Godot" title="Pluggable AI演示示例" /></video>
+
+
+
+<p markdown="1" style="color: red; font-size: 80%; font-weight: bold; text-align: center;">
+这是之前录制的视频，已经更新部分功能，可以到 Github 查看。
+</p>
+
+
+<p>最后，务必关注我的公众号，回复 <strong>AI教程</strong> 我会送上本套视频以及非常棒的一套 AStar 讲解视频（毫无疑问也是在 Unity 中实现，但是原理通用）。本篇的 Demo 以及相关代码已经上传到 Github ，地址： <a href="https://github.com/spkingr/Godot-Pluggable-AI" target="_blank" rel="noopener">https://github.com/spkingr/Godot-Pluggable-AI</a> ， 后续继续更新，<strong>原创不易</strong>，希望大家喜欢！ <img class="github-emoji"  title="smile" alt="smile" src="http://liuqingwen.me/images/emoji/smile.png" height="20" width="20" /></p>
+<blockquote>
+<p>我的博客地址： <a href="http://liuqingwen.me">http://liuqingwen.me</a> ，我的博客即将同步至腾讯云+社区，邀请大家一同入驻： <a href="https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=3sg12o13bvwgc</a> ，欢迎关注我的微信公众号（第一时间更新+游戏开发资源+相关资讯）：<img src="http://liuqingwen.me/images/wexin_1.jpg" alt="IT自学不成才"></p>
+</blockquote>
+
+
+<!-- Tags -->
+
+
+
+<div class="tags">
+    <a href="/tags/Godot/" class="button small">Godot</a>
+</div>
+
+
+
+<!-- Pre-Next post added by me -->
+<!-- Added by me, for pre-post and next-post links in post page -->
+
+    <div class="prev_next clearfix">
+      
+      
+      
+        <a href="/2020/08/17/godot-game-devLog-3-talk-about-resource/" class="alignright next" title="Godot游戏开发实践之三：容易被忽视的Resource">Godot游戏开发实践之三：容易被忽视的Resource&nbsp;<i class="fa fa-angle-double-right"></i></a>
+      
+      <div class="clearfix"></div>
+    </div>
+
+
+
+<!-- Comments -->
+<div>
+    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+</div>
+
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section>
+            <h2>About</h2>
+            <div>
+                This theme was initially developed by <a href="http://html5up.net" target="_blank">HTML5 UP</a>. It is adapted for Hexo by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a>. <br/>The source code is available on <a href="https://github.com/klugjo/hexo-theme-phantom" target="_blank">GitHub</a>. <br/><span id="busuanzi_container_site_pv">Total visits:&nbsp;<span id="busuanzi_value_site_pv"></span> , </span><span id="busuanzi_container_site_uv">Number of visitors:&nbsp;<span id="busuanzi_value_site_uv"></span> , staticstics powered by <a href="http://busuanzi.ibruce.info/" target="_blank" title="不蒜子统计">不蒜子</a></span> <br/>Blog post content:&nbsp;<a href="http://liuqingwen.me/tags"><span><i class="fa fa-search"></i>&nbsp;搜索博客内容</span></a>
+            </div>
+        </section>
+        <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/SpkingR" class="icon style2 fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
+                
+                
+                
+                
+                
+                    <li><a href="https://github.com/spkingr" class="icon style2 fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
+                
+                
+                    <li><a href="https://plus.google.com/u/0/101955667782244488142" class="icon style2 fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
+                
+                
+                
+                
+                    <li><a href="about/" class="icon style2 fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
+                
+                
+                    <li><a href="/atom.xml" class="icon style2 fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
+                
+            </ul>
+            <ul class="links">
+                <!-- Added by me, settings in config file -->
+                
+                    <li><a href="https://zhuanlan.zhihu.com/godot" class="icon style2 zhihu" target="_blank" ><span class="label">知乎</span></a></li>
+                
+                
+                    <li><a href="https://www.jianshu.com/u/756bad579149" class="icon style2 jianshu" target="_blank" ><span class="label">简书</span></a></li>
+                
+                
+                    <li><a href="https://juejin.im/user/59d1d5b1f265da0656048d2b" class="icon style2 juejin" target="_blank" ><span class="label">掘金</span></a></li>
+                
+                
+                    <li><a href="https://blog.csdn.net/SpkingR" class="icon style2 csdn" target="_blank" ><span class="label">CSDN</span></a></li>
+                
+                
+                    <li><a href="https://www.indienova.com/u/liuqingwen" class="icon style2 indienova" target="_blank" ><span class="label">INDIE NOVA</span></a></li>
+                
+            </ul>
+        </section>
+        <ul class="copyright">
+            <li>&copy; liuqingwen.me. All rights reserved</li>
+            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+            <li>Hexo: <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></li>
+            <li>About Me: <a href="/about">Liuqingwen</a></li>
+            <li>备案号: <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">湘ICP备14005092号</a></li>
+        </ul>
+    </div>
+</footer>
+    </div>
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- skel -->
+
+<script src="/js/skel.min.js"></script>
+
+
+<!-- Custom Code -->
+
+<script src="/js/util.js"></script>
+
+
+<!--[if lte IE 8]>
+
+<script src="/js/ie/respond.min.js"></script>
+
+<![endif]-->
+
+<!-- Custom Code -->
+
+<script src="/js/main.js"></script>
+
+<!-- My Custom Code for add lazy-loading-image plugin -->
+
+<script src="/scripts/echo.js"></script>
+
+
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            //Added by me!!! Help to display correctly in Mobile
+            /*var entryContentWidth = $(element).width();
+            if($(element).width() > entryContentWidth)
+            {
+                $(element).width("100%");
+            }*/
+            $(element).css({maxWidth: "100%"});
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+  // echo.render(); is also available for non-scroll callbacks
+</script>
+
+<!-- Added for tipue search plugin....................... -->
+<link href="/tipuesearch/css/tipuesearch.css" rel="stylesheet">
+<script src="/tipuesearch/tipuesearch_set.js"></script>
+<script src="/tipuesearch/tipuesearch.js"></script>
+<script>
+    $(document).ready(function () {
+ 
+        var searchInput = $('#tipue_search_input');
+        searchInput.tipuesearch({
+            'mode': 'json',
+            'minimumLength': 2,
+            'contentLocation': '/tipuesearch/tipuesearch_content.json',
+            highlightEveryTerm: true
+        });
+ 
+        $('#search-form').on('submit', function (e) {
+            e.preventDefault();
+            $('#tipue_search_content').show();
+            $('#content').hide();
+        });
+ 
+        searchInput.keyup(function () {
+            var length = $(this).val().length;
+            if (length < 1) {
+                $('#tipue_search_content').hide();
+                $('#content').show();
+            }
+        });
+    });
+</script>
+
+<!-- Gallery 
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="https://cdn.bootcss.com/featherlight/1.7.13/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'liuqingwen';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<!-- Calendar -->
+<!-- Add by me, the calendar plugin, from: http://howiefh.github.io/2016/04/29/hexo-s-calendar-plugin/ -->
+
+    <script src="/js/calendar.js"></script>
+    <script src="/js/languages.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            
+                //The same in else! edited by me.....
+                $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                
+                    $('#calendar-sample').aCalendar('zh-CN',{single:true, root:'calendar/'});
+                
+                //Error in the below line:
+                //$('#calendar').aCalendar('zh-CN', $.extend(JSON.parse('{"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"dayOfWeekShort":["S","M","T","W","T","F","S"],"dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"postsMonthTip":"Posts published in LMM yyyy","titleFormat":"yyyy LMM","titleLinkFormat":"/archives/yyyy/MM/","headArrows":{"previous":null,"next":null},"footArrows":{"previous":"«","next":"»"},"weekOffset":0,"single":true,"root":"/calendar/","url":"/calendar.json"}'), {single:true, root:'calendar/'});
+            
+        });
+    </script>
+
+
+<!-- Calculator of Blog Viewers -->
+<!-- Added by me, http://ibruce.info/2015/04/04/busuanzi/ || http://busuanzi.ibruce.info/-->
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+</body>
+
+</html>
